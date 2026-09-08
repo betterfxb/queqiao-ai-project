@@ -1,0 +1,98 @@
+[
+ {
+  "id": "RPT2026401",
+  "name": "2026年7月财务月报",
+  "category": "财务",
+  "format": "Excel",
+  "range": "2026-07-01 ~ 2026-07-31",
+  "exportedAt": "2026-07-20 10:00",
+  "operator": "陈红娘",
+  "status": "生成中",
+  "size": "0.8 MB",
+  "createdAt": "2026-08-02T10:00:00"
+ },
+ {
+  "id": "RPT2026402",
+  "name": "红娘绩效排行榜 Q3",
+  "category": "红娘",
+  "format": "PDF",
+  "range": "2026-07-01 ~ 2026-07-31",
+  "exportedAt": "2026-08-03 10:00",
+  "operator": "李红娘",
+  "status": "已完成",
+  "size": "2.5 MB",
+  "createdAt": "2026-07-16T10:00:00"
+ },
+ {
+  "id": "RPT2026403",
+  "name": "会员增长趋势分析",
+  "category": "会员",
+  "format": "Excel",
+  "range": "2026-01-01 ~ 2026-06-30",
+  "exportedAt": "2026-08-06 10:00",
+  "operator": "系统管理员",
+  "status": "已完成",
+  "size": "3.2 MB",
+  "createdAt": "2026-07-13T10:00:00"
+ },
+ {
+  "id": "RPT2026404",
+  "name": "活动 ROI 汇总表",
+  "category": "活动",
+  "format": "CSV",
+  "range": "2026-07-01 ~ 2026-07-31",
+  "exportedAt": "2026-07-10 10:00",
+  "operator": "陈红娘",
+  "status": "已完成",
+  "size": "0.5 MB",
+  "createdAt": "2026-07-13T10:00:00"
+ },
+ {
+  "id": "RPT2026405",
+  "name": "牵线成功率分析报告",
+  "category": "牵线",
+  "format": "PDF",
+  "range": "2026-07-01 ~ 2026-07-31",
+  "exportedAt": "2026-07-20 10:00",
+  "operator": "运营主管",
+  "status": "已完成",
+  "size": "3.1 MB",
+  "createdAt": "2026-07-11T10:00:00"
+ },
+ {
+  "id": "RPT2026406",
+  "name": "VIP 会员画像洞察",
+  "category": "会员",
+  "format": "Excel",
+  "range": "2026-04-01 ~ 2026-06-30",
+  "exportedAt": "2026-07-16 10:00",
+  "operator": "王姐",
+  "status": "已完成",
+  "size": "2.1 MB",
+  "createdAt": "2026-08-02T10:00:00"
+ },
+ {
+  "id": "RPT2026407",
+  "name": "2026上半年营收总览",
+  "category": "财务",
+  "format": "PDF",
+  "range": "2026-04-01 ~ 2026-06-30",
+  "exportedAt": "2026-07-20 10:00",
+  "operator": "系统管理员",
+  "status": "已完成",
+  "size": "3.9 MB",
+  "createdAt": "2026-07-18T10:00:00"
+ },
+ {
+  "id": "RPT2026408",
+  "name": "红娘工作量统计",
+  "category": "红娘",
+  "format": "CSV",
+  "range": "2026-01-01 ~ 2026-06-30",
+  "exportedAt": "2026-07-09 10:00",
+  "operator": "赵姐",
+  "status": "已完成",
+  "size": "1.3 MB",
+  "createdAt": "2026-07-10T10:00:00"
+ }
+]

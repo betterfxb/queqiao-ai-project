@@ -1,0 +1,255 @@
+/* ==========================================================================
+   牵线运营中心 — Desktop Theme（新中式轻奢 + Glassmorphism）
+   Palette: Warm Ivory + Burgundy(勃艮第红) + Champagne Gold(香槟金)
+   ========================================================================== */
+:root {
+  /* --- Primary: Burgundy --- */
+  --dt-primary: #7a2135;
+  --dt-primary-light: #9a3349;
+  --dt-primary-dark: #5c1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #ffffff;
+
+  /* --- Accent: Champagne Gold --- */
+  --dt-gold: #c9a96e;
+  --dt-gold-light: #d9bf8a;
+  --dt-gold-lighter: #e8d5ac;
+  --dt-gold-dark: #a88a50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.1);
+  --dt-gold-gradient: linear-gradient(135deg, #d9bf8a 0%, #c9a96e 50%, #a88a50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Background: Warm Ivory Matte --- */
+  --dt-bg-base: #f8f5f0;
+  --dt-bg-warm: #f2ede6;
+  --dt-bg-deep: #ede7de;
+  --dt-bg-gradient: linear-gradient(135deg, #f8f5f0 0%, #f2ede6 50%, #ede7de 100%);
+
+  /* --- Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.8);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.1);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.2);
+
+  /* --- Ink hierarchy --- */
+  --dt-ink-1: #2a1c23;
+  --dt-ink-2: #4a3640;
+  --dt-ink-3: #7a6670;
+  --dt-ink-4: #a8949e;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Semantic surfaces --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #ffffff;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.1);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9a8690;
+
+  /* --- Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- State colors (desktop semantic) --- */
+  --dt-success: #4a8b5c;
+  --dt-success-soft: rgba(74, 139, 92, 0.1);
+  --dt-warning: #c4904a;
+  --dt-warning-soft: rgba(196, 144, 74, 0.1);
+  --dt-error: #b53a4a;
+  --dt-error-soft: rgba(181, 58, 74, 0.1);
+  --dt-info: #5a7a9a;
+  --dt-info-soft: rgba(90, 122, 154, 0.1);
+
+  /* --- Typography --- */
+  --dt-font: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui,
+    -apple-system, sans-serif;
+  --dt-font-num: 'DIN Alternate', 'Inter', 'Noto Sans SC', sans-serif;
+
+  /* 全局字体大小：根字号 = 16px × 该系数（与浏览器默认一致，不扰动现有 rem 间距）。
+     仅缩放文字，不改布局；拖动滑块只改这一个变量，开销极低、流畅无卡顿。 */
+  --qq-font-scale: 1;
+
+  /* --- Spacing (4pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- 数据大屏（暗色）主题 --- */
+.big-screen {
+  --bs-bg-1: #2a0e18;
+  --bs-bg-2: #1a0810;
+  --bs-bg-3: #0f0508;
+  --bs-text: #f0e6d2;
+  --bs-gold: #e8c878;
+  --bs-gold-dim: #c9a96e;
+  --bs-burgundy: #9a3349;
+  --bs-panel: rgba(154, 51, 73, 0.15);
+  --bs-panel-strong: rgba(154, 51, 73, 0.25);
+  --bs-border: rgba(232, 200, 120, 0.25);
+}
+
+/* ==========================================================================
+   外观主题变体（设置 → 系统 → 外观主题）
+   默认 :root 即「经典勃艮第」。下方为各 data-theme 覆盖关键色板。
+   使用 html[data-theme=...] 提升优先级，稳定覆盖 base.css 内的 :root Element Plus 变量。
+   三套主题均为浅色背景，仅替换主色/点缀色/背景微色调，确保文本始终深色可读。
+   ========================================================================== */
+
+/* —— 经典勃艮第（默认，与 :root 一致，显式声明保证对称与可维护） —— */
+html[data-theme='burgundy'] {
+  --dt-primary: #7a2135;
+  --dt-primary-light: #9a3349;
+  --dt-primary-dark: #5c1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #ffffff;
+
+  --dt-gold: #c9a96e;
+  --dt-gold-light: #d9bf8a;
+  --dt-gold-lighter: #e8d5ac;
+  --dt-gold-dark: #a88a50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.1);
+  --dt-gold-gradient: linear-gradient(135deg, #d9bf8a 0%, #c9a96e 50%, #a88a50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  --dt-bg-base: #f8f5f0;
+  --dt-bg-warm: #f2ede6;
+  --dt-bg-deep: #ede7de;
+  --dt-bg-gradient: linear-gradient(135deg, #f8f5f0 0%, #f2ede6 50%, #ede7de 100%);
+
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input-border: rgba(122, 33, 53, 0.1);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9a8690;
+
+  --el-color-primary: #7a2135;
+  --el-color-primary-light-3: #a26472;
+  --el-color-primary-light-5: #bd909a;
+  --el-color-primary-light-7: #d7bcc2;
+  --el-color-primary-light-8: #e4d2d7;
+  --el-color-primary-light-9: #f2e9ea;
+  --el-color-primary-dark-2: #5c1828;
+  --el-border-color: rgba(122, 33, 53, 0.16);
+  --el-border-color-light: rgba(122, 33, 53, 0.12);
+  --el-border-color-lighter: rgba(122, 33, 53, 0.08);
+  --el-bg-color-page: #f8f5f0;
+}
+html[data-theme='burgundy'] .el-button--primary { --el-button-hover-bg-color: #9a3349; }
+
+/* —— 清新薄荷 —— */
+html[data-theme='mint'] {
+  --dt-primary: #4e8c76;
+  --dt-primary-light: #67a48f;
+  --dt-primary-dark: #3c6e5d;
+  --dt-primary-soft: rgba(78, 140, 118, 0.07);
+  --dt-primary-soft-2: rgba(78, 140, 118, 0.13);
+  --dt-primary-glow: rgba(78, 140, 118, 0.15);
+  --dt-primary-foreground: #ffffff;
+
+  --dt-gold: #6fae8c;
+  --dt-gold-light: #8fc2a3;
+  --dt-gold-lighter: #b2d7c0;
+  --dt-gold-dark: #4f8a6a;
+  --dt-gold-soft: rgba(111, 174, 140, 0.12);
+  --dt-gold-gradient: linear-gradient(135deg, #8fc2a3 0%, #6fae8c 50%, #4f8a6a 100%);
+  --dt-gold-glow: rgba(111, 174, 140, 0.25);
+
+  --dt-bg-base: #f5faf7;
+  --dt-bg-warm: #edf5f0;
+  --dt-bg-deep: #e2eee7;
+  --dt-bg-gradient: linear-gradient(135deg, #f5faf7 0%, #edf5f0 50%, #e2eee7 100%);
+
+  --dt-border: rgba(78, 140, 118, 0.1);
+  --dt-border-strong: rgba(78, 140, 118, 0.16);
+  --dt-border-gold: rgba(111, 174, 140, 0.32);
+  --dt-input-border: rgba(78, 140, 118, 0.14);
+  --dt-muted: rgba(78, 140, 118, 0.05);
+  --dt-muted-foreground: #6a8a7c;
+
+  --el-color-primary: #4e8c76;
+  --el-color-primary-light-3: #7cab95;
+  --el-color-primary-light-5: #9cbfab;
+  --el-color-primary-light-7: #c4ddcb;
+  --el-color-primary-light-8: #d6e8dc;
+  --el-color-primary-light-9: #eef5f0;
+  --el-color-primary-dark-2: #3c6e5d;
+  --el-border-color: rgba(78, 140, 118, 0.16);
+  --el-border-color-light: rgba(78, 140, 118, 0.12);
+  --el-border-color-lighter: rgba(78, 140, 118, 0.08);
+  --el-bg-color-page: #f5faf7;
+}
+html[data-theme='mint'] .el-button--primary { --el-button-hover-bg-color: #67a48f; }
+
+/* —— 深邃蓝金 —— */
+html[data-theme='navy'] {
+  --dt-primary: #243a63;
+  --dt-primary-light: #3a5283;
+  --dt-primary-dark: #182844;
+  --dt-primary-soft: rgba(36, 58, 99, 0.06);
+  --dt-primary-soft-2: rgba(36, 58, 99, 0.12);
+  --dt-primary-glow: rgba(36, 58, 99, 0.15);
+  --dt-primary-foreground: #ffffff;
+
+  --dt-gold: #c9a96e;
+  --dt-gold-light: #d9bf8a;
+  --dt-gold-lighter: #e8d5ac;
+  --dt-gold-dark: #a88a50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.1);
+  --dt-gold-gradient: linear-gradient(135deg, #d9bf8a 0%, #c9a96e 50%, #a88a50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  --dt-bg-base: #f0f2f8;
+  --dt-bg-warm: #e7eaf3;
+  --dt-bg-deep: #dde2ef;
+  --dt-bg-gradient: linear-gradient(135deg, #f0f2f8 0%, #e7eaf3 50%, #dde2ef 100%);
+
+  --dt-border: rgba(36, 58, 99, 0.08);
+  --dt-border-strong: rgba(36, 58, 99, 0.14);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input-border: rgba(36, 58, 99, 0.12);
+  --dt-muted: rgba(36, 58, 99, 0.04);
+  --dt-muted-foreground: #6b7390;
+
+  --el-color-primary: #243a63;
+  --el-color-primary-light-3: #5a6f99;
+  --el-color-primary-light-5: #8595b3;
+  --el-color-primary-light-7: #bcc6db;
+  --el-color-primary-light-8: #d2d9e8;
+  --el-color-primary-light-9: #e9edf4;
+  --el-color-primary-dark-2: #182844;
+  --el-border-color: rgba(36, 58, 99, 0.16);
+  --el-border-color-light: rgba(36, 58, 99, 0.12);
+  --el-border-color-lighter: rgba(36, 58, 99, 0.08);
+  --el-bg-color-page: #f0f2f8;
+}
+html[data-theme='navy'] .el-button--primary { --el-button-hover-bg-color: #3a5283; }
+

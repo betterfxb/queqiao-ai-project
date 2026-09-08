@@ -1,0 +1,80 @@
+[
+  {
+    "id": "PM001",
+    "name": "花嫁婚纱摄影",
+    "category": "婚纱摄影",
+    "city": "杭州市",
+    "contact": "周经理",
+    "phone": "13800001001",
+    "commissionRate": 12.0,
+    "status": "合作中",
+    "remark": "情侣写真套系 8 折，成交返佣 12%",
+    "createdAt": "2026-05-10T10:00:00",
+    "updatedAt": "2026-05-10T10:00:00"
+  },
+  {
+    "id": "PM002",
+    "name": "喜洋洋婚庆策划",
+    "category": "婚礼策划",
+    "city": "杭州市",
+    "contact": "吴总",
+    "phone": "13800001002",
+    "commissionRate": 10.0,
+    "status": "合作中",
+    "remark": "全案策划，含司仪与场地布置",
+    "createdAt": "2026-05-10T10:00:00",
+    "updatedAt": "2026-05-10T10:00:00"
+  },
+  {
+    "id": "PM003",
+    "name": "金玉良缘珠宝",
+    "category": "珠宝首饰",
+    "city": "杭州市",
+    "contact": "陈店长",
+    "phone": "13800001003",
+    "commissionRate": 8.0,
+    "status": "合作中",
+    "remark": "对戒 / 三金套装专属折扣",
+    "createdAt": "2026-05-12T10:00:00",
+    "updatedAt": "2026-05-12T10:00:00"
+  },
+  {
+    "id": "PM004",
+    "name": "安居好房中介",
+    "category": "婚房置业",
+    "city": "杭州市",
+    "contact": "刘顾问",
+    "phone": "13800001004",
+    "commissionRate": 5.0,
+    "status": "合作中",
+    "remark": "婚房租售，成交按服务费 5% 返佣",
+    "createdAt": "2026-05-18T10:00:00",
+    "updatedAt": "2026-05-18T10:00:00"
+  },
+  {
+    "id": "PM005",
+    "name": "甜蜜旅拍工作室",
+    "category": "蜜月旅行",
+    "city": "宁波市",
+    "contact": "赵老师",
+    "phone": "13800001005",
+    "commissionRate": 15.0,
+    "status": "合作中",
+    "remark": "海岛旅拍 + 蜜月定制",
+    "createdAt": "2026-06-02T10:00:00",
+    "updatedAt": "2026-06-02T10:00:00"
+  },
+  {
+    "id": "PM006",
+    "name": "心屿情感咨询",
+    "category": "情感咨询",
+    "city": "杭州市",
+    "contact": "孙咨询师",
+    "phone": "13800001006",
+    "commissionRate": 20.0,
+    "status": "已暂停",
+    "remark": "恋爱沟通辅导，暂停排期",
+    "createdAt": "2026-06-05T10:00:00",
+    "updatedAt": "2026-07-20T10:00:00"
+  }
+]

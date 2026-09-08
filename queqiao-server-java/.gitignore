@@ -1,0 +1,10 @@
+target/
+data/
+*.log
+_run.log
+cp.txt
+_gen/
+_legacy/
+schema_gen.sql
+.idea/
+*.iml

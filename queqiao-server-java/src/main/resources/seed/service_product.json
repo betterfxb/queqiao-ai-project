@@ -1,0 +1,52 @@
+[
+  {
+    "id": "SP-seed-01",
+    "name": "年度尊享会员卡",
+    "category": "会员卡",
+    "price": 2888.0,
+    "durationDays": 365,
+    "benefits": "全年 Unlimited 智能匹配 + 专属红娘 1v1 服务 + 优先活动名额 + 成功撮合佣金返点资格",
+    "status": "在售",
+    "createdAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "SP-seed-02",
+    "name": "金牌一对一牵线套餐（10次）",
+    "category": "一对一套餐",
+    "price": 5888.0,
+    "durationDays": 180,
+    "benefits": "资深红娘 10 次深度撮合 + 每次匹配报告 + 牵线全流程跟进 + 不满意补推",
+    "status": "在售",
+    "createdAt": "2026-08-01T09:05:00"
+  },
+  {
+    "id": "SP-seed-03",
+    "name": "七夕高端相亲活动票",
+    "category": "活动票",
+    "price": 399.0,
+    "durationDays": 0,
+    "benefits": "线下高端交友活动入场 + 精心破冰环节 + 会后 1v1 意向对接",
+    "status": "在售",
+    "createdAt": "2026-08-01T09:10:00"
+  },
+  {
+    "id": "SP-seed-04",
+    "name": "形象打造增值包",
+    "category": "增值包",
+    "price": 888.0,
+    "durationDays": 90,
+    "benefits": "专业形象/穿搭诊断 + 社交照拍摄 + 个人亮点包装",
+    "status": "在售",
+    "createdAt": "2026-08-01T09:15:00"
+  },
+  {
+    "id": "SP-seed-05",
+    "name": "情感咨询 1对1（3课时）",
+    "category": "咨询课时",
+    "price": 1200.0,
+    "durationDays": 60,
+    "benefits": "国家认证情感顾问 3 次咨询 + 沟通话术训练 + 关系推进方案",
+    "status": "在售",
+    "createdAt": "2026-08-01T09:20:00"
+  }
+]

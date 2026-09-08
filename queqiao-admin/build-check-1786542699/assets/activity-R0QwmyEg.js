@@ -1,0 +1,1 @@
+import{a as i}from"./index-B382ueeT.js";const a=t=>Array.isArray(t)?t:(t==null?void 0:t.list)??[],e=()=>i("/activities").then(a),o=t=>i("/activities/"+t),v=()=>i("/activities/stats"),n=t=>i("/activities",{method:"POST",body:t}),y=(t,s)=>i("/activities/"+t,{method:"PUT",body:s});export{v as a,o as b,n as c,e as f,y as u};

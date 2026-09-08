@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统设置 - 牵线运营中心</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="dt-noise">
+<div id="app-shell">
+    <div class="dt-noise-overlay"></div>
+
+    <!-- ============ LEFT ICON NAVIGATION (64px) ============ -->
+    <nav id="left-nav">
+        <div class="nav-logo">牵</div>
+        <div class="nav-items">
+            <a class="nav-item" href="#" title="仪表盘">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                <span class="nav-label">仪表盘</span>
+            </a>
+            <a class="nav-item" href="#" title="会员">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span class="nav-label">会员</span>
+            </a>
+            <a class="nav-item" href="#" title="红娘">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span class="nav-label">红娘</span>
+            </a>
+            <a class="nav-item" href="#" title="牵线">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><path d="M8 12l2 2 4-4"/></svg>
+                <span class="nav-label">牵线</span>
+            </a>
+            <a class="nav-item" href="#" title="活动">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
+                <span class="nav-label">活动</span>
+            </a>
+            <a class="nav-item" href="#" title="财务">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span class="nav-label">财务</span>
+            </a>
+            <a class="nav-item active" href="#" title="设置">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span class="nav-label">设置</span>
+            </a>
+        </div>
+        <div class="nav-avatar">管</div>
+    </nav>
+
+    <!-- ============ MAIN CONTENT AREA ============ -->
+    <div id="main-area">
+        <!-- Top Bar -->
+        <div id="top-bar">
+            <div class="top-bar-left">
+                <div class="breadcrumb">
+                    <span>运营中心</span>
+                    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-ink-4);"><polyline points="9 18 15 12 9 6"/></svg>
+                    <span class="current">系统设置</span>
+                </div>
+                <div class="page-title">系统设置</div>
+            </div>
+            <div class="top-bar-right">
+                <button class="btn btn-gold">
+                    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    保存设置
+                </button>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div id="content-scroll">
+
+            <!-- Left: Settings Navigation (220px) -->
+            <aside id="settings-nav" class="dt-glass-card">
+                <div class="nav-section">
+                    <div class="nav-section-header">基础设置</div>
+                    <a class="settings-nav-item active" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        个人资料
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        通知偏好
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        安全设置
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header">业务设置</div>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        牵线规则
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                        会员审核
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        收费标准
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        消息模板
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header">团队管理</div>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        角色权限
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        操作日志
+                    </a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-header">系统</div>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+                        外观主题
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                        数据备份
+                    </a>
+                    <a class="settings-nav-item" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        关于系统
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Right: Main Content -->
+            <div id="settings-content">
+                <!-- Content Header -->
+                <div class="content-header">
+                    <h1>个人资料设置</h1>
+                    <p>管理您的账户基本信息和偏好</p>
+                </div>
+
+                <!-- Profile Card -->
+                <div class="card profile-card">
+                    <div class="avatar-wrap">
+                        <div class="profile-avatar">管</div>
+                        <div class="avatar-edit">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name-row">
+                            <span class="profile-name">系统管理员</span>
+                            <span class="role-badge">超级管理员</span>
+                        </div>
+                        <div class="profile-contact">
+                            <span class="profile-contact-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                admin@qianxian.com
+                            </span>
+                            <span class="profile-contact-item">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                138****8888
+                            </span>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-ghost">
+                            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                            更换头像
+                        </button>
+                        <button class="btn btn-outline">
+                            <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                            编辑资料
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Section: 基本信息 -->
+                <div class="card-strong">
+                    <div class="section-header">
+                        <div class="section-bar"></div>
+                        <div class="section-title">基本信息</div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label class="form-label">姓名</label>
+                            <input type="text" class="form-input" value="王淑华" />
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label">工号</label>
+                            <input type="text" class="form-input" value="ADMIN001" readonly />
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label">手机号</label>
+                            <input type="text" class="form-input" value="138 8888 8888" />
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label">邮箱</label>
+                            <input type="text" class="form-input" value="admin@qianxian.com" />
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label">所属门店</label>
+                            <div class="select-wrap">
+                                <select class="form-select">
+                                    <option selected>北京总部</option>
+                                    <option>上海分部</option>
+                                    <option>广州分部</option>
+                                    <option>深圳分部</option>
+                                </select>
+                                <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            </div>
+                        </div>
+                        <div class="form-field">
+                            <label class="form-label">职位</label>
+                            <input type="text" class="form-input" value="运营总监" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: 通知偏好 -->
+                <div class="card">
+                    <div class="section-header">
+                        <div class="section-bar"></div>
+                        <div class="section-title">通知偏好</div>
+                    </div>
+                    <div class="toggle-grid">
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+                                新会员注册通知
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                牵线成功通知
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                约见提醒
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                财务变动通知
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+                                活动报名通知
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                系统公告
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                邮件通知
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="toggle-item">
+                            <span class="toggle-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                短信通知
+                            </span>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked />
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: 外观主题 -->
+                <div class="card">
+                    <div class="section-header">
+                        <div class="section-bar"></div>
+                        <div class="section-title">外观主题</div>
+                    </div>
+                    <div class="theme-grid">
+                        <div class="theme-card selected">
+                            <div class="theme-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="theme-swatch">
+                                <div class="swatch-dot" style="background:#7A2135;"></div>
+                                <div class="swatch-dot" style="background:#C9A96E;"></div>
+                                <div class="swatch-dot" style="background:#F8F5F0; border-color:rgba(122,33,53,0.15);"></div>
+                            </div>
+                            <div class="theme-name">经典勃艮第</div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="theme-swatch">
+                                <div class="swatch-dot" style="background:#5B8C7A;"></div>
+                                <div class="swatch-dot" style="background:#A8D5BA;"></div>
+                                <div class="swatch-dot" style="background:#F5FAF7; border-color:rgba(91,140,122,0.15);"></div>
+                            </div>
+                            <div class="theme-name">清新薄荷</div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-check">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="theme-swatch">
+                                <div class="swatch-dot" style="background:#1E2A4A;"></div>
+                                <div class="swatch-dot" style="background:#C9A96E;"></div>
+                                <div class="swatch-dot" style="background:#F0F2F8; border-color:rgba(30,42,74,0.15);"></div>
+                            </div>
+                            <div class="theme-name">深邃蓝金</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: 安全设置 -->
+                <div class="card">
+                    <div class="section-header">
+                        <div class="section-bar"></div>
+                        <div class="section-title">安全设置</div>
+                    </div>
+                    <div class="security-list">
+                        <div class="security-row">
+                            <div class="security-row-left">
+                                <div class="security-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                                </div>
+                                <div class="security-info">
+                                    <div class="security-label">登录密码</div>
+                                    <div class="security-status">
+                                        <span class="status-dot"></span>
+                                        上次修改 30天前
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="security-row-right">
+                                <button class="btn btn-ghost" style="height:34px;padding:0 16px;font-size:13px;">修改</button>
+                            </div>
+                        </div>
+                        <div class="security-row">
+                            <div class="security-row-left">
+                                <div class="security-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                                </div>
+                                <div class="security-info">
+                                    <div class="security-label">手机绑定</div>
+                                    <div class="security-status">
+                                        <span class="status-dot"></span>
+                                        已绑定 138****8888
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="security-row-right">
+                                <button class="btn btn-ghost" style="height:34px;padding:0 16px;font-size:13px;">更换</button>
+                            </div>
+                        </div>
+                        <div class="security-row">
+                            <div class="security-row-left">
+                                <div class="security-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                </div>
+                                <div class="security-info">
+                                    <div class="security-label">邮箱绑定</div>
+                                    <div class="security-status">
+                                        <span class="status-dot"></span>
+                                        已绑定 a***@qianxian.com
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="security-row-right">
+                                <button class="btn btn-ghost" style="height:34px;padding:0 16px;font-size:13px;">更换</button>
+                            </div>
+                        </div>
+                        <div class="security-row">
+                            <div class="security-row-left">
+                                <div class="security-icon warning">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <div class="security-info">
+                                    <div class="security-label">二次验证</div>
+                                    <div class="security-status">
+                                        <span class="status-dot warning"></span>
+                                        未开启
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="security-row-right">
+                                <button class="btn btn-gold-outline" style="height:34px;padding:0 16px;font-size:13px;">开启</button>
+                            </div>
+                        </div>
+                        <div class="security-row">
+                            <div class="security-row-left">
+                                <div class="security-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                                </div>
+                                <div class="security-info">
+                                    <div class="security-label">登录设备</div>
+                                    <div class="security-status">
+                                        <span class="status-dot"></span>
+                                        当前2台设备在线
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="security-row-right">
+                                <button class="btn btn-ghost" style="height:34px;padding:0 16px;font-size:13px;">查看</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: 操作日志 -->
+                <div class="card">
+                    <div class="section-header">
+                        <div class="section-bar"></div>
+                        <div class="section-title">操作日志</div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>操作</th>
+                                <th>IP地址</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2026-08-08 14:32</td>
+                                <td>修改牵线规则</td>
+                                <td>192.168.1.100</td>
+                                <td><span class="table-status success"><span class="dot"></span>成功</span></td>
+                            </tr>
+                            <tr>
+                                <td>2026-08-08 11:15</td>
+                                <td>登录系统</td>
+                                <td>192.168.1.100</td>
+                                <td><span class="table-status success"><span class="dot"></span>成功</span></td>
+                            </tr>
+                            <tr>
+                                <td>2026-08-07 16:48</td>
+                                <td>审核会员资料</td>
+                                <td>192.168.1.100</td>
+                                <td><span class="table-status success"><span class="dot"></span>成功</span></td>
+                            </tr>
+                            <tr>
+                                <td>2026-08-07 09:22</td>
+                                <td>导出财务报表</td>
+                                <td>192.168.1.102</td>
+                                <td><span class="table-status warning"><span class="dot" style="background:var(--dt-warning);"></span>待确认</span></td>
+                            </tr>
+                            <tr>
+                                <td>2026-08-06 17:05</td>
+                                <td>修改收费标准</td>
+                                <td>192.168.1.100</td>
+                                <td><span class="table-status success"><span class="dot"></span>成功</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-footer">
+                        <button class="link-btn">
+                            查看全部日志
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Save Bar -->
+        <div id="bottom-bar">
+            <div class="bottom-bar-hint">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="var(--dt-gold-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                修改设置后请点击保存以生效
+            </div>
+            <div class="bottom-bar-actions">
+                <button class="btn btn-ghost">取消</button>
+                <button class="btn btn-gold">
+                    <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    保存所有设置
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <style id="critical-layout">
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; }
+      body {
+        font-family: var(--dt-font);
+        background: var(--dt-bg-gradient);
+        color: var(--dt-ink-1);
+        position: relative;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Noise texture */
+      .dt-noise::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.025;
+        pointer-events: none;
+        z-index: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 128px 128px;
+      }
+
+      /* App Shell */
+      #app-shell {
+        position: relative;
+        width: 1920px;
+        height: 100vh;
+        display: flex;
+        background: var(--dt-bg-gradient);
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      /* === LEFT ICON NAV (64px) === */
+      #left-nav {
+        width: 64px;
+        flex-shrink: 0;
+        height: 100vh;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-right: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 2px 0 24px -8px rgba(122,33,53,0.06);
+      }
+      .nav-logo {
+        width: 36px; height: 36px;
+        border-radius: 10px;
+        background: var(--dt-primary);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--dt-gold-light);
+        font-size: 16px; font-weight: 800;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 12px rgba(122,33,53,0.2);
+      }
+      .nav-items {
+        display: flex; flex-direction: column;
+        gap: 4px; flex: 1; width: 100%; align-items: center;
+      }
+      .nav-item {
+        position: relative;
+        width: 44px; height: 44px;
+        border-radius: 12px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-3);
+        transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background: rgba(122,33,53,0.06);
+        color: var(--dt-primary);
+      }
+      .nav-item.active {
+        color: var(--dt-primary);
+        background: rgba(122,33,53,0.08);
+      }
+      .nav-item.active::before {
+        content: "";
+        position: absolute;
+        left: -10px; top: 50%;
+        transform: translateY(-50%);
+        width: 3px; height: 22px;
+        background: var(--dt-gold);
+        border-radius: 0 2px 2px 0;
+      }
+      .nav-item .nav-label {
+        position: absolute;
+        left: calc(100% + 8px); top: 50%;
+        transform: translateY(-50%) translateX(-8px);
+        background: var(--dt-ink-1);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px; font-weight: 500;
+        white-space: nowrap;
+        opacity: 0; pointer-events: none;
+        transition: all 0.2s ease;
+        z-index: 100;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .nav-item .nav-label::before {
+        content: "";
+        position: absolute;
+        left: -4px; top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 8px; height: 8px;
+        background: var(--dt-ink-1);
+        border-radius: 1px;
+      }
+      .nav-item:hover .nav-label {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+      .nav-avatar {
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #D9BF8A 0%, #7A2135 100%);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 13px; font-weight: 600;
+        margin-top: auto;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.8);
+        box-shadow: 0 2px 8px rgba(122,33,53,0.15);
+      }
+
+      /* === MAIN AREA === */
+      #main-area {
+        flex: 1; min-width: 0;
+        height: 100vh;
+        display: flex; flex-direction: column;
+        overflow: hidden; position: relative;
+      }
+
+      /* === TOP BAR (64px) === */
+      #top-bar {
+        height: 64px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--dt-border);
+        position: relative; z-index: 5;
+      }
+      .top-bar-left { display: flex; flex-direction: column; gap: 2px; }
+      .breadcrumb {
+        font-size: 12px; color: var(--dt-ink-4);
+        display: flex; align-items: center; gap: 6px;
+      }
+      .breadcrumb .sep { color: var(--dt-ink-4); opacity: 0.5; }
+      .breadcrumb .current { color: var(--dt-primary); font-weight: 500; }
+      .page-title {
+        font-size: 20px; font-weight: 700;
+        color: var(--dt-primary);
+        letter-spacing: -0.01em;
+      }
+      .top-bar-right { display: flex; align-items: center; gap: 12px; }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex; align-items: center; gap: 6px;
+        height: 40px; padding: 0 20px;
+        border-radius: var(--dt-radius-md);
+        font-size: 14px; font-weight: 500;
+        cursor: pointer; transition: all 0.15s ease;
+        border: none; font-family: inherit;
+        white-space: nowrap;
+      }
+      .btn-gold {
+        background: var(--dt-gold-gradient);
+        color: #FFFFFF;
+        box-shadow: var(--dt-shadow-sm);
+        font-weight: 600;
+      }
+      .btn-gold:hover {
+        box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+        transform: translateY(-1px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--dt-ink-3);
+        border: 1px solid var(--dt-border-strong);
+      }
+      .btn-ghost:hover {
+        color: var(--dt-ink-2);
+        background: var(--dt-muted);
+        border-color: var(--dt-ink-4);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--dt-primary);
+        border: 1px solid var(--dt-primary-soft-2);
+      }
+      .btn-outline:hover {
+        background: var(--dt-primary-soft);
+        border-color: var(--dt-primary);
+      }
+      .btn-gold-outline {
+        background: transparent;
+        color: var(--dt-gold-dark);
+        border: 1px solid var(--dt-border-gold);
+      }
+      .btn-gold-outline:hover {
+        background: var(--dt-gold-soft);
+        border-color: var(--dt-gold);
+      }
+
+      /* === CONTENT SCROLL AREA === */
+      #content-scroll {
+        flex: 1; overflow-y: auto;
+        padding: 24px 32px 0;
+        display: flex; gap: 20px;
+        min-height: 0;
+        position: relative;
+      }
+      #content-scroll::-webkit-scrollbar { width: 4px; }
+      #content-scroll::-webkit-scrollbar-thumb { background: var(--dt-border-strong); border-radius: 2px; }
+
+      /* === SETTINGS SIDEBAR (220px) === */
+      #settings-nav {
+        width: 220px; flex-shrink: 0;
+        padding: 20px 0;
+        display: flex; flex-direction: column;
+        gap: 4px;
+        align-self: flex-start;
+        position: sticky; top: 0;
+        max-height: calc(100vh - 88px);
+        overflow-y: auto;
+      }
+      #settings-nav::-webkit-scrollbar { width: 0; }
+      .dt-glass-card {
+        background: var(--dt-glass);
+        backdrop-filter: var(--dt-glass-blur);
+        -webkit-backdrop-filter: var(--dt-glass-blur);
+        border: 1px solid var(--dt-glass-border);
+        box-shadow: var(--dt-shadow-md);
+        border-radius: var(--dt-radius-lg);
+      }
+      .nav-section { margin-bottom: 12px; }
+      .nav-section:last-child { margin-bottom: 0; }
+      .nav-section-header {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--dt-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 0 20px 8px;
+        opacity: 0.7;
+      }
+      .settings-nav-item {
+        display: flex; align-items: center; gap: 10px;
+        padding: 10px 20px;
+        font-size: 13.5px;
+        color: var(--dt-ink-2);
+        cursor: pointer;
+        transition: all 0.15s ease;
+        position: relative;
+        text-decoration: none;
+        border-left: 3px solid transparent;
+      }
+      .settings-nav-item:hover {
+        background: var(--dt-primary-soft);
+        color: var(--dt-primary);
+      }
+      .settings-nav-item.active {
+        background: var(--dt-primary-soft-2);
+        color: var(--dt-primary);
+        font-weight: 600;
+        border-left-color: var(--dt-gold);
+      }
+      .settings-nav-item svg {
+        width: 16px; height: 16px; flex-shrink: 0;
+      }
+
+      /* === MAIN CONTENT PANEL === */
+      #settings-content {
+        flex: 1; min-width: 0;
+        display: flex; flex-direction: column;
+        gap: 16px;
+        padding-bottom: 88px;
+      }
+
+      /* Content Header */
+      .content-header { margin-bottom: 4px; }
+      .content-header h1 {
+        font-size: 22px; font-weight: 700;
+        color: var(--dt-primary);
+        margin-bottom: 4px;
+      }
+      .content-header p {
+        font-size: 13px; color: var(--dt-ink-3);
+      }
+
+      /* Glass card */
+      .card {
+        background: var(--dt-glass);
+        backdrop-filter: var(--dt-glass-blur);
+        -webkit-backdrop-filter: var(--dt-glass-blur);
+        border: 1px solid var(--dt-glass-border);
+        box-shadow: var(--dt-shadow-md);
+        border-radius: var(--dt-radius-lg);
+        padding: 24px;
+      }
+      .card-strong {
+        background: var(--dt-glass-strong);
+        backdrop-filter: var(--dt-glass-blur-strong);
+        -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+        border: 1px solid var(--dt-glass-border);
+        box-shadow: var(--dt-shadow-lg);
+        border-radius: var(--dt-radius-lg);
+        padding: 24px;
+      }
+
+      /* Profile Card */
+      .profile-card {
+        display: flex; align-items: center; gap: 24px;
+      }
+      .avatar-wrap { position: relative; flex-shrink: 0; }
+      .profile-avatar {
+        width: 80px; height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--dt-primary) 0%, var(--dt-primary-light) 60%, var(--dt-gold) 100%);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 32px; font-weight: 600;
+        box-shadow: 0 6px 20px rgba(122,33,53,0.25);
+      }
+      .avatar-edit {
+        position: absolute;
+        right: -2px; bottom: -2px;
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        background: var(--dt-gold-gradient);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(168,138,80,0.3);
+        cursor: pointer;
+        border: 2px solid #fff;
+      }
+      .avatar-edit svg { width: 14px; height: 14px; }
+      .profile-info { flex: 1; }
+      .profile-name-row {
+        display: flex; align-items: center; gap: 10px;
+        margin-bottom: 6px;
+      }
+      .profile-name {
+        font-size: 18px; font-weight: 600; color: var(--dt-ink-1);
+      }
+      .role-badge {
+        display: inline-flex; align-items: center;
+        padding: 3px 10px;
+        border-radius: var(--dt-radius-pill);
+        background: var(--dt-gold-soft);
+        color: var(--dt-gold-dark);
+        border: 1px solid var(--dt-border-gold);
+        font-size: 11px; font-weight: 600;
+      }
+      .profile-contact {
+        display: flex; gap: 20px;
+        font-size: 13px; color: var(--dt-ink-3);
+      }
+      .profile-contact-item {
+        display: flex; align-items: center; gap: 4px;
+      }
+      .profile-contact-item svg { width: 13px; height: 13px; color: var(--dt-ink-4); }
+      .profile-actions { display: flex; gap: 10px; flex-shrink: 0; }
+
+      /* Section header (within content) */
+      .section-header {
+        display: flex; align-items: center; gap: 8px;
+        margin-bottom: 18px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--dt-border);
+      }
+      .section-bar {
+        width: 3px; height: 16px;
+        background: var(--dt-gold);
+        border-radius: 2px;
+      }
+      .section-title {
+        font-size: 15px; font-weight: 600; color: var(--dt-primary);
+      }
+
+      /* Form Grid */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 20px;
+      }
+      .form-field { display: flex; flex-direction: column; }
+      .form-field.full { grid-column: 1 / -1; }
+      .form-label {
+        font-size: 13px; color: var(--dt-ink-3);
+        font-weight: 500; margin-bottom: 6px;
+      }
+      .form-input,
+      .form-select {
+        width: 100%; height: 40px;
+        padding: 0 14px;
+        font-size: 14px; color: var(--dt-ink-1);
+        background: var(--dt-input);
+        border: 1px solid var(--dt-input-border);
+        border-radius: var(--dt-radius-md);
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        font-family: inherit;
+      }
+      .form-input::placeholder { color: var(--dt-ink-4); }
+      .form-input:hover, .form-select:hover { border-color: var(--dt-border-strong); }
+      .form-input:focus, .form-select:focus {
+        border-color: var(--dt-primary);
+        box-shadow: 0 0 0 4px rgba(122,33,53,0.10);
+        background: #fff;
+      }
+      .form-input[readonly] {
+        background: var(--dt-muted);
+        color: var(--dt-ink-4);
+        cursor: not-allowed;
+      }
+      .select-wrap { position: relative; }
+      .form-select {
+        appearance: none; -webkit-appearance: none;
+        padding-right: 36px; cursor: pointer;
+      }
+      .select-icon {
+        position: absolute; right: 12px; top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none; color: var(--dt-ink-4);
+        width: 14px; height: 14px;
+      }
+
+      /* Toggle Switches */
+      .toggle-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 24px;
+      }
+      .toggle-item {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 12px 16px;
+        background: var(--dt-input);
+        border: 1px solid var(--dt-input-border);
+        border-radius: var(--dt-radius-md);
+        transition: border-color 0.15s ease;
+      }
+      .toggle-item:hover { border-color: var(--dt-border-strong); }
+      .toggle-label {
+        font-size: 13.5px; color: var(--dt-ink-2); font-weight: 500;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .toggle-label svg { width: 15px; height: 15px; color: var(--dt-ink-4); }
+
+      /* CSS-only toggle switch */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 44px; height: 24px;
+        flex-shrink: 0;
+      }
+      .toggle-switch input { opacity: 0; width: 0; height: 0; }
+      .toggle-slider {
+        position: absolute; cursor: pointer;
+        inset: 0;
+        background: rgba(122,33,53,0.12);
+        border-radius: 24px;
+        transition: 0.25s ease;
+      }
+      .toggle-slider::before {
+        content: "";
+        position: absolute;
+        height: 18px; width: 18px;
+        left: 3px; bottom: 3px;
+        background: #fff;
+        border-radius: 50%;
+        transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      }
+      .toggle-switch input:checked + .toggle-slider {
+        background: var(--dt-gold-gradient);
+        box-shadow: 0 0 8px rgba(201,169,110,0.3);
+      }
+      .toggle-switch input:checked + .toggle-slider::before {
+        transform: translateX(20px);
+      }
+
+      /* Theme Cards */
+      .theme-grid {
+        display: flex; gap: 16px;
+      }
+      .theme-card {
+        position: relative;
+        width: 180px;
+        padding: 16px;
+        background: var(--dt-input);
+        border: 2px solid var(--dt-input-border);
+        border-radius: var(--dt-radius-lg);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex; flex-direction: column; align-items: center; gap: 10px;
+      }
+      .theme-card:hover {
+        border-color: var(--dt-border-strong);
+        transform: translateY(-2px);
+        box-shadow: var(--dt-shadow-md);
+      }
+      .theme-card.selected {
+        border-color: var(--dt-gold);
+        background: rgba(255,255,255,0.95);
+        box-shadow: 0 0 0 3px var(--dt-gold-soft), var(--dt-shadow-md);
+      }
+      .theme-swatch {
+        display: flex; gap: 6px;
+      }
+      .swatch-dot {
+        width: 28px; height: 28px;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.8);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      }
+      .theme-name {
+        font-size: 13px; font-weight: 600; color: var(--dt-ink-2);
+      }
+      .theme-card.selected .theme-name { color: var(--dt-primary); }
+      .theme-check {
+        position: absolute;
+        top: 8px; right: 8px;
+        width: 20px; height: 20px;
+        border-radius: 50%;
+        background: var(--dt-gold-gradient);
+        display: flex; align-items: center; justify-content: center;
+        color: #fff;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.2s ease;
+      }
+      .theme-card.selected .theme-check {
+        opacity: 1; transform: scale(1);
+      }
+      .theme-check svg { width: 12px; height: 12px; }
+
+      /* Security list rows */
+      .security-list { display: flex; flex-direction: column; }
+      .security-row {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--dt-border);
+      }
+      .security-row:last-child { border-bottom: none; }
+      .security-row-left {
+        display: flex; align-items: center; gap: 12px;
+      }
+      .security-icon {
+        width: 36px; height: 36px;
+        border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        background: var(--dt-primary-soft);
+        color: var(--dt-primary);
+      }
+      .security-icon.warning {
+        background: var(--dt-warning-soft);
+        color: var(--dt-warning);
+      }
+      .security-icon svg { width: 18px; height: 18px; }
+      .security-info {}
+      .security-label { font-size: 14px; font-weight: 500; color: var(--dt-ink-1); margin-bottom: 2px; }
+      .security-status {
+        font-size: 12px; color: var(--dt-ink-3);
+        display: flex; align-items: center; gap: 6px;
+      }
+      .status-dot {
+        width: 6px; height: 6px; border-radius: 50%;
+        background: var(--dt-success);
+      }
+      .status-dot.warning { background: var(--dt-warning); }
+      .security-row-right { display: flex; align-items: center; gap: 8px; }
+
+      /* Table */
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .data-table th {
+        text-align: left;
+        font-size: 12px; font-weight: 600;
+        color: var(--dt-ink-4);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--dt-border);
+        background: var(--dt-muted);
+      }
+      .data-table th:first-child { border-radius: var(--dt-radius-sm) 0 0 0; }
+      .data-table th:last-child { border-radius: 0 var(--dt-radius-sm) 0 0; }
+      .data-table td {
+        padding: 12px 16px;
+        font-size: 13px;
+        color: var(--dt-ink-2);
+        border-bottom: 1px solid var(--dt-border);
+      }
+      .data-table tr:last-child td { border-bottom: none; }
+      .data-table tr:hover td { background: var(--dt-primary-soft); }
+      .table-status {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: 12px; font-weight: 500;
+      }
+      .table-status.success { color: var(--dt-success); }
+      .table-status.warning { color: var(--dt-warning); }
+      .table-status.error { color: var(--dt-error); }
+      .table-status .dot {
+        width: 6px; height: 6px; border-radius: 50%;
+      }
+      .table-status.success .dot { background: var(--dt-success); }
+      .table-footer {
+        display: flex; justify-content: flex-end;
+        padding-top: 12px;
+      }
+      .link-btn {
+        display: inline-flex; align-items: center; gap: 4px;
+        font-size: 13px; color: var(--dt-primary);
+        font-weight: 500;
+        cursor: pointer;
+        background: none; border: none;
+        padding: 4px 0;
+        font-family: inherit;
+      }
+      .link-btn:hover { color: var(--dt-gold-dark); }
+      .link-btn svg { width: 14px; height: 14px; }
+
+      /* === BOTTOM SAVE BAR === */
+      #bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 64px;
+        right: 0;
+        height: 64px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        background: rgba(255,255,255,0.80);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-top: 1px solid var(--dt-border);
+        z-index: 20;
+      }
+      .bottom-bar-hint {
+        font-size: 12px; color: var(--dt-ink-4);
+        display: flex; align-items: center; gap: 6px;
+      }
+      .bottom-bar-actions { display: flex; gap: 12px; }
+
+      /* Icon sizing */
+      .icon-sm { width: 14px; height: 14px; }
+      .icon-xs { width: 12px; height: 12px; }
+    </style>
+</body>
+</html>

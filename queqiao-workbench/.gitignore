@@ -1,0 +1,23 @@
+# 依赖与构建产物
+node_modules/
+dist/
+dist_bak_trash/
+dist_trash/
+unpackage/
+
+# 构建残留（vite dev 临时文件）
+vite.config.ts.timestamp-*.mjs
+
+# 本地日志
+*.log
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
+.DS_Store

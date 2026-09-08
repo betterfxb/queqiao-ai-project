@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能牵线</title>
+    <style id="theme-vars">
+﻿/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+    <style id="critical-layout">
+      html { scroll-behavior: smooth; }
+      body { -webkit-tap-highlight-color: transparent; margin: 0; }
+      * { box-sizing: border-box; }
+
+      .match-score-ring {
+        background: conic-gradient(var(--brand-primary) 0deg, var(--brand-gold) calc(87 * 3.6deg), rgba(168,102,125,0.08) calc(87 * 3.6deg));
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .match-score-inner {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .back-layer-2 {
+        position: absolute;
+        top: 8px; left: 8px; right: 8px; bottom: -8px;
+        border-radius: 28px;
+        background: var(--glass-bg-light);
+        border: 1px solid var(--glass-border);
+        transform: scale(0.96);
+        z-index: 1;
+      }
+      .back-layer-1 {
+        position: absolute;
+        top: 4px; left: 4px; right: 4px; bottom: -4px;
+        border-radius: 28px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        transform: scale(0.98);
+        z-index: 2;
+      }
+
+      .action-btn {
+        transition: transform 0.15s ease;
+        cursor: pointer;
+        min-height: 44px;
+      }
+      .action-btn:active {
+        transform: scale(0.92);
+      }
+
+      button, a, [role="button"] { min-height: 44px; }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--brand-bg-gradient); min-height: 100vh;">
+    <main>
+      <div class="relative min-h-screen w-full mx-auto max-w-[420px] noise-texture" style="background: var(--brand-bg-gradient);">
+        <!-- Status bar spacer -->
+        <div style="height:12px;"></div>
+
+        <!-- Top bar (sticky frosted) -->
+        <header id="match-topbar" class="sticky top-0 z-50 flex items-center justify-between px-4 py-3" style="background: rgba(253,246,242,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--brand-border);">
+          <button class="action-btn flex items-center justify-center rounded-full" style="width:38px; height:38px; background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <i data-lucide="chevron-left" style="width:18px; height:18px; color:var(--brand-ink-1);"></i>
+          </button>
+          <h1 style="font-size:18px; font-weight:600; color:var(--brand-ink-1);">智能牵线</h1>
+          <button class="action-btn flex items-center justify-center rounded-full" style="width:38px; height:38px; background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <i data-lucide="history" style="width:18px; height:18px; color:var(--brand-ink-2);"></i>
+          </button>
+        </header>
+
+        <!-- AI Match Status Banner -->
+        <div class="mx-5 mt-4 flex items-center gap-3 rounded-[20px] px-4 py-[14px]" style="background: linear-gradient(135deg, rgba(168,102,125,0.06) 0%, rgba(200,149,108,0.08) 100%); border: 1px solid rgba(168,102,125,0.1);">
+          <div class="flex items-center justify-center rounded-full shrink-0" style="width:36px; height:36px; background: var(--brand-gold-gradient);">
+            <i data-lucide="sparkles" style="width:18px; height:18px; color:#fff;"></i>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div style="font-size:13px; font-weight:600; color:var(--brand-ink-1);">今日 AI 推荐</div>
+            <div style="font-size:12px; color:var(--brand-ink-3); margin-top:2px;">基于128项维度，为你筛选出 <b style="color:var(--brand-primary)">12</b> 对高匹配度会员</div>
+          </div>
+          <button class="action-btn shrink-0" style="padding:6px 14px; border-radius:999px; background:var(--brand-primary); color:#fff; font-size:12px; font-weight:600; border:none;">
+            刷新
+          </button>
+        </div>
+
+        <!-- Match progress indicator -->
+        <div class="mx-5 mt-4 flex items-center justify-between">
+          <span style="font-size:12px; color:var(--brand-ink-3);">推荐 3 / 12</span>
+          <div style="width:120px; height:4px; background:var(--brand-primary-soft); border-radius:999px; overflow:hidden;">
+            <div style="width:25%; height:100%; background:var(--brand-gold-gradient); border-radius:999px;"></div>
+          </div>
+        </div>
+
+        <!-- Match card (swipeable card stack hero) -->
+        <div id="match-card" class="relative mx-5 mt-5" style="min-height:380px;">
+          <!-- Back layers -->
+          <div class="back-layer-2"></div>
+          <div class="back-layer-1"></div>
+          <!-- Main front card -->
+          <div class="relative overflow-hidden" style="z-index:3; border-radius:28px; background:var(--glass-bg-strong); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--glass-border); box-shadow:0 20px 40px -12px rgba(120,70,80,0.15);">
+            <!-- Photo area -->
+            <div class="relative flex items-center justify-center" style="height:220px; background:linear-gradient(135deg, #F5D0DC 0%, #D4A3B5 60%, #A8667D 100%);">
+              <!-- Large initial character -->
+              <span style="font-size:72px; font-weight:300; color:rgba(255,255,255,0.5);">李</span>
+              <!-- Top-left certification badges -->
+              <div class="absolute flex flex-col gap-1.5" style="top:14px; left:14px;">
+                <div class="flex items-center gap-1 px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.5);">
+                  <i data-lucide="shield-check" style="width:11px; height:11px; color:#fff;"></i>
+                  <span style="font-size:10px; color:#fff; font-weight:500;">已实名认证</span>
+                </div>
+                <div class="flex items-center gap-1 px-2.5 py-1 rounded-full" style="background:rgba(255,255,255,0.35); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.5);">
+                  <i data-lucide="graduation-cap" style="width:11px; height:11px; color:#fff;"></i>
+                  <span style="font-size:10px; color:#fff; font-weight:500;">已学历认证</span>
+                </div>
+              </div>
+              <!-- Top-right match score ring -->
+              <div class="absolute flex flex-col items-center" style="top:14px; right:14px;">
+                <div class="match-score-ring">
+                  <div class="match-score-inner">
+                    <span style="font-size:18px; font-weight:700; color:var(--brand-primary); line-height:1;">87</span>
+                    <span style="font-size:10px; color:var(--brand-ink-2); line-height:1;">分</span>
+                  </div>
+                </div>
+                <span style="font-size:11px; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.2); margin-top:4px; font-weight:500;">匹配度</span>
+              </div>
+              <!-- Bottom name overlay -->
+              <div class="absolute flex items-baseline gap-1.5" style="bottom:14px; left:16px;">
+                <span style="font-size:24px; font-weight:700; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.2);">李梦琪</span>
+                <span style="font-size:18px; color:rgba(255,255,255,0.8);">· 28岁</span>
+                <i data-lucide="venus" style="width:18px; height:18px; color:#fff;"></i>
+              </div>
+            </div>
+            <!-- Info area -->
+            <div style="padding:16px 18px;">
+              <!-- Basic info tags -->
+              <div class="flex flex-wrap gap-2 mb-2.5">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg" style="font-size:12px; background:var(--brand-primary-soft); color:var(--brand-primary);">上海</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg" style="font-size:12px; background:var(--brand-primary-soft); color:var(--brand-primary);">金融分析师</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg" style="font-size:12px; background:var(--brand-primary-soft); color:var(--brand-primary);">硕士</span>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg" style="font-size:12px; background:var(--brand-primary-soft); color:var(--brand-primary);">165cm</span>
+              </div>
+              <!-- Bio -->
+              <p style="font-size:13px; color:var(--brand-ink-2); line-height:1.6; margin-bottom:12px;">热爱旅行与摄影，喜欢安静的咖啡馆时光，期待遇到温暖踏实的另一半。</p>
+              <!-- Match highlights -->
+              <div class="flex flex-wrap gap-2">
+                <div class="flex items-center gap-1.5" style="border-left:2px solid var(--brand-gold); padding:3px 10px;">
+                  <i data-lucide="sparkles" style="width:10px; height:10px; color:var(--brand-gold-dark);"></i>
+                  <span style="font-size:11px; color:var(--brand-ink-2);">学历匹配</span>
+                </div>
+                <div class="flex items-center gap-1.5" style="border-left:2px solid var(--brand-gold); padding:3px 10px;">
+                  <i data-lucide="sparkles" style="width:10px; height:10px; color:var(--brand-gold-dark);"></i>
+                  <span style="font-size:11px; color:var(--brand-ink-2);">三观契合</span>
+                </div>
+                <div class="flex items-center gap-1.5" style="border-left:2px solid var(--brand-gold); padding:3px 10px;">
+                  <i data-lucide="sparkles" style="width:10px; height:10px; color:var(--brand-gold-dark);"></i>
+                  <span style="font-size:11px; color:var(--brand-ink-2);">同城生活</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div id="match-actions" class="mx-5 flex flex-col items-center mt-5">
+          <div class="flex items-center justify-center gap-4">
+            <!-- Pass -->
+            <button class="action-btn flex items-center justify-center rounded-full shrink-0" style="width:52px; height:52px; background:var(--glass-bg); border:1px solid var(--brand-border); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 4px 12px rgba(120,70,80,0.06);">
+              <i data-lucide="x" style="width:22px; height:22px; color:var(--brand-ink-3);"></i>
+            </button>
+            <!-- Super match (primary) -->
+            <button class="action-btn flex items-center justify-center rounded-full shrink-0" style="width:64px; height:64px; background:var(--brand-primary); box-shadow:0 8px 24px rgba(168,102,125,0.35); border:3px solid rgba(255,255,255,0.8);">
+              <i data-lucide="heart-handshake" style="width:28px; height:28px; color:#fff;"></i>
+            </button>
+            <!-- Like -->
+            <button class="action-btn flex items-center justify-center rounded-full shrink-0" style="width:52px; height:52px; background:var(--brand-gold-gradient); box-shadow:0 4px 12px rgba(200,149,108,0.3); border:none;">
+              <i data-lucide="heart" style="width:22px; height:22px; color:#fff;"></i>
+            </button>
+          </div>
+          <p style="font-size:11px; color:var(--brand-ink-3); margin-top:10px; text-align:center;">点击大按钮发起牵线</p>
+        </div>
+
+        <!-- Today's match summary card -->
+        <div class="mx-5 mt-5 rounded-[20px] p-4 glass-card">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="check-circle-2" style="width:16px; height:16px; color:var(--state-success);"></i>
+            <span style="font-size:14px; font-weight:600; color:var(--brand-ink-1);">今日已牵线</span>
+          </div>
+          <div style="height:1px; background:var(--brand-border); margin:10px 0;"></div>
+          <!-- Item 1 -->
+          <div class="flex items-center justify-between py-1.5">
+            <div class="flex items-center gap-2.5">
+              <div class="relative shrink-0" style="width:42px; height:32px;">
+                <div class="absolute rounded-full" style="width:32px; height:32px; background:linear-gradient(135deg, #F5D0DC, #D4A3B5); left:0; top:0; border:2px solid #fff; z-index:2;"></div>
+                <div class="absolute rounded-full" style="width:32px; height:32px; background:linear-gradient(135deg, #DCB48E, #C8956C); right:0; top:0; border:2px solid #fff; z-index:1;"></div>
+              </div>
+              <span style="font-size:13px; color:var(--brand-ink-2);">王雅婷 × 张浩然</span>
+            </div>
+            <span class="shrink-0" style="font-size:11px; background:var(--state-success-soft); color:var(--state-success); padding:3px 10px; border-radius:999px;">已约见</span>
+          </div>
+          <!-- Item 2 -->
+          <div class="flex items-center justify-between py-1.5">
+            <div class="flex items-center gap-2.5">
+              <div class="relative shrink-0" style="width:42px; height:32px;">
+                <div class="absolute rounded-full" style="width:32px; height:32px; background:linear-gradient(135deg, #F5D0DC, #BE8298); left:0; top:0; border:2px solid #fff; z-index:2;"></div>
+                <div class="absolute rounded-full" style="width:32px; height:32px; background:linear-gradient(135deg, #E8C9A8, #A87A52); right:0; top:0; border:2px solid #fff; z-index:1;"></div>
+              </div>
+              <span style="font-size:13px; color:var(--brand-ink-2);">赵雨萱 × 刘天阳</span>
+            </div>
+            <span class="shrink-0" style="font-size:11px; background:var(--state-warning-soft); color:var(--state-warning); padding:3px 10px; border-radius:999px;">待反馈</span>
+          </div>
+        </div>
+
+        <!-- Bottom navigation -->
+        <nav data-mobile-nav="global" id="bottom-nav" class="w-full mx-auto max-w-md h-[68px] pt-2 pb-5 px-2" style="background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);"><div class="w-full h-full grid grid-cols-5 items-end"><button data-nav-key="home" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="layout-dashboard" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">工作台</span></button><button data-nav-key="members" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="users" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">会员库</span></button><button data-nav-key="match" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-primary)"><i data-lucide="heart-handshake" class="w-6 h-6 shrink-0" style="fill:var(--brand-primary);stroke-width:0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold">牵线</span></button><button data-nav-key="message" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="message-circle" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">消息</span></button><button data-nav-key="profile" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="user" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">我的</span></button></div></nav>
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

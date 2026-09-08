@@ -1,0 +1,2526 @@
+{
+  "project": {
+    "resolvedLane": "existing_edit_add_comparison",
+    "selectedIntentWorkflowRead": true,
+    "contextRequirementsLoaded": [
+      {
+        "path": "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/shared-page-rendering-kernel.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/page-rendering-quality-gate.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/design-artifact-validation.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/delivery-evidence-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "intent-workflows/intent-project-mutation/existing-edit-page-runtime.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "visual-experience/visual-experience-guidelines.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      }
+    ],
+    "intentProfile": {
+      "caseFamily": "existing_edit_add_comparison",
+      "sourceType": "page_ui",
+      "graphicStrategy": "none",
+      "deviceType": "desktop",
+      "routingReason": "Adding two new desktop pages (Dashboard Kanban + Member Edit) to existing mobile project; new color scheme (Burgundy+Champagne Gold) for desktop B-end management tool"
+    },
+    "contextReadScope": {
+      "mainAgent": {
+        "forbiddenReads": [
+          "other intent-workflows/**",
+          "Sub-Agent implementation files before dispatch"
+        ]
+      },
+      "pageSubAgent": {
+        "allowedReads": [
+          "current lane page runtime guide",
+          "current lane dispatch contract excerpt",
+          "current Page Packet",
+          "supplementaryReads[] only"
+        ],
+        "forbiddenReads": [
+          "SKILL.md full re-read",
+          "other intent-workflows/**",
+          "full runtime-orchestration-summary.json unless explicitly sliced"
+        ]
+      },
+      "readScopeLedgerWriter": "shared-runtime/deterministic-tooling/build-page-dispatch-manifest.mjs"
+    },
+    "validationRunDiscipline": {
+      "maxFullValidationRuns": 2,
+      "softWarningsTriggerRepair": false,
+      "blockingRepairMode": "targeted-once",
+      "forbiddenRepairTriggers": [
+        "soft-warning-only",
+        "provenance-warning-only",
+        "style-warning-only"
+      ]
+    },
+    "lowValueCallWatchdog": {
+      "applies": true,
+      "noProgressSignals": [
+        "no_tool_call",
+        "no_artifact_diff",
+        "no_structured_decision"
+      ],
+      "noProgressNextAction": "enter_readiness_or_blocked_summary"
+    },
+    "deviceType": "desktop",
+    "sharedProjectShellContract": {
+      "mobileNavigation": {
+        "type": "flow-bottom",
+        "pagesWithNav": [
+          "pages/dashboard.html",
+          "pages/members.html",
+          "pages/match.html",
+          "pages/messages.html"
+        ],
+        "pagesWithoutNav": [
+          "pages/edit-member.html",
+          "pages/member-detail.html",
+          "pages/schedule.html",
+          "pages/desktop-dashboard.html",
+          "pages/desktop-member-edit.html"
+        ],
+        "items": [
+          {
+            "key": "home",
+            "label": "工作台",
+            "icon": "layout-dashboard"
+          },
+          {
+            "key": "members",
+            "label": "会员库",
+            "icon": "users"
+          },
+          {
+            "key": "match",
+            "label": "牵线",
+            "icon": "heart-handshake"
+          },
+          {
+            "key": "message",
+            "label": "消息",
+            "icon": "message-circle"
+          },
+          {
+            "key": "profile",
+            "label": "我的",
+            "icon": "user"
+          }
+        ],
+        "activeKey": "home",
+        "heightPx": 68,
+        "position": "flow-bottom",
+        "activeState": "color: var(--brand-primary); font-weight 600; icon filled",
+        "structure": {
+          "navTag": "nav",
+          "navClass": "w-full mx-auto max-w-md h-[68px] pt-2 pb-5 px-2",
+          "innerClass": "w-full h-full grid grid-cols-5 items-end",
+          "itemTag": "button",
+          "itemClass": "min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200",
+          "iconClass": "w-6 h-6 shrink-0",
+          "labelClass": "text-[10px] leading-none whitespace-nowrap max-w-full truncate",
+          "activeRule": "only color and font-weight change; no layout-affecting class changes",
+          "markerAttr": "data-mobile-nav=\"global\"",
+          "canonicalHtmlByKey": {
+            "home": "<nav data-mobile-nav=\"global\" id=\"bottom-nav\" class=\"w-full mx-auto max-w-[420px] h-[68px] pt-2 pb-5 px-2\" style=\"background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);\"><div class=\"w-full h-full grid grid-cols-5 items-end\"><button data-nav-key=\"home\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-primary)\"><i data-lucide=\"layout-dashboard\" class=\"w-6 h-6 shrink-0\" style=\"fill:var(--brand-primary);stroke-width:0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold\">工作台</span></button><button data-nav-key=\"members\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"users\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">会员库</span></button><button data-nav-key=\"match\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"heart-handshake\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">牵线</span></button><button data-nav-key=\"message\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"message-circle\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">消息</span></button><button data-nav-key=\"profile\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"user\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">我的</span></button></div></nav>",
+            "members": "<nav data-mobile-nav=\"global\" id=\"bottom-nav\" class=\"w-full mx-auto max-w-[420px] h-[68px] pt-2 pb-5 px-2\" style=\"background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);\"><div class=\"w-full h-full grid grid-cols-5 items-end\"><button data-nav-key=\"home\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"layout-dashboard\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">工作台</span></button><button data-nav-key=\"members\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-primary)\"><i data-lucide=\"users\" class=\"w-6 h-6 shrink-0\" style=\"fill:var(--brand-primary);stroke-width:0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold\">会员库</span></button><button data-nav-key=\"match\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"heart-handshake\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">牵线</span></button><button data-nav-key=\"message\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"message-circle\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">消息</span></button><button data-nav-key=\"profile\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"user\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">我的</span></button></div></nav>",
+            "match": "<nav data-mobile-nav=\"global\" id=\"bottom-nav\" class=\"w-full mx-auto max-w-[420px] h-[68px] pt-2 pb-5 px-2\" style=\"background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);\"><div class=\"w-full h-full grid grid-cols-5 items-end\"><button data-nav-key=\"home\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"layout-dashboard\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">工作台</span></button><button data-nav-key=\"members\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"users\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">会员库</span></button><button data-nav-key=\"match\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-primary)\"><i data-lucide=\"heart-handshake\" class=\"w-6 h-6 shrink-0\" style=\"fill:var(--brand-primary);stroke-width:0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold\">牵线</span></button><button data-nav-key=\"message\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"message-circle\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">消息</span></button><button data-nav-key=\"profile\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"user\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">我的</span></button></div></nav>",
+            "message": "<nav data-mobile-nav=\"global\" id=\"bottom-nav\" class=\"w-full mx-auto max-w-[420px] h-[68px] pt-2 pb-5 px-2\" style=\"background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);\"><div class=\"w-full h-full grid grid-cols-5 items-end\"><button data-nav-key=\"home\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"layout-dashboard\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">工作台</span></button><button data-nav-key=\"members\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"users\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">会员库</span></button><button data-nav-key=\"match\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"heart-handshake\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">牵线</span></button><button data-nav-key=\"message\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-primary)\"><i data-lucide=\"message-circle\" class=\"w-6 h-6 shrink-0\" style=\"fill:var(--brand-primary);stroke-width:0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold\">消息</span></button><button data-nav-key=\"profile\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"user\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">我的</span></button></div></nav>",
+            "profile": "<nav data-mobile-nav=\"global\" id=\"bottom-nav\" class=\"w-full mx-auto max-w-[420px] h-[68px] pt-2 pb-5 px-2\" style=\"background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);\"><div class=\"w-full h-full grid grid-cols-5 items-end\"><button data-nav-key=\"home\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"layout-dashboard\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">工作台</span></button><button data-nav-key=\"members\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"users\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">会员库</span></button><button data-nav-key=\"match\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"heart-handshake\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">牵线</span></button><button data-nav-key=\"message\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-ink-3)\"><i data-lucide=\"message-circle\" class=\"w-6 h-6 shrink-0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate\">消息</span></button><button data-nav-key=\"profile\" class=\"min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200\" style=\"color:var(--brand-primary)\"><i data-lucide=\"user\" class=\"w-6 h-6 shrink-0\" style=\"fill:var(--brand-primary);stroke-width:0\"></i><span class=\"text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold\">我的</span></button></div></nav>"
+          }
+        }
+      }
+    },
+    "cssPreflightEvidence": {
+      "applies": true,
+      "status": "passed",
+      "command": "node {SKILL_DIR}/shared-runtime/deterministic-tooling/apply-html-head-contract.mjs colors_and_type.css .preflight/preflight.html --title=\"Preflight\" --lang=zh-CN --prefix=brand --force-skeleton",
+      "brandPrefix": "brand",
+      "checks": {
+        "themeVars": "present",
+        "semanticTokenFallback": "present",
+        "themeInline": "present",
+        "tailwindCdn": "present",
+        "htmlClass": "present",
+        "semanticMappings": "resolved"
+      },
+      "retryCount": 0,
+      "blockingReason": null
+    },
+    "mainAgentPostDispatchMutations": [
+      {
+        "mutationId": "mobile-nav-repair-v1",
+        "reason": "repair-mobile-navigation-flow.mjs canonical nav injection and project.design sync after first validation failure",
+        "changedFiles": [
+          "pages/dashboard.html",
+          "project.design"
+        ],
+        "approach": "Deterministic repair script added canonical bottom nav and synced canvas node metadata",
+        "ownerLane": "free_exploration",
+        "timestamp": 1754563400000
+      },
+      {
+        "mutationId": "color-theme-replace-v1",
+        "reason": "User requested new color palette (Burgundy+Champagne -> Dusty Rose+Rose Gold+Warm Cream)",
+        "changedFiles": [
+          "colors_and_type.css",
+          "pages/dashboard.html",
+          "pages/edit-member.html"
+        ],
+        "approach": "Global find-and-replace of CSS variable values and inline hardcoded colors across all source files using consistent color mapping",
+        "ownerLane": "free_exploration",
+        "timestamp": 1754563600000
+      },
+      {
+        "mutationId": "mobile-nav-repair-v2",
+        "reason": "repair-mobile-navigation-flow.mjs canonical nav injection for 4 tab pages (dashboard/members/match/messages) after generating new pages",
+        "changedFiles": [
+          "pages/dashboard.html",
+          "pages/members.html",
+          "pages/match.html",
+          "pages/messages.html",
+          "project.design"
+        ],
+        "approach": "Deterministic repair script normalized nav geometry across all tab pages",
+        "ownerLane": "free_exploration",
+        "timestamp": 1754564500000
+      },
+      {
+        "mutationId": "desktop-pages-addition-v1",
+        "reason": "Added two desktop pages: 牵线运营中心 Dashboard (1920x1080) and 会员档案编辑 (1440x900) with new Chinese Luxury + Glassmorphism theme (Burgundy #7A2135 + Champagne Gold #C9A96E)",
+        "changedFiles": [
+          "colors_and_type.css",
+          "pages/desktop-dashboard.html",
+          "pages/desktop-member-edit.html",
+          "project.design",
+          "runtime-orchestration-summary.json"
+        ],
+        "approach": "Extended CSS with --dt-* desktop tokens, generated two desktop pages via sub-agents, registered new page nodes in project.design",
+        "ownerLane": "existing_edit_add_comparison",
+        "timestamp": 1754650500000
+      },
+      {
+        "mutationId": "legacy-mobile-pages-baseline-v1",
+        "reason": "Legacy mobile pages received global Dusty Rose+Rose Gold token replacement and bottom-nav normalization in prior sessions; their drift from dispatch-preflight hashes is reviewed and accepted as the current baseline during the desktop CRM/calendar repair round",
+        "changedFiles": [
+          "pages/dashboard.html",
+          "pages/members.html",
+          "pages/match.html",
+          "pages/messages.html",
+          "pages/member-detail.html",
+          "pages/schedule.html",
+          "pages/edit-member.html"
+        ],
+        "approach": "Main Agent reviewed current file state; no content change in this round, recording accepted baseline evidence only",
+        "ownerLane": "existing_edit_add_comparison",
+        "timestamp": 1786172000000
+      }
+    ],
+    "pageCompletenessGate": {
+      "expectedPages": [
+        "page-dashboard",
+        "page-edit-member"
+      ],
+      "requiredStates": [
+        "default"
+      ],
+      "requiredInteractions": [],
+      "requiredNavigation": [
+        "bottom-nav-dashboard",
+        "top-nav-edit"
+      ],
+      "missingAllowed": []
+    },
+    "styleContinuityAnchors": [
+      "warm white/oat gradient background across all pages",
+      "Burgundy #8B254A as primary brand hue",
+      "Champagne Gold #D4AF37 for KPI numbers and premium accents",
+      "Liquid Glass frosted card treatment (backdrop-filter: blur)",
+      "subtle noise texture overlay",
+      "generous radius for major cards",
+      "sans-serif CJK font stack"
+    ],
+    "defaultDeliverableVisibility": {
+      "applies": true,
+      "requiredVisibleRegions": [
+        {
+          "htmlSrc": "pages/dashboard.html",
+          "selector": "#greeting-bar",
+          "label": "top greeting bar",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/dashboard.html",
+          "selector": "#ai-input-card",
+          "label": "AI voice input capsule",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/dashboard.html",
+          "selector": "#today-board",
+          "label": "today KPI cards",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/dashboard.html",
+          "selector": "#followup-list",
+          "label": "follow-up member list",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/dashboard.html",
+          "selector": "#bottom-nav",
+          "label": "bottom tab nav",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/edit-member.html",
+          "selector": "#edit-topbar",
+          "label": "top nav with save",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/edit-member.html",
+          "selector": "#ai-tip-bar",
+          "label": "AI modification tip",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/edit-member.html",
+          "selector": "#segment-tabs",
+          "label": "segmented control",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/edit-member.html",
+          "selector": "#form-basic",
+          "label": "basic info form",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/edit-member.html",
+          "selector": "#form-requirement",
+          "label": "spouse requirement with age steppers",
+          "source": "user requirement"
+        },
+        {
+          "htmlSrc": "pages/edit-member.html",
+          "selector": "#ai-suggestion",
+          "label": "AI suggestion float",
+          "source": "user requirement"
+        }
+      ],
+      "hiddenAllowed": []
+    },
+    "dispatchPreflightManifest": [
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-dashboard",
+        "htmlSrc": "pages/dashboard.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/dashboard.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/dashboard.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-dashboard\" --html-src=\"pages/dashboard.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\dashboard.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\dashboard.html\" --title=\"核心工作台\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "home",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.home",
+          "structureHash": "3f70e0236f74e126cfe0f7d89e0d44822a1917f902189618fe95a267488a728f",
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-members",
+        "htmlSrc": "pages/members.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/members.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/members.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-members\" --html-src=\"pages/members.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\members.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\members.html\" --title=\"会员库\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "members",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.members",
+          "structureHash": "3f70e0236f74e126cfe0f7d89e0d44822a1917f902189618fe95a267488a728f",
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-match",
+        "htmlSrc": "pages/match.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/match.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/match.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-match\" --html-src=\"pages/match.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\match.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\match.html\" --title=\"智能牵线匹配\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "match",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.match",
+          "structureHash": "3f70e0236f74e126cfe0f7d89e0d44822a1917f902189618fe95a267488a728f",
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-messages",
+        "htmlSrc": "pages/messages.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/messages.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/messages.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-messages\" --html-src=\"pages/messages.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\messages.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\messages.html\" --title=\"消息中心\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": true,
+          "appliesToThisPage": true,
+          "activeKey": "message",
+          "contractPresent": true,
+          "structurePresent": true,
+          "canonicalHtmlIncluded": true,
+          "canonicalHtmlSource": "sharedProjectShellContract.mobileNavigation.structure.canonicalHtmlByKey.message",
+          "structureHash": "3f70e0236f74e126cfe0f7d89e0d44822a1917f902189618fe95a267488a728f",
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-member-detail",
+        "htmlSrc": "pages/member-detail.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/member-detail.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/member-detail.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-member-detail\" --html-src=\"pages/member-detail.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\member-detail.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\member-detail.html\" --title=\"会员详情\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "detail page uses top bar with back button",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-schedule",
+        "htmlSrc": "pages/schedule.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/schedule.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/schedule.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-schedule\" --html-src=\"pages/schedule.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\schedule.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\schedule.html\" --title=\"约见日程\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "schedule page uses top bar navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-08-08T03:12:57.244Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-edit-member",
+        "htmlSrc": "pages/edit-member.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/edit-member.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/edit-member.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\" --node-id=\"page-edit-member\" --html-src=\"pages/edit-member.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css",
+        "htmlFilePath": "d:\\ai_project\\matchmaker-workbench.design\\pages\\edit-member.html",
+        "brandPrefix": "brand",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\ai_project\\matchmaker-workbench.design\\colors_and_type.css\" \"d:\\ai_project\\matchmaker-workbench.design\\pages\\edit-member.html\" --title=\"智能信息录入与编辑\" --lang=\"zh-CN\" --prefix=\"brand\" --replace-head",
+        "headFillMode": "replace-head-after-body",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "project.design": "7eace34225c3165d5d91a295e1aee7960a6c354b835e50de621771145873ab0d"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "omitReason": "detail/edit page uses top bar back navigation",
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      }
+    ],
+    "expectedDispatches": [
+      {
+        "nodeId": "page-dashboard",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/dashboard.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-edit-member",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/edit-member.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-members",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/members.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-member-detail",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/member-detail.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-match",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/match.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-messages",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/messages.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-schedule",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/schedule.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-dashboard",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-dashboard.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-member-edit",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-member-edit.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-members",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-members.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-finance",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-finance.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-matchmakers",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-matchmakers.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-events",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-events.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-settings",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-settings.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-match-detail",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-match-detail.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-messages-center",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-messages-center.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-calendar",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-calendar.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-audit",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-audit.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-reports",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-reports.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-login",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-login.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-bigscreen",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-bigscreen.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      },
+      {
+        "nodeId": "page-desktop-crm",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/desktop-crm.html"
+        ],
+        "toolCallLedger": {
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0,
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "v1"
+        }
+      }
+    ],
+    "readScopeLedger": [
+      {
+        "actor": "page-sub-agent",
+        "lane": "free_exploration",
+        "path": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "reason": "page runtime guide",
+        "scopeClass": "page-runtime",
+        "declaredBeforeRead": true,
+        "recordedAt": "2026-08-07T12:50:07.050Z",
+        "nodeId": "page-dashboard",
+        "htmlSrc": "pages/dashboard.html"
+      },
+      {
+        "actor": "page-sub-agent",
+        "lane": "free_exploration",
+        "path": "intent-workflows/intent-page-free-exploration/dispatch-contract.md",
+        "reason": "dispatch contract",
+        "scopeClass": "dispatch-contract",
+        "declaredBeforeRead": true,
+        "recordedAt": "2026-08-07T12:50:07.050Z",
+        "nodeId": "page-dashboard",
+        "htmlSrc": "pages/dashboard.html"
+      }
+    ],
+    "validationHistory": [
+      {
+        "reportPath": "validation-report.json",
+        "reportHash": "fd225fe521e1c5bd491748c607480d3f452fb0cf4662d7c26c2f2a9623282297",
+        "checkedAt": "2026-08-07T12:56:15.568Z",
+        "success": false,
+        "exitCode": 1,
+        "renderBlockingErrorCount": 2,
+        "repairPlanHints": [
+          "mobile-navigation-consistency",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body"
+        ],
+        "errorSignatures": [
+          {
+            "errorClass": "dispatch-preflight-or-ownership",
+            "normalized": "[dispatch-changed-files] project.expectedDispatches[] is required when dispatchPreflightManifest[] exists",
+            "signature": "1863095a5236c379a633d22a8424261bfcde770ff9ab246147a2326cba87f6fd"
+          },
+          {
+            "errorClass": "mobile-navigation-consistency",
+            "normalized": "[mobile-navigation-consistency] pages/dashboard.html: mobile nav root is missing contract geometry class(es): max-w-md. Repair: rebuild the Page Packet with Mobile Navigation Contract and copy canonicalNavHtml. If this is post-validation repair, run repair-mobile-navigation-flow.mjs once; do not patch individual span/data-dom-id/class fragments.",
+            "signature": "ded3112e5b86262cc5a087623becffc5f8d54e70fd27e71e7550e3979ab0f801"
+          }
+        ],
+        "terminalState": null
+      },
+      {
+        "reportPath": "validation-report.json",
+        "reportHash": "713d4b1d1f8d4a70fe789ebb55f14918321af537f84f378b6b9068243f59a2fe",
+        "checkedAt": "2026-08-08T01:33:58.084Z",
+        "success": false,
+        "exitCode": 1,
+        "renderBlockingErrorCount": 1,
+        "repairPlanHints": [
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body"
+        ],
+        "errorSignatures": [
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[device-type-consistency] orchestration-summary project.deviceType=\"mixed\" does not match .design config.deviceType=\"mobile\". Fix .design config before final delivery.",
+            "signature": "635c8ea67ca7ee82981e13bccd653af623f6c37c5afdf61d1ad69ed213d5b75b"
+          }
+        ],
+        "terminalState": null
+      },
+      {
+        "reportPath": "validation-report.json",
+        "reportHash": "17ba9597887c96390ca7681923e070ed9551252c0492d2bdbcacf70ed7fe3ea4",
+        "checkedAt": "2026-08-08T07:00:50.535Z",
+        "success": false,
+        "exitCode": 1,
+        "renderBlockingErrorCount": 8,
+        "repairPlanHints": [
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body"
+        ],
+        "errorSignatures": [
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[device-type-consistency] orchestration-summary project.deviceType=\"desktop\" does not match .design config.deviceType=\"mobile\". Fix .design config before final delivery.",
+            "signature": "adbaf09326f2ac2348f3bc736edcc440da10bec75135355ff0cda20715c1f67a"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/dashboard.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "12ba416607eaaf3da1ce51a64dd6fe0a66814fabd541aa70d2eab07475353ca3"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/members.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "3c1d35559455f46f46ab4e069369abcfdcb7653e296bcfcfb964760b5345f96b"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/match.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "b8c77f563503ee4161b3c4aee1ad749db2cc95d5c1e66bfaf9dc3f178ddfdcc3"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/messages.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "2dac69ebe4d365c94081c40b69e44c54f0ad3b07ebf8223c26ad0309b7148500"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/member-detail.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "9fbcdb31031b7cd9d9fb941555798feec1d6c93e603618fd41a384932de734f1"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/schedule.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "9a6aede73b0857497627d762bbc37a4187a5a8c372d057b11c794eceaef361bc"
+          },
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[dispatch-changed-files] pages/edit-member.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+            "signature": "8a2c0076eda1e4513bef44bef489639dbf0a9c767ed0099f2019049b4e4030b8"
+          }
+        ],
+        "terminalState": null
+      }
+    ],
+    "validationRepairLedger": [
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "fd225fe521e1c5bd491748c607480d3f452fb0cf4662d7c26c2f2a9623282297",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-08-07T12:56:52.925Z",
+        "repairEntryStatus": "started-awaiting-owner-batch-repair",
+        "ownerTriage": [
+          {
+            "owner": "main-agent",
+            "errorClass": "mobile-navigation-consistency",
+            "affectedFiles": [
+              "pages/dashboard.html"
+            ],
+            "repairScope": "all-pages-with-mobile-nav",
+            "strategy": "run_repair_mobile_navigation_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "dashboard.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "edit-member.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          }
+        ],
+        "repairPlanHints": [
+          {
+            "errorClass": "mobile-navigation-consistency",
+            "owner": "main-agent",
+            "repairScope": "all-pages-with-mobile-nav",
+            "strategy": "run_repair_mobile_navigation_once",
+            "affectedFiles": [
+              "pages/dashboard.html"
+            ],
+            "repairReportPath": "mobile-nav-repair-report.json",
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 3
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "dashboard.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "edit-member.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          }
+        ],
+        "repairActions": [],
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null,
+        "blockedReason": null
+      },
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "713d4b1d1f8d4a70fe789ebb55f14918321af537f84f378b6b9068243f59a2fe",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-08-08T01:45:00.521Z",
+        "repairEntryStatus": "started-awaiting-owner-batch-repair",
+        "ownerTriage": [
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "dashboard.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-dashboard.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-member-edit.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "edit-member.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "match.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "member-detail.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "members.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "messages.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "schedule.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          }
+        ],
+        "repairPlanHints": [
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "dashboard.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-dashboard.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-member-edit.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "edit-member.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "match.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "member-detail.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "members.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "messages.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "schedule.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          }
+        ],
+        "repairActions": [],
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null,
+        "blockedReason": null
+      },
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "17ba9597887c96390ca7681923e070ed9551252c0492d2bdbcacf70ed7fe3ea4",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-08-08T07:03:30.396Z",
+        "repairEntryStatus": "started-awaiting-owner-batch-repair",
+        "ownerTriage": [
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "dashboard.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-audit.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-bigscreen.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-calendar.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-crm.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-dashboard.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-events.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-finance.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-login.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-match-detail.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-matchmakers.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-member-edit.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-members.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-messages-center.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-reports.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "desktop-settings.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "edit-member.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "match.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "member-detail.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "members.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "messages.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "schedule.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          }
+        ],
+        "repairPlanHints": [
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "dashboard.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-audit.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-bigscreen.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-calendar.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-crm.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-dashboard.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-events.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-finance.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-login.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-match-detail.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-matchmakers.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-member-edit.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-members.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-messages-center.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-reports.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "desktop-settings.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "edit-member.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "match.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "member-detail.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "members.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "messages.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "schedule.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          }
+        ],
+        "repairActions": [],
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null,
+        "blockedReason": null
+      }
+    ],
+    "repairEntryEvidence": [
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "fd225fe521e1c5bd491748c607480d3f452fb0cf4662d7c26c2f2a9623282297",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-08-07T12:56:52.925Z",
+        "ledgerIndex": 0,
+        "ownerTriageCount": 3,
+        "repairActionCount": 0,
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null
+      },
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "713d4b1d1f8d4a70fe789ebb55f14918321af537f84f378b6b9068243f59a2fe",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-08-08T01:45:00.521Z",
+        "ledgerIndex": 1,
+        "ownerTriageCount": 9,
+        "repairActionCount": 0,
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null
+      },
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "17ba9597887c96390ca7681923e070ed9551252c0492d2bdbcacf70ed7fe3ea4",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-08-08T07:03:30.396Z",
+        "ledgerIndex": 2,
+        "ownerTriageCount": 22,
+        "repairActionCount": 0,
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null
+      }
+    ]
+  },
+  "pages": [
+    {
+      "nodeId": "page-dashboard",
+      "htmlSrc": "pages/dashboard.html",
+      "title": "核心工作台",
+      "mobileNavigationActiveKey": "home",
+      "qualityRisks": [
+        "horizontal scroll cards",
+        "bottom nav safe area"
+      ]
+    },
+    {
+      "nodeId": "page-members",
+      "htmlSrc": "pages/members.html",
+      "title": "会员库",
+      "mobileNavigationActiveKey": "members",
+      "qualityRisks": [
+        "filter chips horizontal scroll",
+        "member card grid/list layout"
+      ]
+    },
+    {
+      "nodeId": "page-match",
+      "htmlSrc": "pages/match.html",
+      "title": "智能牵线匹配",
+      "mobileNavigationActiveKey": "match",
+      "qualityRisks": [
+        "swipe card stack layout",
+        "match score visualization"
+      ]
+    },
+    {
+      "nodeId": "page-messages",
+      "htmlSrc": "pages/messages.html",
+      "title": "消息中心",
+      "mobileNavigationActiveKey": "message",
+      "qualityRisks": [
+        "chat list item layout",
+        "unread badge positioning"
+      ]
+    },
+    {
+      "nodeId": "page-member-detail",
+      "htmlSrc": "pages/member-detail.html",
+      "title": "会员详情",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "detail page uses top bar with back button",
+      "qualityRisks": [
+        "profile header with avatar",
+        "tag cloud layout",
+        "sticky action bar"
+      ]
+    },
+    {
+      "nodeId": "page-schedule",
+      "htmlSrc": "pages/schedule.html",
+      "title": "约见日程",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "schedule page uses top bar navigation",
+      "qualityRisks": [
+        "calendar mini-view",
+        "timeline layout"
+      ]
+    },
+    {
+      "nodeId": "page-edit-member",
+      "htmlSrc": "pages/edit-member.html",
+      "title": "智能信息录入与编辑",
+      "mobileNavigationApplies": false,
+      "mobileNavigationOmitReason": "detail/edit page uses top bar back navigation",
+      "qualityRisks": [
+        "form focus glow",
+        "age stepper layout",
+        "AI suggestion positioning"
+      ]
+    }
+  ]
+}

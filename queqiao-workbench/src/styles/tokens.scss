@@ -1,0 +1,228 @@
+/* ==========================================================================
+   鹊桥 · 红娘工作台 — Design Tokens 2.0（液态玻璃 / 大字号 / Bento / 情感化微交互）
+   Palette: 勃艮第红 #8B254A + 香槟金 #D4AF37 + 暖白/燕麦渐变
+   ========================================================================== */
+
+:root {
+  /* --- 主色 Primary：勃艮第红 --- */
+  --q-primary: #8B254A;
+  --q-primary-light: #A8456C;
+  --q-primary-lighter: #C97A96;
+  --q-primary-soft: rgba(139, 37, 74, 0.08);
+  --q-primary-soft-2: rgba(139, 37, 74, 0.15);
+  --q-primary-glow: rgba(139, 37, 74, 0.25);
+  --q-primary-foreground: #FFFFFF;
+
+  /* --- 辅助色 Secondary：香槟金（业绩 / 重要数值 / VIP） --- */
+  --q-gold: #D4AF37;
+  --q-gold-light: #E3C766;
+  --q-gold-dark: #A8861E;
+  --q-gold-soft: rgba(212, 175, 55, 0.14);
+  --q-gold-gradient: linear-gradient(135deg, #E3C766 0%, #D4AF37 50%, #A8861E 100%);
+  --q-gold-shine: linear-gradient(135deg, rgba(255, 245, 200, 0.9) 0%, rgba(227, 199, 102, 0.65) 35%, rgba(212, 175, 55, 0.4) 70%, rgba(168, 134, 30, 0.25) 100%);
+
+  /* --- 背景基调：暖白 → 燕麦 微渐变（叠加液态光斑） --- */
+  --q-bg-base: #FDFBF7;
+  --q-bg-oat: #F5F0EB;
+  --q-bg-gradient: linear-gradient(180deg, #FDFBF7 0%, #F5F0EB 100%);
+  --q-bg-aurora: radial-gradient(1100rpx 820rpx at 8% -6%, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0) 62%),
+    radial-gradient(980rpx 900rpx at 100% 2%, rgba(139, 37, 74, 0.12), rgba(139, 37, 74, 0) 58%),
+    radial-gradient(860rpx 700rpx at 78% 108%, rgba(201, 122, 150, 0.14), rgba(201, 122, 150, 0) 60%),
+    linear-gradient(180deg, #FDFBF7 0%, #F5F0EB 100%);
+
+  /* --- 墨色层级（大字号高对比升级） --- */
+  --q-ink-1: #2E222A;
+  --q-ink-2: #5C4B55;
+  --q-ink-3: #968089;
+  --q-ink-4: #BFAAB2;
+
+  /* --- 液态玻璃 Liquid Glass 2.0（内外高光 + 深度分层） --- */
+  --q-glass-bg: rgba(255, 255, 255, 0.6);
+  --q-glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --q-glass-bg-light: rgba(255, 255, 255, 0.4);
+  --q-glass-bg-glass: rgba(255, 255, 255, 0.32);
+  --q-glass-border: rgba(255, 255, 255, 0.6);
+  --q-glass-border-inner: rgba(255, 255, 255, 0.8);
+  --q-glass-hi-line: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --q-glass-blur: blur(20px);
+  --q-glass-blur-sm: blur(12px);
+  --q-glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.1);
+  --q-glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --q-glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --q-glass-shadow-lift: 0 24px 56px -14px rgba(120, 70, 80, 0.22), 0 4px 14px -6px rgba(120, 70, 80, 0.1);
+  --q-glass-specular: linear-gradient(150deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.18) 42%, rgba(255, 255, 255, 0) 60%);
+
+  /* --- 大字号排版 Display Type --- */
+  --q-type-display: 84rpx;
+  --q-type-hero: 68rpx;
+  --q-type-title-lg: 44rpx;
+  --q-type-title: 36rpx;
+  --q-type-body: 28rpx;
+  --q-type-caption: 24rpx;
+  --q-type-overline: 22rpx;
+
+  /* --- Bento 网格间距 --- */
+  --q-bento-gap: 20rpx;
+  --q-bento-radius: 44rpx;
+
+  /* --- 语义状态色 --- */
+  --q-success: #5B8C5A;
+  --q-success-soft: rgba(91, 140, 90, 0.1);
+  --q-warning: #C89060;
+  --q-warning-soft: rgba(200, 144, 96, 0.1);
+  --q-error: #B84A4A;
+  --q-error-soft: rgba(184, 74, 74, 0.1);
+
+  /* --- 圆角规范：主卡片 32px / 按钮与输入框 12px --- */
+  --q-radius-sm: 8px;
+  --q-radius-md: 12px; /* 按钮 & 输入框 */
+  --q-radius-lg: 20px;
+  --q-radius-card: 32px; /* 主卡片超大圆角 */
+  --q-radius-pill: 999px;
+
+  /* --- 字体规范 --- */
+  --q-font-family: "PingFang SC", "HarmonyOS Sans SC", "Noto Sans SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --q-line-height: 1.6;
+
+  /* --- 间距（8pt 网格） --- */
+  --q-s-1: 4px;
+  --q-s-2: 8px;
+  --q-s-3: 12px;
+  --q-s-4: 16px;
+  --q-s-5: 24px;
+  --q-s-6: 32px;
+}
+
+/* ---------- 全局页面基调（液态玻璃背景，作用于各端 page 节点） ---------- */
+page {
+  background: var(--q-bg-aurora);
+  color: var(--q-ink-1);
+  font-family: var(--q-font-family);
+  line-height: var(--q-line-height);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- 毛玻璃基座类（升级：内高光 + 液态质感） ---------- */
+.glass-card {
+  background: var(--q-glass-bg);
+  backdrop-filter: var(--q-glass-blur);
+  -webkit-backdrop-filter: var(--q-glass-blur);
+  border: 1px solid var(--q-glass-border);
+  box-shadow: var(--q-glass-shadow), var(--q-glass-hi-line);
+  border-radius: var(--q-radius-card);
+  box-sizing: border-box;
+}
+
+.glass-card-strong {
+  background: var(--q-glass-bg-strong);
+  backdrop-filter: var(--q-glass-blur);
+  -webkit-backdrop-filter: var(--q-glass-blur);
+  border: 1px solid var(--q-glass-border);
+  box-shadow: var(--q-glass-shadow-strong), var(--q-glass-hi-line);
+  border-radius: var(--q-radius-card);
+  box-sizing: border-box;
+}
+
+.glass-bar {
+  background: rgba(253, 251, 247, 0.72);
+  backdrop-filter: var(--q-glass-blur);
+  -webkit-backdrop-filter: var(--q-glass-blur);
+  border-bottom: 1px solid rgba(139, 37, 74, 0.06);
+}
+
+/* ---------- 区块标题（勃艮第红竖条 + 粗体标题） ---------- */
+.section-title {
+  display: flex;
+  align-items: center;
+}
+.section-title::before {
+  content: "";
+  width: 6rpx;
+  height: 32rpx;
+  background: var(--q-primary);
+  border-radius: 4rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+/* ---------- 标签 ---------- */
+.tag-soft {
+  padding: 4rpx 16rpx;
+  border-radius: 12rpx;
+  background: rgba(139, 37, 74, 0.05);
+  font-size: 22rpx;
+  color: var(--q-ink-3);
+  white-space: nowrap;
+}
+
+/* ---------- Bento 基座类 ---------- */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--q-bento-gap);
+}
+.bento-cell {
+  position: relative;
+  border-radius: var(--q-bento-radius);
+  background: var(--q-glass-bg);
+  backdrop-filter: var(--q-glass-blur);
+  -webkit-backdrop-filter: var(--q-glass-blur);
+  border: 1px solid var(--q-glass-border);
+  box-shadow: var(--q-glass-shadow), var(--q-glass-hi-line);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ---------- 情感化微交互（动效预设，按需叠加 hover-class） ---------- */
+@keyframes q-heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.12); }
+  45% { transform: scale(0.96); }
+  60% { transform: scale(1.06); }
+}
+@keyframes q-breathe {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+@keyframes q-glow-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40rpx, -30rpx) scale(1.08); }
+}
+@keyframes q-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10rpx); }
+}
+@keyframes q-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.anim-heartbeat {
+  animation: q-heartbeat 1.4s ease-in-out infinite;
+}
+.anim-breathe {
+  animation: q-breathe 2.6s ease-in-out infinite;
+}
+.anim-float {
+  animation: q-float 3.4s ease-in-out infinite;
+}
+
+/* ---------- 工具 ---------- */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- 玻璃按压 / 抬升反馈（统一触摸态） ---------- */
+.hover-press {
+  transform: scale(0.98);
+  transition: transform 0.12s ease;
+}
+.hover-lift-card {
+  transform: translateY(-6rpx);
+  box-shadow: var(--q-glass-shadow-lift);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease;
+}

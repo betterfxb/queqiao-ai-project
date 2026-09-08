@@ -1,0 +1,1 @@
+import{a as o}from"./index-s4Mzrbw8.js";const c=t=>Array.isArray(t)?t:(t==null?void 0:t.list)??[],a=["会员卡","一对一套餐","活动票","增值包","咨询课时"],e=t=>o("/products",{query:t}).then(c),r=t=>o("/products",{method:"POST",body:t}),u=(t,s)=>o("/products/"+t,{method:"PUT",body:s}),p=t=>o("/products/"+t,{method:"DELETE"});export{a as P,r as c,p as d,e as f,u};

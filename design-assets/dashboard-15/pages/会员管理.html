@@ -1,0 +1,2579 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员管理 - 牵线运营中心</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+<div id="app-shell" class="dt-noise">
+
+    <!-- ============ LEFT ICON NAVIGATION (64px) ============ -->
+    <nav id="left-nav">
+        <div class="nav-logo">牵</div>
+        <div class="nav-items">
+            <a class="nav-item" href="#" title="仪表盘">
+                <!-- home icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="nav-label">仪表盘</span>
+            </a>
+            <a class="nav-item active" href="#" title="会员">
+                <!-- users icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span class="nav-label">会员管理</span>
+            </a>
+            <a class="nav-item" href="#" title="牵线">
+                <!-- heart-handshake icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7z"/><path d="M12 5l-1.5 1.5"/><path d="M15 8l-3 3"/><path d="M9 8l3 3"/></svg>
+                <span class="nav-label">牵线管理</span>
+            </a>
+            <a class="nav-item" href="#" title="日程">
+                <!-- calendar icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span class="nav-label">日程安排</span>
+            </a>
+            <a class="nav-item" href="#" title="财务">
+                <!-- dollar-sign icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span class="nav-label">财务中心</span>
+            </a>
+            <a class="nav-item" href="#" title="设置">
+                <!-- settings icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span class="nav-label">系统设置</span>
+            </a>
+        </div>
+        <div class="nav-avatar">王</div>
+    </nav>
+
+    <!-- ============ MAIN CONTENT AREA ============ -->
+    <div id="main-area">
+        <!-- Top Bar -->
+        <div id="top-bar">
+            <div class="page-title-group">
+                <div class="page-title">会员管理</div>
+                <div class="page-breadcrumb">
+                    运营中心<span class="sep">/</span>会员管理
+                </div>
+            </div>
+            <div class="search-wrap">
+                <div class="search-box">
+                    <!-- search icon -->
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" placeholder="搜索会员姓名、ID、手机号..." />
+                </div>
+            </div>
+            <div class="top-bar-actions">
+                <button class="filter-btn">
+                    <!-- filter icon -->
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                    筛选
+                </button>
+                <button class="dt-btn-gold">
+                    <!-- plus icon -->
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    新增会员
+                </button>
+            </div>
+        </div>
+
+        <!-- Filter Toolbar -->
+        <div id="filter-toolbar">
+            <div class="filter-group">
+                <span class="filter-label">性别</span>
+                <span class="filter-chip active">全部</span>
+                <span class="filter-chip">男</span>
+                <span class="filter-chip">女</span>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">年龄</span>
+                <span class="filter-chip active">全部</span>
+                <span class="filter-chip">22-28</span>
+                <span class="filter-chip">29-35</span>
+                <span class="filter-chip">36-42</span>
+                <span class="filter-chip">43+</span>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">等级</span>
+                <span class="filter-chip active">全部</span>
+                <span class="filter-chip">普通</span>
+                <span class="filter-chip">VIP</span>
+                <span class="filter-chip">SVIP</span>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">状态</span>
+                <span class="filter-chip active">全部</span>
+                <span class="filter-chip">待审核</span>
+                <span class="filter-chip">认证中</span>
+                <span class="filter-chip">已认证</span>
+                <span class="filter-chip">已暂停</span>
+            </div>
+            <div class="filter-group">
+                <span class="filter-label">红娘</span>
+                <span class="filter-chip active">全部</span>
+                <span class="filter-chip">王姐</span>
+                <span class="filter-chip">李红娘</span>
+                <span class="filter-chip">张老师</span>
+            </div>
+            <div class="toolbar-right">
+                <div class="view-toggle">
+                    <button class="view-toggle-btn active" title="列表视图">
+                        <!-- list icon -->
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    </button>
+                    <button class="view-toggle-btn" title="网格视图">
+                        <!-- grid icon -->
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    </button>
+                </div>
+                <button class="sort-dropdown">
+                    最近活跃
+                    <!-- chevron-down -->
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content + Right Panel -->
+        <div id="content-wrap">
+            <!-- Table Area -->
+            <div id="table-area">
+                <div id="table-scroll">
+                    <div class="data-table-wrap">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:18%;">会员</th>
+                                    <th style="width:7%;">性别/年龄</th>
+                                    <th style="width:10%;">城市</th>
+                                    <th style="width:14%;">学历/职业</th>
+                                    <th style="width:8%;">会员等级</th>
+                                    <th style="width:9%;">状态</th>
+                                    <th style="width:10%;">负责红娘</th>
+                                    <th style="width:10%;">牵线/成功率</th>
+                                    <th style="width:8%;">最近活跃</th>
+                                    <th style="width:6%;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Row 1: 陈思雨 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#F4C6D0,#A8667D);">陈</div>
+                                            <div>
+                                                <div class="table-member-name">陈思雨</div>
+                                                <div class="table-member-id">M2024088</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon female" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+                                            26
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            北京·朝阳
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            产品经理
+                                            <div class="edu">硕士 / 互联网</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge vip">VIP</span></td>
+                                    <td><span class="status-pill verified"><span class="dot"></span>已认证</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#D9BF8A,#A88A50);">王</div>
+                                            <span class="matchmaker-name">王姐</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">12次 <span class="rate">/ 58%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            2小时前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link" title="查看">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                            </button>
+                                            <button class="action-link" title="编辑">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                            </button>
+                                            <button class="action-link gold" title="牵线">
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                            </button>
+                                            <button class="action-more" title="更多">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 2: 李明轩 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#B8C4D0,#5A7A9A);">李</div>
+                                            <div>
+                                                <div class="table-member-name">李明轩</div>
+                                                <div class="table-member-id">M2024087</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon male" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            32
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            上海·浦东
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            高级架构师
+                                            <div class="edu">博士 / 金融科技</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge svip">SVIP</span></td>
+                                    <td><span class="status-pill verified"><span class="dot"></span>已认证</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#E8D5AC,#C9A96E);">李</div>
+                                            <span class="matchmaker-name">李红娘</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">28次 <span class="rate">/ 72%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            30分钟前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 3: 王雅婷 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#FDE8D8,#C8956C);">王</div>
+                                            <div>
+                                                <div class="table-member-name">王雅婷</div>
+                                                <div class="table-member-id">M2024086</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon female" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+                                            28
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            杭州·西湖
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            艺术总监
+                                            <div class="edu">本科 / 文化创意</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge vip">VIP</span></td>
+                                    <td><span class="status-pill verifying"><span class="dot"></span>认证中</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#D9BF8A,#7A2135);">张</div>
+                                            <span class="matchmaker-name">张老师</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">8次 <span class="rate">/ 45%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            1小时前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 4: 张浩然 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#C5D4C0,#4A8B5C);">张</div>
+                                            <div>
+                                                <div class="table-member-name">张浩然</div>
+                                                <div class="table-member-id">M2024085</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon male" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            35
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            深圳·南山
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            创业合伙人
+                                            <div class="edu">MBA / 创投</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge svip">SVIP</span></td>
+                                    <td><span class="status-pill verified"><span class="dot"></span>已认证</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#D9BF8A,#A88A50);">王</div>
+                                            <span class="matchmaker-name">王姐</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">35次 <span class="rate">/ 65%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            昨天
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 5: 刘思涵 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#E8D5E0,#7A2135);">刘</div>
+                                            <div>
+                                                <div class="table-member-name">刘思涵</div>
+                                                <div class="table-member-id">M2024084</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon female" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+                                            24
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            成都·锦江
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            大学教师
+                                            <div class="edu">博士 / 教育</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge normal">普通</span></td>
+                                    <td><span class="status-pill pending"><span class="dot"></span>待审核</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#F4C6D0,#A8667D);">李</div>
+                                            <span class="matchmaker-name">李红娘</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">3次 <span class="rate">/ 33%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            3天前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 6: 赵文博 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#D4D9E0,#6B7C93);">赵</div>
+                                            <div>
+                                                <div class="table-member-name">赵文博</div>
+                                                <div class="table-member-id">M2024083</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon male" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            38
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            广州·天河
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            外科医生
+                                            <div class="edu">博士 / 医疗</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge vip">VIP</span></td>
+                                    <td><span class="status-pill verified"><span class="dot"></span>已认证</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#D9BF8A,#7A2135);">张</div>
+                                            <span class="matchmaker-name">张老师</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">19次 <span class="rate">/ 61%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            5小时前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 7: 孙佳怡 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#F0D8E0,#B84A7A);">孙</div>
+                                            <div>
+                                                <div class="table-member-name">孙佳怡</div>
+                                                <div class="table-member-id">M2024082</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon female" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+                                            30
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            南京·鼓楼
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            律师
+                                            <div class="edu">硕士 / 法律</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge vip">VIP</span></td>
+                                    <td><span class="status-pill paused"><span class="dot"></span>已暂停</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#E8D5AC,#C9A96E);">王</div>
+                                            <span class="matchmaker-name">王姐</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">15次 <span class="rate">/ 52%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            1周前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 8: 周子谦 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#D8E8E0,#5A9A7A);">周</div>
+                                            <div>
+                                                <div class="table-member-name">周子谦</div>
+                                                <div class="table-member-id">M2024081</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon male" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            29
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            武汉·江汉
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            投行分析师
+                                            <div class="edu">硕士 / 金融</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge vip">VIP</span></td>
+                                    <td><span class="status-pill verifying"><span class="dot"></span>认证中</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#B8C4D0,#5A7A9A);">李</div>
+                                            <span class="matchmaker-name">李红娘</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">6次 <span class="rate">/ 50%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            4小时前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 9: 吴雨桐 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#E0D8F0,#7A6AA8);">吴</div>
+                                            <div>
+                                                <div class="table-member-name">吴雨桐</div>
+                                                <div class="table-member-id">M2024080</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon female" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><line x1="12" y1="13" x2="12" y2="21"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+                                            27
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            苏州·工业园
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            UX设计师
+                                            <div class="edu">本科 / 设计</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge normal">普通</span></td>
+                                    <td><span class="status-pill verified"><span class="dot"></span>已认证</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#D9BF8A,#A88A50);">张</div>
+                                            <span class="matchmaker-name">张老师</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">5次 <span class="rate">/ 40%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            6小时前
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Row 10: 郑凯 -->
+                                <tr class="dt-table-row">
+                                    <td>
+                                        <div class="table-member">
+                                            <div class="table-avatar" style="background:linear-gradient(135deg,#E8DDD0,#C4904A);">郑</div>
+                                            <div>
+                                                <div class="table-member-name">郑凯</div>
+                                                <div class="table-member-id">M2024079</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="gender-age">
+                                            <svg class="gender-icon male" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            41
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="city-cell">
+                                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            北京·海淀
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="edu-job">
+                                            私募基金董事
+                                            <div class="edu">硕士 / 金融</div>
+                                        </div>
+                                    </td>
+                                    <td><span class="level-badge svip">SVIP</span></td>
+                                    <td><span class="status-pill verified"><span class="dot"></span>已认证</span></td>
+                                    <td>
+                                        <div class="matchmaker-cell">
+                                            <div class="matchmaker-avatar" style="background:linear-gradient(135deg,#D9BF8A,#7A2135);">王</div>
+                                            <span class="matchmaker-name">王姐</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="match-stats">42次 <span class="rate">/ 78%</span></div>
+                                    </td>
+                                    <td>
+                                        <span class="last-active">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                            刚刚
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="dt-row-actions">
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+                                            <button class="action-link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+                                            <button class="action-link gold"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                                            <button class="action-more"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div id="pagination">
+                    <div class="pagination-info">共 2,384 位会员</div>
+                    <div class="pagination-pages">
+                        <button class="page-btn disabled">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn" style="color:var(--dt-ink-4);background:transparent;border:none;cursor:default;">...</button>
+                        <button class="page-btn">239</button>
+                        <button class="page-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                    <button class="page-size-select">
+                        20条/页
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Sidebar: Advanced Filters (280px) -->
+            <div id="right-panel">
+                <div class="advanced-panel">
+                    <div class="panel-title">
+                        <span class="title-bar"></span>
+                        高级筛选
+                    </div>
+
+                    <!-- Height range -->
+                    <div class="filter-section">
+                        <label class="filter-section-label">身高范围</label>
+                        <div class="slider-wrap">
+                            <div class="dt-slider-track">
+                                <div class="dt-slider-fill"></div>
+                                <div class="dt-slider-thumb thumb-min"></div>
+                                <div class="dt-slider-thumb thumb-max"></div>
+                            </div>
+                            <div class="slider-values">
+                                <span>155cm</span>
+                                <span>178cm</span>
+                            </div>
+                            <div class="slider-range-label">
+                                <span>150cm</span>
+                                <span>185cm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Annual income -->
+                    <div class="filter-section">
+                        <label class="filter-section-label">年收入</label>
+                        <select class="panel-select">
+                            <option>30万以上</option>
+                            <option>50万以上</option>
+                            <option>100万以上</option>
+                            <option>不限</option>
+                        </select>
+                    </div>
+
+                    <!-- Marital status -->
+                    <div class="filter-section">
+                        <label class="filter-section-label">婚姻状况</label>
+                        <div class="panel-chips">
+                            <span class="panel-chip active">未婚</span>
+                            <span class="panel-chip">离异</span>
+                            <span class="panel-chip">丧偶</span>
+                        </div>
+                    </div>
+
+                    <!-- Property -->
+                    <div class="filter-section">
+                        <div class="toggle-row">
+                            <span class="toggle-label">有无房产</span>
+                            <div class="toggle-switch on"></div>
+                        </div>
+                        <div class="toggle-row">
+                            <span class="toggle-label">购车情况</span>
+                            <div class="toggle-switch"></div>
+                        </div>
+                    </div>
+
+                    <!-- Spacer to push buttons down -->
+                    <div style="flex:1;"></div>
+
+                    <!-- Action buttons -->
+                    <div class="panel-actions">
+                        <button class="btn-ghost">重置</button>
+                        <button class="btn-gold-solid">应用筛选</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <style id="critical-layout">
+      /* ==========================================================================
+         Critical Layout — 牵线运营中心 Desktop (Members Page)
+         Fixed 1920x1080 shell. No horizontal overflow.
+         ========================================================================== */
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family: var(--dt-font-sans);
+        background: var(--dt-bg-base);
+        color: var(--dt-ink-1);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #app-shell {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-width: 1920px;
+        display: flex;
+        background: var(--dt-bg-gradient);
+        overflow: hidden;
+      }
+
+      /* --- Left Icon Navigation (64px) --- */
+      #left-nav {
+        width: 64px;
+        flex-shrink: 0;
+        height: 100vh;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-right: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 2px 0 24px -8px rgba(122,33,53,0.06);
+      }
+      .nav-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--dt-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-gold-light);
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 12px rgba(122,33,53,0.2);
+        letter-spacing: -0.02em;
+      }
+      .nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+        width: 100%;
+        align-items: center;
+      }
+      .nav-item {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-3);
+        transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background: rgba(122,33,53,0.06);
+        color: var(--dt-primary);
+      }
+      .nav-item.active {
+        color: var(--dt-primary);
+        background: rgba(122,33,53,0.08);
+      }
+      .nav-item.active::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        background: var(--dt-gold);
+        border-radius: 0 2px 2px 0;
+      }
+      .nav-item .nav-label {
+        position: absolute;
+        left: calc(100% + 8px);
+        top: 50%;
+        transform: translateY(-50%) translateX(-8px);
+        background: var(--dt-ink-1);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+        z-index: 100;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .nav-item .nav-label::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 8px;
+        height: 8px;
+        background: var(--dt-ink-1);
+        border-radius: 1px;
+      }
+      .nav-item:hover .nav-label {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+      .nav-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #D9BF8A 0%, #7A2135 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: auto;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.8);
+        box-shadow: 0 2px 8px rgba(122,33,53,0.15);
+      }
+
+      /* --- Main Content Area (between nav and right panel) --- */
+      #main-area {
+        flex: 1;
+        min-width: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* --- Top Bar --- */
+      #top-bar {
+        height: 64px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        gap: 20px;
+        position: relative;
+        z-index: 5;
+      }
+      .page-title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        white-space: nowrap;
+      }
+      .page-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dt-primary);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      .page-breadcrumb {
+        font-size: 12px;
+        color: var(--dt-ink-4);
+        font-weight: 400;
+      }
+      .page-breadcrumb .sep {
+        margin: 0 6px;
+        color: var(--dt-ink-4);
+        opacity: 0.5;
+      }
+      .search-wrap {
+        flex: 1;
+        max-width: 360px;
+        margin: 0 auto 0 0;
+      }
+      .search-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 16px;
+        height: 40px;
+        border-radius: var(--dt-radius-pill);
+        background: rgba(255,255,255,0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.7);
+        box-shadow: 0 2px 8px -2px rgba(122,33,53,0.04);
+        transition: all 0.2s ease;
+      }
+      .search-box:focus-within {
+        box-shadow: 0 0 0 3px rgba(122,33,53,0.08), 0 2px 8px -2px rgba(122,33,53,0.06);
+        border-color: rgba(122,33,53,0.15);
+        background: rgba(255,255,255,0.8);
+      }
+      .search-box input {
+        flex: 1;
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 13px;
+        color: var(--dt-ink-1);
+        font-family: inherit;
+      }
+      .search-box input::placeholder { color: var(--dt-ink-4); }
+      .top-bar-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--dt-radius-md);
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-2);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      .icon-btn:hover {
+        background: rgba(255,255,255,0.8);
+        color: var(--dt-primary);
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .dt-btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 40px;
+        padding: 0 20px;
+        background: var(--dt-gold-gradient);
+        color: #FFFFFF;
+        border-radius: var(--dt-radius-md);
+        font-size: 13px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--dt-shadow-sm);
+        transition: box-shadow 0.2s ease, transform 0.15s ease;
+        font-family: inherit;
+        white-space: nowrap;
+      }
+      .dt-btn-gold:hover {
+        box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+        transform: translateY(-1px);
+      }
+      .filter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 40px;
+        padding: 0 14px;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: var(--dt-radius-md);
+        color: var(--dt-ink-2);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+      .filter-btn:hover {
+        background: rgba(255,255,255,0.8);
+        color: var(--dt-primary);
+        box-shadow: var(--dt-shadow-sm);
+      }
+
+      /* --- Filter Toolbar --- */
+      #filter-toolbar {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        height: 52px;
+        gap: 20px;
+        position: relative;
+        z-index: 4;
+      }
+      .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .filter-label {
+        font-size: 12px;
+        color: var(--dt-ink-4);
+        font-weight: 500;
+        white-space: nowrap;
+        margin-right: 2px;
+      }
+      .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 12px;
+        border-radius: var(--dt-radius-pill);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--dt-ink-3);
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.6);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .filter-chip:hover {
+        color: var(--dt-primary);
+        background: rgba(255,255,255,0.8);
+      }
+      .filter-chip.active {
+        color: var(--dt-gold-dark);
+        background: var(--dt-gold-soft);
+        border-color: var(--dt-gold);
+        font-weight: 600;
+      }
+      .toolbar-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .view-toggle {
+        display: flex;
+        background: rgba(255,255,255,0.5);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: var(--dt-radius-md);
+        padding: 3px;
+        gap: 2px;
+      }
+      .view-toggle-btn {
+        width: 32px;
+        height: 30px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-4);
+        transition: all 0.2s ease;
+        border: none;
+        background: transparent;
+      }
+      .view-toggle-btn.active {
+        background: var(--dt-card-solid);
+        color: var(--dt-primary);
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .sort-dropdown {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 36px;
+        padding: 0 14px;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: var(--dt-radius-md);
+        color: var(--dt-ink-2);
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+      .sort-dropdown:hover {
+        background: rgba(255,255,255,0.8);
+      }
+
+      /* --- Content + Right Panel Layout --- */
+      #content-wrap {
+        flex: 1;
+        display: flex;
+        min-height: 0;
+        overflow: hidden;
+        padding: 0 28px 0 28px;
+        gap: 20px;
+      }
+
+      /* --- Table Area (scrollable) --- */
+      #table-area {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      #table-scroll {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: relative;
+      }
+      #table-scroll::-webkit-scrollbar { width: 6px; }
+      #table-scroll::-webkit-scrollbar-track { background: transparent; }
+      #table-scroll::-webkit-scrollbar-thumb {
+        background: rgba(122,33,53,0.12);
+        border-radius: 3px;
+      }
+
+      /* --- Data Table --- */
+      .data-table-wrap {
+        background: var(--dt-glass-strong);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        box-shadow: var(--dt-shadow-md);
+        overflow: hidden;
+      }
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .data-table thead th {
+        text-align: left;
+        padding: 13px 16px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--dt-primary);
+        letter-spacing: 0.02em;
+        background: rgba(122,33,53,0.03);
+        border: none;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        white-space: nowrap;
+      }
+      .data-table tbody td {
+        padding: 13px 16px;
+        font-size: 13px;
+        color: var(--dt-ink-2);
+        border-top: 1px solid rgba(122,33,53,0.06);
+        border-left: none;
+        border-right: none;
+        vertical-align: middle;
+      }
+      .dt-table-row {
+        transition: all 0.2s ease;
+      }
+      .dt-table-row:hover {
+        background: #FFFFFF;
+        box-shadow: 0 4px 16px -4px rgba(122,33,53,0.10);
+      }
+      .dt-table-row .dt-row-actions {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        display: flex;
+        gap: 4px;
+      }
+      .dt-table-row:hover .dt-row-actions {
+        opacity: 1;
+      }
+      .table-member {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .table-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(122,33,53,0.12);
+      }
+      .table-member-name {
+        font-weight: 600;
+        color: var(--dt-ink-1);
+        font-size: 13px;
+        line-height: 1.3;
+      }
+      .table-member-id {
+        font-size: 11px;
+        color: var(--dt-ink-4);
+        margin-top: 2px;
+      }
+      .gender-age {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        color: var(--dt-ink-2);
+        font-size: 13px;
+      }
+      .gender-icon {
+        width: 16px;
+        height: 16px;
+      }
+      .gender-icon.female { color: #C7648A; }
+      .gender-icon.male { color: #5A7A9A; }
+      .city-cell {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--dt-ink-2);
+        font-size: 13px;
+      }
+      .edu-job {
+        font-size: 13px;
+        color: var(--dt-ink-2);
+        line-height: 1.4;
+      }
+      .edu-job .edu {
+        color: var(--dt-ink-3);
+        font-size: 12px;
+      }
+
+      /* --- Level Badges --- */
+      .level-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 3px 10px;
+        border-radius: var(--dt-radius-pill);
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .level-badge.normal {
+        background: var(--dt-muted);
+        color: var(--dt-ink-3);
+      }
+      .level-badge.vip {
+        background: var(--dt-gold-gradient);
+        color: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(201,169,110,0.3);
+      }
+      .level-badge.svip {
+        background: var(--dt-primary);
+        color: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(122,33,53,0.2);
+      }
+
+      /* --- Status Pills --- */
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 10px;
+        border-radius: var(--dt-radius-pill);
+        font-size: 11px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .status-pill .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .status-pill.pending { background: var(--dt-warning-soft); color: var(--dt-warning); }
+      .status-pill.verifying { background: var(--dt-info-soft); color: var(--dt-info); }
+      .status-pill.verified { background: var(--dt-success-soft); color: var(--dt-success); }
+      .status-pill.paused { background: var(--dt-muted); color: var(--dt-ink-3); }
+
+      /* --- Matchmaker cell --- */
+      .matchmaker-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .matchmaker-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .matchmaker-name {
+        font-size: 13px;
+        color: var(--dt-ink-2);
+      }
+
+      /* --- Match stats --- */
+      .match-stats {
+        font-size: 13px;
+        color: var(--dt-ink-2);
+      }
+      .match-stats .rate {
+        color: var(--dt-gold-dark);
+        font-weight: 600;
+      }
+
+      /* --- Last active --- */
+      .last-active {
+        font-size: 12px;
+        color: var(--dt-ink-4);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      /* --- Action buttons in table --- */
+      .action-link {
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--dt-ink-3);
+        transition: all 0.15s ease;
+        background: none;
+        border: none;
+        font-family: inherit;
+      }
+      .action-link:hover {
+        color: var(--dt-primary);
+        background: var(--dt-primary-soft);
+      }
+      .action-link.gold {
+        color: var(--dt-gold-dark);
+      }
+      .action-link.gold:hover {
+        background: var(--dt-gold-soft);
+        color: var(--dt-gold-dark);
+      }
+      .action-more {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-4);
+        transition: all 0.15s ease;
+        background: none;
+        border: none;
+      }
+      .action-more:hover {
+        color: var(--dt-primary);
+        background: var(--dt-primary-soft);
+      }
+
+      /* --- Pagination --- */
+      #pagination {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 4px 4px;
+        height: 52px;
+      }
+      .pagination-info {
+        font-size: 12px;
+        color: var(--dt-ink-4);
+      }
+      .pagination-pages {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .page-btn {
+        min-width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        color: var(--dt-ink-3);
+        background: rgba(255,255,255,0.5);
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        padding: 0 8px;
+      }
+      .page-btn:hover {
+        background: rgba(255,255,255,0.8);
+        color: var(--dt-primary);
+      }
+      .page-btn.active {
+        background: var(--dt-primary);
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(122,33,53,0.2);
+      }
+      .page-btn.disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .page-size-select {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        height: 32px;
+        padding: 0 12px;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        color: var(--dt-ink-3);
+        font-size: 12px;
+        cursor: pointer;
+        font-family: inherit;
+      }
+      .page-size-select:hover {
+        background: rgba(255,255,255,0.8);
+      }
+
+      /* --- Right Sidebar (280px) --- */
+      #right-panel {
+        width: 280px;
+        flex-shrink: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 0 28px;
+      }
+      .advanced-panel {
+        flex: 1;
+        background: var(--dt-glass);
+        backdrop-filter: var(--dt-glass-blur);
+        -webkit-backdrop-filter: var(--dt-glass-blur);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        box-shadow: var(--dt-shadow-md);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .advanced-panel::-webkit-scrollbar { width: 4px; }
+      .advanced-panel::-webkit-scrollbar-track { background: transparent; }
+      .advanced-panel::-webkit-scrollbar-thumb {
+        background: rgba(122,33,53,0.10);
+        border-radius: 2px;
+      }
+      .panel-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .panel-title .title-bar {
+        width: 3px;
+        height: 14px;
+        background: var(--dt-gold);
+        border-radius: 2px;
+      }
+      .filter-section {
+        margin-bottom: 20px;
+      }
+      .filter-section-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--dt-ink-3);
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      /* --- Dual slider --- */
+      .slider-wrap {
+        position: relative;
+        padding: 10px 4px 20px;
+      }
+      .dt-slider-track {
+        position: relative;
+        height: 6px;
+        background: var(--dt-border);
+        border-radius: 3px;
+      }
+      .dt-slider-fill {
+        position: absolute;
+        height: 100%;
+        background: var(--dt-gold-gradient);
+        border-radius: 3px;
+        left: 10%;
+        right: 20%;
+      }
+      .dt-slider-thumb {
+        position: absolute;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        background: #FFFFFF;
+        border: 3px solid var(--dt-gold);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        cursor: grab;
+        box-shadow: var(--dt-shadow-sm);
+        z-index: 2;
+      }
+      .dt-slider-thumb.thumb-min { left: 10%; }
+      .dt-slider-thumb.thumb-max { left: 80%; }
+      .slider-values {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--dt-ink-2);
+        margin-top: 10px;
+        font-weight: 500;
+      }
+      .slider-range-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--dt-ink-4);
+        margin-top: 4px;
+      }
+
+      /* --- Dropdown in panel --- */
+      .panel-select {
+        width: 100%;
+        height: 38px;
+        padding: 0 12px;
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--dt-border);
+        border-radius: var(--dt-radius-md);
+        color: var(--dt-ink-2);
+        font-size: 12px;
+        font-family: inherit;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.2s ease;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%237A6670' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 32px;
+      }
+      .panel-select:focus {
+        border-color: var(--dt-gold);
+        box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+      }
+
+      /* --- Chip group in panel --- */
+      .panel-chips {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .panel-chip {
+        padding: 5px 14px;
+        border-radius: var(--dt-radius-pill);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--dt-ink-3);
+        background: rgba(255,255,255,0.6);
+        border: 1px solid var(--dt-border);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .panel-chip:hover {
+        color: var(--dt-primary);
+        border-color: var(--dt-primary-soft-2);
+      }
+      .panel-chip.active {
+        color: var(--dt-gold-dark);
+        background: var(--dt-gold-soft);
+        border-color: var(--dt-gold);
+        font-weight: 600;
+      }
+
+      /* --- Toggle switch --- */
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 0;
+      }
+      .toggle-label {
+        font-size: 13px;
+        color: var(--dt-ink-2);
+      }
+      .toggle-switch {
+        width: 40px;
+        height: 22px;
+        border-radius: 11px;
+        background: var(--dt-border);
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+      }
+      .toggle-switch.on {
+        background: var(--dt-gold-gradient);
+      }
+      .toggle-switch::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+        transition: all 0.2s ease;
+      }
+      .toggle-switch.on::after {
+        left: 20px;
+      }
+
+      /* --- Panel buttons --- */
+      .panel-actions {
+        margin-top: auto;
+        padding-top: 16px;
+        display: flex;
+        gap: 10px;
+        border-top: 1px solid var(--dt-border);
+      }
+      .btn-ghost {
+        flex: 1;
+        height: 38px;
+        border-radius: var(--dt-radius-md);
+        border: 1px solid var(--dt-border-strong);
+        background: transparent;
+        color: var(--dt-ink-3);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+      .btn-ghost:hover {
+        color: var(--dt-primary);
+        border-color: var(--dt-primary);
+        background: var(--dt-primary-soft);
+      }
+      .btn-gold-solid {
+        flex: 1;
+        height: 38px;
+        border-radius: var(--dt-radius-md);
+        border: none;
+        background: var(--dt-gold-gradient);
+        color: #FFFFFF;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .btn-gold-solid:hover {
+        box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+        transform: translateY(-1px);
+      }
+
+      /* --- Misc --- */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* ===== Interactive additions ===== */
+      .dt-table-row { cursor: pointer; transition: all .2s ease; }
+      .dt-table-row:hover { background: rgba(201,169,110,.05); }
+      .dt-table-row.selected { background: rgba(201,169,110,.08); box-shadow: inset 3px 0 0 var(--dt-gold); }
+      .dt-row-actions { opacity: 0; transition: opacity .2s ease; }
+      .dt-table-row:hover .dt-row-actions { opacity: 1; }
+      .action-link { cursor: pointer; transition: all .2s ease; position: relative; }
+      .action-link:hover { color: var(--dt-primary); transform: translateY(-1px); }
+      .action-link.gold:hover { color: var(--dt-gold-dark); }
+      .action-more { cursor: pointer; transition: all .2s ease; }
+      .action-more:hover { color: var(--dt-primary); background: rgba(122,33,53,.08); }
+      .filter-chip { cursor: pointer; transition: all .2s ease; user-select: none; }
+      .filter-chip:hover { border-color: var(--dt-gold); color: var(--dt-primary); }
+      .view-toggle-btn { cursor: pointer; transition: all .2s ease; }
+      .view-toggle-btn:hover { border-color: var(--dt-gold); color: var(--dt-primary); }
+      .sort-dropdown { cursor: pointer; transition: all .2s ease; }
+      .sort-dropdown:hover { border-color: var(--dt-gold); color: var(--dt-primary); }
+      .filter-btn { cursor: pointer; transition: all .2s ease; }
+      .filter-btn:hover { border-color: var(--dt-gold); color: var(--dt-primary); }
+      .dt-btn-gold { cursor: pointer; transition: all .25s ease; position: relative; overflow: hidden; }
+      .dt-btn-gold:hover { box-shadow: 0 8px 22px rgba(201,169,110,.45); transform: translateY(-1px); }
+      .level-badge, .status-pill { transition: transform .2s; cursor: default; }
+      .dt-table-row:hover .level-badge { transform: scale(1.05); }
+      .table-avatar { transition: transform .3s ease; }
+      .dt-table-row:hover .table-avatar { transform: scale(1.08); box-shadow: 0 4px 12px rgba(122,33,53,.2); }
+      .matchmaker-avatar { transition: transform .3s ease; }
+      .dt-table-row:hover .matchmaker-avatar { transform: scale(1.1); }
+      .icon-btn, .nav-item { cursor: pointer; transition: all .2s ease; }
+      .page-btn, .pagination-btn { cursor: pointer; transition: all .2s ease; }
+      .page-btn:not(.disabled):not(.active):hover, .pagination-btn:not(.disabled):not(.active):hover { border-color: var(--dt-gold); color: var(--dt-primary); }
+      .gender-icon { transition: transform .2s; }
+      .dt-table-row:hover .gender-icon { transform: scale(1.15); }
+
+      /* Ripple */
+      .btn-ripple { position:absolute; border-radius:50%; background:rgba(255,255,255,.5); transform:scale(0); animation:ripple .6s ease-out forwards; pointer-events:none; }
+      @keyframes ripple { to { transform:scale(4); opacity:0; } }
+
+      /* Toast */
+      .mem-toast { position:fixed; top:80px; left:50%; transform:translateX(-50%) translateY(-80px); background:linear-gradient(135deg,#7A2135,#9A3349); color:#fff; padding:12px 26px; border-radius:12px; font-size:14px; z-index:9999; box-shadow:0 10px 40px rgba(122,33,53,.35); border:1px solid rgba(201,169,110,.4); opacity:0; transition:all .4s cubic-bezier(.2,.8,.2,1); display:flex; align-items:center; gap:8px; pointer-events:none; }
+      .mem-toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+      .mem-toast.success { background: linear-gradient(135deg,#2E8B4F,#3CA05A); border-color: rgba(60,160,90,.4); }
+
+      /* Quick action popover */
+      .action-popover { position: fixed; background: rgba(255,252,247,.98); border: 1px solid rgba(201,169,110,.4); border-radius: 12px; padding: 6px; box-shadow: 0 14px 40px rgba(30,10,18,.2); z-index: 9998; opacity: 0; transform: scale(.95) translateY(-4px); transform-origin: top right; transition: all .2s cubic-bezier(.2,.8,.2,1); pointer-events: none; backdrop-filter: blur(8px); min-width: 140px; }
+      .action-popover.show { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+      .action-popover-item { padding: 8px 14px; font-size: 13px; color: var(--dt-ink-2); border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all .15s; }
+      .action-popover-item:hover { background: rgba(201,169,110,.1); color: var(--dt-primary); }
+      .action-popover-item.danger:hover { background: rgba(200,60,70,.08); color: #C83C46; }
+
+      /* Member quick view panel (slide-in) */
+      .quick-view-panel { position: fixed; top: 0; right: 0; width: 380px; height: 100vh; background: rgba(255,252,247,.98); border-left: 1px solid rgba(201,169,110,.3); box-shadow: -10px 0 40px rgba(30,10,18,.15); z-index: 9997; transform: translateX(100%); transition: transform .35s cubic-bezier(.2,.8,.2,1); padding: 24px; overflow-y: auto; backdrop-filter: blur(12px); }
+      .quick-view-panel.show { transform: translateX(0); }
+      .qv-backdrop { position: fixed; inset: 0; background: rgba(30,10,18,.3); z-index: 9996; opacity: 0; pointer-events: none; transition: opacity .3s; backdrop-filter: blur(2px); }
+      .qv-backdrop.show { opacity: 1; pointer-events: auto; }
+    </style>
+
+    <div class="mem-toast" id="mem-toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="mem-toast-text"></span>
+    </div>
+
+    <div class="action-popover" id="action-popover">
+      <div class="action-popover-item" data-act="view">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        查看详情
+      </div>
+      <div class="action-popover-item" data-act="edit">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        编辑资料
+      </div>
+      <div class="action-popover-item" data-act="match">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        发起牵线
+      </div>
+      <div class="action-popover-item" data-act="message">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        发送消息
+      </div>
+      <div class="action-popover-item danger" data-act="suspend">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        暂停账号
+      </div>
+    </div>
+
+    <div class="qv-backdrop" id="qv-backdrop"></div>
+    <div class="quick-view-panel" id="qv-panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <h3 style="margin:0;font-size:18px;color:var(--dt-primary);">会员详情</h3>
+        <button id="qv-close" style="width:28px;height:28px;border-radius:50%;border:none;background:transparent;cursor:pointer;color:var(--dt-ink-3);display:flex;align-items:center;justify-content:center;transition:all .2s;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div id="qv-content"></div>
+    </div>
+
+<script>
+(function(){
+  // ============ Toast ============
+  const toastEl = document.getElementById('mem-toast');
+  const toastText = document.getElementById('mem-toast-text');
+  let toastTimer;
+  function showToast(msg, type){
+    toastText.textContent = msg;
+    toastEl.classList.remove('success');
+    if (type === 'success') toastEl.classList.add('success');
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
+  }
+
+  // ============ Ripple on gold btn ============
+  document.querySelectorAll('.dt-btn-gold').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'btn-ripple';
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(function(){ ripple.remove(); }, 600);
+      if (btn.textContent.indexOf('新增') >= 0) showToast('打开新增会员表单');
+    });
+  });
+
+  // ============ Filter chips (grouped single-select) ============
+  const chipGroups = [];
+  let currentGroup = [];
+  const allChips = document.querySelectorAll('.filter-chip');
+  allChips.forEach(function(chip){
+    currentGroup.push(chip);
+    const next = chip.nextElementSibling;
+    const isActive = chip.classList.contains('active');
+    // A new group starts after a non-chip element or when chip is first
+    if (!next || !next.classList || !next.classList.contains('filter-chip')) {
+      chipGroups.push(currentGroup);
+      currentGroup = [];
+    }
+  });
+  chipGroups.forEach(function(group){
+    group.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        group.forEach(function(c){ c.classList.remove('active'); });
+        chip.classList.add('active');
+        showToast('筛选：' + chip.textContent.trim());
+      });
+    });
+  });
+
+  // ============ View toggle ============
+  document.querySelectorAll('.view-toggle-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.view-toggle-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      showToast('切换到' + btn.title);
+    });
+  });
+
+  // ============ Row click -> select + open quick view ============
+  const rows = document.querySelectorAll('.dt-table-row');
+  let selectedRow = null;
+  const qvPanel = document.getElementById('qv-panel');
+  const qvBackdrop = document.getElementById('qv-backdrop');
+  const qvContent = document.getElementById('qv-content');
+  function openQuickView(row){
+    const name = row.querySelector('.table-member-name')?.textContent || '会员';
+    const id = row.querySelector('.table-member-id')?.textContent || '';
+    const avatar = row.querySelector('.table-avatar');
+    const avatarText = avatar ? avatar.textContent : '';
+    const avatarStyle = avatar ? avatar.getAttribute('style') : '';
+    const level = row.querySelector('.level-badge')?.textContent || '';
+    const status = row.querySelector('.status-pill')?.textContent?.trim() || '';
+    const cells = row.querySelectorAll('td');
+    const genderAge = cells[1]?.textContent?.trim() || '';
+    const location = cells[2]?.textContent?.trim() || '';
+    const matchmaker = row.querySelector('.matchmaker-avatar')?.parentElement?.textContent?.trim() || '';
+    qvContent.innerHTML =
+      '<div style="text-align:center;padding:20px 0 16px;">' +
+        '<div class="table-avatar" style="'+avatarStyle+';width:72px;height:72px;font-size:28px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;box-shadow:0 8px 20px rgba(122,33,53,.2);">'+avatarText+'</div>' +
+        '<div style="font-size:20px;font-weight:600;color:var(--dt-ink-1);">'+name+'</div>' +
+        '<div style="font-size:12px;color:var(--dt-ink-3);margin-top:4px;">'+id+'</div>' +
+        '<div style="margin-top:10px;display:flex;gap:6px;justify-content:center;">' +
+          '<span class="level-badge '+ (level.indexOf('S')>=0?'svip':'vip') +'">'+level+'</span>' +
+          '<span class="status-pill verified" style="font-size:12px;"><span class="dot"></span>'+status+'</span>' +
+        '</div>' +
+      '</div>' +
+      '<div style="background:rgba(201,169,110,.06);border-radius:12px;padding:14px;margin-bottom:14px;">' +
+        '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;"><span style="color:var(--dt-ink-3);">性别年龄</span><span>'+genderAge+'</span></div>' +
+        '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-top:1px solid rgba(201,169,110,.1);"><span style="color:var(--dt-ink-3);">所在地</span><span>'+location+'</span></div>' +
+        '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-top:1px solid rgba(201,169,110,.1);"><span style="color:var(--dt-ink-3);">负责红娘</span><span>'+matchmaker+'</span></div>' +
+        '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-top:1px solid rgba(201,169,110,.1);"><span style="color:var(--dt-ink-3);">注册时间</span><span>2024-08-15</span></div>' +
+        '<div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-top:1px solid rgba(201,169,110,.1);"><span style="color:var(--dt-ink-3);">最近登录</span><span>今天 10:32</span></div>' +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">' +
+        '<div style="text-align:center;padding:12px;background:rgba(201,169,110,.06);border-radius:10px;"><div style="font-size:20px;font-weight:700;color:var(--dt-gold-dark);">28</div><div style="font-size:11px;color:var(--dt-ink-3);margin-top:2px;">牵线次数</div></div>' +
+        '<div style="text-align:center;padding:12px;background:rgba(201,169,110,.06);border-radius:10px;"><div style="font-size:20px;font-weight:700;color:var(--dt-primary);">3</div><div style="font-size:11px;color:var(--dt-ink-3);margin-top:2px;">约会次数</div></div>' +
+      '</div>' +
+      '<div style="display:flex;gap:8px;">' +
+        '<button style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--dt-gold);background:transparent;color:var(--dt-gold-dark);cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;transition:all .2s;" onmouseover="this.style.background=\'rgba(201,169,110,.1)\'" onmouseout="this.style.background=\'transparent\'">发送消息</button>' +
+        '<button style="flex:1;padding:10px;border-radius:10px;border:none;background:var(--dt-gold-gradient);color:#fff;cursor:pointer;font-family:inherit;font-size:13px;font-weight:500;box-shadow:0 4px 12px rgba(201,169,110,.3);transition:all .2s;" onmouseover="this.style.transform=\'translateY(-1px)\';this.style.boxShadow=\'0 6px 18px rgba(201,169,110,.45)\'" onmouseout="this.style.transform=\'\';this.style.boxShadow=\'0 4px 12px rgba(201,169,110,.3)\'">发起牵线</button>' +
+      '</div>';
+    qvPanel.classList.add('show');
+    qvBackdrop.classList.add('show');
+  }
+  function closeQv(){
+    qvPanel.classList.remove('show');
+    qvBackdrop.classList.remove('show');
+  }
+  document.getElementById('qv-close').addEventListener('click', closeQv);
+  qvBackdrop.addEventListener('click', closeQv);
+
+  rows.forEach(function(row){
+    row.addEventListener('click', function(e){
+      if (e.target.closest('.dt-row-actions') || e.target.closest('button') || e.target.closest('.action-link') || e.target.closest('.action-more')) return;
+      rows.forEach(function(r){ r.classList.remove('selected'); });
+      row.classList.add('selected');
+      selectedRow = row;
+      openQuickView(row);
+    });
+  });
+
+  // ============ Action links ============
+  document.querySelectorAll('.action-link').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.stopPropagation();
+      const title = link.title || '操作';
+      if (title === '牵线') showToast('为该会员发起牵线');
+      else if (title === '编辑') showToast('进入编辑页面');
+      else if (title === '查看') {
+        const row = link.closest('.dt-table-row');
+        if (row) row.click();
+      } else showToast(title);
+    });
+  });
+
+  // ============ More action popover ============
+  const popover = document.getElementById('action-popover');
+  let popoverOwner = null;
+  function closePopover(){ popover.classList.remove('show'); popoverOwner = null; }
+  document.querySelectorAll('.action-more').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const rect = btn.getBoundingClientRect();
+      popover.style.top = (rect.bottom + 6) + 'px';
+      popover.style.right = (window.innerWidth - rect.right) + 'px';
+      popoverOwner = btn.closest('.dt-table-row');
+      popover.classList.add('show');
+    });
+  });
+  document.addEventListener('click', function(e){
+    if (!e.target.closest('#action-popover') && !e.target.closest('.action-more')) closePopover();
+  });
+  document.querySelectorAll('.action-popover-item').forEach(function(item){
+    item.addEventListener('click', function(e){
+      e.stopPropagation();
+      const act = item.getAttribute('data-act');
+      const name = popoverOwner ? (popoverOwner.querySelector('.table-member-name')?.textContent || '会员') : '会员';
+      closePopover();
+      const actMap = { view:'查看', edit:'编辑', match:'发起牵线', message:'发送消息', suspend:'暂停账号' };
+      if (act === 'view' && popoverOwner) popoverOwner.click();
+      else if (act === 'suspend') showToast('已暂停「' + name + '」的账号');
+      else showToast(actMap[act] + '：' + name);
+    });
+  });
+
+  // ============ Sort dropdown ============
+  const sortBtn = document.querySelector('.sort-dropdown');
+  if (sortBtn) {
+    sortBtn.addEventListener('click', function(){
+      showToast('切换排序方式');
+    });
+  }
+
+  // ============ Filter button ============
+  const filterBtn = document.querySelector('.filter-btn');
+  if (filterBtn) {
+    filterBtn.addEventListener('click', function(){ showToast('展开高级筛选'); });
+  }
+
+  // ============ ESC closes panels ============
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') { closeQv(); closePopover(); }
+  });
+
+  // ============ Pagination ============
+  document.querySelectorAll('.page-btn, .pagination-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (btn.classList.contains('disabled') || btn.classList.contains('active')) return;
+      const txt = btn.textContent.trim();
+      if (/^\d+$/.test(txt)) {
+        document.querySelectorAll('.page-btn, .pagination-btn').forEach(function(b){ if(/^\d+$/.test(b.textContent.trim())) b.classList.remove('active'); });
+        btn.classList.add('active');
+      }
+      showToast('第 ' + txt + ' 页');
+    });
+  });
+
+  showToast('会员管理已就绪');
+})();
+</script>
+</body>
+</html>

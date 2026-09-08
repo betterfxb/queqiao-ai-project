@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息中心</title>
+    <style id="theme-vars">
+﻿/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--brand-bg-gradient); min-height: 100vh; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth;">
+    <style id="critical-layout">
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .chat-item { cursor: pointer; min-height: 44px; transition: background 0.15s; }
+      .chat-item:active { background: var(--brand-primary-soft); }
+      .truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+      button, a { min-height: 44px; }
+      * { -webkit-tap-highlight-color: transparent; }
+      @media (prefers-reduced-motion: reduce) { * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+    </style>
+    <main>
+      <div class="relative min-h-screen w-full mx-auto max-w-[420px] noise-texture" style="background: var(--brand-bg-gradient); z-index: 1;">
+        <!-- Status bar spacer -->
+        <div style="height: 12px;"></div>
+
+        <!-- Top bar (sticky frosted) -->
+        <header id="messages-topbar" class="sticky top-0 z-20 flex items-center justify-between" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(253,246,242,0.88); border-bottom: 1px solid var(--brand-border); padding: 12px 16px;">
+          <button class="flex items-center justify-center" style="width: 38px; height: 38px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); color: var(--brand-ink-2);" aria-label="返回">
+            <i data-lucide="chevron-left" style="width: 20px; height: 20px;"></i>
+          </button>
+          <h1 style="font-size: 18px; font-weight: 600; color: var(--brand-ink-1);">消息</h1>
+          <button class="flex items-center justify-center" style="width: 38px; height: 38px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--glass-border); backdrop-filter: blur(12px); color: var(--brand-ink-2);" aria-label="新建消息">
+            <i data-lucide="pen-line" style="width: 18px; height: 18px;"></i>
+          </button>
+        </header>
+
+        <!-- Quick action pills -->
+        <div style="margin: 12px 20px 0; display: flex; gap: 10px;">
+          <div class="glass-card flex items-center" style="flex: 1; border-radius: 16px; padding: 12px; gap: 10px;">
+            <div class="flex items-center justify-center shrink-0" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--brand-primary), var(--brand-gold));">
+              <i data-lucide="bot" style="width: 18px; height: 18px; color: #fff;"></i>
+            </div>
+            <div style="min-width: 0;">
+              <div style="font-size: 13px; font-weight: 600; color: var(--brand-ink-1); line-height: 1.3;">AI 红娘助手</div>
+              <div style="font-size: 11px; color: var(--brand-ink-3); line-height: 1.3; margin-top: 2px;">智能回复建议</div>
+            </div>
+          </div>
+          <div class="glass-card flex items-center" style="flex: 1; border-radius: 16px; padding: 12px; gap: 10px;">
+            <div class="flex items-center justify-center shrink-0" style="width: 36px; height: 36px; border-radius: 50%; background: var(--brand-gold-soft);">
+              <i data-lucide="bell" style="width: 18px; height: 18px; color: var(--brand-gold-dark);"></i>
+            </div>
+            <div style="min-width: 0;">
+              <div style="font-size: 13px; font-weight: 600; color: var(--brand-ink-1); line-height: 1.3;">系统通知</div>
+              <div style="font-size: 11px; color: var(--state-error); line-height: 1.3; margin-top: 2px;">3条未读</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Segmented tabs -->
+        <div style="margin: 16px 20px 0; display: flex; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 14px; padding: 4px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+          <button style="flex: 1; text-align: center; padding: 8px 0; border-radius: 10px; background: var(--brand-primary); color: #fff; font-size: 13px; font-weight: 600; border: none; cursor: pointer;">全部</button>
+          <button style="flex: 1; text-align: center; padding: 8px 0; border-radius: 10px; color: var(--brand-ink-3); font-size: 13px; background: transparent; border: none; cursor: pointer; font-weight: 500;">会员消息</button>
+          <button style="flex: 1; text-align: center; padding: 8px 0; border-radius: 10px; color: var(--brand-ink-3); font-size: 13px; background: transparent; border: none; cursor: pointer; font-weight: 500;">系统通知</button>
+        </div>
+
+        <!-- Chat list -->
+        <div id="chat-list" style="margin-top: 8px; display: flex; flex-direction: column;">
+          <!-- 1. 李梦琪 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="relative shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #F5D0DC, #D4A3B5); font-size: 17px; font-weight: 600; color: #fff;">
+              李
+              <span style="position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--brand-primary); color: #fff; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid var(--brand-bg-base);">2</span>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">李梦琪</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">刚刚</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">王老师，我周末有空的，约在哪里见面呀？</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. AI 红娘助手 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="relative shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #A8667D, #C8956C);">
+              <i data-lucide="sparkles" style="width: 20px; height: 20px; color: #fff;"></i>
+              <span style="position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--brand-primary); color: #fff; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid var(--brand-bg-base);">1</span>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">AI 红娘助手</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">5分钟前</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">为会员陈思远匹配到3位高契合度女性会员</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. 陈思远 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #B8C5D6, #7D8EA0); font-size: 17px; font-weight: 600; color: #fff;">
+              陈
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">陈思远</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">10:23</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">好的老师，我准备一下资料</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. 系统通知 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="relative shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: var(--brand-gold-soft);">
+              <i data-lucide="megaphone" style="width: 22px; height: 22px; color: var(--brand-gold-dark);"></i>
+              <span style="position: absolute; top: -2px; right: -2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--brand-primary); color: #fff; font-size: 10px; font-weight: 600; display: flex; align-items: center; justify-content: center; border: 2px solid var(--brand-bg-base);">3</span>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">系统通知</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">昨天</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">您有2场约见待确认，请及时处理</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. 王雅婷 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #FDE8D8, #F5C8A8); font-size: 17px; font-weight: 600; color: #9A5C70;">
+              王
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">王雅婷</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">昨天</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">谢谢老师的推荐，对方很优秀~</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. 张浩然 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #C5CFD8, #8A98A8); font-size: 17px; font-weight: 600; color: #fff;">
+              张
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">张浩然</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">周一</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">[图片]</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. 会员服务群 -->
+          <div class="chat-item flex items-center" style="padding: 14px 20px; gap: 12px; border-bottom: 1px solid var(--brand-border); min-height: 76px;">
+            <div class="shrink-0 flex items-center justify-center" style="width: 50px; height: 50px; border-radius: 50%; background: var(--brand-primary-soft);">
+              <i data-lucide="users" style="width: 22px; height: 22px; color: var(--brand-primary);"></i>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+              <div class="flex justify-between items-center">
+                <span class="truncate" style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); max-width: 70%;">会员服务群</span>
+                <span style="font-size: 11px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;">上周</span>
+              </div>
+              <div style="margin-top: 3px;">
+                <span class="truncate block" style="font-size: 13px; color: var(--brand-ink-3);">本周牵线数据周报已生成</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom navigation -->
+        <nav data-mobile-nav="global" id="bottom-nav" class="w-full mx-auto max-w-md h-[68px] pt-2 pb-5 px-2" style="background: rgba(253,246,242,0.88); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(168,102,125,0.08);"><div class="w-full h-full grid grid-cols-5 items-end"><button data-nav-key="home" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="layout-dashboard" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">工作台</span></button><button data-nav-key="members" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="users" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">会员库</span></button><button data-nav-key="match" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="heart-handshake" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">牵线</span></button><button data-nav-key="message" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-primary)"><i data-lucide="message-circle" class="w-6 h-6 shrink-0" style="fill:var(--brand-primary);stroke-width:0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate font-semibold">消息</span></button><button data-nav-key="profile" class="min-w-0 flex flex-col items-center justify-center gap-0.5 px-1 h-full transition-colors duration-200" style="color:var(--brand-ink-3)"><i data-lucide="user" class="w-6 h-6 shrink-0"></i><span class="text-[10px] leading-none whitespace-nowrap max-w-full truncate">我的</span></button></div></nav>
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "success": true,
+  "repairedPages": [
+    {
+      "htmlSrc": "pages/dashboard.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "home"
+    },
+    {
+      "htmlSrc": "pages/members.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "members"
+    },
+    {
+      "htmlSrc": "pages/match.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "match"
+    },
+    {
+      "htmlSrc": "pages/messages.html",
+      "action": "replace-data-mobile-nav-global",
+      "activeKey": "message"
+    }
+  ],
+  "skippedPages": [
+    {
+      "htmlSrc": "pages/member-detail.html",
+      "reason": "detail page uses top bar with back button"
+    },
+    {
+      "htmlSrc": "pages/schedule.html",
+      "reason": "schedule page uses top bar navigation"
+    },
+    {
+      "htmlSrc": "pages/edit-member.html",
+      "reason": "detail/edit page uses top bar back navigation"
+    }
+  ],
+  "failedPages": [],
+  "repairCount": 4,
+  "previousFailedReportDetected": false,
+  "checkedAt": "2026-08-07T14:04:46.205Z"
+}

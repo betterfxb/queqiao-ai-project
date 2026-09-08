@@ -1,0 +1,142 @@
+{
+  "@platforms": [
+    "android",
+    "iPhone",
+    "iPad"
+  ],
+  "id": "",
+  "name": "鹊桥 · 红娘工作台",
+  "version": {
+    "name": "0.1.0",
+    "code": "100"
+  },
+  "description": "婚恋红娘智能工作台：会员管理、智能牵线、约见日程、消息中心",
+  "developer": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "permissions": {
+    "UniNView": {
+      "description": "UniNView原生渲染"
+    }
+  },
+  "plus": {
+    "useragent": {
+      "value": "uni-app",
+      "concatenate": true
+    },
+    "splashscreen": {
+      "target": "id:1",
+      "autoclose": true,
+      "waiting": true,
+      "delay": 0
+    },
+    "popGesture": "close",
+    "launchwebview": {
+      "id": "1",
+      "kernel": "WKWebview"
+    },
+    "usingComponents": true,
+    "nvueStyleCompiler": "uni-app",
+    "compilerVersion": 3,
+    "distribute": {
+      "google": {
+        "permissions": []
+      },
+      "apple": {},
+      "plugins": {
+        "audio": {
+          "mp3": {
+            "description": "Android平台录音支持MP3格式文件"
+          }
+        }
+      }
+    },
+    "statusbar": {
+      "immersed": "supportedDevice",
+      "style": "dark",
+      "background": "#FDFBF7"
+    },
+    "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#FDFBF7",
+      "bottom": {
+        "offset": "auto"
+      }
+    },
+    "uni-app": {
+      "control": "uni-v3",
+      "vueVersion": "3",
+      "compilerVersion": "5.23",
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      },
+      "nvueLaunchMode": "normal",
+      "webView": {
+        "minUserAgentVersion": "49.0"
+      }
+    },
+    "tabBar": {
+      "position": "bottom",
+      "color": "#968089",
+      "selectedColor": "#8B254A",
+      "borderStyle": "rgba(255,255,255,0.4)",
+      "blurEffect": "none",
+      "fontSize": "10px",
+      "iconWidth": "24px",
+      "spacing": "3px",
+      "height": "50px",
+      "list": [
+        {
+          "pagePath": "pages/workspace/index",
+          "text": "工作台",
+          "iconPath": "/static/icons/tab-home.png",
+          "selectedIconPath": "/static/icons/tab-home-active.png"
+        },
+        {
+          "pagePath": "pages/members/index",
+          "text": "会员库",
+          "iconPath": "/static/icons/tab-members.png",
+          "selectedIconPath": "/static/icons/tab-members-active.png"
+        },
+        {
+          "pagePath": "pages/match/index",
+          "text": "牵线",
+          "iconPath": "/static/icons/tab-match.png",
+          "selectedIconPath": "/static/icons/tab-match-active.png"
+        },
+        {
+          "pagePath": "pages/message/index",
+          "text": "消息",
+          "iconPath": "/static/icons/tab-message.png",
+          "selectedIconPath": "/static/icons/tab-message-active.png"
+        },
+        {
+          "pagePath": "pages/profile/index",
+          "text": "我的",
+          "iconPath": "/static/icons/tab-profile.png",
+          "selectedIconPath": "/static/icons/tab-profile-active.png"
+        }
+      ],
+      "backgroundColor": "#FDFBF7",
+      "selectedIndex": 0,
+      "shown": true
+    }
+  },
+  "app-harmony": {
+    "useragent": {
+      "value": "uni-app",
+      "concatenate": true
+    },
+    "safearea": {
+      "background": "#FDFBF7",
+      "bottom": {
+        "offset": "auto"
+      }
+    }
+  },
+  "launch_path": "__uniappview.html"
+}

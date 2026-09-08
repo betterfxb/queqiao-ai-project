@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>约见日程</title>
+    <style id="theme-vars">
+﻿/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+    <style id="critical-layout">
+      /* Body reset */
+      html, body {
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+        scroll-behavior: smooth;
+        overscroll-behavior-y: contain;
+      }
+      body {
+        font-family: var(--brand-font-sans);
+      }
+      /* Timeline layout */
+      .timeline-rail {
+        position: relative;
+        width: 32px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .timeline-rail .t-time {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--brand-primary);
+        text-align: center;
+        line-height: 1;
+        padding-top: 2px;
+      }
+      .timeline-rail .t-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--brand-primary);
+        border: 2px solid var(--brand-bg-base);
+        box-shadow: 0 0 0 2px var(--brand-primary-soft);
+        margin-top: 6px;
+        flex-shrink: 0;
+        z-index: 2;
+      }
+      .timeline-rail .t-dot.dot-success {
+        background: var(--state-success);
+        box-shadow: 0 0 0 2px var(--state-success-soft);
+      }
+      .timeline-rail .t-dot.dot-warning {
+        background: var(--state-warning);
+        box-shadow: 0 0 0 2px var(--state-warning-soft);
+      }
+      .timeline-rail .t-dot.dot-muted {
+        background: var(--brand-ink-4);
+        box-shadow: 0 0 0 2px rgba(191,170,178,0.2);
+      }
+      .timeline-rail .t-line {
+        position: absolute;
+        left: 50%;
+        top: 34px;
+        bottom: -14px;
+        width: 1px;
+        background: var(--brand-border);
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .timeline-rail:last-child .t-line,
+      .meeting-item:last-child .timeline-rail .t-line {
+        display: none;
+      }
+      /* Day column interactions */
+      .day-col {
+        transition: transform 0.2s ease, background 0.2s ease;
+        min-height: 44px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .day-col:active {
+        transform: scale(0.95);
+      }
+      /* Meeting card press */
+      .meeting-card {
+        transition: transform 0.15s ease;
+      }
+      .meeting-card:active {
+        transform: scale(0.98);
+      }
+      /* FAB positioning for 420px centered container */
+      .fab-schedule {
+        position: fixed;
+        bottom: 24px;
+        right: max(20px, calc(50vw - 190px));
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--brand-primary);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(168,102,125,0.35);
+        border: 3px solid rgba(255,255,255,0.8);
+        cursor: pointer;
+        z-index: 40;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .fab-schedule:active {
+        transform: scale(0.92);
+      }
+      /* Touch targets */
+      button, .icon-btn, .day-col, .fab-schedule, .filter-pill {
+        min-height: 44px;
+      }
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: transform 0.15s ease, background 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .icon-btn:active {
+        transform: scale(0.92);
+      }
+      /* Filter pills */
+      .filter-pill {
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+        min-height: 32px;
+      }
+      .filter-pill:active {
+        transform: scale(0.96);
+      }
+      .filter-pill.active {
+        background: var(--brand-primary);
+        color: #fff;
+      }
+      .filter-pill.inactive {
+        background: var(--glass-bg);
+        border: 1px solid var(--brand-border);
+        color: var(--brand-ink-2);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--brand-bg-gradient);">
+    <main>
+      <div class="relative min-h-screen w-full mx-auto max-w-[420px] noise-texture pb-24" style="background: var(--brand-bg-gradient); z-index: 1;">
+
+        <!-- Status bar spacer -->
+        <div style="height: 12px;"></div>
+
+        <!-- #schedule-topbar: Sticky frosted top navigation -->
+        <header id="schedule-topbar" class="sticky top-0 z-50" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(253,246,242,0.88); border-bottom: 1px solid var(--brand-border);">
+          <div style="padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+            <!-- Back button -->
+            <button class="icon-btn" style="width: 38px; height: 38px; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 50%; box-shadow: var(--glass-shadow-soft);" aria-label="返回">
+              <i data-lucide="chevron-left" style="width: 18px; height: 18px; color: var(--brand-ink-1);"></i>
+            </button>
+            <!-- Title -->
+            <h1 style="font-size: 17px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">约见日程</h1>
+            <!-- Add meeting button -->
+            <button class="icon-btn" style="width: 38px; height: 38px; background: var(--brand-primary-soft); border: 1px solid var(--brand-primary-soft-2); border-radius: 50%;" aria-label="新建约见">
+              <i data-lucide="calendar-plus" style="width: 20px; height: 20px; color: var(--brand-primary);"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Today summary card -->
+        <section style="margin: 16px 20px 0;" class="glass-card-strong" aria-label="今日约见概览">
+          <div style="padding: 16px 18px; border-radius: 20px; background: linear-gradient(135deg, rgba(168,102,125,0.08) 0%, rgba(200,149,108,0.10) 100%); border: 1px solid rgba(168,102,125,0.12); display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 13px; color: var(--brand-ink-2);">今日约见</div>
+              <div style="font-size: 32px; font-weight: 700; color: var(--brand-primary); line-height: 1.1; margin-top: 2px;">3 场</div>
+              <div style="font-size: 12px; color: var(--brand-ink-3); margin-top: 4px; display: flex; align-items: center; gap: 4px;">
+                <i data-lucide="clock" style="width: 12px; height: 12px;"></i>
+                <span>下一场: 14:00 静安咖啡馆</span>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; align-items: flex-end;">
+              <div style="font-size: 12px; color: var(--state-success); display: inline-flex; align-items: center; gap: 4px; background: var(--state-success-soft); padding: 3px 8px; border-radius: 999px;">
+                <i data-lucide="check-circle-2" style="width: 12px; height: 12px;"></i>
+                <span>2 已确认</span>
+              </div>
+              <div style="font-size: 12px; color: var(--state-warning); display: inline-flex; align-items: center; gap: 4px; background: var(--state-warning-soft); padding: 3px 8px; border-radius: 999px;">
+                <i data-lucide="clock" style="width: 12px; height: 12px;"></i>
+                <span>1 待确认</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- #week-calendar: Week calendar strip -->
+        <section id="week-calendar" style="margin: 16px 20px 0;" class="glass-card" aria-label="本周日历">
+          <div style="padding: 14px 12px; border-radius: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <!-- Mon 3 - inactive no meeting -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px;">
+                <span style="font-size: 11px; color: var(--brand-ink-3);">一</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--brand-ink-3); background: transparent;">3</span>
+                <span style="width: 3px; height: 3px; border-radius: 50%; background: transparent; margin-top: 2px;"></span>
+              </div>
+              <!-- Tue 4 - has meeting dot -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px;">
+                <span style="font-size: 11px; color: var(--brand-ink-3);">二</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--brand-ink-1); background: transparent;">4</span>
+                <span style="width: 3px; height: 3px; border-radius: 50%; background: var(--brand-primary); margin-top: 2px;"></span>
+              </div>
+              <!-- Wed 5 - no meeting -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px;">
+                <span style="font-size: 11px; color: var(--brand-ink-3);">三</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--brand-ink-3); background: transparent;">5</span>
+                <span style="width: 3px; height: 3px; border-radius: 50%; background: transparent; margin-top: 2px;"></span>
+              </div>
+              <!-- Thu 6 - has meeting dot -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px;">
+                <span style="font-size: 11px; color: var(--brand-ink-3);">四</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--brand-ink-1); background: transparent;">6</span>
+                <span style="width: 3px; height: 3px; border-radius: 50%; background: var(--brand-primary); margin-top: 2px;"></span>
+              </div>
+              <!-- Fri 7 - TODAY active with gold dot -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px; background: var(--brand-primary-soft);">
+                <span style="font-size: 11px; color: var(--brand-primary); font-weight: 600;">五</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: #fff; background: var(--brand-primary); box-shadow: 0 2px 8px rgba(168,102,125,0.3);">7</span>
+                <span style="width: 4px; height: 4px; border-radius: 50%; background: var(--brand-gold); margin-top: 2px;"></span>
+              </div>
+              <!-- Sat 8 - weekend with meeting dot -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px;">
+                <span style="font-size: 11px; color: var(--brand-primary-light);">六</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--brand-ink-1); background: transparent;">8</span>
+                <span style="width: 3px; height: 3px; border-radius: 50%; background: var(--brand-primary); margin-top: 2px;"></span>
+              </div>
+              <!-- Sun 9 - weekend no meeting -->
+              <div class="day-col" style="padding: 8px 4px; border-radius: 14px; min-width: 40px;">
+                <span style="font-size: 11px; color: var(--brand-primary-light);">日</span>
+                <span style="width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--brand-ink-3); background: transparent;">9</span>
+                <span style="width: 3px; height: 3px; border-radius: 50%; background: transparent; margin-top: 2px;"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Segmented filter -->
+        <nav style="margin: 16px 20px 0; display: flex; gap: 8px;" aria-label="筛选约见">
+          <button class="filter-pill active">全部</button>
+          <button class="filter-pill inactive" style="background: var(--state-warning-soft); border-color: transparent; color: var(--state-warning);">待确认</button>
+          <button class="filter-pill inactive" style="background: var(--state-success-soft); border-color: transparent; color: var(--state-success);">已完成</button>
+        </nav>
+
+        <!-- #meeting-list: Meeting timeline list -->
+        <section id="meeting-list" style="margin: 16px 20px 0; display: flex; flex-direction: column; gap: 0;" aria-label="约见列表">
+
+          <!-- Meeting 1: 14:00 Confirmed -->
+          <div class="meeting-item" style="display: flex; gap: 12px; padding-bottom: 14px;">
+            <div class="timeline-rail">
+              <span class="t-time">14:00</span>
+              <div class="t-dot dot-success"></div>
+              <div class="t-line"></div>
+            </div>
+            <div class="meeting-card glass-card-strong" style="flex: 1; border-radius: 18px; padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">李梦琪 × 陈思远</h3>
+                <span style="padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--state-success-soft); color: var(--state-success); white-space: nowrap;">已确认</span>
+              </div>
+              <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--brand-ink-2);">
+                <i data-lucide="map-pin" style="width: 13px; height: 13px; color: var(--brand-ink-3); flex-shrink: 0;"></i>
+                <span>静安嘉里中心 · 星巴克臻选</span>
+              </div>
+              <div style="margin-top: 4px; display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: var(--brand-ink-3);">
+                <i data-lucide="file-text" style="width: 12px; height: 12px; color: var(--brand-ink-3); flex-shrink: 0; margin-top: 2px;"></i>
+                <span>首次约见，建议破冰话题：旅行、摄影</span>
+              </div>
+              <div style="margin-top: 10px; display: flex; gap: 14px;">
+                <button style="font-size: 12px; color: var(--brand-primary); font-weight: 500; display: inline-flex; align-items: center; gap: 2px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <span>查看详情</span>
+                  <i data-lucide="chevron-right" style="width: 12px; height: 12px;"></i>
+                </button>
+                <button style="font-size: 12px; color: var(--brand-gold-dark); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <i data-lucide="phone" style="width: 12px; height: 12px;"></i>
+                  <span>联系会员</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meeting 2: 16:00 Pending -->
+          <div class="meeting-item" style="display: flex; gap: 12px; padding-bottom: 14px;">
+            <div class="timeline-rail">
+              <span class="t-time">16:00</span>
+              <div class="t-dot dot-warning"></div>
+              <div class="t-line"></div>
+            </div>
+            <div class="meeting-card glass-card-strong" style="flex: 1; border-radius: 18px; padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">王雅婷 × 刘天阳</h3>
+                <span style="padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--state-warning-soft); color: var(--state-warning); white-space: nowrap;">待确认</span>
+              </div>
+              <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--brand-ink-2);">
+                <i data-lucide="map-pin" style="width: 13px; height: 13px; color: var(--brand-ink-3); flex-shrink: 0;"></i>
+                <span>新天地 · Seesaw Coffee</span>
+              </div>
+              <div style="margin-top: 4px; display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: var(--brand-ink-3);">
+                <i data-lucide="file-text" style="width: 12px; height: 12px; color: var(--brand-ink-3); flex-shrink: 0; margin-top: 2px;"></i>
+                <span>双方周末有空，已发送时间邀约</span>
+              </div>
+              <div style="margin-top: 10px; display: flex; gap: 14px;">
+                <button style="font-size: 12px; color: var(--brand-primary); font-weight: 500; display: inline-flex; align-items: center; gap: 2px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <span>查看详情</span>
+                  <i data-lucide="chevron-right" style="width: 12px; height: 12px;"></i>
+                </button>
+                <button style="font-size: 12px; color: var(--brand-gold-dark); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <i data-lucide="phone" style="width: 12px; height: 12px;"></i>
+                  <span>联系会员</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meeting 3: 19:00 Confirmed -->
+          <div class="meeting-item" style="display: flex; gap: 12px; padding-bottom: 14px;">
+            <div class="timeline-rail">
+              <span class="t-time">19:00</span>
+              <div class="t-dot dot-success"></div>
+              <div class="t-line"></div>
+            </div>
+            <div class="meeting-card glass-card-strong" style="flex: 1; border-radius: 18px; padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">赵雨萱 × 张明远</h3>
+                <span style="padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--state-success-soft); color: var(--state-success); white-space: nowrap;">已确认</span>
+              </div>
+              <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--brand-ink-2);">
+                <i data-lucide="map-pin" style="width: 13px; height: 13px; color: var(--brand-ink-3); flex-shrink: 0;"></i>
+                <span>外滩 · 半岛酒店下午茶</span>
+              </div>
+              <div style="margin-top: 4px; display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: var(--brand-ink-3);">
+                <i data-lucide="file-text" style="width: 12px; height: 12px; color: var(--brand-ink-3); flex-shrink: 0; margin-top: 2px;"></i>
+                <span>第二次约见，双方反馈良好，建议推进关系</span>
+              </div>
+              <div style="margin-top: 10px; display: flex; gap: 14px;">
+                <button style="font-size: 12px; color: var(--brand-primary); font-weight: 500; display: inline-flex; align-items: center; gap: 2px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <span>查看详情</span>
+                  <i data-lucide="chevron-right" style="width: 12px; height: 12px;"></i>
+                </button>
+                <button style="font-size: 12px; color: var(--brand-gold-dark); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <i data-lucide="phone" style="width: 12px; height: 12px;"></i>
+                  <span>联系会员</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section divider: Tomorrow -->
+          <div style="display: flex; align-items: center; gap: 8px; margin: 4px 0 10px 0;">
+            <span style="font-size: 12px; color: var(--brand-ink-3); font-weight: 600; white-space: nowrap;">明天 · 8月8日</span>
+            <span style="flex: 1; height: 1px; background: var(--brand-border);"></span>
+          </div>
+
+          <!-- Meeting 4: Tomorrow 10:30 Confirmed -->
+          <div class="meeting-item" style="display: flex; gap: 12px; padding-bottom: 0;">
+            <div class="timeline-rail">
+              <span class="t-time">10:30</span>
+              <div class="t-dot dot-success"></div>
+              <div class="t-line"></div>
+            </div>
+            <div class="meeting-card glass-card-strong" style="flex: 1; border-radius: 18px; padding: 14px 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">周若琳 × 王浩然</h3>
+                <span style="padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 500; background: var(--state-success-soft); color: var(--state-success); white-space: nowrap;">已确认</span>
+              </div>
+              <div style="margin-top: 8px; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--brand-ink-2);">
+                <i data-lucide="map-pin" style="width: 13px; height: 13px; color: var(--brand-ink-3); flex-shrink: 0;"></i>
+                <span>陆家嘴 · 金融中心咖啡馆</span>
+              </div>
+              <div style="margin-top: 4px; display: flex; align-items: flex-start; gap: 6px; font-size: 12px; color: var(--brand-ink-3);">
+                <i data-lucide="sparkles" style="width: 12px; height: 12px; color: var(--brand-gold); flex-shrink: 0; margin-top: 2px;"></i>
+                <span>高学历匹配专场，双方均为硕士及以上学历</span>
+              </div>
+              <div style="margin-top: 10px; display: flex; gap: 14px;">
+                <button style="font-size: 12px; color: var(--brand-primary); font-weight: 500; display: inline-flex; align-items: center; gap: 2px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <span>查看详情</span>
+                  <i data-lucide="chevron-right" style="width: 12px; height: 12px;"></i>
+                </button>
+                <button style="font-size: 12px; color: var(--brand-gold-dark); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: none; border: none; padding: 4px 0; cursor: pointer;">
+                  <i data-lucide="phone" style="width: 12px; height: 12px;"></i>
+                  <span>联系会员</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- FAB: Quick add meeting -->
+        <button class="fab-schedule" aria-label="快速新建约见">
+          <i data-lucide="plus" style="width: 24px; height: 24px; color: #fff;"></i>
+        </button>
+
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

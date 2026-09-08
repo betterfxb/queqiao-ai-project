@@ -1,0 +1,33 @@
+/**
+ * 统一 API 出口。
+ * - 业务接口按域拆分到 ./modules/*，此处仅做聚合再导出，保持 `@/api` 调用方式不变。
+ * - 已联通的接口（后端 :8080 / AI :8090）直接走真实请求；运营中心新接口登记路径 + mock 降级。
+ */
+export * from './http'
+export * from './types'
+export * from './modules/dashboard'
+export * from './modules/member'
+export * from './modules/agent'
+export * from './modules/audit'
+export * from './modules/activity'
+export * from './modules/finance'
+export * from './modules/reports'
+export * from './modules/crm'
+export * from './modules/message'
+export * from './modules/calendar'
+export * from './modules/match'
+export * from './modules/insight'
+export * from './modules/automation'
+export * from './modules/system'
+export * from './modules/users'
+export * from './modules/ops'
+export * from './modules/products'
+export * from './modules/pay'
+export * from './modules/commission'
+export * from './modules/trust'
+export * from './modules/growth'
+export * from './modules/coupon'
+export * from './modules/auth'
+export * from './modules/ai'
+export * from './modules/escrow'
+export * from './modules/screen'

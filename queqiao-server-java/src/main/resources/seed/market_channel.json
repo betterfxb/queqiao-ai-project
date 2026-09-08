@@ -1,0 +1,74 @@
+[
+  {
+    "id": "CH001",
+    "name": "抖音本地推",
+    "category": "线上投放",
+    "code": "douyin",
+    "cost": 12000.0,
+    "owner": "市场部",
+    "status": "启用",
+    "remark": "同城达人短视频 + 本地推信息流",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-06-01T09:00:00"
+  },
+  {
+    "id": "CH002",
+    "name": "小红书种草",
+    "category": "线上投放",
+    "code": "xiaohongshu",
+    "cost": 8000.0,
+    "owner": "市场部",
+    "status": "启用",
+    "remark": "素人笔记 + 成功案例合集",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-06-01T09:00:00"
+  },
+  {
+    "id": "CH003",
+    "name": "老会员转介绍",
+    "category": "口碑转介",
+    "code": "referral",
+    "cost": 0.0,
+    "owner": "运营部",
+    "status": "启用",
+    "remark": "转介绍激励计划带来的线索，成本以奖励金计入",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-06-01T09:00:00"
+  },
+  {
+    "id": "CH004",
+    "name": "线下相亲会",
+    "category": "线下活动",
+    "code": "offline_event",
+    "cost": 15000.0,
+    "owner": "活动组",
+    "status": "启用",
+    "remark": "场地 + 物料 + 主持成本",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-06-01T09:00:00"
+  },
+  {
+    "id": "CH005",
+    "name": "异业商户导流",
+    "category": "产业链",
+    "code": "merchant",
+    "cost": 3000.0,
+    "owner": "商务部",
+    "status": "启用",
+    "remark": "婚纱摄影 / 婚庆 / 珠宝合作商户互推",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-06-01T09:00:00"
+  },
+  {
+    "id": "CH006",
+    "name": "百度搜索",
+    "category": "线上投放",
+    "code": "baidu",
+    "cost": 20000.0,
+    "owner": "市场部",
+    "status": "停用",
+    "remark": "获客成本偏高，已暂停",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-07-10T09:00:00"
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "matchmaker": { "name": "王老师", "fortune": "今日运势极佳" },
+  "members": [
+    {
+      "id": 1, "name": "李梦琪", "gender": "女", "age": 28, "job": "金融分析师", "city": "上海",
+      "education": "硕士", "school": "复旦大学", "height": 165, "weight": 48, "income": "50-80万",
+      "constellation": "天蝎座", "bloodType": "A型", "hometown": "浙江杭州", "residence": "上海浦东",
+      "marital": "未婚", "verified": true, "tags": ["海归", "有房", "气质佳"],
+      "hobbies": ["旅行", "摄影", "瑜伽", "咖啡", "阅读", "电影", "烹饪"],
+      "status": "刚刚活跃", "idleDays": 0, "matchScore": 87,
+      "intro": "热爱生活，喜欢旅行和摄影。周末常去美术馆和咖啡馆，也会健身和瑜伽。性格温柔开朗，家庭观念重。希望遇到一个有责任感、三观正、情绪稳定的另一半，一起经营温馨的小家庭。",
+      "note": "形象气质佳，沟通顺畅，对婚姻有清晰规划。父母为公务员，家庭背景良好。建议优先匹配同年龄段、高学历、有稳定事业的男性。近期活跃，回复率高。",
+      "noteUpdatedAt": "2026-08-05",
+      "requirements": { "ageMin": 26, "ageMax": 33, "heightMin": 175, "education": "本科及以上", "income": "30万+", "city": "上海", "extra": "不抽烟" },
+      "avatarBg": "linear-gradient(135deg, #F5D0DC 0%, #D4A3B5 100%)", "avatarColor": "#8B254A",
+      "certs": ["实名认证", "学历认证", "资产认证"]
+    },
+    {
+      "id": 2, "name": "陈思远", "gender": "男", "age": 33, "job": "互联网总监", "city": "杭州",
+      "education": "博士", "height": 181, "income": "80-100万", "verified": true,
+      "tags": ["名校", "高管", "180cm"], "status": "2天未跟进", "idleDays": 2, "matchScore": 92,
+      "intro": "理性务实，热爱技术与户外。",
+      "requirements": { "ageMin": 24, "ageMax": 32, "education": "本科及以上", "city": "杭州" },
+      "avatarBg": "linear-gradient(135deg, #B8C5D6 0%, #7D8EA0 100%)", "avatarColor": "#FFFFFF",
+      "certs": ["实名认证", "学历认证"]
+    },
+    {
+      "id": 3, "name": "王雅婷", "gender": "女", "age": 26, "job": "大学教师", "city": "上海",
+      "education": "本科", "height": 162, "verified": false,
+      "tags": ["温柔善良", "文艺"], "status": "刚刚活跃", "idleDays": 0, "matchScore": 85,
+      "intro": "温柔善良，喜欢阅读与音乐。",
+      "requirements": { "ageMin": 26, "ageMax": 35, "education": "本科及以上" },
+      "avatarBg": "linear-gradient(135deg, #FDE8D8 0%, #F5C8A8 100%)", "avatarColor": "#9A5C70",
+      "certs": []
+    },
+    {
+      "id": 4, "name": "张浩然", "gender": "男", "age": 31, "job": "医生", "city": "北京",
+      "education": "博士", "height": 183, "verified": true,
+      "tags": ["稳定", "有房", "高个子"], "status": "5天未跟进", "idleDays": 5, "matchScore": 88,
+      "intro": "三甲医院主治医生，生活规律。",
+      "requirements": { "ageMin": 24, "ageMax": 30 },
+      "avatarBg": "linear-gradient(135deg, #C5CFD8 0%, #8A98A8 100%)", "avatarColor": "#FFFFFF",
+      "certs": ["实名认证"]
+    },
+    {
+      "id": 5, "name": "赵雨萱", "gender": "女", "age": 27, "job": "设计师", "city": "上海",
+      "education": "硕士", "height": 168, "verified": true,
+      "tags": ["海归", "艺术", "有趣"], "status": "刚刚活跃", "idleDays": 0, "matchScore": 90,
+      "intro": "独立设计师，审美在线，热爱艺术。",
+      "requirements": { "ageMin": 27, "ageMax": 36 },
+      "avatarBg": "linear-gradient(135deg, #F8D5E0 0%, #D48BA8 100%)", "avatarColor": "#FFFFFF",
+      "certs": ["实名认证", "学历认证"]
+    },
+    {
+      "id": 6, "name": "刘天阳", "gender": "男", "age": 30, "job": "建筑师", "city": "上海",
+      "education": "硕士", "height": 178, "verified": true,
+      "tags": ["稳重", "有婚房"], "status": "1天未跟进", "idleDays": 1, "matchScore": 84,
+      "intro": "建筑设计院工作，性格稳重。",
+      "requirements": { "ageMin": 24, "ageMax": 30 },
+      "avatarBg": "linear-gradient(135deg, #A8C4B8 0%, #78A890 100%)", "avatarColor": "#FFFFFF",
+      "certs": ["实名认证"]
+    },
+    {
+      "id": 7, "name": "周若琳", "gender": "女", "age": 29, "job": "律师", "city": "上海",
+      "education": "硕士", "height": 166, "verified": true,
+      "tags": ["知性", "高收入"], "status": "刚刚活跃", "idleDays": 0, "matchScore": 86,
+      "intro": "律所合伙人，独立自信。",
+      "requirements": { "ageMin": 28, "ageMax": 38 },
+      "avatarBg": "linear-gradient(135deg, #E8C8E0 0%, #C898C0 100%)", "avatarColor": "#FFFFFF",
+      "certs": ["实名认证"]
+    },
+    {
+      "id": 8, "name": "王浩然", "gender": "男", "age": 32, "job": "产品经理", "city": "上海",
+      "education": "硕士", "height": 180, "verified": true,
+      "tags": ["幽默", "爱运动"], "status": "3天未跟进", "idleDays": 3, "matchScore": 83,
+      "intro": "互联网大厂产品，热爱篮球。",
+      "requirements": { "ageMin": 25, "ageMax": 31 },
+      "avatarBg": "linear-gradient(135deg, #B0B8D0 0%, #8890B8 100%)", "avatarColor": "#FFFFFF",
+      "certs": ["实名认证"]
+    }
+  ],
+  "pairs": [
+    { "id": 1, "maleId": 2, "femaleId": 1, "matchScore": 92, "status": "牵线中", "statusLabel": "等待女方确认", "createdAt": "2026-08-06" },
+    { "id": 2, "maleId": 4, "femaleId": 3, "matchScore": 87, "status": "已约见", "statusLabel": "已约见", "createdAt": "2026-08-04" },
+    { "id": 3, "maleId": 6, "femaleId": 5, "matchScore": 78, "status": "待反馈", "statusLabel": "待反馈", "createdAt": "2026-08-03" },
+    { "id": 4, "maleId": 8, "femaleId": 7, "matchScore": 85, "status": "已约见", "statusLabel": "本周六 14:00 咖啡厅", "createdAt": "2026-08-02" },
+    { "id": 5, "maleId": 6, "femaleId": 3, "matchScore": 95, "status": "已脱单", "statusLabel": "已官宣 · 牵手成功", "createdAt": "2026-07-20" }
+  ],
+  "meetings": [
+    { "id": 1, "date": "2026-08-08", "time": "14:00", "maleId": 2, "femaleId": 1, "status": "已确认", "place": "静安嘉里中心 · 星巴克臻选", "note": "首次约见，建议破冰话题：旅行、摄影" },
+    { "id": 2, "date": "2026-08-08", "time": "16:00", "maleId": 6, "femaleId": 3, "status": "待确认", "place": "新天地 · Seesaw Coffee", "note": "双方周末有空，已发送时间邀约" },
+    { "id": 3, "date": "2026-08-08", "time": "19:00", "maleId": 4, "femaleId": 5, "status": "已确认", "place": "外滩 · 半岛酒店下午茶", "note": "第二次约见，双方反馈良好，建议推进关系" },
+    { "id": 4, "date": "2026-08-09", "time": "10:30", "maleId": 8, "femaleId": 7, "status": "已确认", "place": "陆家嘴 · 金融中心咖啡馆", "note": "高学历匹配专场，双方均为硕士及以上学历", "highlight": true }
+  ],
+  "conversations": [
+    { "id": 1, "from": "李梦琪", "memberId": 1, "time": "刚刚", "unread": 2, "kind": "member", "snippet": "王老师，我周末有空的，约在哪里见面呀？", "avatarBg": "linear-gradient(135deg, #F5D0DC 0%, #D4A3B5 100%)", "avatarColor": "#fff", "avatarText": "李" },
+    { "id": 2, "from": "AI 红娘助手", "time": "5分钟前", "unread": 1, "kind": "ai", "snippet": "为会员陈思远匹配到3位高契合度女性会员", "icon": "sparkles" },
+    { "id": 3, "from": "陈思远", "memberId": 2, "time": "10:23", "unread": 0, "kind": "member", "snippet": "好的老师，我准备一下资料", "avatarBg": "linear-gradient(135deg, #B8C5D6 0%, #7D8EA0 100%)", "avatarColor": "#fff", "avatarText": "陈" },
+    { "id": 4, "from": "系统通知", "time": "昨天", "unread": 3, "kind": "system", "snippet": "您有2场约见待确认，请及时处理", "icon": "megaphone" },
+    { "id": 5, "from": "王雅婷", "memberId": 3, "time": "昨天", "unread": 0, "kind": "member", "snippet": "谢谢老师的推荐，对方很优秀~", "avatarBg": "linear-gradient(135deg, #FDE8D8 0%, #F5C8A8 100%)", "avatarColor": "#9A5C70", "avatarText": "王" },
+    { "id": 6, "from": "张浩然", "memberId": 4, "time": "周一", "unread": 0, "kind": "member", "snippet": "[图片]", "avatarBg": "linear-gradient(135deg, #C5CFD8 0%, #8A98A8 100%)", "avatarColor": "#fff", "avatarText": "张" },
+    { "id": 7, "from": "会员服务群", "time": "上周", "unread": 0, "kind": "group", "snippet": "本周牵线数据周报已生成", "icon": "users" }
+  ]
+}

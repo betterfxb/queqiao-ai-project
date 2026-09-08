@@ -1,0 +1,51 @@
+# 生产 profile：spring.profiles.active=prod 时启用
+# 原则：
+#  1) 敏感配置（库密码 / JWT 密钥 / 签名密钥）全部从环境变量读取，仓库内不留明文；
+#     本地起 prod 可 export QUEQIAO_DB_PASSWORD=xxx 后启动，生产由 K8s Secret / 配置中心注入。
+#  2) 表结构由 Flyway / 迁移脚本管理，生产禁止 Hibernate 自动改表，故 ddl-auto=validate。
+#  3) 关 H2 控制台、启用优雅停机、HikariCP 连接池调优。
+spring:
+  datasource:
+    url: ${QUEQIAO_DB_URL:jdbc:mysql://localhost:3306/queqiao?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${QUEQIAO_DB_USER:root}
+    password: ${QUEQIAO_DB_PASSWORD:CHANGE_ME}
+    hikari:
+      pool-name: queqiao-pool
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    # MySQL 8 下 Hibernate 可自动识别方言，显式指定也无害
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+  h2:
+    console:
+      enabled: false
+  # 优雅停机：收到 SIGTERM 后等待在途请求处理完再退出（配合 K8s / 容器编排）
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+ai:
+  base: ${QUEQIAO_AI_BASE:http://localhost:8090}
+queqiao:
+  jwt-secret: ${QQ_JWT_SECRET:${QUEQIAO_JWT_SECRET:change-me-in-prod}}
+  sign-secret: ${QQ_SIGN_SECRET:${QUEQIAO_SIGN_SECRET:change-me-in-prod}}
+  jwt-expire-minutes: 120
+  # 生产强制请求签名与认证，不可通过环境变量关闭
+  sign-required: true
+  auth-required: true
+  bcrypt-strength: ${QQ_BCRYPT_STRENGTH:12}
+  seed-password: ${QQ_SEED_PASSWORD:123456}
+  cors:
+    # 生产必须显式配置真实域名；留空则不放行任何跨域来源
+    allowed-origins: ${QQ_CORS_ORIGINS:}
+# 生产默认开启严格密钥校验：使用默认占位密钥/口令将导致启动失败（fail-fast）
+qq:
+  strict-secrets: true

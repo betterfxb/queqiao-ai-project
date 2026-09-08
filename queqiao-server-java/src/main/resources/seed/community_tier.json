@@ -1,0 +1,72 @@
+[
+  {
+    "id": "CT001",
+    "city": "杭州市",
+    "level": "免费群",
+    "price": 0.0,
+    "benefits": "每周精选嘉宾墙、活动优先通知、群内破冰话题",
+    "capacity": 500,
+    "memberCount": 386,
+    "productId": null,
+    "status": "在售",
+    "sortOrder": 1,
+    "createdAt": "2026-05-01T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "CT002",
+    "city": "杭州市",
+    "level": "轻会员",
+    "price": 299.0,
+    "benefits": "每月 2 次推荐、活动免票 1 次、红娘初筛报告",
+    "capacity": 200,
+    "memberCount": 94,
+    "productId": "SP002",
+    "status": "在售",
+    "sortOrder": 2,
+    "createdAt": "2026-05-01T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "CT003",
+    "city": "杭州市",
+    "level": "VIP",
+    "price": 4999.0,
+    "benefits": "专属红娘 1v1、每月 6 次精准推荐、约见全程陪同、成功案例优先曝光",
+    "capacity": 60,
+    "memberCount": 23,
+    "productId": "SP003",
+    "status": "在售",
+    "sortOrder": 3,
+    "createdAt": "2026-05-01T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "CT004",
+    "city": "宁波市",
+    "level": "免费群",
+    "price": 0.0,
+    "benefits": "同城嘉宾墙、月度线下活动通知",
+    "capacity": 300,
+    "memberCount": 112,
+    "productId": null,
+    "status": "在售",
+    "sortOrder": 1,
+    "createdAt": "2026-06-10T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "CT005",
+    "city": "宁波市",
+    "level": "轻会员",
+    "price": 259.0,
+    "benefits": "每月 2 次推荐、活动免票 1 次",
+    "capacity": 150,
+    "memberCount": 31,
+    "productId": "SP002",
+    "status": "在售",
+    "sortOrder": 2,
+    "createdAt": "2026-06-10T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  }
+]

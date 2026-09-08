@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日程日历 - 牵线运营中心</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+<div id="app-shell" class="dt-noise">
+
+    <!-- LEFT NAV -->
+    <nav id="left-nav">
+        <div class="nav-logo">牵</div>
+        <div class="nav-items">
+            <a class="nav-item" href="#" title="仪表盘">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="会员">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="红娘">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="牵线">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="活动">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </a>
+            <a class="nav-item active" href="#" title="日程">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="财务">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="设置">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </a>
+        </div>
+        <div class="nav-avatar">王</div>
+    </nav>
+
+    <!-- MAIN AREA -->
+    <div id="main-area">
+        <!-- Top Bar -->
+        <div id="top-bar">
+            <div class="page-title-wrap">
+                <div class="breadcrumb">
+                    <span>运营中心</span>
+                    <span class="sep">/</span>
+                    <span class="current">日程管理</span>
+                </div>
+                <div style="width:1px;height:20px;background:var(--dt-border);margin:0 4px;"></div>
+                <div class="page-title">日程日历</div>
+            </div>
+            <div class="top-bar-right">
+                <button class="today-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg>
+                    今天
+                </button>
+                <div class="nav-arrows">
+                    <button class="arrow-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+                    <button class="arrow-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn">日</button>
+                    <button class="view-btn active">周</button>
+                    <button class="view-btn">月</button>
+                </div>
+                <div style="width:1px;height:24px;background:var(--dt-border);margin:0 4px;"></div>
+                <button class="cta-btn">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    新建日程
+                </button>
+                <button class="icon-btn" title="通知">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge-dot"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div id="content-area">
+            <!-- KPI Strip -->
+            <div class="kpi-strip">
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon pulse">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><polyline points="9 14 11 16 15 12"/></svg>
+                    </div>
+                    <div class="kpi-mini-info">
+                        <div class="kpi-mini-label">今日约见</div>
+                        <div class="kpi-mini-value">6<span class="kpi-mini-unit">场</span></div>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon gold">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                    <div class="kpi-mini-info">
+                        <div class="kpi-mini-label">本周活动</div>
+                        <div class="kpi-mini-value">3<span class="kpi-mini-unit">场</span></div>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon info">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <div class="kpi-mini-info">
+                        <div class="kpi-mini-label">待确认</div>
+                        <div class="kpi-mini-value">8<span class="kpi-mini-unit">项</span></div>
+                    </div>
+                </div>
+                <div class="kpi-mini">
+                    <div class="kpi-mini-icon burgundy">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div class="kpi-mini-info">
+                        <div class="kpi-mini-label">本周成约率</div>
+                        <div class="kpi-mini-value">72<span class="kpi-mini-unit">%</span></div>
+                        <div class="kpi-mini-trend up">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                            +5%
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Row -->
+            <div class="main-row">
+                <!-- Calendar -->
+                <div class="calendar-card">
+                    <div class="cal-header">
+                        <div class="cal-header-corner"><span>08月</span></div>
+                        <div class="cal-day-header"><div class="cal-day-name">周一</div><div class="cal-day-date">04</div></div>
+                        <div class="cal-day-header"><div class="cal-day-name">周二</div><div class="cal-day-date">05</div></div>
+                        <div class="cal-day-header"><div class="cal-day-name">周三</div><div class="cal-day-date">06</div></div>
+                        <div class="cal-day-header"><div class="cal-day-name">周四</div><div class="cal-day-date">07</div></div>
+                        <div class="cal-day-header today">
+                            <div class="cal-day-name">周五</div><div class="cal-day-date">08</div>
+                            <div><span class="cal-today-badge">今天</span></div>
+                        </div>
+                        <div class="cal-day-header"><div class="cal-day-name">周六</div><div class="cal-day-date">09</div></div>
+                        <div class="cal-day-header"><div class="cal-day-name">周日</div><div class="cal-day-date">10</div></div>
+                    </div>
+
+                    <div class="cal-body">
+                        <div class="cal-grid" id="cal-grid">
+                            <!-- 14 hour rows generated statically -->
+                            <!-- 08:00 --><div class="cal-hour-label">08:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 09:00 --><div class="cal-hour-label">09:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 10:00 --><div class="cal-hour-label">10:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 11:00 --><div class="cal-hour-label">11:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 12:00 --><div class="cal-hour-label">12:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 13:00 --><div class="cal-hour-label">13:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 14:00 --><div class="cal-hour-label">14:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 15:00 --><div class="cal-hour-label">15:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 16:00 --><div class="cal-hour-label">16:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 17:00 --><div class="cal-hour-label">17:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 18:00 --><div class="cal-hour-label">18:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 19:00 --><div class="cal-hour-label">19:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 20:00 --><div class="cal-hour-label">20:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                            <!-- 21:00 --><div class="cal-hour-label">21:00</div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell"></div><div class="cal-cell today-col"></div><div class="cal-cell"></div><div class="cal-cell"></div>
+                        </div>
+
+                        <!-- Events layer — positioned via CSS custom properties -->
+                        <div class="cal-events-layer">
+
+                            <!-- ===== Monday (day=0) ===== -->
+                            <!-- 09:00-10:00 红娘晨会 -->
+                            <div class="cal-event type-meeting" style="--ev-day:0;--ev-start:9;--ev-end:10;">
+                                <div class="cal-event-title">红娘晨会</div>
+                                <div class="cal-event-time">09:00-10:00</div>
+                            </div>
+                            <!-- 14:00-15:30 李明轩❤陈思雨 -->
+                            <div class="cal-event type-date" style="--ev-day:0;--ev-start:14;--ev-end:15.5;">
+                                <div class="cal-event-title">李明轩❤陈思雨 约见</div>
+                                <div class="cal-event-time">14:00-15:30</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                    国贸大酒店咖啡厅
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-m">李</div>
+                                    <div class="cal-avatar av-f">陈</div>
+                                    <div class="cal-avatar av-g">王</div>
+                                </div>
+                            </div>
+                            <!-- 16:00-17:00 新会员回访 -->
+                            <div class="cal-event type-review" style="--ev-day:0;--ev-start:16;--ev-end:17;">
+                                <div class="cal-event-title">新会员回访·刘思涵</div>
+                                <div class="cal-event-time">16:00-17:00</div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-f">刘</div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Tuesday (day=1) ===== -->
+                            <!-- 10:00-11:30 张浩然❤王雅婷 -->
+                            <div class="cal-event type-date" style="--ev-day:1;--ev-start:10;--ev-end:11.5;">
+                                <div class="cal-event-title">张浩然❤王雅婷 约见</div>
+                                <div class="cal-event-time">10:00-11:30</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                    三里屯茶社
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-m">张</div>
+                                    <div class="cal-avatar av-f">王</div>
+                                    <div class="cal-avatar av-g">刘</div>
+                                </div>
+                            </div>
+                            <!-- 14:00-16:00 会员资料审核 -->
+                            <div class="cal-event type-review" style="--ev-day:1;--ev-start:14;--ev-end:16;">
+                                <div class="cal-event-title">会员资料审核</div>
+                                <div class="cal-event-time">14:00-16:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    办公区
+                                </div>
+                            </div>
+                            <!-- 19:00-21:00 8分钟约会筹备会 -->
+                            <div class="cal-event type-meeting" style="--ev-day:1;--ev-start:19;--ev-end:21;">
+                                <div class="cal-event-title">「8分钟约会」筹备会</div>
+                                <div class="cal-event-time">19:00-21:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    大会议室
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-g">王</div>
+                                    <div class="cal-avatar av-n">团</div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Wednesday (day=2) ===== -->
+                            <!-- 09:00-10:00 红娘培训 -->
+                            <div class="cal-event type-meeting" style="--ev-day:2;--ev-start:9;--ev-end:10;">
+                                <div class="cal-event-title">红娘培训</div>
+                                <div class="cal-event-time">09:00-10:00</div>
+                            </div>
+                            <!-- 11:00-12:00 赵文博 约见确认 -->
+                            <div class="cal-event type-review" style="--ev-day:2;--ev-start:11;--ev-end:12;">
+                                <div class="cal-event-title">赵文博 约见确认</div>
+                                <div class="cal-event-time">11:00-12:00</div>
+                            </div>
+                            <!-- 15:00-16:30 周子谦❤吴雨桐 -->
+                            <div class="cal-event type-date" style="--ev-day:2;--ev-start:15;--ev-end:16.5;">
+                                <div class="cal-event-title">周子谦❤吴雨桐 约见</div>
+                                <div class="cal-event-time">15:00-16:30</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                    国贸三期
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-m">周</div>
+                                    <div class="cal-avatar av-f">吴</div>
+                                    <div class="cal-avatar av-g">张</div>
+                                </div>
+                            </div>
+                            <!-- 18:30-20:00 客户答谢晚宴 -->
+                            <div class="cal-event type-activity" style="--ev-day:2;--ev-start:18.5;--ev-end:20;">
+                                <div class="cal-event-title">客户答谢晚宴</div>
+                                <div class="cal-event-time">18:30-20:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    国贸大酒店
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-g">VIP</div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Thursday (day=3) ===== -->
+                            <!-- 10:00-11:00 王姐1对1辅导 -->
+                            <div class="cal-event type-meeting" style="--ev-day:3;--ev-start:10;--ev-end:11;">
+                                <div class="cal-event-title">王姐1对1辅导</div>
+                                <div class="cal-event-time">10:00-11:00</div>
+                            </div>
+                            <!-- 14:00-15:00 孙佳怡回访 -->
+                            <div class="cal-event type-review" style="--ev-day:3;--ev-start:14;--ev-end:15;">
+                                <div class="cal-event-title">孙佳怡 回访</div>
+                                <div class="cal-event-time">14:00-15:00</div>
+                            </div>
+                            <!-- 16:00-17:30 郑凯(待匹配) 虚线 -->
+                            <div class="cal-event type-dashed" style="--ev-day:3;--ev-start:16;--ev-end:17.5;">
+                                <div class="cal-event-title">郑凯❤(待匹配) 资料准备</div>
+                                <div class="cal-event-time">16:00-17:30</div>
+                                <div class="cal-event-loc" style="opacity:0.7;">资料准备中</div>
+                            </div>
+
+                            <!-- ===== Friday (day=4) TODAY ===== -->
+                            <!-- 09:00-09:30 晨会 -->
+                            <div class="cal-event type-meeting compact" style="--ev-day:4;--ev-start:9;--ev-end:9.5;">
+                                <div class="cal-event-title">晨会 <span class="cal-event-time-inline">09:00</span></div>
+                            </div>
+                            <!-- 10:00-12:00 金秋良缘筹备 -->
+                            <div class="cal-event type-activity" style="--ev-day:4;--ev-start:10;--ev-end:12;">
+                                <div class="cal-event-title">「金秋良缘」活动筹备</div>
+                                <div class="cal-event-time">10:00-12:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    大会议室
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-g">王</div>
+                                    <div class="cal-avatar av-n">筹</div>
+                                </div>
+                            </div>
+                            <!-- 13:00-14:00 会员审核 -->
+                            <div class="cal-event type-review" style="--ev-day:4;--ev-start:13;--ev-end:14;">
+                                <div class="cal-event-title">会员审核</div>
+                                <div class="cal-event-time">13:00-14:00</div>
+                            </div>
+                            <!-- 15:00-16:30 李明轩❤陈思雨 约见确认 -->
+                            <div class="cal-event type-date" style="--ev-day:4;--ev-start:15;--ev-end:16.5;">
+                                <div class="cal-event-title">李明轩❤陈思雨 约见</div>
+                                <div class="cal-event-time">15:00-16:30</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>
+                                    柏悦酒店下午茶
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-m">李</div>
+                                    <div class="cal-avatar av-f">陈</div>
+                                    <div class="cal-avatar av-g">王</div>
+                                </div>
+                            </div>
+                            <!-- 19:00-21:00 VIP私宴 -->
+                            <div class="cal-event type-activity" style="--ev-day:4;--ev-start:19;--ev-end:21;">
+                                <div class="cal-event-title">VIP会员私宴</div>
+                                <div class="cal-event-time">19:00-21:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    国贸大酒店
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-g">VIP</div>
+                                    <div class="cal-avatar av-m">+6</div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Saturday (day=5) ===== -->
+                            <!-- 10:00-12:00 书香茶韵 -->
+                            <div class="cal-event type-activity" style="--ev-day:5;--ev-start:10;--ev-end:12;">
+                                <div class="cal-event-title">「书香茶韵」交友活动</div>
+                                <div class="cal-event-time">10:00-12:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    三里屯·茶空间
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-g">王</div>
+                                    <div class="cal-avatar av-f">28</div>
+                                </div>
+                            </div>
+                            <!-- 14:00-17:00 户外约见 张浩然 -->
+                            <div class="cal-event type-date" style="--ev-day:5;--ev-start:14;--ev-end:17;">
+                                <div class="cal-event-title">户外约见·张浩然</div>
+                                <div class="cal-event-time">14:00-17:00</div>
+                                <div class="cal-event-loc">
+                                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                    奥森公园
+                                </div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-m">张</div>
+                                    <div class="cal-avatar av-f">林</div>
+                                    <div class="cal-avatar av-g">刘</div>
+                                </div>
+                            </div>
+                            <!-- 19:00-21:00 红酒品鉴会 -->
+                            <div class="cal-event type-activity" style="--ev-day:5;--ev-start:19;--ev-end:21;">
+                                <div class="cal-event-title">高端红酒品鉴会</div>
+                                <div class="cal-event-time">19:00-21:00</div>
+                                <div class="cal-event-loc">私人会所</div>
+                                <div class="cal-event-avatars">
+                                    <div class="cal-avatar av-g">VIP</div>
+                                </div>
+                            </div>
+
+                            <!-- ===== Sunday (day=6) ===== -->
+                            <!-- 14:00-16:00 会员回访日 -->
+                            <div class="cal-event type-review" style="--ev-day:6;--ev-start:14;--ev-end:16;">
+                                <div class="cal-event-title">会员回访日</div>
+                                <div class="cal-event-time">14:00-16:00</div>
+                                <div class="cal-event-loc">集中回访 · 12位会员</div>
+                            </div>
+                            <!-- 19:00-20:00 周总结会 -->
+                            <div class="cal-event type-meeting" style="--ev-day:6;--ev-start:19;--ev-end:20;">
+                                <div class="cal-event-title">周总结会</div>
+                                <div class="cal-event-time">19:00-20:00</div>
+                            </div>
+
+                        </div>
+
+                        <!-- Current time indicator at 14:32 on Friday -->
+                        <div class="cal-now-line"></div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- 今日日程 -->
+                    <div class="side-panel" style="flex:1;min-height:0;">
+                        <div class="side-panel-header">
+                            <div class="side-panel-title"><span class="side-panel-title-bar"></span>今日日程</div>
+                        </div>
+                        <div class="today-date-head" style="padding-top:12px;">
+                            <div>
+                                <div class="today-date-big">8月8日</div>
+                                <div class="today-date-sub">周五 · 共5项日程</div>
+                            </div>
+                            <span class="today-gold-badge">今天</span>
+                        </div>
+                        <div class="side-panel-body">
+                            <!-- 09:00 晨会 已完成 -->
+                            <div class="side-event type-meeting">
+                                <div class="se-time-col"><div class="se-time">09:00</div><div class="se-time-end">09:30</div></div>
+                                <div class="se-body">
+                                    <div class="se-title">红娘晨会</div>
+                                    <div class="se-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>会议室A</div>
+                                    <div class="se-footer">
+                                        <div class="se-avatars"><div class="se-av av-g">王</div><div class="se-av av-n">刘</div><div class="se-av av-n">张</div></div>
+                                        <span class="se-status done"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>已完成</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 10:00 金秋良缘 已完成 -->
+                            <div class="side-event type-activity">
+                                <div class="se-time-col"><div class="se-time">10:00</div><div class="se-time-end">12:00</div></div>
+                                <div class="se-body">
+                                    <div class="se-title">「金秋良缘」活动筹备</div>
+                                    <div class="se-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>大会议室</div>
+                                    <div class="se-footer">
+                                        <div class="se-avatars"><div class="se-av av-g">王</div><div class="se-av av-n">李</div><div class="se-av av-m">陈</div></div>
+                                        <span class="se-status done"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>已完成</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 13:00 会员审核 已完成 -->
+                            <div class="side-event type-review">
+                                <div class="se-time-col"><div class="se-time">13:00</div><div class="se-time-end">14:00</div></div>
+                                <div class="se-body">
+                                    <div class="se-title">会员资料审核</div>
+                                    <div class="se-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>办公区</div>
+                                    <div class="se-footer">
+                                        <div class="se-avatars"><div class="se-av av-n">审</div></div>
+                                        <span class="se-status done"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>已完成</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 15:00 李明轩❤陈思雨 待开始 高亮 -->
+                            <div class="side-event type-date highlighted">
+                                <div class="se-time-col"><div class="se-time">15:00</div><div class="se-time-end">16:30</div></div>
+                                <div class="se-body">
+                                    <div class="se-title">李明轩 ❤ 陈思雨 约见</div>
+                                    <div class="se-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg>柏悦酒店·下午茶</div>
+                                    <div class="se-footer">
+                                        <div class="se-avatars"><div class="se-av av-m">李</div><div class="se-av av-f">陈</div><div class="se-av av-g">王</div></div>
+                                        <span class="se-status upcoming"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>待开始</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 19:00 VIP私宴 待开始 -->
+                            <div class="side-event type-activity">
+                                <div class="se-time-col"><div class="se-time">19:00</div><div class="se-time-end">21:00</div></div>
+                                <div class="se-body">
+                                    <div class="se-title">VIP会员私宴</div>
+                                    <div class="se-loc"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>国贸大酒店</div>
+                                    <div class="se-footer">
+                                        <div class="se-avatars"><div class="se-av av-g">VIP</div><div class="se-av av-m">+6</div></div>
+                                        <span class="se-status upcoming"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>待开始</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 即将到来 -->
+                    <div class="side-panel" style="flex-shrink:0;">
+                        <div class="side-panel-header">
+                            <div class="side-panel-title"><span class="side-panel-title-bar"></span>即将到来</div>
+                        </div>
+                        <div class="side-panel-body" style="padding-bottom:0;">
+                            <div class="upcoming-item">
+                                <div class="up-icon gold">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                </div>
+                                <div class="up-body">
+                                    <div class="up-date">08/09 周六 · 10:00</div>
+                                    <div class="up-title">「书香茶韵」交友活动</div>
+                                    <div class="up-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>28人报名 · 三里屯·茶空间</div>
+                                </div>
+                            </div>
+                            <div class="upcoming-item">
+                                <div class="up-icon info">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                </div>
+                                <div class="up-body">
+                                    <div class="up-date">08/10 周日 · 14:00</div>
+                                    <div class="up-title">会员回访日</div>
+                                    <div class="up-meta">集中回访 · 12位会员</div>
+                                </div>
+                            </div>
+                            <div class="upcoming-item">
+                                <div class="up-icon gold">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8l-1 9a3 3 0 0 1-6 0L8 2z"/><path d="M12 11v11"/><path d="M8 22h8"/></svg>
+                                </div>
+                                <div class="up-body">
+                                    <div class="up-date">08/15 周五 · 19:00</div>
+                                    <div class="up-title">「品酒之夜」高端交友</div>
+                                    <div class="up-meta"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>15人报名 · 国贸79层</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="add-reminder-btn">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            添加提醒
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legend Bar -->
+            <div class="legend-bar">
+                <span class="legend-title">图例：</span>
+                <div class="legend-chip"><span class="legend-dot dot-date"></span>约见</div>
+                <div class="legend-chip"><span class="legend-dot dot-activity"></span>活动</div>
+                <div class="legend-chip"><span class="legend-dot dot-meeting"></span>会议</div>
+                <div class="legend-chip"><span class="legend-dot dot-review"></span>审核/回访</div>
+                <div class="legend-spacer"></div>
+                <div class="legend-time-display">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    当前时间 14:32
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <style id="critical-layout">
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ===== Calendar geometry tokens (root cause fix: were referenced but never defined) ===== */
+:root {
+  --cal-time-col: 64px;
+  --cal-days: 7;
+  --cal-hour-h: 52px;
+  /* Day column width: (container - time col) / 7; the % resolves against each event's containing block (.cal-events-layer) */
+  --cal-day-w: calc((100% - var(--cal-time-col)) / var(--cal-days));
+}
+
+html, body {
+  width: 100%; height: 100%;
+  font-family: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--dt-bg-base);
+  color: var(--dt-ink-1);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+a { text-decoration: none; color: inherit; }
+
+/* ===== App Shell ===== */
+#app-shell {
+  position: relative;
+  width: 100%; height: 100vh;
+  min-width: 1920px;
+  display: flex;
+  background: var(--dt-bg-gradient);
+  overflow: hidden;
+}
+
+/* ===== Left Nav (64px) ===== */
+#left-nav {
+  width: 64px; flex-shrink: 0; height: 100vh;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid rgba(255,255,255,0.6);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 20px 0;
+  position: relative; z-index: 10;
+  box-shadow: 2px 0 24px -8px rgba(122,33,53,0.06);
+}
+.nav-logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--dt-primary);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--dt-gold-light);
+  font-size: 16px; font-weight: 800;
+  margin-bottom: 28px;
+  box-shadow: 0 4px 12px rgba(122,33,53,0.2);
+  letter-spacing: -0.02em;
+}
+.nav-items {
+  display: flex; flex-direction: column; gap: 6px;
+  flex: 1; width: 100%; align-items: center;
+}
+.nav-item {
+  position: relative;
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--dt-ink-3);
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  text-decoration: none;
+}
+.nav-item:hover { background: rgba(122,33,53,0.06); color: var(--dt-primary); }
+.nav-item.active { color: var(--dt-primary); background: rgba(122,33,53,0.08); }
+.nav-item.active::before {
+  content: ""; position: absolute;
+  left: -10px; top: 50%; transform: translateY(-50%);
+  width: 3px; height: 22px;
+  background: var(--dt-gold);
+  border-radius: 0 2px 2px 0;
+}
+.nav-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #D9BF8A 0%, #7A2135 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 13px; font-weight: 600;
+  margin-top: auto; cursor: pointer;
+  border: 2px solid rgba(255,255,255,0.8);
+  box-shadow: 0 2px 8px rgba(122,33,53,0.15);
+}
+
+/* ===== Main Area ===== */
+#main-area {
+  flex: 1; min-width: 0; height: 100vh;
+  display: flex; flex-direction: column;
+  overflow: hidden; position: relative;
+}
+
+/* ===== Top Bar (64px) ===== */
+#top-bar {
+  height: 64px; flex-shrink: 0;
+  display: flex; align-items: center;
+  padding: 0 28px; gap: 20px;
+  position: relative; z-index: 5;
+  background: rgba(248,245,240,0.6);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--dt-border);
+}
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--dt-ink-3); white-space: nowrap; }
+.breadcrumb .sep { color: var(--dt-ink-4); margin: 0 2px; }
+.breadcrumb .current { color: var(--dt-ink-2); font-weight: 500; }
+.page-title-wrap { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+.page-title { font-size: 20px; font-weight: 700; color: var(--dt-ink-1); letter-spacing: -0.01em; white-space: nowrap; }
+.top-bar-right { display: flex; align-items: center; gap: 12px; }
+.today-btn {
+  height: 36px; padding: 0 16px; border-radius: var(--dt-radius-md);
+  background: rgba(255,255,255,0.6); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.7);
+  font-size: 13px; color: var(--dt-ink-2);
+  display: flex; align-items: center; gap: 6px;
+  transition: all 0.2s ease; font-weight: 500;
+}
+.today-btn:hover { background: rgba(255,255,255,0.85); color: var(--dt-primary); box-shadow: var(--dt-shadow-sm); }
+.view-toggle {
+  display: flex; align-items: center;
+  height: 36px; padding: 3px; border-radius: var(--dt-radius-md);
+  background: rgba(255,255,255,0.5); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6); gap: 2px;
+}
+.view-btn {
+  height: 28px; padding: 0 14px; border-radius: 7px;
+  font-size: 12px; color: var(--dt-ink-3); font-weight: 500;
+  transition: all 0.2s ease; display: flex; align-items: center;
+}
+.view-btn:hover { color: var(--dt-ink-1); }
+.view-btn.active { background: var(--dt-gold-gradient); color: #fff; box-shadow: 0 2px 8px rgba(201,169,110,0.3); }
+.nav-arrows { display: flex; align-items: center; gap: 4px; margin-right: 4px; }
+.arrow-btn {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--dt-ink-3); transition: all 0.2s ease;
+}
+.arrow-btn:hover { background: rgba(255,255,255,0.8); color: var(--dt-primary); }
+.cta-btn {
+  height: 38px; padding: 0 20px; border-radius: var(--dt-radius-md);
+  background: var(--dt-gold-gradient);
+  color: #fff; font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+  box-shadow: 0 2px 8px rgba(201,169,110,0.25);
+  transition: all 0.2s ease; letter-spacing: 0.02em;
+}
+.cta-btn:hover { box-shadow: 0 4px 16px rgba(201,169,110,0.35); transform: translateY(-1px); }
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 12px;
+  background: rgba(255,255,255,0.55); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--dt-ink-2);
+  transition: all 0.2s ease; position: relative;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.8); color: var(--dt-primary); box-shadow: var(--dt-shadow-sm); }
+.icon-btn .badge-dot {
+  position: absolute; top: 8px; right: 8px;
+  width: 7px; height: 7px; background: var(--dt-error); border-radius: 50%;
+  border: 1.5px solid rgba(248,245,240,0.9);
+}
+
+/* ===== Content Area ===== */
+#content-area {
+  flex: 1; display: flex; flex-direction: column;
+  padding: 16px 24px 16px 24px; gap: 14px;
+  overflow: hidden; min-height: 0;
+}
+
+/* ===== KPI Strip ===== */
+.kpi-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex-shrink: 0; }
+.kpi-mini {
+  background: var(--dt-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--dt-glass-border); box-shadow: var(--dt-shadow-sm);
+  border-radius: var(--dt-radius-lg);
+  padding: 14px 18px; display: flex; align-items: center; gap: 14px;
+  transition: all 0.25s ease;
+}
+.kpi-mini:hover { box-shadow: var(--dt-shadow-md); transform: translateY(-1px); }
+.kpi-mini-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.kpi-mini-icon.burgundy { background: rgba(122,33,53,0.08); color: var(--dt-primary); }
+.kpi-mini-icon.gold { background: rgba(201,169,110,0.12); color: var(--dt-gold-dark); }
+.kpi-mini-icon.info { background: rgba(90,122,154,0.10); color: var(--dt-info); }
+.kpi-mini-icon.pulse { background: rgba(181,58,74,0.08); color: var(--dt-error); position: relative; }
+.kpi-mini-icon.pulse::after {
+  content: ""; position: absolute; inset: -2px; border-radius: 14px;
+  border: 2px solid rgba(181,58,74,0.3);
+  animation: pulse-ring 2s ease-out infinite;
+}
+@keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(1.2); opacity: 0; } }
+.kpi-mini-info { flex: 1; min-width: 0; }
+.kpi-mini-label { font-size: 12px; color: var(--dt-ink-3); margin-bottom: 3px; font-weight: 500; }
+.kpi-mini-value {
+  font-size: 22px; font-weight: 700; color: var(--dt-ink-1); letter-spacing: -0.02em;
+  display: flex; align-items: baseline; gap: 4px;
+}
+.kpi-mini-unit { font-size: 12px; font-weight: 500; color: var(--dt-ink-3); }
+.kpi-mini-trend { font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; gap: 2px; margin-top: 2px; }
+.kpi-mini-trend.up { color: var(--dt-success); }
+
+/* ===== Main Row ===== */
+.main-row { flex: 1; display: flex; gap: 14px; min-height: 0; }
+
+/* ===== Calendar Card ===== */
+.calendar-card {
+  flex: 1; min-width: 0;
+  background: var(--dt-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--dt-glass-border); box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+  display: flex; flex-direction: column;
+  overflow: hidden; position: relative;
+}
+.cal-header {
+  display: grid;
+  grid-template-columns: var(--cal-time-col) repeat(7, 1fr);
+  border-bottom: 1px solid var(--dt-border);
+  background: rgba(255,255,255,0.4);
+  flex-shrink: 0;
+}
+.cal-header-corner {
+  padding: 12px 8px; font-size: 11px; color: var(--dt-ink-4);
+  text-align: center; border-right: 1px solid var(--dt-border);
+  display: flex; align-items: center; justify-content: center;
+}
+.cal-day-header {
+  padding: 10px 8px; text-align: center;
+  border-right: 1px solid var(--dt-border); position: relative;
+}
+.cal-day-header:last-child { border-right: none; }
+.cal-day-header.today { background: rgba(201,169,110,0.06); }
+.cal-day-name { font-size: 12px; font-weight: 500; color: var(--dt-ink-3); margin-bottom: 4px; }
+.cal-day-date {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  font-size: 14px; font-weight: 600; color: var(--dt-ink-1);
+}
+.cal-day-header.today .cal-day-date {
+  background: var(--dt-gold-gradient); color: #fff;
+  box-shadow: 0 2px 8px rgba(201,169,110,0.3);
+}
+.cal-today-badge {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  color: var(--dt-primary); background: rgba(122,33,53,0.08);
+  padding: 1px 6px; border-radius: 4px; margin-top: 3px;
+}
+
+/* Calendar scroll body */
+.cal-body {
+  flex: 1; overflow-y: auto; position: relative;
+}
+.cal-body::-webkit-scrollbar { width: 4px; }
+.cal-body::-webkit-scrollbar-track { background: transparent; }
+.cal-body::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.1); border-radius: 2px; }
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: var(--cal-time-col) repeat(7, 1fr);
+  position: relative;
+}
+.cal-hour-label {
+  height: var(--cal-hour-h);
+  padding-right: 10px; text-align: right;
+  font-size: 11px; color: var(--dt-ink-4); font-weight: 500;
+  border-right: 1px solid var(--dt-border);
+  border-bottom: 1px solid var(--dt-border);
+  display: flex; align-items: flex-start; justify-content: flex-end;
+  padding-top: 2px; position: relative;
+  background: rgba(255,255,255,0.2);
+}
+.cal-cell {
+  height: var(--cal-hour-h);
+  border-right: 1px solid var(--dt-border);
+  border-bottom: 1px solid var(--dt-border);
+  position: relative;
+  background: rgba(255,255,255,0.25);
+}
+.cal-cell.today-col { background: rgba(201,169,110,0.04); }
+.cal-cell:hover { background: rgba(122,33,53,0.02); }
+
+/* Current time indicator — 14:32 on Friday (day index 4) */
+.cal-now-line {
+  position: absolute;
+  height: 2px; background: var(--dt-primary);
+  z-index: 20; pointer-events: none;
+  /* 14:32 on Friday: (14 + 32/60 - 8) hours from 08:00 */
+  top: calc(6.5333 * var(--cal-hour-h));
+  /* left: time col + 4 day widths */
+  left: calc(var(--cal-time-col) + 4 * var(--cal-day-w));
+  /* width: 1 day width */
+  width: var(--cal-day-w);
+}
+.cal-now-line::before {
+  content: ""; position: absolute;
+  left: -5px; top: 50%; transform: translateY(-50%);
+  width: 10px; height: 10px; background: var(--dt-primary);
+  border-radius: 50%; border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(122,33,53,0.3);
+}
+
+/* ===== Event Blocks (abs positioned via CSS vars) ===== */
+.cal-events-layer { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
+.cal-event {
+  position: absolute;
+  border-radius: 8px; padding: 6px 8px;
+  font-size: 11px; color: #fff;
+  overflow: hidden; cursor: pointer; pointer-events: auto;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex; flex-direction: column; gap: 2px;
+  border-left: 3px solid rgba(255,255,255,0.4);
+  /* positioning via CSS custom properties set inline */
+  top: calc((var(--ev-start, 9) - 8) * var(--cal-hour-h) + 2px);
+  height: calc((var(--ev-end, 10) - var(--ev-start, 9)) * var(--cal-hour-h) - 4px);
+  left: calc(var(--cal-time-col) + var(--ev-day, 0) * var(--cal-day-w) + 3px);
+  width: calc(var(--cal-day-w) - 6px);
+}
+.cal-event:hover { transform: scale(1.01); z-index: 15; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+/* Compact variant for sub-1h events: single-line title, no clipped second row */
+.cal-event.compact { padding: 4px 8px; justify-content: center; }
+.cal-event.compact .cal-event-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-event-time-inline { font-size: 9.5px; font-weight: 500; opacity: 0.8; margin-left: 2px; }
+.cal-event.type-date {
+  background: linear-gradient(135deg, #9A3349 0%, #7A2135 100%);
+  box-shadow: 0 2px 8px rgba(122,33,53,0.25);
+}
+.cal-event.type-activity {
+  background: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  box-shadow: 0 2px 8px rgba(201,169,110,0.25);
+}
+.cal-event.type-meeting {
+  background: linear-gradient(135deg, #B8A8B0 0%, #9A8690 100%);
+  box-shadow: 0 2px 6px rgba(122,33,53,0.12);
+}
+.cal-event.type-review {
+  background: linear-gradient(135deg, #7A9AB8 0%, #5A7A9A 100%);
+  box-shadow: 0 2px 6px rgba(90,122,154,0.2);
+}
+.cal-event.type-dashed {
+  background: rgba(122,33,53,0.06);
+  border: 2px dashed var(--dt-primary);
+  color: var(--dt-primary);
+  box-shadow: none;
+  border-left: 2px dashed var(--dt-primary);
+}
+.cal-event-title { font-weight: 600; font-size: 11.5px; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-event-time { font-size: 10px; opacity: 0.85; font-weight: 500; }
+.cal-event-loc { font-size: 10px; opacity: 0.75; display: flex; align-items: center; gap: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-event-avatars { display: flex; margin-top: auto; padding-top: 2px; }
+.cal-avatar {
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.8);
+  margin-left: -5px;
+  font-size: 8px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.cal-avatar:first-child { margin-left: 0; }
+.cal-avatar.av-m { background: linear-gradient(135deg, #7A9AB8, #4A6A8A); }
+.cal-avatar.av-f { background: linear-gradient(135deg, #D4A3B5, #A8667D); }
+.cal-avatar.av-g { background: linear-gradient(135deg, #D9BF8A, #A88A50); }
+.cal-avatar.av-n { background: linear-gradient(135deg, #9A8690, #7A6670); }
+
+/* ===== Sidebar (320px) ===== */
+.sidebar { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+.side-panel {
+  background: var(--dt-glass); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--dt-glass-border); box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.side-panel-header {
+  padding: 16px 18px 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--dt-border); flex-shrink: 0;
+}
+.side-panel-title { font-size: 15px; font-weight: 700; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
+.side-panel-title-bar { width: 3px; height: 14px; background: var(--dt-gold-gradient); border-radius: 2px; }
+.side-panel-body {
+  flex: 1; overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.side-panel-body::-webkit-scrollbar { width: 4px; }
+.side-panel-body::-webkit-scrollbar-track { background: transparent; }
+.side-panel-body::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.1); border-radius: 2px; }
+
+.today-date-head { display: flex; align-items: center; gap: 10px; padding: 0 18px 12px; border-bottom: 1px solid var(--dt-border); }
+.today-date-big { font-size: 26px; font-weight: 800; color: var(--dt-ink-1); letter-spacing: -0.02em; line-height: 1; }
+.today-date-sub { font-size: 12px; color: var(--dt-ink-3); margin-top: 4px; }
+.today-gold-badge {
+  margin-left: auto;
+  background: var(--dt-gold-gradient); color: #fff;
+  font-size: 11px; font-weight: 600;
+  padding: 4px 10px; border-radius: var(--dt-radius-pill);
+  box-shadow: 0 2px 6px rgba(201,169,110,0.25);
+}
+
+/* Side event cards */
+.side-event {
+  background: rgba(255,255,255,0.6); border-radius: 10px;
+  padding: 10px 12px; display: flex; gap: 10px;
+  border-left: 3px solid var(--dt-ink-4);
+  transition: all 0.2s ease; position: relative;
+}
+.side-event:hover { background: rgba(255,255,255,0.85); box-shadow: var(--dt-shadow-sm); }
+.side-event.type-date { border-left-color: var(--dt-primary); }
+.side-event.type-activity { border-left-color: var(--dt-gold); }
+.side-event.type-meeting { border-left-color: var(--dt-ink-4); }
+.side-event.type-review { border-left-color: var(--dt-info); }
+.side-event.highlighted {
+  background: rgba(201,169,110,0.08);
+  border: 1px solid var(--dt-border-gold); border-left-width: 3px;
+  box-shadow: 0 2px 8px rgba(201,169,110,0.1);
+}
+.se-time-col { flex-shrink: 0; text-align: center; min-width: 48px; }
+.se-time { font-size: 12px; font-weight: 700; color: var(--dt-gold-dark); line-height: 1.3; }
+.se-time-end { font-size: 10px; color: var(--dt-ink-4); font-weight: 500; margin-top: 1px; }
+.se-body { flex: 1; min-width: 0; }
+.se-title { font-size: 12.5px; font-weight: 600; color: var(--dt-ink-1); line-height: 1.3; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.se-loc { font-size: 11px; color: var(--dt-ink-3); display: flex; align-items: center; gap: 3px; margin-bottom: 5px; }
+.se-footer { display: flex; align-items: center; justify-content: space-between; }
+.se-avatars { display: flex; }
+.se-av {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid #fff; margin-left: -6px;
+  font-size: 9px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; flex-shrink: 0;
+}
+.se-av:first-child { margin-left: 0; }
+/* Sidebar avatar color variants (were missing — avatars rendered with no background) */
+.se-av.av-m { background: linear-gradient(135deg, #7A9AB8, #4A6A8A); }
+.se-av.av-f { background: linear-gradient(135deg, #D4A3B5, #A8667D); }
+.se-av.av-g { background: linear-gradient(135deg, #D9BF8A, #A88A50); }
+.se-av.av-n { background: linear-gradient(135deg, #9A8690, #7A6670); }
+.se-status {
+  font-size: 10px; font-weight: 600; padding: 2px 8px;
+  border-radius: var(--dt-radius-pill);
+  display: inline-flex; align-items: center; gap: 3px;
+}
+.se-status.done { color: var(--dt-ink-4); background: rgba(122,102,112,0.08); }
+.se-status.upcoming { color: var(--dt-gold-dark); background: rgba(201,169,110,0.12); }
+
+/* Upcoming items */
+.upcoming-item { display: flex; gap: 10px; padding: 10px; border-radius: 10px; transition: all 0.2s ease; }
+.upcoming-item:hover { background: rgba(255,255,255,0.5); }
+.up-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.up-icon.gold { background: rgba(201,169,110,0.12); color: var(--dt-gold-dark); }
+.up-icon.info { background: rgba(90,122,154,0.10); color: var(--dt-info); }
+.up-body { flex: 1; min-width: 0; }
+.up-date { font-size: 11px; color: var(--dt-ink-4); font-weight: 500; margin-bottom: 2px; }
+.up-title { font-size: 12.5px; font-weight: 600; color: var(--dt-ink-1); line-height: 1.3; margin-bottom: 2px; }
+.up-meta { font-size: 11px; color: var(--dt-ink-3); }
+.add-reminder-btn {
+  margin: 4px 12px 12px; height: 36px; border-radius: var(--dt-radius-md);
+  border: 1px dashed var(--dt-border-gold);
+  color: var(--dt-gold-dark); font-size: 12px; font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: all 0.2s ease; background: rgba(201,169,110,0.04);
+}
+.add-reminder-btn:hover { background: rgba(201,169,110,0.1); border-style: solid; }
+
+/* ===== Legend Bar ===== */
+.legend-bar {
+  flex-shrink: 0; display: flex; align-items: center; gap: 20px;
+  padding: 10px 20px;
+  background: var(--dt-glass-light); backdrop-filter: blur(16px);
+  border: 1px solid var(--dt-glass-border);
+  border-radius: var(--dt-radius-lg); box-shadow: var(--dt-shadow-sm);
+}
+.legend-title { font-size: 12px; font-weight: 600; color: var(--dt-ink-3); margin-right: 4px; }
+.legend-chip { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--dt-ink-2); font-weight: 500; }
+.legend-dot { width: 12px; height: 12px; border-radius: 4px; }
+.legend-dot.dot-date { background: linear-gradient(135deg, #9A3349, #7A2135); }
+.legend-dot.dot-activity { background: linear-gradient(135deg, #D9BF8A, #A88A50); }
+.legend-dot.dot-meeting { background: linear-gradient(135deg, #B8A8B0, #9A8690); }
+.legend-dot.dot-review { background: linear-gradient(135deg, #7A9AB8, #5A7A9A); }
+.legend-spacer { flex: 1; }
+.legend-time-display {
+  font-size: 12px; color: var(--dt-ink-3);
+  display: flex; align-items: center; gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+    </style>
+</body>
+</html>

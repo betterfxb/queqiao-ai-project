@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>牵线运营中心 - 登录</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+
+<!-- ====================================================================
+     LEFT PANEL — Burgundy + Gold Decoration
+     ==================================================================== -->
+<div class="login-left dt-noise">
+    <!-- Frame lines -->
+    <div class="frame-line top"></div>
+    <div class="frame-line bottom"></div>
+    <div class="frame-line left-v"></div>
+    <div class="left-vignette"></div>
+
+    <!-- Top-left corner ornament (Chinese lattice) -->
+    <div class="corner-ornament tl">
+        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer corner L shape -->
+            <path d="M4 4 L4 80 M4 4 L80 4" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Inner L -->
+            <path d="M16 16 L16 56 M16 16 L56 16" stroke="url(#goldGrad)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <!-- Diamond at corner -->
+            <rect x="4" y="4" width="8" height="8" transform="rotate(45 8 8)" fill="url(#goldGrad)"/>
+            <!-- Lattice pattern -->
+            <path d="M28 16 L40 28 L28 40 L16 28 Z" stroke="url(#goldGrad)" stroke-width="0.8" fill="none" opacity="0.6"/>
+            <circle cx="28" cy="28" r="2" fill="url(#goldGrad)" opacity="0.5"/>
+            <!-- Small dots -->
+            <circle cx="68" cy="4" r="2" fill="url(#goldGrad)" opacity="0.5"/>
+            <circle cx="4" cy="68" r="2" fill="url(#goldGrad)" opacity="0.5"/>
+            <!-- Decorative swirl -->
+            <path d="M4 96 Q20 88 28 100 Q36 112 52 108" stroke="url(#goldGrad)" stroke-width="0.8" fill="none" opacity="0.4"/>
+            <defs>
+                <linearGradient id="goldGrad" x1="0" y1="0" x2="180" y2="180">
+                    <stop offset="0%" stop-color="#E8D5AC"/>
+                    <stop offset="50%" stop-color="#C9A96E"/>
+                    <stop offset="100%" stop-color="#A88A50"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- Bottom-right corner ornament -->
+    <div class="corner-ornament br">
+        <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4 L4 80 M4 4 L80 4" stroke="url(#goldGrad2)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M16 16 L16 56 M16 16 L56 16" stroke="url(#goldGrad2)" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+            <rect x="4" y="4" width="8" height="8" transform="rotate(45 8 8)" fill="url(#goldGrad2)"/>
+            <path d="M28 16 L40 28 L28 40 L16 28 Z" stroke="url(#goldGrad2)" stroke-width="0.8" fill="none" opacity="0.6"/>
+            <circle cx="28" cy="28" r="2" fill="url(#goldGrad2)" opacity="0.5"/>
+            <circle cx="68" cy="4" r="2" fill="url(#goldGrad2)" opacity="0.5"/>
+            <circle cx="4" cy="68" r="2" fill="url(#goldGrad2)" opacity="0.5"/>
+            <defs>
+                <linearGradient id="goldGrad2" x1="0" y1="0" x2="180" y2="180">
+                    <stop offset="0%" stop-color="#E8D5AC"/>
+                    <stop offset="50%" stop-color="#C9A96E"/>
+                    <stop offset="100%" stop-color="#A88A50"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- Brand Logo -->
+    <div class="brand-logo">
+        <div class="brand-logo-icon">
+            <!-- Heart-knot icon -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21C12 21 4 14.5 4 9.5C4 6.46 6.46 4 9.5 4C11.24 4 12 5 12 5C12 5 12.76 4 14.5 4C17.54 4 20 6.46 20 9.5C20 14.5 12 21 12 21Z" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 8L10.5 10.5L12 13L13.5 10.5L12 8Z" fill="#C9A96E" opacity="0.6"/>
+            </svg>
+        </div>
+        <div class="brand-logo-text">
+            <div class="brand-logo-cn">牵线运营中心</div>
+            <div class="brand-logo-en">Matchmaker Operations Center</div>
+        </div>
+    </div>
+
+    <!-- Center decoration: 囍 + circle rings -->
+    <div class="center-decoration">
+        <div class="circle-ring"></div>
+        <div class="circle-ring inner"></div>
+        <div class="xi-char">囍</div>
+    </div>
+
+    <!-- Plum blossoms -->
+    <div class="plum-blossom p1">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(40,40)">
+                <!-- 5 petals -->
+                <circle cx="0" cy="-18" r="10" fill="none" stroke="#C9A96E" stroke-width="1" opacity="0.7"/>
+                <circle cx="17.1" cy="-5.6" r="10" fill="none" stroke="#C9A96E" stroke-width="1" opacity="0.7"/>
+                <circle cx="10.6" cy="14.6" r="10" fill="none" stroke="#C9A96E" stroke-width="1" opacity="0.7"/>
+                <circle cx="-10.6" cy="14.6" r="10" fill="none" stroke="#C9A96E" stroke-width="1" opacity="0.7"/>
+                <circle cx="-17.1" cy="-5.6" r="10" fill="none" stroke="#C9A96E" stroke-width="1" opacity="0.7"/>
+                <circle cx="0" cy="0" r="4" fill="#C9A96E" opacity="0.8"/>
+                <!-- Stamens -->
+                <line x1="0" y1="0" x2="0" y2="-14" stroke="#C9A96E" stroke-width="0.5" opacity="0.5"/>
+                <line x1="0" y1="0" x2="13.3" y2="-4.3" stroke="#C9A96E" stroke-width="0.5" opacity="0.5"/>
+                <line x1="0" y1="0" x2="8.2" y2="11.3" stroke="#C9A96E" stroke-width="0.5" opacity="0.5"/>
+                <line x1="0" y1="0" x2="-8.2" y2="11.3" stroke="#C9A96E" stroke-width="0.5" opacity="0.5"/>
+                <line x1="0" y1="0" x2="-13.3" y2="-4.3" stroke="#C9A96E" stroke-width="0.5" opacity="0.5"/>
+            </g>
+        </svg>
+    </div>
+    <div class="plum-blossom p2">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(30,30)">
+                <circle cx="0" cy="-12" r="7" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.6"/>
+                <circle cx="11.4" cy="-3.7" r="7" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.6"/>
+                <circle cx="7" cy="9.7" r="7" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.6"/>
+                <circle cx="-7" cy="9.7" r="7" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.6"/>
+                <circle cx="-11.4" cy="-3.7" r="7" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.6"/>
+                <circle cx="0" cy="0" r="3" fill="#C9A96E" opacity="0.7"/>
+            </g>
+        </svg>
+    </div>
+    <div class="plum-blossom p3">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(24,24)">
+                <circle cx="0" cy="-10" r="6" fill="none" stroke="#C9A96E" stroke-width="0.7" opacity="0.5"/>
+                <circle cx="9.5" cy="-3.1" r="6" fill="none" stroke="#C9A96E" stroke-width="0.7" opacity="0.5"/>
+                <circle cx="5.9" cy="8.1" r="6" fill="none" stroke="#C9A96E" stroke-width="0.7" opacity="0.5"/>
+                <circle cx="-5.9" cy="8.1" r="6" fill="none" stroke="#C9A96E" stroke-width="0.7" opacity="0.5"/>
+                <circle cx="-9.5" cy="-3.1" r="6" fill="none" stroke="#C9A96E" stroke-width="0.7" opacity="0.5"/>
+                <circle cx="0" cy="0" r="2.5" fill="#C9A96E" opacity="0.6"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- Sparkles -->
+    <div class="sparkle s1"></div>
+    <div class="sparkle s2"></div>
+    <div class="sparkle s3"></div>
+    <div class="sparkle s4"></div>
+    <div class="sparkle s5"></div>
+    <div class="sparkle s6"></div>
+    <div class="sparkle s7"></div>
+    <div class="sparkle s8"></div>
+
+    <!-- Gold dot accents -->
+    <div class="dot-accent" style="top:100px;left:240px"></div>
+    <div class="dot-accent" style="top:320px;right:120px"></div>
+    <div class="dot-accent" style="bottom:200px;right:200px"></div>
+
+    <!-- Mountain silhouette subtle decoration -->
+    <svg style="position:absolute;bottom:0;left:0;width:100%;height:200px;z-index:4;opacity:0.08;pointer-events:none;" viewBox="0 0 1056 200" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 200 L0 140 L120 90 L220 120 L340 60 L460 100 L580 40 L700 80 L820 50 L940 100 L1056 70 L1056 200 Z" fill="#C9A96E"/>
+        <path d="M0 200 L0 160 L100 130 L200 150 L320 110 L440 140 L560 100 L680 130 L800 110 L920 140 L1056 120 L1056 200 Z" fill="#C9A96E" opacity="0.5"/>
+    </svg>
+
+    <!-- Brand Statement -->
+    <div class="brand-statement">
+        <div class="brand-statement-heading">成就美好姻缘</div>
+        <div class="brand-statement-sub">专业的婚恋服务管理平台</div>
+        <div class="brand-separator"></div>
+        <div class="brand-version">v2.0.1</div>
+    </div>
+</div>
+
+<!-- ====================================================================
+     RIGHT PANEL — Login Form
+     ==================================================================== -->
+<div class="login-right">
+    <!-- Decorative elements -->
+    <div class="right-deco rd1">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="50" stroke="#C9A96E" stroke-width="0.5" stroke-dasharray="4 6" opacity="0.4"/>
+            <circle cx="60" cy="60" r="30" stroke="#7A2135" stroke-width="0.5" opacity="0.2"/>
+        </svg>
+    </div>
+    <div class="right-deco rd2">
+        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <path d="M40 10 L40 70 M10 40 L70 40" stroke="#C9A96E" stroke-width="0.5" opacity="0.3"/>
+            <rect x="36" y="36" width="8" height="8" transform="rotate(45 40 40)" fill="#C9A96E" opacity="0.4"/>
+        </svg>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card" id="login-form-card">
+        <!-- Welcome -->
+        <div class="welcome-label">WELCOME</div>
+        <h1 class="welcome-title">欢迎回来</h1>
+        <p class="welcome-subtitle">请登录您的红娘工作台账户</p>
+
+        <!-- Username input -->
+        <div class="form-group">
+            <div class="input-wrap">
+                <div class="input-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <input type="text" class="input-field" placeholder="请输入账号或手机号" autocomplete="username">
+            </div>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-group">
+            <div class="input-wrap">
+                <div class="input-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </div>
+                <input type="password" class="input-field" placeholder="请输入密码" autocomplete="current-password" id="password-input">
+                <button type="button" class="input-action" title="显示密码">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Options row -->
+        <div class="form-options">
+            <label class="checkbox-wrap">
+                <input type="checkbox" checked>
+                <span class="checkbox-custom">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </span>
+                <span class="checkbox-label">记住我</span>
+            </label>
+            <a href="#" class="forgot-link">忘记密码？</a>
+        </div>
+
+        <!-- Login Button -->
+        <button class="login-btn">
+            <span>登 录</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+            </svg>
+        </button>
+
+        <!-- Divider -->
+        <div class="divider-row">
+            <div class="divider-line"></div>
+            <span class="divider-text">其他登录方式</span>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- Alternative login -->
+        <div class="alt-login">
+            <button class="alt-btn wechat" title="微信登录">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                </svg>
+            </button>
+            <button class="alt-btn dingtalk" title="钉钉登录">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.002 0C5.375 0 .002 5.372.002 12.002c0 6.627 5.373 12 12 12 6.628 0 12-5.373 12-12C24.002 5.372 18.63 0 12.002 0zm5.532 12.412c-.256 1.028-1.354 3.208-2.394 4.727-.062.103-.166.256-.295.256-.104 0-.187-.083-.27-.186l-.018.008c-.124-.27-.395-.928-.764-1.41-.066-.09-.146-.18-.247-.18-.072 0-.16.04-.253.11-.31.237-.93.674-1.266.888-.082.05-.162.107-.24.107-.068 0-.13-.043-.19-.11-.052-.06-.18-.265-.24-.35-.03-.04-.06-.08-.09-.08-.02 0-.04.01-.08.03l-1.52.92c-.07.04-.13.07-.19.07-.09 0-.16-.07-.16-.19 0-.05.01-.1.04-.16.49-1.21 1.11-2.67 1.52-3.62.03-.07.07-.17.07-.25 0-.07-.03-.13-.1-.19-.11-.1-.34-.23-.61-.23-.28 0-.55.13-.84.13-.2 0-.38-.08-.53-.29-.04-.06-.14-.23-.19-.3-.05-.08-.08-.15-.08-.22 0-.09.06-.16.16-.22.43-.25 2.26-1.28 2.8-1.57.1-.05.19-.08.27-.08.12 0 .21.08.21.22 0 .05-.02.11-.04.17-.04.1-.08.22-.08.32 0 .13.06.24.2.35.24.19.75.48 1.27.48.22 0 .42-.05.57-.2.07-.07.13-.13.23-.13.05 0 .11.02.19.07.14.08.93.61 1.07.72.1.08.16.15.16.26 0 .06-.02.13-.07.21l-.01.01z"/>
+                </svg>
+            </button>
+            <button class="alt-btn sso" title="SSO 登录">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                    <circle cx="7.5" cy="15.5" r="1.5" fill="currentColor"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="form-footer">
+            <div class="footer-signup">
+                还没有账号？<a href="#">申请开通</a>
+            </div>
+            <div class="footer-copyright">&copy; 2026 牵线运营中心 · 让爱更专业</div>
+            <div class="footer-links">
+                <a href="#">用户协议</a>
+                <span>|</span>
+                <a href="#">隐私政策</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <style id="critical-layout">
+/* ==========================================================================
+   Login Page — 新中式轻奢 + Glassmorphism
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  font-family: "Noto Serif SC", "Source Han Serif SC", "PingFang SC", "Microsoft YaHei", "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  background: #3A0E18;
+}
+
+/* ==========================================================================
+   LEFT PANEL — Decorative Burgundy
+   ========================================================================== */
+.login-left {
+  position: relative;
+  width: 1056px;
+  height: 1080px;
+  flex-shrink: 0;
+  background: radial-gradient(ellipse 80% 70% at 50% 45%, #7A2135 0%, #5A1525 55%, #3A0E18 100%);
+  overflow: hidden;
+}
+
+/* Subtle Chinese cloud lattice pattern overlay */
+.login-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C9A96E' stroke-width='0.8'%3E%3Cpath d='M0 30 Q15 15 30 30 Q45 45 60 30 Q75 15 90 30 Q105 45 120 30'/%3E%3Cpath d='M0 60 Q15 45 30 60 Q45 75 60 60 Q75 45 90 60 Q105 75 120 60'/%3E%3Cpath d='M0 90 Q15 75 30 90 Q45 105 60 90 Q75 75 90 90 Q105 105 120 90'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  z-index: 1;
+}
+
+/* Noise texture */
+.login-left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* Vignette overlay */
+.left-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(26, 6, 12, 0.55) 100%);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Gold Corner Ornaments (Chinese lattice)
+   ========================================================================== */
+.corner-ornament {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  z-index: 5;
+  pointer-events: none;
+}
+.corner-ornament.tl { top: 32px; left: 32px; }
+.corner-ornament.br { bottom: 32px; right: 32px; transform: rotate(180deg); }
+
+/* Gold thin frame lines (Chinese frame) */
+.frame-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(201,169,110,0.4), transparent);
+  z-index: 4;
+  pointer-events: none;
+}
+.frame-line.top {
+  top: 24px; left: 48px; right: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.25) 15%, rgba(201,169,110,0.5) 50%, rgba(201,169,110,0.25) 85%, transparent 100%);
+}
+.frame-line.bottom {
+  bottom: 24px; left: 48px; right: 48px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201,169,110,0.25) 15%, rgba(201,169,110,0.5) 50%, rgba(201,169,110,0.25) 85%, transparent 100%);
+}
+.frame-line.left-v {
+  top: 48px; bottom: 48px; left: 24px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(201,169,110,0.25) 15%, rgba(201,169,110,0.5) 50%, rgba(201,169,110,0.25) 85%, transparent 100%);
+}
+
+/* ==========================================================================
+   Center Decoration: Large 囍 watermark + circle ring
+   ========================================================================== */
+.center-decoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+  text-align: center;
+}
+
+.xi-char {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+  font-size: 520px;
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(201, 169, 110, 0.12);
+  letter-spacing: -0.05em;
+  user-select: none;
+  animation: xiFloat 8s ease-in-out infinite;
+}
+
+@keyframes xiFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.circle-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 169, 110, 0.08);
+  transform: translate(-50%, -50%);
+}
+.circle-ring.inner {
+  width: 480px;
+  height: 480px;
+  border: 1px dashed rgba(201, 169, 110, 0.10);
+}
+
+/* Plum blossom decorations */
+.plum-blossom {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.plum-blossom.p1 { top: 120px; right: 80px; width: 80px; height: 80px; animation: twinkle 4s ease-in-out infinite; }
+.plum-blossom.p2 { bottom: 180px; left: 100px; width: 60px; height: 60px; animation: twinkle 5s ease-in-out infinite 1s; }
+.plum-blossom.p3 { top: 280px; left: 60px; width: 48px; height: 48px; animation: twinkle 6s ease-in-out infinite 2s; }
+
+/* Sparkle particles */
+.sparkle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,169,110,0.8) 0%, rgba(201,169,110,0) 70%);
+  z-index: 5;
+  pointer-events: none;
+}
+.sparkle.s1 { width: 6px; height: 6px; top: 20%; left: 30%; animation: sparkleTwinkle 3s ease-in-out infinite; }
+.sparkle.s2 { width: 4px; height: 4px; top: 35%; left: 65%; animation: sparkleTwinkle 4s ease-in-out infinite 0.8s; }
+.sparkle.s3 { width: 8px; height: 8px; top: 60%; left: 20%; animation: sparkleTwinkle 3.5s ease-in-out infinite 1.5s; }
+.sparkle.s4 { width: 5px; height: 5px; top: 75%; left: 55%; animation: sparkleTwinkle 4.5s ease-in-out infinite 0.3s; }
+.sparkle.s5 { width: 4px; height: 4px; top: 15%; left: 75%; animation: sparkleTwinkle 5s ease-in-out infinite 2s; }
+.sparkle.s6 { width: 6px; height: 6px; top: 85%; left: 35%; animation: sparkleTwinkle 3.8s ease-in-out infinite 1.2s; }
+.sparkle.s7 { width: 3px; height: 3px; top: 45%; left: 15%; animation: sparkleTwinkle 4.2s ease-in-out infinite 2.5s; }
+.sparkle.s8 { width: 5px; height: 5px; top: 50%; left: 80%; animation: sparkleTwinkle 3.2s ease-in-out infinite 0.5s; }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* Gold dot grid accents */
+.dot-accent {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--dt-gold);
+  z-index: 5;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Brand Logo (top-left)
+   ========================================================================== */
+.brand-logo {
+  position: absolute;
+  top: 52px;
+  left: 68px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.brand-logo-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.05));
+  border: 1px solid rgba(201,169,110,0.35);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+}
+.brand-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+.brand-logo-cn {
+  font-size: 22px;
+  font-weight: 700;
+  color: #F5EDE2;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+.brand-logo-en {
+  font-size: 11px;
+  color: rgba(201,169,110,0.7);
+  letter-spacing: 0.12em;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Brand Statement (bottom-left)
+   ========================================================================== */
+.brand-statement {
+  position: absolute;
+  bottom: 64px;
+  left: 68px;
+  z-index: 10;
+  max-width: 560px;
+}
+.brand-statement-heading {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: #F8F2E8;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.brand-statement-sub {
+  font-size: 18px;
+  color: rgba(245,237,226,0.7);
+  margin-top: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 300;
+}
+.brand-separator {
+  width: 80px;
+  height: 2px;
+  margin-top: 28px;
+  background: linear-gradient(90deg, var(--dt-gold) 0%, rgba(201,169,110,0.3) 60%, transparent 100%);
+  border-radius: 1px;
+}
+.brand-version {
+  margin-top: 24px;
+  font-size: 12px;
+  color: rgba(245,237,226,0.3);
+  letter-spacing: 0.1em;
+}
+
+/* ==========================================================================
+   RIGHT PANEL — Login Form
+   ========================================================================== */
+.login-right {
+  position: relative;
+  width: 864px;
+  height: 1080px;
+  flex-shrink: 0;
+  background: linear-gradient(160deg, #F8F5F0 0%, #F2EDE6 40%, #EDE7DE 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Right panel subtle texture */
+.login-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* Subtle burgundy glow at edge */
+.login-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(122,33,53,0.08), transparent);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Form Card
+   ========================================================================== */
+.form-card {
+  position: relative;
+  z-index: 2;
+  width: 480px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 56px 52px 48px;
+  box-shadow:
+    0 24px 64px -16px rgba(122, 33, 53, 0.16),
+    0 0 0 1px rgba(201, 169, 110, 0.08) inset;
+  animation: formEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes formEntry {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Top gold accent line */
+.form-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--dt-gold-gradient);
+  border-radius: 0 0 3px 3px;
+}
+
+/* Welcome section */
+.welcome-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  color: var(--dt-gold-dark);
+  background: linear-gradient(135deg, rgba(201,169,110,0.12), rgba(201,169,110,0.05));
+  border: 1px solid rgba(201,169,110,0.25);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+.welcome-title {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "PingFang SC", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dt-primary);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+  font-size: 15px;
+  color: var(--dt-ink-3);
+  letter-spacing: 0.02em;
+  margin-bottom: 40px;
+}
+
+/* ==========================================================================
+   Form Inputs
+   ========================================================================== */
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group:last-of-type {
+  margin-bottom: 0;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.8);
+  border: 1.5px solid var(--dt-input-border);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.input-wrap:focus-within {
+  border-color: var(--dt-primary);
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.08), 0 0 20px rgba(122, 33, 53, 0.06);
+  background: #FFFFFF;
+}
+
+.input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 54px;
+  flex-shrink: 0;
+  color: var(--dt-ink-4);
+  transition: color 0.25s ease;
+}
+.input-wrap:focus-within .input-icon {
+  color: var(--dt-primary);
+}
+
+.input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: var(--dt-ink-1);
+  height: 54px;
+  padding: 0 0 0 0;
+  font-family: inherit;
+  letter-spacing: 0.02em;
+}
+.input-field::placeholder {
+  color: var(--dt-ink-4);
+  font-weight: 300;
+}
+
+.input-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 54px;
+  flex-shrink: 0;
+  color: var(--dt-ink-4);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.input-action:hover {
+  color: var(--dt-primary);
+}
+
+/* ==========================================================================
+   Form options row (remember + forgot)
+   ========================================================================== */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+.checkbox-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox-wrap input[type="checkbox"] {
+  display: none;
+}
+.checkbox-custom {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--dt-border-gold);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: rgba(255,255,255,0.6);
+  flex-shrink: 0;
+}
+.checkbox-wrap input[type="checkbox"]:checked + .checkbox-custom {
+  background: var(--dt-gold-gradient);
+  border-color: var(--dt-gold);
+}
+.checkbox-custom svg {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.checkbox-wrap input[type="checkbox"]:checked + .checkbox-custom svg {
+  opacity: 1;
+}
+.checkbox-label {
+  font-size: 14px;
+  color: var(--dt-ink-3);
+}
+
+.forgot-link {
+  font-size: 14px;
+  color: var(--dt-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  letter-spacing: 0.02em;
+}
+.forgot-link:hover {
+  color: var(--dt-primary-light);
+}
+
+/* ==========================================================================
+   Login Button
+   ========================================================================== */
+.login-btn {
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 12px;
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 16px -4px rgba(168, 138, 80, 0.4);
+  transition: all 0.25s ease;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+.login-btn::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+.login-btn:hover {
+  box-shadow: 0 6px 24px -4px rgba(168, 138, 80, 0.5), 0 0 24px rgba(201,169,110,0.2);
+  transform: translateY(-1px);
+}
+.login-btn:hover::before {
+  left: 100%;
+}
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Divider
+   ========================================================================== */
+.divider-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 24px;
+}
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--dt-border), var(--dt-border), transparent);
+}
+.divider-text {
+  font-size: 13px;
+  color: var(--dt-ink-4);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   Alternative login icons
+   ========================================================================== */
+.alt-login {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.alt-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--dt-border);
+  background: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(8px);
+  position: relative;
+}
+.alt-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(0,0,0,0.1);
+}
+.alt-btn.wechat { color: #07C160; border-color: rgba(7,193,96,0.2); }
+.alt-btn.wechat:hover { background: rgba(7,193,96,0.08); border-color: rgba(7,193,96,0.35); }
+.alt-btn.dingtalk { color: #1677FF; border-color: rgba(22,119,255,0.2); }
+.alt-btn.dingtalk:hover { background: rgba(22,119,255,0.08); border-color: rgba(22,119,255,0.35); }
+.alt-btn.sso { color: var(--dt-gold-dark); border-color: rgba(201,169,110,0.3); }
+.alt-btn.sso:hover { background: rgba(201,169,110,0.08); border-color: rgba(201,169,110,0.5); }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.form-footer {
+  text-align: center;
+}
+.footer-signup {
+  font-size: 14px;
+  color: var(--dt-ink-3);
+  margin-bottom: 16px;
+}
+.footer-signup a {
+  color: var(--dt-primary);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 4px;
+  transition: color 0.2s;
+}
+.footer-signup a:hover {
+  color: var(--dt-primary-light);
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: var(--dt-ink-4);
+  margin-bottom: 10px;
+  letter-spacing: 0.03em;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.footer-links a {
+  color: var(--dt-ink-4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--dt-primary);
+}
+.footer-links span {
+  color: var(--dt-border-strong);
+}
+
+/* Decorative gold dots on right panel */
+.right-deco {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+.right-deco.rd1 { top: 80px; right: 60px; opacity: 0.4; }
+.right-deco.rd2 { bottom: 100px; left: 40px; opacity: 0.3; }
+
+/* ===== Interactive additions ===== */
+.form-card { transition: box-shadow .5s ease, transform .5s ease; }
+.form-card.focus-glow { box-shadow: 0 20px 60px rgba(122,33,53,.25), 0 0 0 4px rgba(201,169,110,.25); transform: translateY(-2px); }
+.input-field:focus { outline: none; }
+.login-btn { position: relative; overflow: hidden; cursor: pointer; transition: all .3s ease; }
+.login-btn:hover { box-shadow: 0 10px 30px rgba(201,169,110,.45); transform: translateY(-1px); letter-spacing: 6px; }
+.login-btn:active { transform: translateY(0); }
+.login-btn.loading { pointer-events: none; color: transparent; }
+.login-btn.loading::after { content:''; position:absolute; top:50%; left:50%; width:20px; height:20px; margin:-10px 0 0 -10px; border:2px solid rgba(255,255,255,.4); border-top-color:#fff; border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-ripple { position:absolute; border-radius:50%; background:rgba(255,255,255,.5); transform:scale(0); animation:ripple .6s ease-out forwards; pointer-events:none; }
+@keyframes ripple { to { transform:scale(4); opacity:0; } }
+.input-action.eye-btn { cursor:pointer; }
+.shake { animation: shake .4s ease; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-6px)} 40%,80%{transform:translateX(6px)} }
+.toast-msg { position:fixed; top:40px; left:50%; transform:translateX(-50%) translateY(-80px); background:linear-gradient(135deg,#7A2135,#9A3349); color:#fff; padding:12px 28px; border-radius:12px; font-size:14px; z-index:9999; box-shadow:0 10px 40px rgba(122,33,53,.35); border:1px solid rgba(201,169,110,.4); opacity:0; transition:all .4s cubic-bezier(.2,.8,.2,1); }
+.toast-msg.show { transform:translateX(-50%) translateY(0); opacity:1; }
+.confetti-piece { position:fixed; width:10px; height:10px; pointer-events:none; z-index:9998; border-radius:2px; }
+@keyframes confetti-fall { 0%{transform:translateY(-20px) rotate(0); opacity:1} 100%{transform:translateY(110vh) rotate(720deg); opacity:0} }
+.alt-btn { transition: all .3s ease; cursor: pointer; }
+.alt-btn:hover { transform: translateY(-4px) scale(1.08); box-shadow: 0 10px 25px rgba(0,0,0,.15); }
+.remember-row { cursor:pointer; }
+.checkbox-wrap { cursor:pointer; }
+.input-field { transition: all .3s ease; }
+.input-field:focus { border-color: var(--dt-gold) !important; box-shadow: 0 0 0 4px rgba(201,169,110,.15); }
+    </style>
+
+    <div class="toast-msg" id="login-toast"></div>
+
+<script>
+(function(){
+  // Password toggle
+  const pwdInput = document.getElementById('password-input');
+  const eyeBtn = document.querySelector('.input-action.eye-btn, .input-action');
+  if (pwdInput && eyeBtn) {
+    eyeBtn.classList.add('eye-btn');
+    eyeBtn.addEventListener('click', function(){
+      const isPwd = pwdInput.type === 'password';
+      pwdInput.type = isPwd ? 'text' : 'password';
+      eyeBtn.title = isPwd ? '隐藏密码' : '显示密码';
+      eyeBtn.style.color = isPwd ? 'var(--dt-primary)' : '';
+    });
+  }
+
+  // Input focus glow on form card
+  const formCard = document.getElementById('login-form-card');
+  const inputs = document.querySelectorAll('.input-field');
+  inputs.forEach(function(inp){
+    inp.addEventListener('focus', function(){ if(formCard) formCard.classList.add('focus-glow'); });
+    inp.addEventListener('blur', function(){ if(formCard) formCard.classList.remove('focus-glow'); });
+  });
+
+  // Ripple + loading + login flow
+  const loginBtn = document.querySelector('.login-btn');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', function(e){
+      // Ripple
+      const rect = loginBtn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'btn-ripple';
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      loginBtn.appendChild(ripple);
+      setTimeout(function(){ ripple.remove(); }, 600);
+
+      // Validation
+      const accInput = inputs[0];
+      const pwd = inputs[1];
+      if (!accInput.value.trim() || !pwd.value.trim()) {
+        formCard.classList.add('shake');
+        setTimeout(function(){ formCard.classList.remove('shake'); }, 500);
+        showToast('请输入账号和密码');
+        return;
+      }
+
+      // Loading
+      loginBtn.classList.add('loading');
+      setTimeout(function(){
+        loginBtn.classList.remove('loading');
+        showToast('登录成功，正在进入牵线运营中心...');
+        launchConfetti();
+      }, 1500);
+    });
+  }
+
+  function showToast(msg){
+    const t = document.getElementById('login-toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2500);
+  }
+
+  function launchConfetti(){
+    const colors = ['#7A2135','#C9A96E','#D4B87A','#9A3349','#E8C878','#F0E6D2'];
+    for (let i = 0; i < 60; i++){
+      const p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = Math.random()*100 + 'vw';
+      p.style.background = colors[Math.floor(Math.random()*colors.length)];
+      p.style.animationDuration = (2 + Math.random()*2) + 's';
+      p.style.animationDelay = Math.random()*0.5 + 's';
+      p.style.animation = 'confetti-fall ' + (2+Math.random()*2) + 's ' + (Math.random()*0.5) + 's ease-in forwards';
+      p.style.width = p.style.height = (6+Math.random()*8) + 'px';
+      if (Math.random()>0.5) p.style.borderRadius = '50%';
+      document.body.appendChild(p);
+      setTimeout(function(){ p.remove(); }, 4500);
+    }
+  }
+
+  // Alt login buttons feedback
+  document.querySelectorAll('.alt-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const title = btn.title || '第三方登录';
+      showToast(title + '：正在跳转授权...');
+    });
+  });
+
+  // Checkbox label click
+  const cbWrap = document.querySelector('.checkbox-wrap');
+  const cb = cbWrap ? cbWrap.querySelector('input[type="checkbox"]') : null;
+  if (cbWrap && cb) {
+    cbWrap.addEventListener('click', function(e){
+      if (e.target.tagName !== 'INPUT') cb.checked = !cb.checked;
+    });
+  }
+
+  // Parallax effect on decorative elements based on mouse
+  const leftPanel = document.querySelector('.left-panel');
+  if (leftPanel) {
+    document.addEventListener('mousemove', function(e){
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      const xi = leftPanel.querySelector('.xi-char');
+      if (xi) xi.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# ============================================================
+# 本地开发 profile：MySQL
+# 启用方式（任选其一）：
+#   1) 启动参数：java -Dspring.profiles.active=mysql -cp ...
+#   2) IDE 的 Active Profiles 填 mysql
+#   3) 环境变量：SPRING_PROFILES_ACTIVE=mysql
+# 注：本文件含明文密码，仅用于本机开发；生产请改用环境变量或密钥管理。
+# ============================================================
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/queqiao?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+  # 关闭 H2 控制台（已切到 MySQL，不再需要）
+  h2:
+    console:
+      enabled: false

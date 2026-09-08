@@ -1,0 +1,3423 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM 客户跟进 - 牵线运营中心</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+<div id="app-shell" class="dt-noise">
+
+    <!-- ============ LEFT ICON NAVIGATION (64px) ============ -->
+    <nav id="left-nav">
+        <div class="nav-logo">牵</div>
+        <div class="nav-items">
+            <a class="nav-item" href="#" title="仪表盘">
+                <!-- home/dashboard icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                <span class="nav-label">仪表盘</span>
+            </a>
+            <a class="nav-item active" href="#" title="会员">
+                <!-- users icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span class="nav-label">会员管理</span>
+            </a>
+            <a class="nav-item" href="#" title="红娘">
+                <!-- heart icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span class="nav-label">红娘团队</span>
+            </a>
+            <a class="nav-item" href="#" title="牵线">
+                <!-- heart-handshake / link icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.69"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+                <span class="nav-label">牵线管理</span>
+            </a>
+            <a class="nav-item" href="#" title="活动">
+                <!-- calendar icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span class="nav-label">活动管理</span>
+            </a>
+            <a class="nav-item" href="#" title="日程">
+                <!-- calendar-heart icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+                <span class="nav-label">日程安排</span>
+            </a>
+            <a class="nav-item" href="#" title="财务">
+                <!-- dollar-sign icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span class="nav-label">财务中心</span>
+            </a>
+            <a class="nav-item" href="#" title="设置">
+                <!-- settings icon -->
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span class="nav-label">系统设置</span>
+            </a>
+        </div>
+        <div class="nav-avatar">王</div>
+    </nav>
+
+    <!-- ============ MAIN CONTENT AREA ============ -->
+    <div id="main-area">
+        <!-- Top Bar -->
+        <div id="top-bar">
+            <div class="breadcrumb">
+                <span>运营中心</span>
+                <span class="sep">/</span>
+                <span>会员管理</span>
+                <span class="sep">/</span>
+                <span class="current">客户跟进</span>
+            </div>
+            <div class="page-title-area">
+                <div class="page-title">CRM 客户跟进</div>
+            </div>
+            <div class="top-bar-spacer"></div>
+            <div class="top-bar-actions">
+                <button class="btn-add-follow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    添加跟进
+                </button>
+                <button class="icon-btn" title="筛选">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                </button>
+                <button class="icon-btn" title="通知">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge-dot"></span>
+                </button>
+                <div class="view-toggle">
+                    <button class="active" title="看板视图">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="10" rx="1"/></svg>
+                    </button>
+                    <button title="列表视图">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div id="content-scroll">
+            <!-- KPI Cards -->
+            <div class="kpi-row">
+                <div class="kpi-card vip">
+                    <div class="kpi-info">
+                        <div class="kpi-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.735H5.81a1 1 0 0 1-.957-.735L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg>
+                            高价值客户
+                        </div>
+                        <div class="kpi-value">18<span class="unit">人</span></div>
+                        <div class="kpi-trend vip-trend">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            VIP 优先跟进
+                        </div>
+                    </div>
+                    <div class="kpi-icon crown">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.735H5.81a1 1 0 0 1-.957-.735L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"/><path d="M5 21h14"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-card urgent">
+                    <div class="kpi-info">
+                        <div class="kpi-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            待跟进会员
+                        </div>
+                        <div class="kpi-value">46<span class="unit">人</span></div>
+                        <div class="kpi-trend urgent-trend">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            需紧急处理
+                        </div>
+                    </div>
+                    <div class="kpi-icon danger">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-card highlight">
+                    <div class="kpi-info">
+                        <div class="kpi-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            今日需回访
+                        </div>
+                        <div class="kpi-value">12<span class="unit">人</span></div>
+                        <div class="kpi-trend up">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                            今日安排
+                        </div>
+                    </div>
+                    <div class="kpi-icon gold">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-card muted">
+                    <div class="kpi-info">
+                        <div class="kpi-label">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            跟进转化率
+                        </div>
+                        <div class="kpi-value">34<span class="unit">%</span></div>
+                        <div class="kpi-trend up">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                            达标
+                        </div>
+                    </div>
+                    <div class="kpi-icon success">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <div class="filter-search">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" placeholder="搜索会员姓名/手机号/ID" />
+                </div>
+                <div class="filter-dropdown">
+                    <span class="dd-label">跟进阶段</span>
+                    <span class="dd-value">全部</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-dropdown">
+                    <span class="dd-label">负责红娘</span>
+                    <span class="dd-value">全部</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-dropdown">
+                    <span class="dd-label">下次跟进</span>
+                    <span class="dd-value">全部</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-dropdown">
+                    <span class="dd-label">会员等级</span>
+                    <span class="dd-value">全部</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-right">
+                    <button class="btn-filter">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+                        筛选
+                    </button>
+                    <button class="btn-advanced">
+                        高级筛选
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Work Area: Kanban + Sidebar -->
+            <div class="work-area">
+                <!-- CRM Pipeline Kanban -->
+                <div class="crm-kanban">
+                    <!-- Column 1: 新线索 -->
+                    <div class="crm-column stage-new">
+                        <div class="crm-column-header">
+                            <div class="crm-col-title">
+                                <span class="crm-col-dot"></span>
+                                <span class="crm-col-name">新线索</span>
+                                <span class="crm-col-count">8</span>
+                            </div>
+                            <button class="crm-col-add">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </div>
+                        <div class="crm-cards">
+                            <div class="crm-card">
+                                <div class="crm-card-priority" style="display:none;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar male">马</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">马晓东</span>
+                                            <span class="crm-card-age">29</span>
+                                            <span class="gender-icon male-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge normal">普通</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        138****2341
+                                    </span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot fresh"></span>
+                                        <span>30分钟前</span>
+                                    </div>
+                                    <span class="next-action-pill call">待电话回访</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar female">黄</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">黄晓燕</span>
+                                            <span class="crm-card-age">25</span>
+                                            <span class="gender-icon female-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge normal">普通</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        139****5678
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进1天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot fresh"></span>
+                                        <span>2小时前</span>
+                                    </div>
+                                    <span class="next-action-pill call">待首次沟通</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-priority">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar vip-male">林</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">林志远</span>
+                                            <span class="crm-card-age">33</span>
+                                            <span class="gender-icon male-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge vip">VIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        186****9920
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进2天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot warning"></span>
+                                        <span>昨天</span>
+                                    </div>
+                                    <span class="next-action-pill send">待发送资料</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar female">孙</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">孙婷婷</span>
+                                            <span class="crm-card-age">27</span>
+                                            <span class="gender-icon female-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge normal">普通</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        135****3311
+                                    </span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot fresh"></span>
+                                        <span>1小时前</span>
+                                    </div>
+                                    <span class="next-action-pill call">待首次沟通</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: 初次沟通 -->
+                    <div class="crm-column stage-contact">
+                        <div class="crm-column-header">
+                            <div class="crm-col-title">
+                                <span class="crm-col-dot"></span>
+                                <span class="crm-col-name">初次沟通</span>
+                                <span class="crm-col-count">12</span>
+                            </div>
+                            <button class="crm-col-add">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </div>
+                        <div class="crm-cards">
+                            <div class="crm-card">
+                                <div class="crm-card-priority">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar vip-female">吴</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">吴雨桐</span>
+                                            <span class="crm-card-age">27</span>
+                                            <span class="gender-icon female-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge vip">VIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        137****7788
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进2天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot fresh"></span>
+                                        <span>3小时前</span>
+                                    </div>
+                                    <span class="next-action-pill call">待电话回访</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar vip-male">周</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">周建国</span>
+                                            <span class="crm-card-age">36</span>
+                                            <span class="gender-icon male-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge vip">VIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        133****2255
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进3天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot warning"></span>
+                                        <span>1天前</span>
+                                    </div>
+                                    <span class="next-action-pill send">待发送资料</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar female">杨</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">杨雪梅</span>
+                                            <span class="crm-card-age">30</span>
+                                            <span class="gender-icon female-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge normal">普通</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        152****6677
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进5天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot overdue"></span>
+                                        <span>3天前</span>
+                                    </div>
+                                    <span class="next-action-pill call">待电话回访</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar vip-male">郑</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">郑海涛</span>
+                                            <span class="crm-card-age">31</span>
+                                            <span class="gender-icon male-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge vip">VIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        158****1100
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进4天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot warning"></span>
+                                        <span>2天前</span>
+                                    </div>
+                                    <span class="next-action-pill meet">待需求深挖</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: 需求分析 -->
+                    <div class="crm-column stage-analysis">
+                        <div class="crm-column-header">
+                            <div class="crm-col-title">
+                                <span class="crm-col-dot"></span>
+                                <span class="crm-col-name">需求分析</span>
+                                <span class="crm-col-count">15</span>
+                            </div>
+                            <button class="crm-col-add">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </div>
+                        <div class="crm-cards">
+                            <div class="crm-card selected">
+                                <div class="crm-card-priority">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar vip-female">陈</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">陈思雨</span>
+                                            <span class="crm-card-age">26</span>
+                                            <span class="gender-icon female-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge vip">VIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        138****8866
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进7天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot fresh"></span>
+                                        <span>2小时前</span>
+                                    </div>
+                                    <span class="next-action-pill call">明天10:00回访</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar vip-female">王</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">王雅婷</span>
+                                            <span class="crm-card-age">28</span>
+                                            <span class="gender-icon female-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge vip">VIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        139****4422
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进6天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot warning"></span>
+                                        <span>1天前</span>
+                                    </div>
+                                    <span class="next-action-pill match">待匹配推荐</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-priority">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar svip">张</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">张浩然</span>
+                                            <span class="crm-card-age">35</span>
+                                            <span class="gender-icon male-icon">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg>
+                                            </span>
+                                        </div>
+                                        <div class="crm-card-badges">
+                                            <span class="level-badge svip">SVIP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                        188****8899
+                                    </span>
+                                    <span class="crm-card-stage-dur">跟进10天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup">
+                                        <span class="freshness-dot fresh"></span>
+                                        <span>4小时前</span>
+                                    </div>
+                                    <span class="next-action-pill match">待匹配推荐</span>
+                                </div>
+                                <div class="crm-card-drag">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top"><div class="crm-avatar female">刘</div><div class="crm-card-info"><div class="crm-card-name-row"><span class="crm-card-name">刘思涵</span><span class="crm-card-age">24</span><span class="gender-icon female-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg></span></div><div class="crm-card-badges"><span class="level-badge normal">普通</span></div></div></div>
+                                <div class="crm-card-meta"><span class="crm-card-meta-item"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>131****2233</span><span class="crm-card-stage-dur">跟进2天</span></div>
+                                <div class="crm-card-footer"><div class="crm-card-followup"><span class="freshness-dot fresh"></span><span>1小时前</span></div><span class="next-action-pill analysis">待需求分析</span></div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top"><div class="crm-avatar male">赵</div><div class="crm-card-info"><div class="crm-card-name-row"><span class="crm-card-name">赵文博</span><span class="crm-card-age">38</span><span class="gender-icon male-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg></span></div><div class="crm-card-badges"><span class="level-badge vip">VIP</span></div></div></div>
+                                <div class="crm-card-meta"><span class="crm-card-meta-item"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>139****6677</span><span class="crm-card-stage-dur">跟进7天</span></div>
+                                <div class="crm-card-footer"><div class="crm-card-followup"><span class="freshness-dot warning"></span><span>昨天</span></div><span class="next-action-pill analysis">深度沟通中</span></div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                        </div></div>
+                    <!-- Column 4: 匹配推荐 -->
+                    <div class="crm-column stage-match">
+                        <div class="crm-column-header">
+                            <div class="crm-col-title">
+                                <span class="crm-col-dot"></span>
+                                <span class="crm-col-name">匹配推荐</span>
+                                <span class="crm-col-count">10</span>
+                            </div>
+                            <button class="crm-col-add">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </div>
+                        <div class="crm-cards">
+                            <div class="crm-card selected">
+                                <div class="crm-card-priority">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar svip">李</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">李明轩</span>
+                                            <span class="crm-card-age">32</span>
+                                            <span class="gender-icon male-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg></span>
+                                        </div>
+                                        <div class="crm-card-badges"><span class="level-badge svip">SVIP</span></div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>186****7788</span>
+                                    <span class="crm-card-stage-dur">跟进12天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup"><span class="freshness-dot fresh"></span><span>2小时前</span></div>
+                                    <span class="next-action-pill match">匹配陈思雨96%</span>
+                                </div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar male">周</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">周子谦</span>
+                                            <span class="crm-card-age">29</span>
+                                            <span class="gender-icon male-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg></span>
+                                        </div>
+                                        <div class="crm-card-badges"><span class="level-badge vip">VIP</span></div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>137****4455</span>
+                                    <span class="crm-card-stage-dur">跟进8天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup"><span class="freshness-dot warning"></span><span>昨天</span></div>
+                                    <span class="next-action-pill match">筛选匹配中</span>
+                                </div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar female">钱</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">钱雅文</span>
+                                            <span class="crm-card-age">26</span>
+                                            <span class="gender-icon female-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg></span>
+                                        </div>
+                                        <div class="crm-card-badges"><span class="level-badge normal">普通</span></div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>152****3344</span>
+                                    <span class="crm-card-stage-dur">跟进5天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup"><span class="freshness-dot fresh"></span><span>3小时前</span></div>
+                                    <span class="next-action-pill match">推荐中</span>
+                                </div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar male">冯</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">冯志豪</span>
+                                            <span class="crm-card-age">34</span>
+                                            <span class="gender-icon male-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="5"/><path d="M19 5l-5.4 5.4"/><path d="M19 5h-5"/><path d="M19 5v5"/></svg></span>
+                                        </div>
+                                        <div class="crm-card-badges"><span class="level-badge vip">VIP</span></div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-meta-item"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>133****5566</span>
+                                    <span class="crm-card-stage-dur">跟进15天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup"><span class="freshness-dot danger"></span><span>4天前</span></div>
+                                    <span class="next-action-pill match">待推荐</span>
+                                </div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 5: 约见安排 -->
+                    <div class="crm-column stage-meet">
+                        <div class="crm-column-header">
+                            <div class="crm-col-title">
+                                <span class="crm-col-dot"></span>
+                                <span class="crm-col-name">约见安排</span>
+                                <span class="crm-col-count">6</span>
+                            </div>
+                            <button class="crm-col-add">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            </button>
+                        </div>
+                        <div class="crm-cards">
+                            <div class="crm-card couple-card">
+                                <div class="couple-avatars">
+                                    <div class="crm-avatar small male">李</div>
+                                    <div class="couple-heart"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                                    <div class="crm-avatar small female">陈</div>
+                                </div>
+                                <div class="crm-card-info" style="width:100%;margin-top:8px;">
+                                    <div class="crm-card-name-row" style="justify-content:center">
+                                        <span class="crm-card-name">李明轩❤陈思雨</span>
+                                    </div>
+                                </div>
+                                <div class="crm-card-footer" style="justify-content:center;margin-top:6px">
+                                    <span class="next-action-pill meet">今日15:00 柏悦下午茶</span>
+                                </div>
+                            </div>
+                            <div class="crm-card couple-card">
+                                <div class="couple-avatars">
+                                    <div class="crm-avatar small male">张</div>
+                                    <div class="couple-heart"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+                                    <div class="crm-avatar small female">王</div>
+                                </div>
+                                <div class="crm-card-info" style="width:100%;margin-top:8px;">
+                                    <div class="crm-card-name-row" style="justify-content:center">
+                                        <span class="crm-card-name">张浩然❤王雅婷</span>
+                                    </div>
+                                </div>
+                                <div class="crm-card-footer" style="justify-content:center;margin-top:6px">
+                                    <span class="next-action-pill meet">周六14:00 三里屯</span>
+                                </div>
+                            </div>
+                            <div class="crm-card">
+                                <div class="crm-card-top">
+                                    <div class="crm-avatar female">吴</div>
+                                    <div class="crm-card-info">
+                                        <div class="crm-card-name-row">
+                                            <span class="crm-card-name">吴雨桐</span>
+                                            <span class="crm-card-age">27</span>
+                                            <span class="gender-icon female-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M12 14v7"/><path d="M9 18h6"/></svg></span>
+                                        </div>
+                                        <div class="crm-card-badges"><span class="level-badge vip">VIP</span></div>
+                                    </div>
+                                </div>
+                                <div class="crm-card-meta">
+                                    <span class="crm-card-stage-dur">跟进9天</span>
+                                </div>
+                                <div class="crm-card-footer">
+                                    <div class="crm-card-followup"><span class="freshness-dot warning"></span><span>2天前</span></div>
+                                    <span class="next-action-pill meet">待匹配约见</span>
+                                </div>
+                                <div class="crm-card-drag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 6: 已成交 -->
+                    <div class="crm-column stage-deal">
+                        <div class="crm-column-header">
+                            <div class="crm-col-title">
+                                <span class="crm-col-dot"></span>
+                                <span class="crm-col-name">已成交</span>
+                                <span class="crm-col-count">24</span>
+                            </div>
+                        </div>
+                        <div class="crm-cards">
+                            <div class="crm-card deal-card">
+                                <div class="deal-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="couple-avatars small">
+                                    <div class="crm-avatar xs male">孙</div>
+                                    <div class="crm-avatar xs female">周</div>
+                                </div>
+                                <span class="deal-name">孙❤周</span>
+                                <span class="deal-date">08-06</span>
+                            </div>
+                            <div class="crm-card deal-card">
+                                <div class="deal-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="couple-avatars small">
+                                    <div class="crm-avatar xs male">马</div>
+                                    <div class="crm-avatar xs female">林</div>
+                                </div>
+                                <span class="deal-name">马❤林</span>
+                                <span class="deal-date">08-05</span>
+                            </div>
+                            <div class="crm-card deal-card">
+                                <div class="deal-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+                                <div class="couple-avatars small">
+                                    <div class="crm-avatar xs male">黄</div>
+                                    <div class="crm-avatar xs female">徐</div>
+                                </div>
+                                <span class="deal-name">黄❤徐</span>
+                                <span class="deal-date">08-03</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <aside class="crm-sidebar"><div class="sidebar-card">
+                <div class="sidebar-section"><div class="sidebar-member"><div class="crm-avatar large vip">陈</div><div class="sidebar-member-info"><div class="sidebar-member-name">陈思雨 <span class="age-sub">26</span></div><div class="sidebar-member-badges"><span class="level-badge vip">VIP</span><span class="contact-phone"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>138****8866</span></div></div></div>
+                <div class="sidebar-matchmaker"><span class="label">负责红娘</span><div class="mm-row"><div class="crm-avatar xs mm-avatar">王</div><span>王淑芬</span></div></div>
+                <div class="sidebar-progress"><div class="progress-label"><span>当前阶段：需求分析</span><span class="progress-pct">3/6</span></div><div class="progress-track"><div class="progress-fill" style="width:50%"></div><div class="progress-milestone" style="left:0%"></div><div class="progress-milestone" style="left:20%"></div><div class="progress-milestone active" style="left:40%"></div><div class="progress-milestone" style="left:60%"></div><div class="progress-milestone" style="left:80%"></div><div class="progress-milestone" style="left:100%"></div></div><div class="progress-stages"><span>线索</span><span>沟通</span><span class="active">分析</span><span>匹配</span><span>约见</span><span>成交</span></div></div></div>
+                <div class="sidebar-section next-reminder"><div class="reminder-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="reminder-content"><div class="reminder-time">明天 10:00 电话回访</div><div class="reminder-note">确认择偶要求细节，推荐匹配人选</div></div></div>
+                <div class="sidebar-section"><div class="section-title"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>跟进历史</div><div class="follow-timeline">
+                    <div class="tl-item"><div class="tl-dot gold"></div><div class="tl-body"><div class="tl-text">沟通择偶偏好，记录硬件要求与性格偏好</div><div class="tl-meta">王淑芬 · 08-08 14:30</div></div></div>
+                    <div class="tl-item"><div class="tl-dot burgundy"></div><div class="tl-body"><div class="tl-text">首次电话沟通，了解基本情况与择偶期望</div><div class="tl-meta">王淑芬 · 08-07 10:00</div></div></div>
+                    <div class="tl-item"><div class="tl-dot gray"></div><div class="tl-body"><div class="tl-text">新会员注册并分配给王淑芬跟进</div><div class="tl-meta">系统 · 08-05 09:00</div></div></div>
+                </div></div>
+                <div class="sidebar-section"><div class="quick-actions"><button class="dt-btn-gold qa-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>记录跟进</button><button class="qa-btn outline"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>安排约见</button><div class="qa-row"><button class="qa-btn ghost"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>发送资料</button><button class="qa-btn ghost"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>转派他人</button></div></div></div>
+                <div class="sidebar-section"><textarea class="follow-notes" placeholder="记录本次跟进内容..."></textarea></div>
+            </div></aside>
+        </div>
+        <div class="funnel-bar"><div class="funnel-label">转化漏斗</div><div class="funnel-segments">
+            <div class="fseg seg-new"><span class="fseg-name">新线索</span><span class="fseg-num">38人</span></div><div class="fseg-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-ink-4)"><polyline points="9 18 15 12 9 6"/></svg><span class="fseg-rate">82%</span></div>
+            <div class="fseg seg-contact"><span class="fseg-name">初次沟通</span><span class="fseg-num">31人</span></div><div class="fseg-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-ink-4)"><polyline points="9 18 15 12 9 6"/></svg><span class="fseg-rate">76%</span></div>
+            <div class="fseg seg-analysis"><span class="fseg-name">需求分析</span><span class="fseg-num">24人</span></div><div class="fseg-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-ink-4)"><polyline points="9 18 15 12 9 6"/></svg><span class="fseg-rate">68%</span></div>
+            <div class="fseg seg-match"><span class="fseg-name">匹配推荐</span><span class="fseg-num">16人</span></div><div class="fseg-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-ink-4)"><polyline points="9 18 15 12 9 6"/></svg><span class="fseg-rate">55%</span></div>
+            <div class="fseg seg-meet"><span class="fseg-name">约见</span><span class="fseg-num">9人</span></div><div class="fseg-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-ink-4)"><polyline points="9 18 15 12 9 6"/></svg><span class="fseg-rate">34%</span></div>
+            <div class="fseg seg-deal"><span class="fseg-name">成交</span><span class="fseg-num">3人</span></div>
+        </div><div class="funnel-cvr"><span>总转化率</span><span class="cvr-num">34%</span></div></div>
+    </main></div>
+
+    <style id="critical-layout">
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+        background: var(--dt-bg-base);
+        color: var(--dt-ink-1);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 14px;
+      }
+      button { font-family: inherit; cursor: pointer; border: none; background: none; }
+      input, textarea, select { font-family: inherit; outline: none; }
+      a { text-decoration: none; color: inherit; }
+
+      /* --- Noise Texture --- */
+      .dt-noise::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.025;
+        pointer-events: none;
+        z-index: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 128px 128px;
+      }
+
+      /* --- App Shell --- */
+      #app-shell {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-width: 1920px;
+        display: flex;
+        background: var(--dt-bg-gradient);
+        overflow: hidden;
+      }
+
+      /* --- Left Icon Navigation (64px) --- */
+      #left-nav {
+        width: 64px;
+        flex-shrink: 0;
+        height: 100vh;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-right: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 2px 0 24px -8px rgba(122,33,53,0.06);
+      }
+      .nav-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--dt-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-gold-light);
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 12px rgba(122,33,53,0.2);
+        letter-spacing: -0.02em;
+      }
+      .nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        width: 100%;
+        align-items: center;
+      }
+      .nav-item {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-3);
+        transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background: rgba(122,33,53,0.06);
+        color: var(--dt-primary);
+      }
+      .nav-item.active {
+        color: var(--dt-primary);
+        background: rgba(122,33,53,0.08);
+      }
+      .nav-item.active::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        background: var(--dt-gold);
+        border-radius: 0 2px 2px 0;
+      }
+      .nav-item .nav-label {
+        position: absolute;
+        left: calc(100% + 8px);
+        top: 50%;
+        transform: translateY(-50%) translateX(-8px);
+        background: var(--dt-ink-1);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s ease;
+        z-index: 100;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      }
+      .nav-item .nav-label::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        width: 8px;
+        height: 8px;
+        background: var(--dt-ink-1);
+        border-radius: 1px;
+      }
+      .nav-item:hover .nav-label {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+      .nav-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #D9BF8A 0%, #7A2135 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: auto;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.8);
+        box-shadow: 0 2px 8px rgba(122,33,53,0.15);
+      }
+
+      /* --- Main Content Area --- */
+      #main-area {
+        flex: 1;
+        min-width: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* --- Top Bar --- */
+      #top-bar {
+        height: 64px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        gap: 20px;
+        position: relative;
+        z-index: 5;
+        border-bottom: 1px solid var(--dt-border);
+        background: rgba(248,245,240,0.6);
+        backdrop-filter: blur(12px);
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--dt-ink-4);
+        white-space: nowrap;
+      }
+      .breadcrumb span.sep {
+        color: var(--dt-ink-4);
+        opacity: 0.5;
+      }
+      .breadcrumb span.current {
+        color: var(--dt-ink-2);
+        font-weight: 500;
+      }
+      .page-title-area {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-left: 4px;
+      }
+      .page-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        line-height: 1.2;
+      }
+      .top-bar-spacer { flex: 1; }
+      .top-bar-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn-add-follow {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 18px;
+        height: 38px;
+        border-radius: var(--dt-radius-md);
+        background: var(--dt-gold-gradient);
+        color: #FFFFFF;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: var(--dt-shadow-sm), var(--dt-shadow-gold-glow);
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .btn-add-follow:hover {
+        box-shadow: var(--dt-shadow-md), 0 0 24px rgba(201,169,110,0.30);
+        transform: translateY(-1px);
+      }
+      .icon-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: var(--dt-radius-md);
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-2);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      .icon-btn:hover {
+        background: rgba(255,255,255,0.8);
+        color: var(--dt-primary);
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .icon-btn .badge-dot {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 7px;
+        height: 7px;
+        background: var(--dt-error);
+        border-radius: 50%;
+        border: 1.5px solid rgba(248,245,240,0.9);
+      }
+      .view-toggle {
+        display: flex;
+        align-items: center;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.6);
+        border-radius: var(--dt-radius-md);
+        padding: 3px;
+        gap: 2px;
+      }
+      .view-toggle button {
+        width: 32px;
+        height: 30px;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-ink-3);
+        transition: all 0.2s ease;
+      }
+      .view-toggle button.active {
+        background: #fff;
+        color: var(--dt-primary);
+        box-shadow: var(--dt-shadow-sm);
+      }
+
+      /* --- Content Scroll Area --- */
+      #content-scroll {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 20px 28px 16px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      #content-scroll::-webkit-scrollbar { width: 6px; }
+      #content-scroll::-webkit-scrollbar-track { background: transparent; }
+      #content-scroll::-webkit-scrollbar-thumb {
+        background: rgba(122,33,53,0.12);
+        border-radius: 3px;
+      }
+
+      /* --- KPI Cards Row --- */
+      .kpi-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        flex-shrink: 0;
+      }
+      .kpi-card {
+        background: var(--dt-glass);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        box-shadow: var(--dt-shadow-md);
+        border-radius: var(--dt-radius-lg);
+        padding: 20px 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .kpi-card:hover {
+        box-shadow: var(--dt-shadow-lg);
+        transform: translateY(-2px);
+      }
+      .kpi-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+      }
+      .kpi-card.urgent { border-left: 3px solid var(--dt-error); }
+      .kpi-card.highlight { border-left: 3px solid var(--dt-gold); }
+      .kpi-info { flex: 1; }
+      .kpi-label {
+        font-size: 13px;
+        color: var(--dt-ink-3);
+        font-weight: 500;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .kpi-value {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--dt-ink-1);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+      }
+      .kpi-value .unit {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--dt-ink-3);
+        margin-left: 3px;
+      }
+      .kpi-trend {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 2px 7px;
+        border-radius: 5px;
+      }
+      .kpi-trend.up {
+        color: var(--dt-success);
+        background: var(--dt-success-soft);
+      }
+      .kpi-trend.urgent-trend {
+        color: var(--dt-error);
+        background: var(--dt-error-soft);
+      }
+      .kpi-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .kpi-icon.gold { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
+      .kpi-icon.burgundy { background: var(--dt-primary-soft); color: var(--dt-primary); }
+      .kpi-icon.warning { background: var(--dt-warning-soft); color: var(--dt-warning); }
+      .kpi-icon.danger { background: var(--dt-error-soft); color: var(--dt-error); }
+      .kpi-icon.info { background: var(--dt-info-soft); color: var(--dt-info); }
+      .kpi-icon.success { background: var(--dt-success-soft); color: var(--dt-success); }
+
+      /* --- KPI importance hierarchy: VIP > urgent > highlight > muted --- */
+      .kpi-card.vip {
+        border-left: 3px solid var(--dt-gold);
+        background: linear-gradient(135deg, rgba(201,169,110,0.18), rgba(255,255,255,0.62) 55%, rgba(122,33,53,0.05));
+        box-shadow: 0 10px 28px rgba(201,169,110,0.20), var(--dt-shadow-md);
+      }
+      .kpi-card.vip::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 2px;
+        background: var(--dt-gold-gradient);
+        opacity: 0.85;
+      }
+      .kpi-card.vip .kpi-label { color: var(--dt-gold-dark); font-weight: 600; }
+      .kpi-card.vip .kpi-value {
+        background: var(--dt-gold-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .kpi-icon.crown {
+        background: var(--dt-gold-gradient);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(201,169,110,0.40);
+      }
+      .kpi-trend.vip-trend {
+        color: var(--dt-gold-dark);
+        background: rgba(201,169,110,0.14);
+      }
+      .kpi-card.muted {
+        box-shadow: var(--dt-shadow-sm);
+        opacity: 0.9;
+      }
+      .kpi-card.muted .kpi-value { color: var(--dt-ink-2); font-weight: 700; }
+      .kpi-card.muted:hover { opacity: 1; }
+
+      /* --- Filter Bar --- */
+      .filter-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 18px;
+        background: var(--dt-glass);
+        backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        box-shadow: var(--dt-shadow-sm);
+        flex-shrink: 0;
+      }
+      .filter-search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 14px;
+        height: 36px;
+        min-width: 240px;
+        border-radius: var(--dt-radius-pill);
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--dt-input-border);
+        transition: all 0.2s ease;
+      }
+      .filter-search:focus-within {
+        box-shadow: 0 0 0 3px rgba(122,33,53,0.08);
+        border-color: rgba(122,33,53,0.15);
+        background: rgba(255,255,255,0.9);
+      }
+      .filter-search input {
+        flex: 1;
+        border: none;
+        background: none;
+        font-size: 12px;
+        color: var(--dt-ink-1);
+      }
+      .filter-search input::placeholder { color: var(--dt-ink-4); }
+      .filter-dropdown {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 12px;
+        height: 36px;
+        border-radius: var(--dt-radius-pill);
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--dt-input-border);
+        font-size: 12px;
+        color: var(--dt-ink-2);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+      }
+      .filter-dropdown:hover {
+        background: rgba(255,255,255,0.9);
+        border-color: rgba(122,33,53,0.15);
+      }
+      .filter-dropdown .dd-label {
+        color: var(--dt-ink-4);
+        font-weight: 400;
+      }
+      .filter-dropdown .dd-value {
+        color: var(--dt-ink-1);
+        font-weight: 500;
+      }
+      .filter-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-filter {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 14px;
+        height: 36px;
+        border-radius: var(--dt-radius-pill);
+        background: var(--dt-primary);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .btn-filter:hover { background: var(--dt-primary-light); }
+      .btn-advanced {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 12px;
+        height: 36px;
+        border-radius: var(--dt-radius-pill);
+        color: var(--dt-ink-3);
+        font-size: 12px;
+        transition: all 0.2s ease;
+      }
+      .btn-advanced:hover { color: var(--dt-primary); background: var(--dt-primary-soft); }
+
+      /* --- Main Work Area (Kanban + Sidebar) --- */
+      .work-area {
+        flex: 1;
+        display: flex;
+        gap: 16px;
+        min-height: 0;
+      }
+
+      /* --- CRM Kanban Board --- */
+      .crm-kanban {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 8px;
+      }
+      .crm-kanban::-webkit-scrollbar { height: 6px; }
+      .crm-kanban::-webkit-scrollbar-track { background: transparent; }
+      .crm-kanban::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.10); border-radius: 3px; }
+
+      .crm-column {
+        flex-shrink: 0;
+        width: 210px;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(12px);
+        border-radius: var(--dt-radius-lg);
+        border: 1px solid rgba(255,255,255,0.5);
+        overflow: hidden;
+      }
+      .crm-column-header {
+        padding: 12px 14px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(255,255,255,0.4);
+      }
+      .crm-column.stage-new .crm-column-header { background: var(--stage-new-bg); }
+      .crm-column.stage-contact .crm-column-header { background: var(--stage-contact-bg); }
+      .crm-column.stage-analysis .crm-column-header { background: var(--stage-analysis-bg); }
+      .crm-column.stage-match .crm-column-header { background: var(--stage-match-bg); }
+      .crm-column.stage-meet .crm-column-header { background: var(--stage-meet-bg); }
+      .crm-column.stage-deal .crm-column-header { background: var(--stage-deal-bg); }
+
+      .crm-col-title {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .crm-col-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+      .stage-new .crm-col-dot { background: var(--stage-new); }
+      .stage-contact .crm-col-dot { background: var(--stage-contact); }
+      .stage-analysis .crm-col-dot { background: var(--stage-analysis); }
+      .stage-match .crm-col-dot { background: var(--stage-match); }
+      .stage-meet .crm-col-dot { background: var(--stage-meet); }
+      .stage-deal .crm-col-dot { background: var(--stage-deal); }
+
+      .crm-col-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+      }
+      .crm-col-count {
+        min-width: 22px;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .stage-new .crm-col-count { background: var(--stage-new-soft); color: var(--stage-new); }
+      .stage-contact .crm-col-count { background: var(--stage-contact-soft); color: var(--stage-contact); }
+      .stage-analysis .crm-col-count { background: var(--stage-analysis-soft); color: var(--stage-analysis); }
+      .stage-match .crm-col-count { background: var(--stage-match-soft); color: var(--stage-match); }
+      .stage-meet .crm-col-count { background: var(--stage-meet-soft); color: var(--stage-meet); }
+      .stage-deal .crm-col-count { background: var(--stage-deal-soft); color: var(--stage-deal); }
+
+      .crm-col-add {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-ink-4);
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      .crm-col-add:hover { background: rgba(122,33,53,0.06); color: var(--dt-ink-2); }
+
+      .crm-cards {
+        flex: 1;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      .crm-cards::-webkit-scrollbar { width: 4px; }
+      .crm-cards::-webkit-scrollbar-track { background: transparent; }
+      .crm-cards::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.08); border-radius: 2px; }
+
+      /* --- CRM Member Card --- */
+      .crm-card {
+        background: #FFFFFF;
+        border-radius: var(--dt-radius-md);
+        box-shadow: var(--dt-shadow-sm);
+        padding: 12px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        position: relative;
+        border-left: 3px solid transparent;
+      }
+      .crm-card:hover {
+        box-shadow: var(--dt-shadow-md);
+        transform: translateY(-2px);
+      }
+      .crm-card.selected {
+        box-shadow: 0 0 0 2px var(--dt-gold), var(--dt-shadow-md);
+      }
+      .stage-new .crm-card { border-left-color: var(--stage-new); }
+      .stage-contact .crm-card { border-left-color: var(--stage-contact); }
+      .stage-analysis .crm-card { border-left-color: var(--stage-analysis); }
+      .stage-match .crm-card { border-left-color: var(--stage-match); }
+      .stage-meet .crm-card { border-left-color: var(--stage-meet); }
+      .stage-deal .crm-card { border-left-color: var(--stage-deal); }
+
+      .crm-card-top {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .crm-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .crm-avatar.male {
+        background: linear-gradient(135deg, #8A9BB0 0%, #5A7A9A 100%);
+        box-shadow: 0 2px 6px rgba(90,122,154,0.2);
+      }
+      .crm-avatar.female {
+        background: linear-gradient(135deg, #E8A0B0 0%, #BE8298 100%);
+        box-shadow: 0 2px 6px rgba(168,102,125,0.2);
+      }
+      .crm-avatar.vip-male {
+        background: linear-gradient(135deg, #C9A96E 0%, #A88A50 100%);
+        box-shadow: 0 2px 6px rgba(201,169,110,0.25);
+      }
+      .crm-avatar.vip-female {
+        background: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 100%);
+        box-shadow: 0 2px 6px rgba(201,169,110,0.25);
+      }
+      .crm-avatar.svip {
+        background: linear-gradient(135deg, #7A2135 0%, #C9A96E 100%);
+        box-shadow: 0 2px 8px rgba(122,33,53,0.2);
+      }
+      .crm-card-info { flex: 1; min-width: 0; }
+      .crm-card-name-row {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 2px;
+      }
+      .crm-card-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .crm-card-age {
+        font-size: 11px;
+        color: var(--dt-ink-3);
+        font-weight: 500;
+      }
+      .gender-icon {
+        width: 14px;
+        height: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gender-icon.male-icon { color: var(--dt-info); }
+      .gender-icon.female-icon { color: #BE8298; }
+      .crm-card-badges {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .level-badge {
+        font-size: 9px;
+        font-weight: 700;
+        padding: 1px 6px;
+        border-radius: 4px;
+        letter-spacing: 0.02em;
+      }
+      .level-badge.normal { background: var(--dt-muted); color: var(--dt-ink-3); }
+      .level-badge.vip { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
+      .level-badge.svip { background: var(--dt-primary-soft); color: var(--dt-primary); }
+
+      .crm-card-meta {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        color: var(--dt-ink-4);
+        margin-bottom: 8px;
+      }
+      .crm-card-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+      .crm-card-stage-dur {
+        font-size: 10px;
+        color: var(--dt-ink-4);
+      }
+      .crm-card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+      }
+      .crm-card-followup {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 10px;
+        color: var(--dt-ink-3);
+      }
+      .freshness-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .freshness-dot.fresh { background: var(--dt-success); }
+      .freshness-dot.warning { background: var(--dt-warning); }
+      .freshness-dot.overdue { background: var(--dt-error); }
+
+      .next-action-pill {
+        font-size: 10px;
+        font-weight: 500;
+        padding: 2px 7px;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+      .next-action-pill.call { background: var(--dt-info-soft); color: var(--dt-info); }
+      .next-action-pill.meet { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
+      .next-action-pill.send { background: var(--dt-primary-soft); color: var(--dt-primary); }
+      .next-action-pill.match { background: var(--dt-success-soft); color: var(--dt-success); }
+
+      .crm-card-priority {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: var(--dt-gold);
+      }
+      .crm-card-drag {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        color: var(--dt-ink-4);
+        opacity: 0.4;
+      }
+
+      /* Couple cards for 约见安排 */
+      .couple-card { padding: 12px; }
+      .couple-avatars {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        margin-bottom: 8px;
+        position: relative;
+      }
+      .couple-av {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        border: 2px solid #fff;
+      }
+      .couple-av.male { background: linear-gradient(135deg, #8A9BB0, #5A7A9A); }
+      .couple-av.female { background: linear-gradient(135deg, #E8A0B0, #BE8298); margin-left: -8px; }
+      .couple-heart {
+        width: 22px;
+        height: 22px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-error);
+        margin: 0 -6px;
+        z-index: 2;
+        box-shadow: 0 1px 4px rgba(122,33,53,0.1);
+        border: 2px solid #fff;
+      }
+      .couple-names {
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--dt-ink-1);
+        margin-bottom: 6px;
+      }
+      .couple-pill {
+        display: block;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 5px;
+      }
+      .couple-pill.today { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
+      .couple-pill.upcoming { background: var(--dt-primary-soft); color: var(--dt-primary); }
+      .couple-pill.waiting { background: var(--dt-info-soft); color: var(--dt-info); }
+
+      /* Deal compact cards */
+      .deal-card {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+      }
+      .deal-couple-avs {
+        display: flex;
+        align-items: center;
+      }
+      .deal-av {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        border: 2px solid #fff;
+      }
+      .deal-av.male { background: linear-gradient(135deg, #8A9BB0, #5A7A9A); }
+      .deal-av.female { background: linear-gradient(135deg, #E8A0B0, #BE8298); margin-left: -6px; }
+      .deal-info { flex: 1; min-width: 0; }
+      .deal-names { font-size: 11px; font-weight: 600; color: var(--dt-ink-1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .deal-date { font-size: 10px; color: var(--dt-ink-4); }
+      .deal-check {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--dt-gold-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        flex-shrink: 0;
+      }
+
+      /* --- Right Sidebar --- */
+      .crm-sidebar {
+        width: 320px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        overflow-y: auto;
+        padding-bottom: 4px;
+      }
+      .crm-sidebar::-webkit-scrollbar { width: 4px; }
+      .crm-sidebar::-webkit-scrollbar-track { background: transparent; }
+      .crm-sidebar::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.10); border-radius: 2px; }
+
+      .sidebar-panel {
+        background: var(--dt-glass-strong);
+        backdrop-filter: var(--dt-glass-blur-strong);
+        -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+        border: 1px solid var(--dt-glass-border);
+        box-shadow: var(--dt-shadow-md);
+        border-radius: var(--dt-radius-lg);
+        padding: 18px;
+      }
+      .panel-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .panel-title-bar {
+        width: 3px;
+        height: 12px;
+        background: var(--dt-gold);
+        border-radius: 2px;
+      }
+
+      /* Member mini-profile */
+      .member-profile {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        margin-bottom: 14px;
+      }
+      .profile-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #E8A0B0 0%, #BE8298 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(168,102,125,0.2);
+        border: 3px solid rgba(255,255,255,0.8);
+      }
+      .profile-info { flex: 1; min-width: 0; }
+      .profile-name-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 4px;
+      }
+      .profile-name {
+        font-size: 17px;
+        font-weight: 800;
+        color: var(--dt-ink-1);
+        letter-spacing: -0.01em;
+      }
+      .profile-age {
+        font-size: 13px;
+        color: var(--dt-ink-3);
+        font-weight: 500;
+      }
+      .profile-contact {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        color: var(--dt-ink-3);
+        margin-top: 4px;
+      }
+      .profile-matchmaker {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 12px;
+        background: var(--dt-muted);
+        border-radius: var(--dt-radius-md);
+        margin-bottom: 14px;
+      }
+      .mm-avatar-small {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #D9BF8A 0%, #A88A50 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .mm-info { flex: 1; }
+      .mm-label { font-size: 10px; color: var(--dt-ink-4); }
+      .mm-name { font-size: 12px; font-weight: 600; color: var(--dt-ink-1); }
+
+      /* Stage progress */
+      .stage-progress { margin-bottom: 4px; }
+      .stage-progress-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        margin-bottom: 6px;
+      }
+      .stage-progress-label .label { color: var(--dt-ink-3); font-weight: 500; }
+      .stage-progress-label .value { color: var(--dt-gold-dark); font-weight: 700; }
+      .stage-bar {
+        display: flex;
+        gap: 3px;
+        height: 6px;
+      }
+      .stage-seg {
+        flex: 1;
+        border-radius: 3px;
+        background: var(--dt-border);
+        transition: all 0.3s ease;
+      }
+      .stage-seg.done-new { background: var(--stage-new); }
+      .stage-seg.done-contact { background: var(--stage-contact); }
+      .stage-seg.done-analysis { background: var(--stage-analysis); }
+      .stage-seg.current { background: var(--dt-gold); box-shadow: 0 0 8px var(--dt-gold-glow); }
+      .stage-labels {
+        display: flex;
+        gap: 3px;
+        margin-top: 5px;
+      }
+      .stage-lbl {
+        flex: 1;
+        text-align: center;
+        font-size: 8px;
+        color: var(--dt-ink-4);
+      }
+      .stage-lbl.done { color: var(--dt-ink-2); }
+      .stage-lbl.current { color: var(--dt-gold-dark); font-weight: 700; }
+
+      /* Next follow-up reminder */
+      .next-reminder {
+        padding: 12px 14px;
+        background: var(--dt-gold-soft);
+        border: 1px solid rgba(201,169,110,0.2);
+        border-radius: var(--dt-radius-md);
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .reminder-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--dt-gold-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .reminder-content { flex: 1; }
+      .reminder-time {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--dt-gold-dark);
+        margin-bottom: 2px;
+      }
+      .reminder-note {
+        font-size: 11px;
+        color: var(--dt-ink-3);
+        line-height: 1.4;
+      }
+
+      /* Timeline */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .timeline-item {
+        display: flex;
+        gap: 10px;
+        position: relative;
+        padding-bottom: 14px;
+      }
+      .timeline-item:last-child { padding-bottom: 0; }
+      .timeline-item:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 16px;
+        bottom: 0;
+        width: 1.5px;
+        background: var(--dt-border);
+      }
+      .tl-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fff;
+        border: 2.5px solid var(--dt-border);
+        flex-shrink: 0;
+        margin-top: 2px;
+        z-index: 1;
+      }
+      .tl-dot.gold { border-color: var(--dt-gold); background: var(--dt-gold-soft); }
+      .tl-dot.burgundy { border-color: var(--dt-primary); background: var(--dt-primary-soft); }
+      .tl-content { flex: 1; }
+      .tl-time {
+        font-size: 10px;
+        color: var(--dt-ink-4);
+        margin-bottom: 2px;
+        font-weight: 500;
+      }
+      .tl-text {
+        font-size: 12px;
+        color: var(--dt-ink-2);
+        line-height: 1.4;
+      }
+      .tl-by {
+        font-size: 10px;
+        color: var(--dt-ink-4);
+        margin-top: 2px;
+      }
+
+      /* Quick actions */
+      .quick-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .qa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        height: 36px;
+        border-radius: var(--dt-radius-md);
+        font-size: 12px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+      .qa-btn.gold {
+        background: var(--dt-gold-gradient);
+        color: #fff;
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .qa-btn.gold:hover { box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md); transform: translateY(-1px); }
+      .qa-btn.burgundy-outline {
+        background: #fff;
+        color: var(--dt-primary);
+        border: 1px solid var(--dt-primary);
+      }
+      .qa-btn.burgundy-outline:hover { background: var(--dt-primary-soft); }
+      .qa-btn.ghost {
+        background: rgba(255,255,255,0.6);
+        color: var(--dt-ink-2);
+        border: 1px solid var(--dt-border);
+      }
+      .qa-btn.ghost:hover { background: #fff; color: var(--dt-primary); border-color: var(--dt-primary-soft-2); }
+
+      /* Notes textarea */
+      .notes-area {
+        width: 100%;
+        height: 80px;
+        padding: 10px 12px;
+        border-radius: var(--dt-radius-md);
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--dt-input-border);
+        font-size: 12px;
+        color: var(--dt-ink-1);
+        resize: none;
+        line-height: 1.5;
+        transition: all 0.2s ease;
+      }
+      .notes-area:focus {
+        outline: none;
+        border-color: var(--dt-gold);
+        box-shadow: 0 0 0 3px rgba(201,169,110,0.10);
+        background: #fff;
+      }
+      .notes-area::placeholder { color: var(--dt-ink-4); }
+
+      /* --- Conversion Funnel --- */
+      .funnel-bar {
+        background: var(--dt-glass);
+        backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        box-shadow: var(--dt-shadow-sm);
+        padding: 14px 20px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .funnel-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--dt-ink-2);
+        white-space: nowrap;
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .funnel-segments {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .funnel-seg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        position: relative;
+      }
+      .funnel-seg-bar {
+        height: 28px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        min-width: 0;
+        padding: 0 8px;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+      }
+      .funnel-seg-bar:hover { filter: brightness(1.1); transform: scaleY(1.08); }
+      .funnel-arrow {
+        color: var(--dt-ink-4);
+        margin: 0 4px;
+        flex-shrink: 0;
+        margin-top: -14px;
+      }
+      .funnel-pct {
+        font-size: 10px;
+        color: var(--dt-ink-3);
+        font-weight: 600;
+      }
+      .funnel-seg-name {
+        font-size: 10px;
+        color: var(--dt-ink-4);
+        font-weight: 500;
+      }
+      .funnel-overall {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 16px;
+        border-left: 1px solid var(--dt-border);
+      }
+      .funnel-overall-value {
+        font-size: 22px;
+        font-weight: 800;
+        background: var(--dt-gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1;
+      }
+      .funnel-overall-label {
+        font-size: 10px;
+        color: var(--dt-ink-3);
+        margin-top: 2px;
+      }
+
+      /* Utility */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* --- Missing layout fixes --- */
+      #content-scroll {
+        display: flex;
+        flex-direction: column;
+      }
+      .work-area {
+        flex: 1;
+        display: flex;
+        gap: 16px;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .crm-kanban {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 0;
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        align-items: flex-start;
+        padding-bottom: 8px;
+      }
+      .crm-column {
+        flex-shrink: 0;
+        width: 210px;
+        display: flex;
+        flex-direction: column;
+        background: rgba(255,255,255,0.35);
+        backdrop-filter: blur(12px);
+        border-radius: var(--dt-radius-lg);
+        border: 1px solid rgba(255,255,255,0.5);
+        overflow: hidden;
+      }
+      .crm-cards {
+        flex: 1 1 auto;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(100vh - 350px);
+      }
+      .crm-sidebar {
+        width: 320px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        overflow-y: auto;
+        max-height: calc(100vh - 350px);
+        padding-bottom: 4px;
+      }
+
+      /* --- Avatar size variants --- */
+      .crm-avatar.small { width: 28px; height: 28px; font-size: 11px; }
+      .crm-avatar.xs { width: 22px; height: 22px; font-size: 9px; }
+      .crm-avatar.large { width: 52px; height: 52px; font-size: 18px; border: 3px solid rgba(255,255,255,.8); box-shadow: 0 4px 12px rgba(122,33,53,.15); }
+
+      /* --- Sidebar styles for actual HTML classes --- */
+      .sidebar-card {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        height: 100%;
+      }
+      .sidebar-section {
+        background: var(--dt-glass-strong);
+        backdrop-filter: var(--dt-glass-blur-strong);
+        -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+        border: 1px solid var(--dt-glass-border);
+        box-shadow: var(--dt-shadow-md);
+        border-radius: var(--dt-radius-lg);
+        padding: 16px 18px;
+        flex-shrink: 0;
+      }
+      .sidebar-section.next-reminder {
+        background: linear-gradient(135deg, rgba(201,169,110,.12), rgba(122,33,53,.08));
+        border-color: rgba(201,169,110,.3);
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .sidebar-member {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      .sidebar-member-info { flex: 1; min-width: 0; }
+      .sidebar-member-name {
+        font-size: 17px;
+        font-weight: 800;
+        color: var(--dt-ink-1);
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .age-sub {
+        font-size: 13px;
+        color: var(--dt-ink-3);
+        font-weight: 500;
+      }
+      .sidebar-member-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 6px;
+        flex-wrap: wrap;
+      }
+      .contact-phone {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 11px;
+        color: var(--dt-ink-3);
+      }
+      .sidebar-matchmaker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        padding: 8px 12px;
+        background: var(--dt-muted);
+        border-radius: var(--dt-radius-md);
+        font-size: 12px;
+        color: var(--dt-ink-2);
+      }
+      .sidebar-matchmaker .label {
+        font-size: 10px;
+        color: var(--dt-ink-4);
+        margin-right: 2px;
+      }
+      .mm-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .mm-avatar {
+        background: linear-gradient(135deg, #D9BF8A 0%, #A88A50 100%) !important;
+        color: #fff !important;
+        box-shadow: 0 2px 6px rgba(201,169,110,.2);
+      }
+
+      /* Sidebar progress */
+      .sidebar-progress { margin-top: 14px; }
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        margin-bottom: 8px;
+        color: var(--dt-ink-2);
+        font-weight: 500;
+      }
+      .progress-pct { color: var(--dt-gold-dark); font-weight: 700; }
+      .progress-track {
+        position: relative;
+        height: 6px;
+        background: var(--dt-border);
+        border-radius: 3px;
+        margin-bottom: 6px;
+      }
+      .progress-fill {
+        position: absolute;
+        top: 0; left: 0;
+        height: 100%;
+        background: linear-gradient(90deg, var(--dt-gold-light), var(--dt-gold));
+        border-radius: 3px;
+        box-shadow: 0 0 8px rgba(201,169,110,.4);
+        transition: width 1.2s cubic-bezier(.2,.8,.2,1);
+      }
+      .progress-milestone {
+        position: absolute;
+        top: 50%;
+        width: 8px; height: 8px;
+        background: var(--dt-bg-base);
+        border: 2px solid var(--dt-border);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .progress-milestone.active {
+        border-color: var(--dt-gold);
+        background: var(--dt-gold);
+        box-shadow: 0 0 8px rgba(201,169,110,.6);
+      }
+      .progress-stages {
+        display: flex;
+        justify-content: space-between;
+        font-size: 9px;
+        color: var(--dt-ink-4);
+      }
+      .progress-stages span.active { color: var(--dt-gold-dark); font-weight: 700; }
+
+      /* Reminder */
+      .reminder-icon {
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        background: var(--dt-gold-soft);
+        color: var(--dt-gold-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .reminder-content { flex: 1; }
+      .reminder-time {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        margin-bottom: 3px;
+      }
+      .reminder-note {
+        font-size: 11px;
+        color: var(--dt-ink-3);
+        line-height: 1.5;
+      }
+
+      /* Section title */
+      .section-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--dt-ink-2);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      /* Follow timeline */
+      .follow-timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+        padding-left: 4px;
+      }
+      .tl-item {
+        display: flex;
+        gap: 10px;
+        padding: 8px 0;
+        position: relative;
+      }
+      .tl-item:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: 5px;
+        top: 24px;
+        bottom: -8px;
+        width: 1px;
+        background: var(--dt-border);
+      }
+      .tl-dot {
+        width: 11px; height: 11px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 3px;
+        border: 2px solid;
+        background: #fff;
+        z-index: 1;
+      }
+      .tl-dot.gold { border-color: var(--dt-gold); background: var(--dt-gold); box-shadow: 0 0 6px rgba(201,169,110,.4); }
+      .tl-dot.burgundy { border-color: var(--dt-primary); background: var(--dt-primary); }
+      .tl-dot.gray { border-color: var(--dt-border); background: var(--dt-ink-4); }
+      .tl-body { flex: 1; min-width: 0; }
+      .tl-text { font-size: 12px; color: var(--dt-ink-2); line-height: 1.5; }
+      .tl-meta { font-size: 10px; color: var(--dt-ink-4); margin-top: 3px; }
+      .tl-meta .actor { color: var(--dt-ink-3); font-weight: 500; }
+      .tl-meta .target { color: var(--dt-ink-2); }
+      .tl-meta .reason { color: var(--dt-error); }
+
+      /* Quick actions */
+      .quick-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .qa-btn {
+        height: 36px;
+        border-radius: var(--dt-radius-md);
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border: 1px solid transparent;
+        transition: all .2s;
+        font-family: inherit;
+      }
+      .qa-btn.dt-btn-gold {
+        background: var(--dt-gold-gradient);
+        color: #fff;
+        box-shadow: var(--dt-shadow-sm), var(--dt-shadow-gold-glow);
+      }
+      .qa-btn.outline {
+        background: transparent;
+        border-color: var(--dt-gold);
+        color: var(--dt-gold-dark);
+      }
+      .qa-btn.outline:hover { background: var(--dt-gold-soft); }
+      .qa-row { display: flex; gap: 8px; }
+      .qa-btn.ghost {
+        flex: 1;
+        background: transparent;
+        border-color: var(--dt-border);
+        color: var(--dt-ink-2);
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .qa-btn.ghost:hover { border-color: var(--dt-gold); color: var(--dt-primary); background: var(--dt-primary-soft); }
+
+      /* Follow notes textarea */
+      .follow-notes {
+        width: 100%;
+        min-height: 80px;
+        padding: 10px 12px;
+        border: 1px solid var(--dt-border);
+        border-radius: var(--dt-radius-md);
+        background: rgba(255,255,255,.6);
+        font-size: 12px;
+        color: var(--dt-ink-2);
+        font-family: inherit;
+        resize: vertical;
+        line-height: 1.5;
+      }
+      .follow-notes::placeholder { color: var(--dt-ink-4); }
+      .follow-notes:focus { outline: none; border-color: var(--dt-gold); box-shadow: 0 0 0 4px rgba(201,169,110,.15); }
+
+      /* --- Funnel fixes for actual HTML classes --- */
+      .fseg {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        flex: 1;
+        padding: 8px 4px;
+        border-radius: 6px;
+        transition: all .3s ease;
+        cursor: default;
+        background: linear-gradient(180deg, rgba(201,169,110,.1), rgba(122,33,53,.05));
+        border: 1px solid rgba(201,169,110,.15);
+        min-width: 0;
+      }
+      .fseg.seg-new { background: linear-gradient(180deg, rgba(90,140,200,.15), rgba(90,140,200,.05)); border-color: rgba(90,140,200,.2); }
+      .fseg.seg-contact { background: linear-gradient(180deg, rgba(201,169,110,.15), rgba(201,169,110,.05)); border-color: rgba(201,169,110,.2); }
+      .fseg.seg-analysis { background: linear-gradient(180deg, rgba(122,33,53,.15), rgba(122,33,53,.05)); border-color: rgba(122,33,53,.2); }
+      .fseg.seg-match { background: linear-gradient(180deg, rgba(60,160,90,.15), rgba(60,160,90,.05)); border-color: rgba(60,160,90,.2); }
+      .fseg.seg-meet { background: linear-gradient(180deg, rgba(240,160,60,.15), rgba(240,160,60,.05)); border-color: rgba(240,160,60,.2); }
+      .fseg.seg-deal { background: linear-gradient(180deg, rgba(201,169,110,.25), rgba(122,33,53,.15)); border-color: rgba(201,169,110,.3); }
+      .fseg-name {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--dt-ink-2);
+        white-space: nowrap;
+      }
+      .fseg-num {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--dt-ink-1);
+        font-family: 'DIN Alternate', 'Inter', sans-serif;
+      }
+      .fseg-arrow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        flex-shrink: 0;
+        padding: 0 2px;
+        color: var(--dt-ink-4);
+      }
+      .fseg-rate {
+        font-size: 9px;
+        font-weight: 600;
+        color: var(--dt-gold-dark);
+      }
+      .funnel-cvr {
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 16px;
+        border-left: 1px solid var(--dt-border);
+      }
+      .funnel-cvr span:first-child {
+        font-size: 10px;
+        color: var(--dt-ink-3);
+      }
+      .cvr-num {
+        font-size: 24px;
+        font-weight: 800;
+        background: var(--dt-gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.1;
+      }
+
+      /* Couple card & deal card additions */
+      .couple-card {
+        text-align: center;
+        padding: 14px 12px !important;
+      }
+      .deal-card {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        background: linear-gradient(135deg, rgba(60,160,90,.04), rgba(201,169,110,.08)) !important;
+        border-left-color: var(--dt-success) !important;
+      }
+      .deal-check {
+        width: 20px; height: 20px;
+        border-radius: 50%;
+        background: var(--dt-success);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .deal-name {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        flex: 1;
+      }
+      .deal-date {
+        font-size: 10px;
+        color: var(--dt-ink-4);
+        flex-shrink: 0;
+      }
+      .couple-avatars.small { gap: 0; }
+
+      /* Filter bar fixes */
+      .filter-bar {
+        flex-shrink: 0;
+      }
+
+      /* KPI row not shrinking */
+      .kpi-row {
+        min-height: 0;
+      }
+      .kpi-card {
+        min-height: 90px;
+      }
+
+      /* ===== Interactive additions ===== */
+      .crm-card { cursor: pointer; transition: all .28s cubic-bezier(.2,.8,.2,1); }
+      .crm-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(122,33,53,.12); }
+      .crm-card.selected { border-color: var(--dt-gold) !important; box-shadow: 0 0 0 3px rgba(201,169,110,.2), 0 8px 20px rgba(122,33,53,.1); transform: translateY(-2px); }
+      .crm-card.dragging { opacity: .5; transform: rotate(2deg) scale(.98); }
+      .crm-card.drag-over { border-color: var(--dt-primary) !important; border-style: dashed; }
+      .qa-btn, .dt-btn-gold, .crm-col-add, .next-action-pill { cursor: pointer; transition: all .25s ease; }
+      .qa-btn:hover { transform: translateY(-1px); }
+      .dt-btn-gold:hover { box-shadow: 0 8px 22px rgba(201,169,110,.45); transform: translateY(-1px); }
+      .crm-col-add:hover { color: var(--dt-primary); transform: scale(1.1); }
+      .kanban-column { transition: background .2s ease; }
+      .kanban-column.column-hover { background: rgba(201,169,110,.06); border-radius: 12px; }
+      .progress-fill { transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+      .fseg { transition: all .3s ease; cursor: default; }
+      .fseg:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(122,33,53,.15); }
+      .cvr-num { display: inline-block; }
+      .count-num { display: inline-block; }
+
+      /* Toast */
+      .crm-toast { position:fixed; top:80px; left:50%; transform:translateX(-50%) translateY(-80px); background:linear-gradient(135deg,#7A2135,#9A3349); color:#fff; padding:12px 26px; border-radius:12px; font-size:14px; z-index:9999; box-shadow:0 10px 40px rgba(122,33,53,.35); border:1px solid rgba(201,169,110,.4); opacity:0; transition:all .4s cubic-bezier(.2,.8,.2,1); display:flex; align-items:center; gap:8px; pointer-events:none; }
+      .crm-toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+      .crm-toast svg { flex-shrink:0; }
+
+      /* Modal */
+      .crm-modal-overlay { position:fixed; inset:0; background:rgba(30,10,18,.5); backdrop-filter:blur(6px); z-index:9998; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+      .crm-modal-overlay.show { opacity:1; pointer-events:auto; }
+      .crm-modal { background:rgba(255,252,247,.98); width:520px; max-width:92vw; border-radius:20px; padding:32px; border:1px solid rgba(201,169,110,.4); box-shadow:0 30px 80px rgba(30,10,18,.3); transform:translateY(30px) scale(.96); transition:transform .35s cubic-bezier(.2,.8,.2,1); }
+      .crm-modal-overlay.show .crm-modal { transform:translateY(0) scale(1); }
+      .crm-modal h3 { margin:0 0 6px; font-size:20px; color:var(--dt-primary); font-weight:600; }
+      .crm-modal .modal-sub { color:var(--dt-ink-3); font-size:13px; margin-bottom:20px; }
+      .crm-modal label { display:block; font-size:13px; color:var(--dt-ink-2); margin:14px 0 6px; font-weight:500; }
+      .crm-modal input, .crm-modal textarea, .crm-modal select { width:100%; padding:10px 14px; border:1px solid rgba(122,33,53,.15); border-radius:10px; background:#fff; font-size:14px; color:var(--dt-ink-1); font-family:inherit; box-sizing:border-box; transition:all .2s; }
+      .crm-modal input:focus, .crm-modal textarea:focus, .crm-modal select:focus { outline:none; border-color:var(--dt-primary); box-shadow:0 0 0 4px rgba(122,33,53,.1); }
+      .crm-modal textarea { min-height:90px; resize:vertical; }
+      .crm-modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:24px; }
+      .crm-modal-actions button { padding:10px 22px; border-radius:10px; font-size:14px; cursor:pointer; border:none; font-family:inherit; font-weight:500; transition:all .2s; }
+      .crm-modal-actions .btn-cancel { background:rgba(122,33,53,.06); color:var(--dt-ink-2); }
+      .crm-modal-actions .btn-cancel:hover { background:rgba(122,33,53,.12); }
+      .crm-modal-actions .btn-confirm { background:var(--dt-gold-gradient); color:#fff; box-shadow:0 4px 14px rgba(201,169,110,.35); }
+      .crm-modal-actions .btn-confirm:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(201,169,110,.45); }
+
+      /* Freshness dot pulse */
+      .freshness-dot.fresh { animation: dot-pulse-green 2s infinite; }
+      @keyframes dot-pulse-green { 0%,100%{box-shadow:0 0 0 0 rgba(60,160,90,.5)} 50%{box-shadow:0 0 0 5px rgba(60,160,90,0)} }
+      .freshness-dot.danger { animation: dot-pulse-red 1.5s infinite; }
+      @keyframes dot-pulse-red { 0%,100%{box-shadow:0 0 0 0 rgba(200,60,70,.5)} 50%{box-shadow:0 0 0 5px rgba(200,60,70,0)} }
+
+      /* KPI number glow */
+      .kpi-num { transition: text-shadow .3s ease; }
+      .kpi-card:hover .kpi-num { text-shadow: 0 0 18px rgba(201,169,110,.5); }
+      .kpi-card { cursor:pointer; transition: all .3s ease; }
+      .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(122,33,53,.12); }
+    </style>
+
+    <div class="crm-toast" id="crm-toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="crm-toast-text"></span>
+    </div>
+
+    <div class="crm-modal-overlay" id="follow-modal">
+      <div class="crm-modal">
+        <h3>记录跟进</h3>
+        <div class="modal-sub">为 <span id="modal-member" style="color:var(--dt-primary);font-weight:600">陈思雨</span> 添加一条跟进记录</div>
+        <label>跟进方式</label>
+        <select id="follow-type">
+          <option>电话回访</option>
+          <option>微信沟通</option>
+          <option>线下面谈</option>
+          <option>约见安排</option>
+          <option>资料发送</option>
+        </select>
+        <label>跟进内容</label>
+        <textarea id="follow-content" placeholder="记录本次沟通的关键内容、会员反馈、下一步计划..."></textarea>
+        <label>下次跟进时间</label>
+        <input type="text" value="2026-08-09 10:00" placeholder="选择下次跟进时间">
+        <div class="crm-modal-actions">
+          <button class="btn-cancel" id="modal-cancel">取消</button>
+          <button class="btn-confirm" id="modal-confirm">保存记录</button>
+        </div>
+      </div>
+    </div>
+
+<script>
+(function(){
+  // ============ Toast ============
+  const toastEl = document.getElementById('crm-toast');
+  const toastText = document.getElementById('crm-toast-text');
+  let toastTimer;
+  function showToast(msg){
+    toastText.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
+  }
+
+  // ============ Card click -> highlight & sidebar update (simulated) ============
+  const cards = document.querySelectorAll('.crm-card:not(.couple-card):not(.deal-card)');
+  const sidebarName = document.querySelector('.sidebar-member-name');
+  cards.forEach(function(card){
+    card.addEventListener('click', function(e){
+      if (e.target.closest('.qa-btn') || e.target.closest('.crm-card-drag') || e.target.closest('button')) return;
+      cards.forEach(function(c){ c.classList.remove('selected'); });
+      card.classList.add('selected');
+      const nameEl = card.querySelector('.crm-card-name');
+      if (nameEl && sidebarName) {
+        const name = nameEl.textContent.trim();
+        sidebarName.innerHTML = name + ' <span class="age-sub">26</span>';
+        document.getElementById('modal-member').textContent = name;
+      }
+      // Pulse the sidebar
+      const sidebar = document.querySelector('.crm-sidebar');
+      if (sidebar) {
+        sidebar.style.transition = 'transform .4s ease';
+        sidebar.style.transform = 'translateX(-4px)';
+        setTimeout(function(){ sidebar.style.transform = 'translateX(0)'; }, 400);
+      }
+    });
+  });
+
+  // ============ Drag visual hint (decorative, no real DnD) ============
+  let draggedCard = null;
+  cards.forEach(function(card){
+    card.setAttribute('draggable','true');
+    card.addEventListener('dragstart', function(){
+      draggedCard = card;
+      setTimeout(function(){ card.classList.add('dragging'); }, 10);
+    });
+    card.addEventListener('dragend', function(){
+      card.classList.remove('dragging');
+      document.querySelectorAll('.kanban-column').forEach(function(col){ col.classList.remove('column-hover'); });
+      document.querySelectorAll('.crm-card').forEach(function(c){ c.classList.remove('drag-over'); });
+      draggedCard = null;
+    });
+  });
+  document.querySelectorAll('.kanban-column').forEach(function(col){
+    col.addEventListener('dragover', function(e){ e.preventDefault(); col.classList.add('column-hover'); });
+    col.addEventListener('dragleave', function(){ col.classList.remove('column-hover'); });
+    col.addEventListener('drop', function(e){
+      e.preventDefault();
+      col.classList.remove('column-hover');
+      if (draggedCard) {
+        const cardsList = col.querySelector('.crm-cards');
+        if (cardsList && !cardsList.contains(draggedCard)) {
+          cardsList.appendChild(draggedCard);
+          const stageName = col.querySelector('.crm-col-name');
+          showToast('已将会员移至「' + (stageName?stageName.textContent:'') + '」阶段');
+        }
+      }
+    });
+  });
+
+  // ============ Quick action buttons ============
+  document.querySelectorAll('.qa-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const text = btn.textContent.trim();
+      if (text.indexOf('记录跟进') >= 0) {
+        document.getElementById('follow-modal').classList.add('show');
+      } else if (text.indexOf('安排约见') >= 0) {
+        showToast('已打开约见安排面板');
+      } else if (text.indexOf('发送资料') >= 0) {
+        showToast('资料已发送给会员');
+      } else if (text.indexOf('转派他人') >= 0) {
+        showToast('已打开转派红娘对话框');
+      }
+    });
+  });
+
+  // Modal close
+  document.getElementById('modal-cancel').addEventListener('click', function(){
+    document.getElementById('follow-modal').classList.remove('show');
+  });
+  document.getElementById('modal-confirm').addEventListener('click', function(){
+    const content = document.getElementById('follow-content').value;
+    document.getElementById('follow-modal').classList.remove('show');
+    if (content.trim()) {
+      showToast('跟进记录已保存');
+      document.getElementById('follow-content').value = '';
+      // Append a new timeline item
+      const tl = document.querySelector('.follow-timeline');
+      if (tl) {
+        const now = new Date();
+        const ts = ('0'+(now.getMonth()+1)).slice(-2) + '-' + ('0'+now.getDate()).slice(-2) + ' ' + ('0'+now.getHours()).slice(-2) + ':' + ('0'+now.getMinutes()).slice(-2);
+        const item = document.createElement('div');
+        item.className = 'tl-item';
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-8px)';
+        item.style.transition = 'all .4s ease';
+        item.innerHTML = '<div class="tl-dot gold"></div><div class="tl-body"><div class="tl-text">' + escapeHtml(content.trim().substring(0,40)) + '</div><div class="tl-meta">我 · ' + ts + '</div></div>';
+        tl.insertBefore(item, tl.firstChild);
+        setTimeout(function(){ item.style.opacity='1'; item.style.transform='translateY(0)'; }, 50);
+      }
+    } else {
+      showToast('请填写跟进内容');
+    }
+  });
+  document.getElementById('follow-modal').addEventListener('click', function(e){
+    if (e.target === this) this.classList.remove('show');
+  });
+
+  function escapeHtml(s){ return s.replace(/[<>&"']/g, function(c){ return {'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  // ============ Column "+" add button ============
+  document.querySelectorAll('.crm-col-add').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const col = btn.closest('.kanban-column');
+      const colName = col ? col.querySelector('.crm-col-name').textContent : '';
+      showToast('在「' + colName + '」阶段添加新会员');
+    });
+  });
+
+  // ============ Couple cards click ============
+  document.querySelectorAll('.couple-card, .deal-card').forEach(function(card){
+    card.addEventListener('click', function(){
+      const name = card.querySelector('.crm-card-name, .deal-name');
+      showToast('查看详情：' + (name?name.textContent:'会员'));
+    });
+  });
+
+  // ============ Textarea auto-resize + focus glow ============
+  const notes = document.querySelector('.follow-notes');
+  if (notes) {
+    notes.addEventListener('focus', function(){ notes.style.borderColor = 'var(--dt-gold)'; notes.style.boxShadow = '0 0 0 4px rgba(201,169,110,.15)'; });
+    notes.addEventListener('blur', function(){ notes.style.borderColor = ''; notes.style.boxShadow = ''; });
+    notes.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' && (e.ctrlKey||e.metaKey)) {
+        e.preventDefault();
+        showToast('跟进笔记已保存');
+      }
+    });
+  }
+
+  // ============ Count-up animation on KPI numbers ============
+  function animateCount(el, target, suffix, duration){
+    suffix = suffix || '';
+    duration = duration || 1200;
+    const start = 0;
+    const startTime = performance.now();
+    const isFloat = String(target).indexOf('.') >= 0;
+    function tick(now){
+      const p = Math.min((now - startTime)/duration, 1);
+      const eased = 1 - Math.pow(1-p, 3);
+      const v = start + (target - start) * eased;
+      el.textContent = (isFloat ? v.toFixed(1) : Math.floor(v).toLocaleString()) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Animate sidebar progress fill
+  const fill = document.querySelector('.progress-fill');
+  if (fill) {
+    const targetW = fill.style.width || '50%';
+    fill.style.width = '0%';
+    setTimeout(function(){ fill.style.width = targetW; }, 300);
+  }
+
+  // ============ Funnel segment hover highlight ============
+  document.querySelectorAll('.fseg').forEach(function(seg){
+    seg.addEventListener('mouseenter', function(){
+      document.querySelectorAll('.fseg').forEach(function(s){ if (s !== seg) s.style.opacity = '.55'; });
+    });
+    seg.addEventListener('mouseleave', function(){
+      document.querySelectorAll('.fseg').forEach(function(s){ s.style.opacity = ''; });
+    });
+  });
+
+  // ============ Filter chip interactive ============
+  document.querySelectorAll('.chip,.kpi-chip,.filter-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      const parent = chip.parentElement;
+      if (parent) parent.querySelectorAll('.chip,.kpi-chip,.filter-chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      showToast('筛选：' + chip.textContent.trim());
+    });
+  });
+
+  // ============ CTA "+ 添加跟进" button ============
+  const addBtn = document.querySelector('#top-bar .dt-btn-gold, #top-bar .gold-btn, .top-bar-cta');
+  if (addBtn) {
+    addBtn.addEventListener('click', function(){ showToast('打开添加跟进对话框'); });
+  }
+
+  // ============ Keyboard shortcut: Ctrl/Cmd+K for search ============
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey||e.metaKey) && e.key === 'k') {
+      e.preventDefault();
+      const searchInput = document.querySelector('.search-input, input[placeholder*="搜索"]');
+      if (searchInput) searchInput.focus();
+    }
+    if (e.key === 'Escape') {
+      document.getElementById('follow-modal').classList.remove('show');
+    }
+  });
+
+  showToast('CRM 客户跟进已加载');
+})();
+</script>
+</body>
+</html>

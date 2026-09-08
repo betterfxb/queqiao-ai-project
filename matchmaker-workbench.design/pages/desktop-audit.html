@@ -1,0 +1,3055 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>审核工作台 - 牵线运营中心</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body>
+<div id="app-shell" class="dt-noise">
+
+    <!-- ============ LEFT ICON NAVIGATION (64px) ============ -->
+    <nav id="left-nav">
+        <div class="nav-logo">牵</div>
+        <div class="nav-items">
+            <a class="nav-item" href="#" title="仪表盘">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="会员">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="红娘">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </a>
+            <a class="nav-item active" href="#" title="牵线">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="活动">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="日程">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="财务">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </a>
+            <a class="nav-item" href="#" title="设置">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </a>
+        </div>
+        <div class="nav-avatar">王</div>
+    </nav>
+
+    <!-- ============ MAIN CONTENT AREA ============ -->
+    <div id="main-area">
+        <!-- Top Bar -->
+        <div id="top-bar">
+            <div class="breadcrumb">
+                <span>运营中心</span>
+                <span class="sep">/</span>
+                <span class="current">审核中心</span>
+            </div>
+            <div class="page-header-title">审核工作台</div>
+            <div class="top-bar-spacer"></div>
+            <div class="top-bar-actions">
+                <button class="icon-btn" title="通知">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="badge-num">12</span>
+                </button>
+                <button class="btn-gold-outline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    批量通过
+                </button>
+                <button class="btn-gold-cta">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    全部审核
+                </button>
+            </div>
+        </div>
+
+        <!-- Scrollable Content -->
+        <div id="content-scroll">
+            <!-- KPI Cards -->
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <div class="kpi-info">
+                        <div class="kpi-label">待审核</div>
+                        <div class="kpi-value">12<span class="unit">条</span></div>
+                        <div class="kpi-trend down" style="color:var(--dt-error);">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                            需及时处理
+                        </div>
+                    </div>
+                    <div class="kpi-icon warning">
+                        <div class="pulse-dot"></div>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-info">
+                        <div class="kpi-label">今日已审</div>
+                        <div class="kpi-value">28<span class="unit">条</span></div>
+                        <div class="kpi-trend up">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            效率良好
+                        </div>
+                    </div>
+                    <div class="kpi-icon success">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-info">
+                        <div class="kpi-label">审核通过率</div>
+                        <div class="kpi-value">89<span class="unit">%</span></div>
+                        <div class="kpi-trend up">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                            +2% 较昨日
+                        </div>
+                    </div>
+                    <div class="kpi-icon gold">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-info">
+                        <div class="kpi-label">平均审核时长</div>
+                        <div class="kpi-value">12<span class="unit">分钟</span></div>
+                        <div class="kpi-trend up">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            -3min 较昨日
+                        </div>
+                    </div>
+                    <div class="kpi-icon burgundy">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter / Status Tabs Bar -->
+            <div class="filter-bar">
+                <div class="tab-item">
+                    全部
+                    <span class="tab-badge">45</span>
+                </div>
+                <div class="tab-item active">
+                    实名认证
+                    <span class="tab-badge">5</span>
+                </div>
+                <div class="tab-item">
+                    资料修改
+                    <span class="tab-badge">3</span>
+                </div>
+                <div class="tab-item">
+                    会员升级
+                    <span class="tab-badge">2</span>
+                </div>
+                <div class="tab-item">
+                    活动报名
+                    <span class="tab-badge">2</span>
+                </div>
+                <div class="filter-divider"></div>
+                <div class="filter-select">
+                    <span>时间范围</span>
+                    <span style="color:var(--dt-ink-2);font-weight:500;">今日</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-select">
+                    <span>红娘</span>
+                    <span style="color:var(--dt-ink-2);font-weight:500;">全部</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-select">
+                    <span>紧急程度</span>
+                    <span style="color:var(--dt-ink-2);font-weight:500;">全部</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+                <div class="filter-search">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--dt-ink-4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" placeholder="搜索申请人..." />
+                </div>
+            </div>
+
+            <!-- Split Layout: Queue + Detail -->
+            <div class="split-layout">
+                <!-- Left: Audit Queue -->
+                <div class="audit-queue">
+                    <!-- Item 1: 刘思涵 实名认证 (selected) -->
+                    <div class="audit-card type-auth selected">
+                        <div class="audit-card-top">
+                            <span class="type-badge auth">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                实名认证
+                            </span>
+                            <span class="audit-time">10分钟前</span>
+                            <div class="urgency-dot urgent">
+                                <span class="dot"></span>
+                                紧急
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar">刘</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    刘思涵
+                                    <span class="gender-tag female">女 24</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2026080124</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm">李</div>
+                                <span>红娘 李雅琴</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            提交身份证实名认证申请
+                            <div class="id-thumb">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg>
+                                已上传证件照片
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2: 马晓东 实名认证 -->
+                    <div class="audit-card type-auth">
+                        <div class="audit-card-top">
+                            <span class="type-badge auth">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                实名认证
+                            </span>
+                            <span class="audit-time">25分钟前</span>
+                            <div class="urgency-dot urgent">
+                                <span class="dot"></span>
+                                紧急
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#8BA8C8,#5A7A9A);">马</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    马晓东
+                                    <span class="gender-tag male">男 29</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2026072856</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#B88A6E,#967050);">王</div>
+                                <span>红娘 王淑芬</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            提交学历认证申请
+                            <div class="id-thumb">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.66 4 3 6 3s6-1.34 6-3v-5"/></svg>
+                                已上传学历证书
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3: 陈思雨 资料修改 -->
+                    <div class="audit-card type-edit">
+                        <div class="audit-card-top">
+                            <span class="type-badge edit">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                资料修改
+                            </span>
+                            <span class="audit-time">1小时前</span>
+                            <div class="urgency-dot normal">
+                                <span class="dot"></span>
+                                普通
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#D4A0B8,#A8667D);">陈</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    陈思雨
+                                    <span class="gender-tag female">女 26</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2026052003</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#C08A9A,#9A6A78);">张</div>
+                                <span>红娘 张红梅</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            申请修改个人职业信息
+                            <div class="field-change">
+                                <span class="field-old">金融分析师</span>
+                                <span class="field-arrow">→</span>
+                                <span class="field-new">高级金融分析师</span>
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4: 张浩然 资料修改 -->
+                    <div class="audit-card type-edit">
+                        <div class="audit-card-top">
+                            <span class="type-badge edit">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                资料修改
+                            </span>
+                            <span class="audit-time">2小时前</span>
+                            <div class="urgency-dot normal">
+                                <span class="dot"></span>
+                                普通
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#8A9AB8,#5A6A8A);">张</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    张浩然
+                                    <span class="gender-tag male">男 35</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2025031578</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#B88A6E,#967050);">王</div>
+                                <span>红娘 王淑芬</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            申请修改年收入信息
+                            <div class="field-change">
+                                <span class="field-old">50-80万</span>
+                                <span class="field-arrow">→</span>
+                                <span class="field-new">80-100万</span>
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: 李明轩 会员升级 -->
+                    <div class="audit-card type-upgrade">
+                        <div class="audit-card-top">
+                            <span class="type-badge upgrade">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                                会员升级
+                            </span>
+                            <span class="audit-time">2小时前</span>
+                            <div class="urgency-dot normal">
+                                <span class="dot"></span>
+                                普通
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#9A8AB8,#6B4A7A);">李</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    李明轩
+                                    <span class="gender-tag male">男 32</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2024082001</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#8A9AA8,#6A7A88);">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </div>
+                                <span>系统自动</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            申请升级SVIP会员
+                            <div class="payment-tag">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                缴费 ¥18,800 已支付
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6: 赵文博 会员升级 -->
+                    <div class="audit-card type-upgrade">
+                        <div class="audit-card-top">
+                            <span class="type-badge upgrade">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                                会员升级
+                            </span>
+                            <span class="audit-time">3小时前</span>
+                            <div class="urgency-dot low">
+                                <span class="dot"></span>
+                                低
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#9A8AB8,#6B4A7A);">赵</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    赵文博
+                                    <span class="gender-tag male">男 38</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2024052033</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#8A9AA8,#6A7A88);">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </div>
+                                <span>系统自动</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            申请升级VIP会员
+                            <div class="payment-tag">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                                缴费 ¥6,800 已支付
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7: 吴雨桐 活动报名 -->
+                    <div class="audit-card type-event">
+                        <div class="audit-card-top">
+                            <span class="type-badge event">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                活动报名
+                            </span>
+                            <span class="audit-time">4小时前</span>
+                            <div class="urgency-dot low">
+                                <span class="dot"></span>
+                                低
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#8AB0C8,#5A8AAA);">吴</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    吴雨桐
+                                    <span class="gender-tag female">女 27</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2025091055</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#8A9AA8,#6A7A88);">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </div>
+                                <span>系统自动</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            报名活动「金秋良缘」高端酒会
+                            <div class="payment-tag">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                ¥388 已支付
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 8: 周子谦 活动报名 -->
+                    <div class="audit-card type-event">
+                        <div class="audit-card-top">
+                            <span class="type-badge event">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                活动报名
+                            </span>
+                            <span class="audit-time">5小时前</span>
+                            <div class="urgency-dot low">
+                                <span class="dot"></span>
+                                低
+                            </div>
+                        </div>
+                        <div class="audit-applicant">
+                            <div class="applicant-avatar" style="background:linear-gradient(135deg,#8AB0C8,#5A8AAA);">周</div>
+                            <div class="applicant-info">
+                                <div class="applicant-name">
+                                    周子谦
+                                    <span class="gender-tag male">男 29</span>
+                                </div>
+                                <div class="applicant-id">ID: MM2026012089</div>
+                            </div>
+                            <div class="matchmaker-info">
+                                <div class="matchmaker-avatar-sm" style="background:linear-gradient(135deg,#8A9AA8,#6A7A88);">
+                                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </div>
+                                <span>系统自动</span>
+                            </div>
+                        </div>
+                        <div class="audit-content">
+                            报名活动「书香茶韵」下午茶交友
+                            <div class="payment-tag pending">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                                ¥188 待支付
+                            </div>
+                        </div>
+                        <div class="audit-actions">
+                            <div class="view-detail">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                                查看详情
+                            </div>
+                            <div class="action-btns">
+                                <button class="btn-reject">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    驳回
+                                </button>
+                                <button class="btn-approve">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Detail Panel -->
+                <div class="audit-detail">
+                    <div class="detail-panel">
+                        <!-- Applicant Header -->
+                        <div class="detail-header">
+                            <div class="detail-avatar">刘</div>
+                            <div class="detail-name-block">
+                                <div class="detail-name">
+                                    刘思涵
+                                    <span class="gender-tag female" style="font-size:12px;">女 24岁</span>
+                                    <span class="vip-badge">
+                                        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                        VIP
+                                    </span>
+                                </div>
+                                <div class="detail-id">ID: MM2026080124 · 注册于2026-08-01</div>
+                                <div class="detail-type-badge-lg type-badge auth" style="margin-top:6px;">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                                    实名认证审核
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submission Info Grid -->
+                        <div>
+                            <div class="detail-section-title">提交信息</div>
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">提交时间</span>
+                                    <span class="info-value">2026-08-08 14:22</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">审核类型</span>
+                                    <span class="info-value">实名认证</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">提交红娘</span>
+                                    <span class="info-value">
+                                        <div class="matchmaker-avatar-sm" style="width:18px;height:18px;font-size:9px;">李</div>
+                                        李雅琴
+                                    </span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">紧急程度</span>
+                                    <span class="info-value"><span class="urgent-tag">紧急</span></span>
+                                </div>
+                                <div class="info-item" style="grid-column:1/-1;">
+                                    <span class="info-label">预计处理</span>
+                                    <span class="info-value" style="color:var(--dt-gold-dark);">15分钟内</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ID Card Mock -->
+                        <div>
+                            <div class="detail-section-title">证件信息</div>
+                            <div class="id-card-mock">
+                                <div class="id-card-emblem">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--dt-gold-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                </div>
+                                <div class="id-card-header">中华人民共和国居民身份证</div>
+                                <div class="id-card-body">
+                                    <div class="id-photo">
+                                        <div class="id-photo-inner">刘</div>
+                                    </div>
+                                    <div class="id-fields">
+                                        <div class="id-field-row">
+                                            <span class="id-field-label">姓 名</span>
+                                            <span class="id-field-value">刘思涵</span>
+                                        </div>
+                                        <div class="id-field-row">
+                                            <span class="id-field-label">性 别</span>
+                                            <span class="id-field-value">女</span>
+                                            <span class="id-field-label" style="margin-left:12px;">民族</span>
+                                            <span class="id-field-value">汉</span>
+                                        </div>
+                                        <div class="id-field-row">
+                                            <span class="id-field-label">出 生</span>
+                                            <span class="id-field-value">1999年3月15日</span>
+                                        </div>
+                                        <div class="id-field-row">
+                                            <span class="id-field-label">住 址</span>
+                                            <span class="id-field-value" style="font-size:10px;">北京市东城区建国门内大街</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="id-number-row">110101199903****</div>
+                            </div>
+                        </div>
+
+                        <!-- Verification Checklist -->
+                        <div>
+                            <div class="detail-section-title">审核要点</div>
+                            <div class="checklist">
+                                <div class="check-item">
+                                    <div class="check-icon done">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <span>照片清晰度达标</span>
+                                </div>
+                                <div class="check-item">
+                                    <div class="check-icon done">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <span>证件信息与已填资料一致</span>
+                                </div>
+                                <div class="check-item">
+                                    <div class="check-icon done">
+                                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <span>年龄与申报信息一致</span>
+                                </div>
+                                <div class="check-item pending">
+                                    <div class="check-icon pending">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                                    </div>
+                                    <span>人脸比对通过 <span style="color:var(--dt-ink-4);font-size:12px;margin-left:4px;">(AI自动核验中)</span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Suggestion Box -->
+                        <div class="ai-box">
+                            <div class="ai-header">
+                                <div class="ai-sparkle">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.912 5.813a2 2 0 001.275 1.275L21 12l-5.813 1.912a2 2 0 00-1.275 1.275L12 21l-1.912-5.813a2 2 0 00-1.275-1.275L3 12l5.813-1.912a2 2 0 001.275-1.275L12 3z"/></svg>
+                                </div>
+                                AI 审核建议
+                            </div>
+                            <div class="ai-text">
+                                证件照片清晰，信息与已填资料一致度 <span style="color:var(--dt-gold-light);font-weight:700;">98%</span>，建议通过。人脸比对相似度 <span style="color:var(--dt-gold-light);font-weight:700;">95%</span>，可自动通过。
+                            </div>
+                            <div class="ai-confidence">
+                                <div class="confidence-label">
+                                    <span>AI 置信度</span>
+                                    <span class="pct">95%</span>
+                                </div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detail Actions -->
+                        <div class="detail-actions">
+                            <button class="btn-detail-reject">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                                驳回申请
+                            </button>
+                            <button class="btn-detail-approve">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                通过审核
+                            </button>
+                        </div>
+                        <div class="action-hint">通过后将自动通知会员并更新认证状态</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Audit Log -->
+            <div class="recent-log">
+                <div class="log-header">
+                    <div class="log-title">最近审核记录</div>
+                    <div class="view-all-link">
+                        查看全部
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    </div>
+                </div>
+                <div class="log-list">
+                    <div class="log-item">
+                        <span class="log-time">14:15</span>
+                        <div class="log-icon pass">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="log-text">
+                            <span class="actor">王淑芬</span>
+                            <span> 通过了 </span>
+                            <span class="target">孙佳怡</span>
+                            <span> 的实名认证</span>
+                        </div>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-time">13:50</span>
+                        <div class="log-icon reject">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
+                        <div class="log-text">
+                            <span class="actor">李雅琴</span>
+                            <span> 驳回了 </span>
+                            <span class="target">黄志远</span>
+                            <span> 的资料修改</span>
+                            <span class="reason">（原因：收入证明不全）</span>
+                        </div>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-time">13:20</span>
+                        <div class="log-icon auto">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                        </div>
+                        <div class="log-text">
+                            <span class="actor">系统</span>
+                            <span> 自动通过了 </span>
+                            <span class="target">周丽娟</span>
+                            <span> 负责的3位会员活动报名</span>
+                        </div>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-time">12:45</span>
+                        <div class="log-icon pass">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <div class="log-text">
+                            <span class="actor">张红梅</span>
+                            <span> 通过了 </span>
+                            <span class="target">郑凯</span>
+                            <span> 的SVIP升级</span>
+                        </div>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-time">11:30</span>
+                        <div class="log-icon reject">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        </div>
+                        <div class="log-text">
+                            <span class="actor">王淑芬</span>
+                            <span> 驳回了 </span>
+                            <span class="target">林志远</span>
+                            <span> 的实名认证</span>
+                            <span class="reason">（原因：照片模糊）</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <style id="critical-layout">
+      /* ==========================================================================
+         Critical Layout — 审核工作台 Desktop
+         Fixed 1920x1080 shell. No horizontal overflow.
+         ========================================================================== */
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+        background: var(--dt-bg-base);
+        color: var(--dt-ink-1);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 14px;
+      }
+      #app-shell {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        min-width: 1920px;
+        display: flex;
+        background: var(--dt-bg-gradient);
+        overflow: hidden;
+      }
+
+      /* --- Left Icon Navigation (64px) --- */
+      #left-nav {
+        width: 64px;
+        flex-shrink: 0;
+        height: 100vh;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-right: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        position: relative;
+        z-index: 10;
+        box-shadow: 2px 0 24px -8px rgba(122,33,53,0.06);
+      }
+      .nav-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: var(--dt-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-gold-light);
+        font-size: 16px;
+        font-weight: 800;
+        margin-bottom: 28px;
+        box-shadow: 0 4px 12px rgba(122,33,53,0.2);
+        letter-spacing: -0.02em;
+      }
+      .nav-items {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        flex: 1;
+        width: 100%;
+        align-items: center;
+      }
+      .nav-item {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-3);
+        transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+        text-decoration: none;
+      }
+      .nav-item:hover {
+        background: rgba(122,33,53,0.06);
+        color: var(--dt-primary);
+      }
+      .nav-item.active {
+        color: var(--dt-primary);
+        background: rgba(122,33,53,0.08);
+      }
+      .nav-item.active::before {
+        content: "";
+        position: absolute;
+        left: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 22px;
+        background: var(--dt-gold);
+        border-radius: 0 2px 2px 0;
+      }
+      .nav-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #D9BF8A 0%, #7A2135 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: auto;
+        cursor: pointer;
+        border: 2px solid rgba(255,255,255,0.8);
+        box-shadow: 0 2px 8px rgba(122,33,53,0.15);
+      }
+
+      /* --- Main Content Area --- */
+      #main-area {
+        flex: 1;
+        min-width: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* --- Top Bar --- */
+      #top-bar {
+        height: 64px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding: 0 28px;
+        gap: 20px;
+        position: relative;
+        z-index: 5;
+      }
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--dt-ink-3);
+        white-space: nowrap;
+      }
+      .breadcrumb .sep {
+        color: var(--dt-ink-4);
+        margin: 0 2px;
+      }
+      .breadcrumb .current {
+        color: var(--dt-ink-1);
+        font-weight: 600;
+      }
+      .page-header-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        letter-spacing: -0.01em;
+        margin-left: 16px;
+        position: relative;
+        padding-left: 16px;
+      }
+      .page-header-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 18px;
+        background: var(--dt-gold);
+        border-radius: 2px;
+      }
+      .top-bar-spacer { flex: 1; }
+      .top-bar-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--dt-ink-2);
+        transition: all 0.2s ease;
+        position: relative;
+      }
+      .icon-btn:hover {
+        background: rgba(255,255,255,0.8);
+        color: var(--dt-primary);
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .icon-btn .badge-num {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        background: var(--dt-error);
+        border-radius: 9px;
+        border: 2px solid var(--dt-bg-base);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+      .btn-gold-outline {
+        height: 38px;
+        padding: 0 18px;
+        border-radius: var(--dt-radius-md);
+        border: 1.5px solid var(--dt-gold);
+        background: rgba(201,169,110,0.06);
+        color: var(--dt-gold-dark);
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+      .btn-gold-outline:hover {
+        background: rgba(201,169,110,0.12);
+        box-shadow: 0 0 0 3px rgba(201,169,110,0.10);
+      }
+      .btn-gold-cta {
+        height: 38px;
+        padding: 0 22px;
+        border-radius: var(--dt-radius-md);
+        border: none;
+        background: var(--dt-gold-gradient);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+        box-shadow: var(--dt-shadow-sm);
+        font-family: inherit;
+      }
+      .btn-gold-cta:hover {
+        box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+        transform: translateY(-1px);
+      }
+
+      /* --- Content Scroll Area --- */
+      #content-scroll {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 4px 28px 20px;
+        position: relative;
+      }
+      #content-scroll::-webkit-scrollbar { width: 6px; }
+      #content-scroll::-webkit-scrollbar-track { background: transparent; }
+      #content-scroll::-webkit-scrollbar-thumb {
+        background: rgba(122,33,53,0.12);
+        border-radius: 3px;
+      }
+
+      /* --- KPI Cards Row --- */
+      .kpi-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .kpi-card {
+        background: var(--dt-glass);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        padding: 20px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: var(--dt-shadow-md);
+        position: relative;
+        overflow: hidden;
+      }
+      .kpi-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle at top right, rgba(201,169,110,0.08), transparent 70%);
+        pointer-events: none;
+      }
+      .kpi-info { display: flex; flex-direction: column; gap: 4px; }
+      .kpi-label {
+        font-size: 13px;
+        color: var(--dt-ink-3);
+        font-weight: 400;
+      }
+      .kpi-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .kpi-value .unit {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--dt-ink-3);
+        margin-left: 3px;
+      }
+      .kpi-trend {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        margin-top: 2px;
+      }
+      .kpi-trend.up { color: var(--dt-success); }
+      .kpi-trend.down { color: var(--dt-error); }
+      .kpi-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .kpi-icon.burgundy {
+        background: rgba(122,33,53,0.08);
+        color: var(--dt-primary);
+      }
+      .kpi-icon.gold {
+        background: rgba(201,169,110,0.10);
+        color: var(--dt-gold-dark);
+      }
+      .kpi-icon.success {
+        background: rgba(74,139,92,0.10);
+        color: var(--dt-success);
+      }
+      .kpi-icon.warning {
+        background: rgba(181,58,74,0.08);
+        color: var(--dt-error);
+        position: relative;
+      }
+      .pulse-dot {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 8px;
+        height: 8px;
+        background: var(--dt-error);
+        border-radius: 50%;
+      }
+      .pulse-dot::after {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        background: var(--dt-error);
+        opacity: 0.3;
+        animation: pulse-ring 2s ease-out infinite;
+      }
+      @keyframes pulse-ring {
+        0% { transform: scale(0.8); opacity: 0.5; }
+        100% { transform: scale(2); opacity: 0; }
+      }
+
+      /* --- Filter / Tabs Bar --- */
+      .filter-bar {
+        background: var(--dt-glass);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        padding: 0 20px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 20px;
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .tab-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 16px;
+        height: 36px;
+        border-radius: var(--dt-radius-md);
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--dt-ink-3);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+        position: relative;
+      }
+      .tab-item:hover {
+        color: var(--dt-ink-1);
+        background: rgba(122,33,53,0.04);
+      }
+      .tab-item.active {
+        color: var(--dt-primary);
+        font-weight: 600;
+      }
+      .tab-item.active::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 3px;
+        background: var(--dt-gold);
+        border-radius: 2px;
+      }
+      .tab-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 20px;
+        height: 20px;
+        padding: 0 6px;
+        border-radius: 10px;
+        background: rgba(122,33,53,0.08);
+        color: var(--dt-ink-3);
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .tab-item.active .tab-badge {
+        background: var(--dt-gold);
+        color: #fff;
+      }
+      .filter-divider {
+        width: 1px;
+        height: 24px;
+        background: var(--dt-border);
+        margin: 0 8px;
+      }
+      .filter-select {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 12px;
+        height: 34px;
+        border-radius: var(--dt-radius-md);
+        background: rgba(255,255,255,0.5);
+        border: 1px solid var(--dt-border);
+        font-size: 12px;
+        color: var(--dt-ink-2);
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s ease;
+      }
+      .filter-select:hover {
+        border-color: var(--dt-border-strong);
+        background: rgba(255,255,255,0.7);
+      }
+      .filter-search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 0 14px;
+        height: 34px;
+        border-radius: var(--dt-radius-pill);
+        background: rgba(255,255,255,0.5);
+        border: 1px solid var(--dt-border);
+        width: 200px;
+        margin-left: auto;
+        transition: all 0.2s ease;
+      }
+      .filter-search:focus-within {
+        border-color: var(--dt-gold);
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 0 3px rgba(201,169,110,0.10);
+      }
+      .filter-search input {
+        flex: 1;
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 12px;
+        color: var(--dt-ink-1);
+        font-family: inherit;
+      }
+      .filter-search input::placeholder { color: var(--dt-ink-4); }
+
+      /* --- Split Layout --- */
+      .split-layout {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .audit-queue {
+        width: 55%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-height: calc(100vh - 64px - 20px - 52px - 140px - 130px);
+        overflow-y: auto;
+        padding-right: 4px;
+      }
+      .audit-queue::-webkit-scrollbar { width: 4px; }
+      .audit-queue::-webkit-scrollbar-track { background: transparent; }
+      .audit-queue::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.10); border-radius: 2px; }
+
+      .audit-detail {
+        width: 45%;
+        flex-shrink: 0;
+      }
+
+      /* --- Audit Card --- */
+      .audit-card {
+        background: rgba(255,255,255,0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        padding: 16px 18px;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: var(--dt-shadow-sm);
+        overflow: hidden;
+      }
+      .audit-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        border-radius: 3px 0 0 3px;
+      }
+      .audit-card.type-auth::before { background: var(--dt-primary); }
+      .audit-card.type-edit::before { background: var(--dt-gold); }
+      .audit-card.type-upgrade::before { background: var(--dt-purple); }
+      .audit-card.type-event::before { background: var(--dt-info); }
+      .audit-card:hover {
+        box-shadow: var(--dt-shadow-md);
+        transform: translateX(2px);
+      }
+      .audit-card.selected {
+        border-color: var(--dt-gold);
+        background: rgba(201,169,110,0.06);
+        box-shadow: 0 0 0 2px rgba(201,169,110,0.15), var(--dt-shadow-md);
+      }
+
+      .audit-card-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+      .type-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        border-radius: var(--dt-radius-pill);
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .type-badge.auth {
+        background: var(--dt-primary);
+        color: #fff;
+      }
+      .type-badge.edit {
+        background: var(--dt-gold);
+        color: #4A3640;
+      }
+      .type-badge.upgrade {
+        background: var(--dt-purple);
+        color: #fff;
+      }
+      .type-badge.event {
+        background: var(--dt-info);
+        color: #fff;
+      }
+      .audit-time {
+        font-size: 12px;
+        color: var(--dt-ink-4);
+      }
+      .urgency-dot {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        color: var(--dt-ink-4);
+      }
+      .urgency-dot .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+      .urgency-dot.urgent .dot {
+        background: var(--dt-error);
+        position: relative;
+      }
+      .urgency-dot.urgent .dot::after {
+        content: "";
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        background: var(--dt-error);
+        opacity: 0.3;
+        animation: pulse-ring 2s ease-out infinite;
+      }
+      .urgency-dot.normal .dot { background: #E09040; }
+      .urgency-dot.low .dot { background: var(--dt-ink-4); }
+      .urgency-dot.urgent { color: var(--dt-error); font-weight: 600; }
+      .urgency-dot.normal { color: #C07030; }
+
+      .audit-applicant {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .applicant-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--dt-gold-light), var(--dt-primary-light));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        flex-shrink: 0;
+        border: 2px solid rgba(255,255,255,0.8);
+        box-shadow: 0 2px 8px rgba(122,33,53,0.10);
+      }
+      .applicant-info { display: flex; flex-direction: column; gap: 2px; }
+      .applicant-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--dt-ink-1);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .gender-tag {
+        font-size: 11px;
+        padding: 1px 6px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+      .gender-tag.female { background: rgba(240,160,180,0.15); color: #C06080; }
+      .gender-tag.male { background: rgba(90,140,200,0.12); color: #5080B0; }
+      .applicant-id {
+        font-size: 11px;
+        color: var(--dt-ink-4);
+      }
+      .matchmaker-info {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: var(--dt-ink-3);
+      }
+      .matchmaker-avatar-sm {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #C9A96E, #A88A50);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+
+      .audit-content {
+        font-size: 13px;
+        color: var(--dt-ink-2);
+        line-height: 1.6;
+        margin-bottom: 12px;
+        padding: 10px 12px;
+        background: rgba(122,33,53,0.025);
+        border-radius: var(--dt-radius-md);
+        border: 1px solid rgba(122,33,53,0.04);
+      }
+      .field-change {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 4px;
+        font-size: 12px;
+      }
+      .field-old {
+        color: var(--dt-ink-4);
+        text-decoration: line-through;
+      }
+      .field-arrow { color: var(--dt-ink-4); }
+      .field-new {
+        color: var(--dt-gold-dark);
+        font-weight: 700;
+      }
+      .id-thumb {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: rgba(122,33,53,0.06);
+        border-radius: var(--dt-radius-sm);
+        font-size: 12px;
+        color: var(--dt-primary);
+        margin-top: 6px;
+      }
+      .payment-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 10px;
+        background: rgba(74,139,92,0.08);
+        border-radius: var(--dt-radius-sm);
+        font-size: 12px;
+        color: var(--dt-success);
+        margin-top: 6px;
+        font-weight: 500;
+      }
+      .payment-tag.pending {
+        background: rgba(196,144,74,0.10);
+        color: var(--dt-warning);
+      }
+
+      .audit-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .view-detail {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        color: var(--dt-primary);
+        cursor: pointer;
+        font-weight: 500;
+        transition: opacity 0.2s;
+      }
+      .view-detail:hover { opacity: 0.7; }
+      .action-btns { display: flex; gap: 8px; }
+      .btn-reject {
+        height: 32px;
+        padding: 0 16px;
+        border-radius: var(--dt-radius-md);
+        border: 1.5px solid rgba(181,58,74,0.3);
+        background: rgba(181,58,74,0.04);
+        color: var(--dt-error);
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+      .btn-reject:hover {
+        background: rgba(181,58,74,0.08);
+        border-color: var(--dt-error);
+      }
+      .btn-approve {
+        height: 32px;
+        padding: 0 16px;
+        border-radius: var(--dt-radius-md);
+        border: none;
+        background: var(--dt-gold-gradient);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(201,169,110,0.25);
+        font-family: inherit;
+      }
+      .btn-approve:hover {
+        box-shadow: 0 4px 14px rgba(201,169,110,0.35);
+        transform: translateY(-1px);
+      }
+
+      /* --- Detail Panel --- */
+      .detail-panel {
+        background: var(--dt-glass-strong);
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        padding: 24px;
+        box-shadow: var(--dt-shadow-lg);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: fit-content;
+        max-height: calc(100vh - 64px - 20px - 52px - 140px - 130px);
+        overflow-y: auto;
+      }
+      .detail-panel::-webkit-scrollbar { width: 4px; }
+      .detail-panel::-webkit-scrollbar-track { background: transparent; }
+      .detail-panel::-webkit-scrollbar-thumb { background: rgba(122,33,53,0.10); border-radius: 2px; }
+
+      .detail-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--dt-border);
+      }
+      .detail-avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--dt-gold-light), var(--dt-primary-light));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 700;
+        flex-shrink: 0;
+        border: 3px solid rgba(255,255,255,0.9);
+        box-shadow: 0 4px 16px rgba(122,33,53,0.15);
+      }
+      .detail-name-block { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+      .detail-name {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .vip-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        background: linear-gradient(135deg, #D9BF8A, #A88A50);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .detail-id { font-size: 12px; color: var(--dt-ink-4); }
+      .detail-type-badge-lg {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 14px;
+        border-radius: var(--dt-radius-pill);
+        font-size: 12px;
+        font-weight: 600;
+        margin-top: 4px;
+        align-self: flex-start;
+      }
+
+      .detail-section-title {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .detail-section-title::before {
+        content: "";
+        width: 3px;
+        height: 14px;
+        background: var(--dt-gold);
+        border-radius: 2px;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 20px;
+      }
+      .info-item {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .info-label {
+        font-size: 11px;
+        color: var(--dt-ink-4);
+        font-weight: 400;
+      }
+      .info-value {
+        font-size: 13px;
+        color: var(--dt-ink-1);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .info-value .urgent-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        color: var(--dt-error);
+        font-weight: 600;
+      }
+      .info-value .urgent-tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--dt-error);
+        border-radius: 50%;
+      }
+
+      /* --- ID Card Mock --- */
+      .id-card-mock {
+        width: 100%;
+        max-width: 340px;
+        height: 210px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #8B2538 0%, #6A1A2C 100%);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(122,33,53,0.25);
+        border: 1px solid rgba(201,169,110,0.3);
+        margin: 0 auto;
+      }
+      .id-card-mock::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 48px;
+        background: linear-gradient(180deg, rgba(201,169,110,0.15), transparent);
+      }
+      .id-card-mock::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A96E' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+      .id-card-header {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 12px 16px 8px;
+        color: var(--dt-gold-light);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        border-bottom: 1px solid rgba(201,169,110,0.15);
+      }
+      .id-card-body {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        padding: 12px 16px;
+        gap: 14px;
+      }
+      .id-photo {
+        width: 68px;
+        height: 86px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(201,169,110,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255,255,255,0.5);
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .id-photo-inner {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--dt-gold-light), var(--dt-primary-light));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .id-fields {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: rgba(255,255,255,0.9);
+        font-size: 11px;
+      }
+      .id-field-row {
+        display: flex;
+        gap: 6px;
+        line-height: 1.5;
+      }
+      .id-field-label {
+        color: rgba(201,169,110,0.7);
+        min-width: 36px;
+        flex-shrink: 0;
+      }
+      .id-field-value { color: rgba(255,255,255,0.92); font-weight: 500; }
+      .id-number-row {
+        position: relative;
+        z-index: 1;
+        padding: 0 16px;
+        color: rgba(255,255,255,0.85);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        font-family: "Courier New", monospace;
+        margin-top: 2px;
+      }
+      .id-card-emblem {
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(201,169,110,0.2);
+        border: 1px solid rgba(201,169,110,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+
+      /* --- Checklist --- */
+      .checklist { display: flex; flex-direction: column; gap: 8px; }
+      .check-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: var(--dt-ink-2);
+        padding: 8px 12px;
+        background: rgba(74,139,92,0.04);
+        border-radius: var(--dt-radius-md);
+        border: 1px solid rgba(74,139,92,0.08);
+      }
+      .check-item.pending {
+        background: rgba(196,144,74,0.04);
+        border-color: rgba(196,144,74,0.10);
+      }
+      .check-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .check-icon.done {
+        background: var(--dt-success);
+        color: #fff;
+      }
+      .check-icon.pending {
+        background: rgba(196,144,74,0.15);
+        color: var(--dt-warning);
+        border: 2px solid var(--dt-warning);
+      }
+
+      /* --- AI Suggestion Box --- */
+      .ai-box {
+        background: var(--dt-glass-dark);
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        border: 1px solid var(--dt-glass-dark-border);
+        border-radius: var(--dt-radius-lg);
+        padding: 18px;
+        position: relative;
+        overflow: hidden;
+      }
+      .ai-box::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        right: -30px;
+        width: 120px;
+        height: 120px;
+        background: radial-gradient(circle, rgba(201,169,110,0.12), transparent 70%);
+        pointer-events: none;
+      }
+      .ai-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        color: var(--dt-gold-light);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .ai-sparkle {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, rgba(201,169,110,0.25), rgba(201,169,110,0.08));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dt-gold-light);
+      }
+      .ai-text {
+        font-size: 13px;
+        color: var(--dt-ink-light);
+        line-height: 1.7;
+        margin-bottom: 14px;
+      }
+      .ai-confidence {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .confidence-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--dt-ink-light-muted);
+      }
+      .confidence-label .pct { color: var(--dt-gold-light); font-weight: 700; font-size: 12px; }
+      .confidence-bar {
+        height: 6px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 3px;
+        overflow: hidden;
+      }
+      .confidence-fill {
+        height: 100%;
+        width: 95%;
+        background: var(--dt-gold-gradient);
+        border-radius: 3px;
+        position: relative;
+      }
+      .confidence-fill::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 10px;
+        height: 10px;
+        background: var(--dt-gold-light);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--dt-gold);
+      }
+
+      /* --- Detail Action Buttons --- */
+      .detail-actions {
+        display: flex;
+        gap: 12px;
+        padding-top: 16px;
+        border-top: 1px solid var(--dt-border);
+      }
+      .btn-detail-reject {
+        flex: 1;
+        height: 44px;
+        border-radius: var(--dt-radius-md);
+        border: 1.5px solid rgba(181,58,74,0.35);
+        background: rgba(181,58,74,0.04);
+        color: var(--dt-error);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+        font-family: inherit;
+      }
+      .btn-detail-reject:hover {
+        background: rgba(181,58,74,0.08);
+        border-color: var(--dt-error);
+      }
+      .btn-detail-approve {
+        flex: 1.5;
+        height: 44px;
+        border-radius: var(--dt-radius-md);
+        border: none;
+        background: var(--dt-gold-gradient);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        transition: all 0.2s ease;
+        box-shadow: var(--dt-shadow-gold-glow);
+        font-family: inherit;
+      }
+      .btn-detail-approve:hover {
+        box-shadow: 0 8px 24px rgba(201,169,110,0.35);
+        transform: translateY(-1px);
+      }
+      .action-hint {
+        text-align: center;
+        font-size: 11px;
+        color: var(--dt-ink-4);
+        margin-top: -8px;
+      }
+
+      /* --- Recent Audit Log --- */
+      .recent-log {
+        background: var(--dt-glass);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--dt-glass-border);
+        border-radius: var(--dt-radius-lg);
+        padding: 16px 22px;
+        box-shadow: var(--dt-shadow-sm);
+      }
+      .log-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .log-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--dt-ink-1);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .log-title::before {
+        content: "";
+        width: 3px;
+        height: 14px;
+        background: var(--dt-primary);
+        border-radius: 2px;
+      }
+      .view-all-link {
+        font-size: 12px;
+        color: var(--dt-primary);
+        cursor: pointer;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+      }
+      .view-all-link:hover { text-decoration: underline; }
+      .log-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .log-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--dt-border);
+        font-size: 13px;
+      }
+      .log-item:last-child { border-bottom: none; }
+      .log-time {
+        font-size: 12px;
+        color: var(--dt-ink-4);
+        font-weight: 500;
+        min-width: 44px;
+        font-variant-numeric: tabular-nums;
+      }
+      .log-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .log-icon.pass { background: rgba(74,139,92,0.10); color: var(--dt-success); }
+      .log-icon.reject { background: rgba(181,58,74,0.08); color: var(--dt-error); }
+      .log-icon.auto { background: rgba(90,122,154,0.10); color: var(--dt-info); }
+      .log-text { flex: 1; color: var(--dt-ink-2); }
+      .log-text .actor { font-weight: 600; color: var(--dt-ink-1); }
+      .log-text .target { color: var(--dt-primary); font-weight: 500; }
+      .log-text .reason { color: var(--dt-ink-4); font-size: 12px; }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      /* ===== Interactive additions ===== */
+      .audit-card { cursor: pointer; transition: all .25s cubic-bezier(.2,.8,.2,1); }
+      .audit-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(122,33,53,.1); border-color: rgba(201,169,110,.5); }
+      .audit-card.selected { border-color: var(--dt-gold) !important; box-shadow: 0 0 0 3px rgba(201,169,110,.2), 0 8px 22px rgba(122,33,53,.1); }
+      .audit-card.processed { opacity: .55; }
+      .audit-card.processed::after { content:'已处理'; position:absolute; top:12px; right:12px; font-size:11px; padding:2px 10px; border-radius:20px; background:rgba(60,160,90,.12); color:#3CA05A; font-weight:500; }
+      .audit-card { position: relative; }
+      .btn-reject, .btn-approve, .btn-detail-reject, .btn-detail-approve, .view-detail { cursor: pointer; transition: all .2s ease; position:relative; overflow:hidden; }
+      .btn-reject:hover { background: rgba(200,60,70,.1); border-color: #C83C46; color: #C83C46; transform: translateY(-1px); }
+      .btn-approve:hover { background: var(--dt-gold-gradient); color: #fff; border-color: transparent; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(201,169,110,.4); }
+      .btn-detail-approve { position:relative; overflow:hidden; }
+      .btn-detail-approve:hover { box-shadow: 0 8px 22px rgba(201,169,110,.45); transform: translateY(-1px); }
+      .btn-detail-reject:hover { background: rgba(200,60,70,.08); color: #C83C46; border-color: #C83C46; transform: translateY(-1px); }
+      .view-detail:hover { color: var(--dt-primary); }
+      .tab-item { cursor: pointer; transition: all .2s ease; }
+      .tab-item:hover { color: var(--dt-primary); }
+      .tab-item.active { color: var(--dt-primary); }
+      .btn-ripple { position:absolute; border-radius:50%; background:rgba(255,255,255,.5); transform:scale(0); animation:ripple .6s ease-out forwards; pointer-events:none; }
+      .btn-ripple.dark { background: rgba(122,33,53,.2); }
+      @keyframes ripple { to { transform:scale(4); opacity:0; } }
+      .filter-select { cursor: pointer; transition: all .2s ease; }
+      .filter-select:hover { border-color: var(--dt-gold); }
+      .kpi-card { cursor:pointer; transition: all .3s ease; }
+      .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 14px 32px rgba(122,33,53,.12); }
+      .check-item { cursor: pointer; transition: transform .2s; }
+      .check-item:hover { transform: translateX(2px); }
+      .log-item { transition: background .2s; border-radius: 8px; padding: 2px 4px; margin: 0 -4px; }
+      .log-item:hover { background: rgba(201,169,110,.08); }
+      .id-card-mock { transition: transform .3s ease; cursor: zoom-in; }
+      .id-card-mock:hover { transform: scale(1.02); box-shadow: 0 12px 28px rgba(122,33,53,.15); }
+      .ai-box { transition: box-shadow .3s; }
+      .ai-box:hover { box-shadow: 0 8px 22px rgba(201,169,110,.15); }
+
+      /* Stamp animation for approval */
+      .stamp-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; z-index:10; }
+      .stamp-mark { width:120px; height:120px; border-radius:50%; border:5px solid; display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:900; letter-spacing:4px; opacity:0; transform:scale(2.5) rotate(-20deg); }
+      .stamp-mark.pass { color:#3CA05A; border-color:#3CA05A; background: rgba(60,160,90,.05); }
+      .stamp-mark.reject { color:#C83C46; border-color:#C83C46; background: rgba(200,60,70,.05); }
+      .stamp-mark.stamp-in { animation: stampIn .5s cubic-bezier(.2,.8,.2,1) forwards; }
+      @keyframes stampIn { 0%{opacity:0;transform:scale(2.5) rotate(-20deg)} 60%{opacity:1;transform:scale(.9) rotate(-15deg)} 100%{opacity:.85;transform:scale(1) rotate(-12deg)} }
+
+      /* Reject reason modal */
+      .audit-modal-overlay { position:fixed; inset:0; background:rgba(30,10,18,.5); backdrop-filter:blur(6px); z-index:9998; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+      .audit-modal-overlay.show { opacity:1; pointer-events:auto; }
+      .audit-modal { background:rgba(255,252,247,.98); width:460px; max-width:92vw; border-radius:20px; padding:30px; border:1px solid rgba(201,169,110,.4); box-shadow:0 30px 80px rgba(30,10,18,.3); transform:translateY(30px) scale(.96); transition:transform .35s cubic-bezier(.2,.8,.2,1); }
+      .audit-modal-overlay.show .audit-modal { transform:translateY(0) scale(1); }
+      .audit-modal h3 { margin:0 0 6px; font-size:20px; color:var(--dt-primary); font-weight:600; }
+      .audit-modal .modal-sub { color:var(--dt-ink-3); font-size:13px; margin-bottom:18px; }
+      .reason-chips { display:flex; flex-wrap:wrap; gap:8px; }
+      .reason-group { margin-bottom: 12px; }
+      .reason-group-title { font-size: 11px; color: var(--dt-ink-4); margin-bottom: 6px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding-left: 4px; }
+      .reason-chip { padding:7px 14px; border-radius:20px; border:1px solid rgba(122,33,53,.15); font-size:13px; cursor:pointer; transition:all .2s; background:#fff; color:var(--dt-ink-2); user-select:none; }
+      .reason-chip:hover { border-color: var(--dt-gold); color: var(--dt-primary); }
+      .reason-chip.selected { background: var(--dt-gold-gradient); color:#fff; border-color: transparent; box-shadow: 0 2px 8px rgba(201,169,110,.3); }
+      .audit-modal { max-height: 82vh; overflow-y: auto; }
+      .audit-modal textarea { width:100%; padding:10px 14px; border:1px solid rgba(122,33,53,.15); border-radius:10px; background:#fff; font-size:14px; color:var(--dt-ink-1); font-family:inherit; box-sizing:border-box; min-height:80px; resize:vertical; transition:all .2s; margin-top: 4px; }
+      .audit-modal textarea:focus { outline:none; border-color:var(--dt-primary); box-shadow:0 0 0 4px rgba(122,33,53,.1); }
+      .audit-modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:20px; }
+      .audit-modal-actions button { padding:10px 22px; border-radius:10px; font-size:14px; cursor:pointer; border:none; font-family:inherit; font-weight:500; transition:all .2s; }
+      .audit-modal-actions .btn-cancel { background:rgba(122,33,53,.06); color:var(--dt-ink-2); }
+      .audit-modal-actions .btn-cancel:hover { background:rgba(122,33,53,.12); }
+      .audit-modal-actions .btn-confirm-reject { background:linear-gradient(135deg,#C83C46,#A82832); color:#fff; box-shadow:0 4px 14px rgba(200,60,70,.3); }
+      .audit-modal-actions .btn-confirm-reject:hover { transform:translateY(-1px); box-shadow:0 8px 20px rgba(200,60,70,.4); }
+
+      /* Toast */
+      .audit-toast { position:fixed; top:80px; left:50%; transform:translateX(-50%) translateY(-80px); background:linear-gradient(135deg,#7A2135,#9A3349); color:#fff; padding:12px 26px; border-radius:12px; font-size:14px; z-index:9999; box-shadow:0 10px 40px rgba(122,33,53,.35); border:1px solid rgba(201,169,110,.4); opacity:0; transition:all .4s cubic-bezier(.2,.8,.2,1); display:flex; align-items:center; gap:8px; pointer-events:none; }
+      .audit-toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+      .audit-toast.success { background: linear-gradient(135deg,#2E8B4F,#3CA05A); border-color: rgba(60,160,90,.4); }
+
+      /* Confidence bar animation */
+      .confidence-fill { transition: width 1.5s cubic-bezier(.2,.8,.2,1); }
+
+      /* Nav item active on click */
+      .nav-item { cursor: pointer; transition: all .2s ease; }
+      .nav-item:hover::before { opacity: 1; }
+    </style>
+
+    <div class="audit-toast" id="audit-toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="audit-toast-text"></span>
+    </div>
+
+    <div class="audit-modal-overlay" id="reject-modal">
+      <div class="audit-modal">
+        <h3>驳回申请</h3>
+        <div class="modal-sub">请选择驳回原因（可多选），会员将收到通知</div>
+        <div class="reason-group">
+          <div class="reason-group-title">证件与身份</div>
+          <div class="reason-chips">
+            <span class="reason-chip">照片模糊/遮挡</span>
+            <span class="reason-chip">证件过期</span>
+            <span class="reason-chip">证件信息不符</span>
+            <span class="reason-chip">身份证号校验失败</span>
+            <span class="reason-chip">人脸比对未通过</span>
+            <span class="reason-chip">非本人证件</span>
+          </div>
+        </div>
+        <div class="reason-group">
+          <div class="reason-group-title">资料完整性</div>
+          <div class="reason-chips">
+            <span class="reason-chip">资料不完整</span>
+            <span class="reason-chip">收入证明不全</span>
+            <span class="reason-chip">学历证明缺失</span>
+            <span class="reason-chip">房产/车产证明缺失</span>
+            <span class="reason-chip">婚姻状况证明缺失</span>
+          </div>
+        </div>
+        <div class="reason-group">
+          <div class="reason-group-title">内容合规</div>
+          <div class="reason-chips">
+            <span class="reason-chip">资料涉嫌造假</span>
+            <span class="reason-chip">照片含违规内容</span>
+            <span class="reason-chip">简介含敏感词</span>
+            <span class="reason-chip">重复提交申请</span>
+          </div>
+        </div>
+        <div class="reason-group">
+          <div class="reason-group-title">业务规则</div>
+          <div class="reason-chips">
+            <span class="reason-chip">不符合SVIP升级条件</span>
+            <span class="reason-chip">活动名额已满</span>
+            <span class="reason-chip">牵线双方条件不匹配</span>
+            <span class="reason-chip">会员账号异常</span>
+            <span class="reason-chip">其他原因</span>
+          </div>
+        </div>
+        <textarea id="reject-reason" placeholder="补充说明（选填，将一并发给会员）..."></textarea>
+        <div class="audit-modal-actions">
+          <button class="btn-cancel" id="reject-cancel">取消</button>
+          <button class="btn-confirm-reject" id="reject-confirm">确认驳回</button>
+        </div>
+      </div>
+    </div>
+
+<script>
+(function(){
+  // ============ Toast ============
+  const toastEl = document.getElementById('audit-toast');
+  const toastText = document.getElementById('audit-toast-text');
+  let toastTimer;
+  function showToast(msg, type){
+    toastText.textContent = msg;
+    toastEl.classList.remove('success');
+    if (type === 'success') toastEl.classList.add('success');
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2400);
+  }
+
+  // ============ Card click -> highlight & right panel sync ============
+  const cards = document.querySelectorAll('.audit-card');
+  const detailPanel = document.querySelector('.detail-panel');
+  const detailName = document.querySelector('.detail-name');
+  const detailAvatar = document.querySelector('.detail-avatar');
+  const detailId = document.querySelector('.detail-id');
+  const detailTypeBadge = document.querySelector('.detail-type-badge-lg');
+
+  // Extract info from cards
+  function getCardInfo(card){
+    const name = card.querySelector('.applicant-name, .audit-applicant .name, strong, b');
+    const avatarEl = card.querySelector('.applicant-avatar, .audit-applicant .avatar, [class*="avatar"]');
+    const time = card.querySelector('.audit-time');
+    const typeClass = Array.from(card.classList).find(c => c.startsWith('type-'));
+    let typeLabel = '实名认证审核';
+    if (typeClass === 'type-edit') typeLabel = '资料修改审核';
+    else if (typeClass === 'type-upgrade') typeLabel = '会员升级审核';
+    else if (typeClass === 'type-event') typeLabel = '活动报名审核';
+    else if (typeClass === 'type-match') typeLabel = '牵线审核';
+    return {
+      name: name ? name.textContent.trim() : '会员',
+      typeLabel: typeLabel
+    };
+  }
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(e){
+      if (e.target.closest('button') || e.target.closest('.btn-approve') || e.target.closest('.btn-reject') || e.target.closest('.view-detail')) return;
+      cards.forEach(function(c){ c.classList.remove('selected'); });
+      card.classList.add('selected');
+      // Scroll card into view minimally
+      card.scrollIntoView({behavior:'smooth', block:'nearest'});
+      // Update right panel (basic simulation)
+      const info = getCardInfo(card);
+      if (detailName) {
+        const genderTag = detailName.querySelector('.gender-tag');
+        const vipBadge = detailName.querySelector('.vip-badge');
+        detailName.innerHTML = info.name;
+        if (genderTag) detailName.appendChild(genderTag);
+        if (vipBadge) detailName.appendChild(vipBadge);
+      }
+      if (detailAvatar) detailAvatar.textContent = info.name.charAt(0);
+      if (detailTypeBadge) {
+        const svg = detailTypeBadge.querySelector('svg');
+        detailTypeBadge.innerHTML = '';
+        if (svg) detailTypeBadge.appendChild(svg);
+        detailTypeBadge.appendChild(document.createTextNode(' ' + info.typeLabel));
+      }
+      // Pulse panel
+      if (detailPanel) {
+        detailPanel.style.transition = 'transform .4s ease';
+        detailPanel.style.transform = 'translateX(-4px)';
+        setTimeout(function(){ detailPanel.style.transform = 'translateX(0)'; }, 400);
+      }
+    });
+  });
+
+  // ============ Ripple on buttons ============
+  function addRipple(btn, dark){
+    btn.addEventListener('click', function(e){
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'btn-ripple' + (dark?' dark':'');
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(function(){ ripple.remove(); }, 600);
+    });
+  }
+  document.querySelectorAll('.btn-approve,.btn-detail-approve,.btn-reject,.btn-detail-reject').forEach(function(b){ addRipple(b, b.classList.contains('btn-reject')||b.classList.contains('btn-detail-reject')); });
+
+  // ============ Approve flow (card-level) ============
+  function stampOn(el, pass){
+    const overlay = document.createElement('div');
+    overlay.className = 'stamp-overlay';
+    const mark = document.createElement('div');
+    mark.className = 'stamp-mark ' + (pass?'pass':'reject');
+    mark.textContent = pass ? '通过' : '驳回';
+    overlay.appendChild(mark);
+    if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+    el.appendChild(overlay);
+    requestAnimationFrame(function(){ mark.classList.add('stamp-in'); });
+    setTimeout(function(){
+      el.classList.add('processed');
+      overlay.style.transition = 'opacity .5s';
+      overlay.style.opacity = '0';
+      setTimeout(function(){ overlay.remove(); }, 500);
+    }, 900);
+  }
+
+  function appendLog(name, action, actor, reason){
+    const logList = document.querySelector('.log-list');
+    if (!logList) return;
+    const now = new Date();
+    const ts = ('0'+now.getHours()).slice(-2)+':'+('0'+now.getMinutes()).slice(-2);
+    const item = document.createElement('div');
+    item.className = 'log-item';
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(-8px)';
+    item.style.transition = 'all .4s ease';
+    const isPass = action === '通过';
+    const iconSvg = isPass
+      ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+      : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    item.innerHTML = '<span class="log-time">'+ts+'</span>' +
+      '<div class="log-icon '+(isPass?'pass':'reject')+'">'+iconSvg+'</div>' +
+      '<div class="log-text"><span class="actor">'+actor+'</span><span> '+(isPass?'通过了':'驳回了')+' </span><span class="target">'+name+'</span><span> 的审核</span>'+(reason?'<span class="reason">（原因：'+reason+'）</span>':'')+'</div>';
+    logList.insertBefore(item, logList.firstChild);
+    requestAnimationFrame(function(){ item.style.opacity='1'; item.style.transform='translateY(0)'; });
+  }
+
+  document.querySelectorAll('.btn-approve').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const card = btn.closest('.audit-card');
+      if (!card || card.classList.contains('processed')) return;
+      const info = getCardInfo(card);
+      stampOn(card, true);
+      showToast('已通过「' + info.name + '」的' + info.typeLabel, 'success');
+      appendLog(info.name, '通过', '我');
+      // Update checklist pending item to done
+      const pending = document.querySelectorAll('.check-item.pending');
+      if (pending.length) {
+        const last = pending[pending.length-1];
+        const icon = last.querySelector('.check-icon');
+        if (icon) {
+          icon.classList.remove('pending');
+          icon.classList.add('done');
+          icon.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+          last.classList.remove('pending');
+        }
+      }
+    });
+  });
+
+  // Reject (card-level) -> open modal
+  let pendingRejectCard = null;
+  document.querySelectorAll('.btn-reject').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      const card = btn.closest('.audit-card');
+      if (!card || card.classList.contains('processed')) return;
+      pendingRejectCard = card;
+      document.getElementById('reject-modal').classList.add('show');
+      document.getElementById('reject-reason').value = '';
+      document.querySelectorAll('.reason-chip').forEach(function(c){ c.classList.remove('selected'); });
+    });
+  });
+
+  // Detail-panel approve/reject
+  document.querySelector('.btn-detail-approve')?.addEventListener('click', function(e){
+    addRipple(this, false);
+    const sel = document.querySelector('.audit-card.selected') || document.querySelector('.audit-card');
+    if (sel && !sel.classList.contains('processed')) {
+      const info = getCardInfo(sel);
+      stampOn(sel, true);
+      showToast('已通过「' + info.name + '」的' + info.typeLabel, 'success');
+      appendLog(info.name, '通过', '我');
+    } else {
+      showToast('审核通过', 'success');
+    }
+  });
+  document.querySelector('.btn-detail-reject')?.addEventListener('click', function(e){
+    addRipple(this, true);
+    const sel = document.querySelector('.audit-card.selected') || document.querySelector('.audit-card');
+    pendingRejectCard = sel;
+    document.getElementById('reject-modal').classList.add('show');
+    document.getElementById('reject-reason').value = '';
+    document.querySelectorAll('.reason-chip').forEach(function(c){ c.classList.remove('selected'); });
+  });
+
+  // Modal logic
+  document.getElementById('reject-cancel').addEventListener('click', function(){
+    document.getElementById('reject-modal').classList.remove('show');
+    pendingRejectCard = null;
+  });
+  document.getElementById('reject-modal').addEventListener('click', function(e){
+    if (e.target === this) { this.classList.remove('show'); pendingRejectCard = null; }
+  });
+  document.querySelectorAll('.reason-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chip.classList.toggle('selected');
+    });
+  });
+  document.getElementById('reject-confirm').addEventListener('click', function(){
+    const selectedChips = Array.from(document.querySelectorAll('.reason-chip.selected')).map(function(c){ return c.textContent; });
+    const reasonText = document.getElementById('reject-reason').value.trim();
+    let reason = selectedChips.join('、');
+    if (reasonText) reason = (reason ? reason + '：' : '') + reasonText;
+    document.getElementById('reject-modal').classList.remove('show');
+    if (pendingRejectCard && !pendingRejectCard.classList.contains('processed')) {
+      const info = getCardInfo(pendingRejectCard);
+      stampOn(pendingRejectCard, false);
+      showToast('已驳回「' + info.name + '」的申请');
+      appendLog(info.name, '驳回', '我', reason || '其他原因');
+    } else {
+      showToast('已驳回');
+    }
+    pendingRejectCard = null;
+  });
+
+  // ============ Tab switching ============
+  const tabs = document.querySelectorAll('.tab-item');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(e){
+      e.preventDefault();
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      const label = tab.childNodes[0] ? tab.childNodes[0].textContent.trim() : '';
+      showToast('切换到：' + label);
+    });
+  });
+
+  // ============ View detail link ============
+  document.querySelectorAll('.view-detail').forEach(function(vd){
+    vd.addEventListener('click', function(e){
+      e.stopPropagation();
+      const card = vd.closest('.audit-card');
+      if (card) card.click();
+      showToast('查看完整详情');
+    });
+  });
+
+  // ============ Confidence bar animation ============
+  const confFill = document.querySelector('.confidence-fill');
+  if (confFill) {
+    const targetW = confFill.style.width || '95%';
+    confFill.style.width = '0%';
+    setTimeout(function(){ confFill.style.width = targetW; }, 400);
+  }
+
+  // ============ Check items toggle ============
+  document.querySelectorAll('.check-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      const icon = item.querySelector('.check-icon');
+      if (icon.classList.contains('done')) {
+        icon.classList.remove('done');
+        icon.classList.add('pending');
+        item.classList.add('pending');
+        icon.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>';
+      } else {
+        icon.classList.remove('pending');
+        icon.classList.add('done');
+        item.classList.remove('pending');
+        icon.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+      }
+    });
+  });
+
+  // ============ Top bar buttons ============
+  document.querySelectorAll('.btn-gold-cta, .btn-gold-outline, .icon-btn').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'btn-ripple dark';
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(function(){ ripple.remove(); }, 600);
+      if (btn.classList.contains('btn-gold-cta')) showToast('批量审核已启动');
+    });
+  });
+
+  // ============ ESC closes modal ============
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') document.getElementById('reject-modal').classList.remove('show');
+  });
+
+  // KPI hover glow
+  document.querySelectorAll('.kpi-card .kpi-num, .kpi-card [class*="num"]').forEach(function(n){ n.style.transition='text-shadow .3s'; });
+  document.querySelectorAll('.kpi-card').forEach(function(card){
+    const num = card.querySelector('[class*="num"]');
+    if (num) card.addEventListener('mouseenter', function(){ num.style.textShadow='0 0 18px rgba(201,169,110,.5)'; });
+    if (num) card.addEventListener('mouseleave', function(){ num.style.textShadow=''; });
+  });
+
+  showToast('审核工作台已就绪');
+})();
+</script>
+</body>
+</html>

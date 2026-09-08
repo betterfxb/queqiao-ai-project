@@ -1,0 +1,28 @@
+{
+  "name": "queqiao-admin",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "牵线运营中心 — Web 端红娘系统（Vue3 + TS + Element Plus + ECharts）",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "dayjs": "^1.11.13",
+    "echarts": "^5.5.1",
+    "element-plus": "^2.9.1",
+    "pinia": "^2.3.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "sass": "^1.77.8",
+    "typescript": "~5.5.4",
+    "vite": "^5.4.11",
+    "vue-tsc": "^2.1.10"
+  }
+}

@@ -1,0 +1,1 @@
+import{a as s}from"./index-B382ueeT.js";const a=t=>Array.isArray(t)?t:(t==null?void 0:t.list)??[],n=()=>s("/agents").then(a),g=()=>s("/agents/stats"),o=t=>s("/agents/"+t),c=t=>s("/agents/assign-suggest",{method:"POST",body:t}),h=t=>s("/agents",{method:"POST",body:t});export{g as a,c as b,h as c,o as d,n as f};

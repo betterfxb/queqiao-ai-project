@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员详情</title>
+    <style id="theme-vars">
+﻿/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+    <style id="critical-layout">
+      /* --- Reset & base --- */
+      html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+      body {
+        background: var(--brand-bg-gradient);
+        min-height: 100vh;
+        padding-bottom: 88px;
+        -webkit-tap-highlight-color: transparent;
+      }
+      * { box-sizing: border-box; }
+
+      /* --- Layout primitives --- */
+      .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      .sticky-action-bar { box-sizing: border-box; }
+
+      /* --- Interaction states --- */
+      .card-hover { transition: transform 0.15s ease; }
+      .card-hover:active { transform: scale(0.98); }
+      button { transition: transform 0.15s ease, opacity 0.15s ease; }
+      button:active { transform: scale(0.97); }
+
+      /* --- Touch targets --- */
+      button, .touch-target { min-height: 44px; }
+
+      /* --- Reduced motion --- */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased" style="background: var(--brand-bg-gradient); min-height: 100vh; padding-bottom: 88px;">
+    <main>
+      <div class="relative min-h-screen w-full mx-auto max-w-[420px] noise-texture" style="background: var(--brand-bg-gradient); padding-bottom: 88px;">
+
+        <!-- Status bar spacer -->
+        <div style="height: 12px;"></div>
+
+        <!-- #detail-topbar — Top navigation (sticky frosted) -->
+        <div id="detail-topbar" style="position: sticky; top: 0; z-index: 50; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(253,246,242,0.88); border-bottom: 1px solid var(--brand-border); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;">
+          <button class="touch-target" style="width: 38px; height: 38px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--brand-border); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <i data-lucide="chevron-left" style="width: 22px; height: 22px; color: var(--brand-ink-1);"></i>
+          </button>
+          <div style="font-size: 17px; font-weight: 600; color: var(--brand-ink-1);">会员资料</div>
+          <div style="display: flex; gap: 8px;">
+            <button class="touch-target" style="width: 38px; height: 38px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--brand-border); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+              <i data-lucide="share-2" style="width: 18px; height: 18px; color: var(--brand-ink-1);"></i>
+            </button>
+            <button class="touch-target" style="width: 38px; height: 38px; border-radius: 50%; background: var(--glass-bg); border: 1px solid var(--brand-border); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+              <i data-lucide="more-horizontal" style="width: 18px; height: 18px; color: var(--brand-ink-1);"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Profile Hero -->
+        <div style="margin: 20px 20px 0; text-align: center; position: relative;">
+          <!-- Avatar -->
+          <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #F5D0DC 0%, #D4A3B5 60%, #A8667D 100%); margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 300; color: rgba(255,255,255,0.85); box-shadow: 0 8px 24px rgba(168,102,125,0.2); position: relative;">
+            李
+            <!-- Verified badge -->
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--brand-gold-gradient); border: 3px solid var(--brand-bg-base); display: flex; align-items: center; justify-content: center; position: absolute; bottom: -2px; right: calc(50% - 56px);">
+              <i data-lucide="check" style="width: 12px; height: 12px; color: #fff;"></i>
+            </div>
+          </div>
+
+          <!-- Name and age -->
+          <div style="margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 4px;">
+            <span style="font-size: 24px; font-weight: 700; color: var(--brand-ink-1);">李梦琪</span>
+            <i data-lucide="venus" style="width: 16px; height: 16px; color: var(--brand-primary);"></i>
+            <span style="font-size: 18px; font-weight: 400; color: var(--brand-ink-2);">· 28岁</span>
+          </div>
+
+          <!-- Location/occupation -->
+          <div style="margin-top: 4px; font-size: 14px; color: var(--brand-ink-3);">上海 · 金融分析师</div>
+
+          <!-- Verification badges row -->
+          <div style="margin-top: 12px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;">
+            <span style="padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: var(--state-success-soft); color: var(--state-success);">
+              <i data-lucide="shield-check" style="width: 12px; height: 12px;"></i>
+              实名认证
+            </span>
+            <span style="padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: var(--brand-gold-soft); color: var(--brand-gold-dark);">
+              <i data-lucide="graduation-cap" style="width: 12px; height: 12px;"></i>
+              学历认证
+            </span>
+            <span style="padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; background: var(--brand-primary-soft); color: var(--brand-primary);">
+              <i data-lucide="building-2" style="width: 12px; height: 12px;"></i>
+              资产认证
+            </span>
+          </div>
+
+          <!-- Match score highlight -->
+          <div style="margin-top: 16px;">
+            <div style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 16px; background: var(--glass-bg-strong); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--brand-border); box-shadow: var(--glass-shadow-soft);">
+              <i data-lucide="sparkles" style="width: 14px; height: 14px; color: var(--brand-gold-dark);"></i>
+              <span style="font-size: 13px; color: var(--brand-ink-2);">AI 匹配度</span>
+              <b style="color: var(--brand-primary); font-size: 18px;">87</b>
+              <span style="font-size: 13px; color: var(--brand-ink-2);">分</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick action buttons row -->
+        <div style="margin: 16px 20px 0; display: flex; gap: 10px;">
+          <button class="card-hover" style="flex: 1; height: 44px; border-radius: 14px; background: var(--glass-bg-strong); border: 1px solid var(--brand-border); color: var(--brand-primary); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+            发消息
+          </button>
+          <button class="card-hover" style="flex: 1; height: 44px; border-radius: 14px; background: var(--brand-primary); color: #fff; font-size: 14px; font-weight: 600; border: none; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 4px 12px rgba(168,102,125,0.25);">
+            <i data-lucide="heart-handshake" style="width: 16px; height: 16px;"></i>
+            发起牵线
+          </button>
+          <button class="card-hover" style="width: 44px; height: 44px; border-radius: 14px; background: var(--glass-bg-strong); border: 1px solid var(--brand-border); color: var(--brand-gold-dark); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <i data-lucide="star" style="width: 18px; height: 18px;"></i>
+          </button>
+        </div>
+
+        <!-- Info sections -->
+        <div style="margin: 20px; display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 1;">
+
+          <!-- a. 基本信息 -->
+          <div class="glass-card-strong card-hover" style="border-radius: 20px; padding: 18px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 2px; height: 14px; background: var(--brand-primary); border-radius: 1px;"></span>
+              <span style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1);">基本信息</span>
+            </div>
+            <div class="info-grid" style="margin-top: 14px;">
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">身高</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">165cm</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">体重</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">48kg</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">学历</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">硕士</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">院校</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">复旦大学</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">星座</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">天蝎座</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">血型</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">A型</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">籍贯</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">浙江杭州</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">现居</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">上海浦东</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">婚姻</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">未婚</span></div>
+              <div><span style="font-size: 12px; color: var(--brand-ink-3); display: block;">年收入</span><span style="font-size: 14px; color: var(--brand-ink-1); font-weight: 500;">50-80万</span></div>
+            </div>
+          </div>
+
+          <!-- b. 择偶要求 -->
+          <div class="glass-card-strong card-hover" style="border-radius: 20px; padding: 18px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 2px; height: 14px; background: var(--brand-primary); border-radius: 1px;"></span>
+              <span style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1);">择偶要求</span>
+            </div>
+            <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-primary-soft); color: var(--brand-primary); font-size: 12px; font-weight: 500;">年龄 26-33岁</span>
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-primary-soft); color: var(--brand-primary); font-size: 12px; font-weight: 500;">身高 175cm+</span>
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-primary-soft); color: var(--brand-primary); font-size: 12px; font-weight: 500;">学历 本科+</span>
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-primary-soft); color: var(--brand-primary); font-size: 12px; font-weight: 500;">收入 30万+</span>
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-primary-soft); color: var(--brand-primary); font-size: 12px; font-weight: 500;">现居上海</span>
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-primary-soft); color: var(--brand-primary); font-size: 12px; font-weight: 500;">未婚</span>
+              <span style="padding: 6px 12px; border-radius: 10px; background: var(--brand-gold-soft); color: var(--brand-gold-dark); font-size: 12px; font-weight: 500;">不抽烟</span>
+            </div>
+          </div>
+
+          <!-- c. 自我介绍 -->
+          <div class="glass-card-strong card-hover" style="border-radius: 20px; padding: 18px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px;">
+              <span style="display: inline-block; width: 2px; height: 14px; background: var(--brand-primary); border-radius: 1px;"></span>
+              <span style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1);">自我介绍</span>
+            </div>
+            <p style="margin-top: 12px; font-size: 14px; color: var(--brand-ink-2); line-height: 1.7;">
+              热爱生活，喜欢旅行和摄影。周末常去美术馆和咖啡馆，也会健身和瑜伽。性格温柔开朗，家庭观念重。希望遇到一个有责任感、三观正、情绪稳定的另一半，一起经营温馨的小家庭。
+            </p>
+            <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;">
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                旅行
+              </span>
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                摄影
+              </span>
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                瑜伽
+              </span>
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                咖啡
+              </span>
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                阅读
+              </span>
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                电影
+              </span>
+              <span style="padding: 4px 10px; border-radius: 999px; background: rgba(168,102,125,0.05); color: var(--brand-ink-2); font-size: 12px; display: inline-flex; align-items: center; gap: 4px;">
+                <i data-lucide="heart" style="width: 12px; height: 12px; color: var(--brand-primary-light);"></i>
+                烹饪
+              </span>
+            </div>
+          </div>
+
+          <!-- d. 红娘备注 -->
+          <div class="card-hover" style="border-radius: 20px; padding: 18px; background: linear-gradient(135deg, rgba(200,149,108,0.06) 0%, rgba(168,102,125,0.04) 100%); border: 1px solid rgba(200,149,108,0.15); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: var(--glass-shadow-soft);">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <i data-lucide="file-text" style="width: 16px; height: 16px; color: var(--brand-gold-dark);"></i>
+              <span style="font-size: 14px; font-weight: 600; color: var(--brand-ink-1);">红娘备注（AI 辅助）</span>
+            </div>
+            <p style="margin-top: 10px; font-size: 13px; color: var(--brand-ink-2); line-height: 1.6;">
+              形象气质佳，沟通顺畅，对婚姻有清晰规划。父母为公务员，家庭背景良好。建议优先匹配同年龄段、高学历、有稳定事业的男性。近期活跃，回复率高。
+            </p>
+            <div style="margin-top: 8px; font-size: 11px; color: var(--brand-ink-4);">最后更新: 2026-08-05</div>
+          </div>
+
+        </div>
+
+        <!-- #sticky-action-bar — Sticky bottom action bar -->
+        <div id="sticky-action-bar" class="sticky-action-bar" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 50; max-width: 420px; margin: 0 auto; background: rgba(253,246,242,0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid var(--brand-border); padding: 12px 20px 28px; display: flex; gap: 10px;">
+          <button class="card-hover" style="flex: 1; height: 46px; border-radius: 14px; background: var(--glass-bg); border: 1px solid var(--brand-primary-soft-2); color: var(--brand-primary); font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+            <i data-lucide="edit-3" style="width: 16px; height: 16px;"></i>
+            编辑资料
+          </button>
+          <button class="card-hover" style="flex: 1.4; height: 46px; border-radius: 14px; background: var(--brand-gold-gradient); color: #fff; font-size: 14px; font-weight: 600; border: none; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; box-shadow: 0 6px 16px rgba(200,149,108,0.3);">
+            <i data-lucide="calendar-plus" style="width: 16px; height: 16px;"></i>
+            安排约见
+          </button>
+        </div>
+
+      </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

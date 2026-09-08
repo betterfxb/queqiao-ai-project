@@ -1,0 +1,170 @@
+[
+  {
+    "id": "org.name",
+    "category": "基础信息",
+    "value": "牵线婚恋服务中心",
+    "label": "机构名称",
+    "type": "text",
+    "updatedAt": "2026-07-25T10:00:00"
+  },
+  {
+    "id": "org.shortName",
+    "category": "基础信息",
+    "value": "牵线",
+    "label": "机构简称",
+    "type": "text",
+    "updatedAt": "2026-07-09T10:00:00"
+  },
+  {
+    "id": "org.phone",
+    "category": "基础信息",
+    "value": "400-800-2026",
+    "label": "客服电话",
+    "type": "text",
+    "updatedAt": "2026-08-07T10:00:00"
+  },
+  {
+    "id": "org.address",
+    "category": "基础信息",
+    "value": "北京市朝阳区建国路 88 号",
+    "label": "办公地址",
+    "type": "text",
+    "updatedAt": "2026-07-22T10:00:00"
+  },
+  {
+    "id": "biz.matchThreshold",
+    "category": "业务规则",
+    "value": "70",
+    "label": "推荐匹配度阈值(%)",
+    "type": "number",
+    "updatedAt": "2026-07-28T10:00:00"
+  },
+  {
+    "id": "biz.maxPairPerMember",
+    "category": "业务规则",
+    "value": "5",
+    "label": "单会员同时牵线上限",
+    "type": "number",
+    "updatedAt": "2026-07-15T10:00:00"
+  },
+  {
+    "id": "biz.auditTimeout",
+    "category": "业务规则",
+    "value": "48",
+    "label": "审核超时提醒(小时)",
+    "type": "number",
+    "updatedAt": "2026-07-16T10:00:00"
+  },
+  {
+    "id": "biz.leadStaleDays",
+    "category": "业务规则",
+    "value": "7",
+    "label": "线索沉睡天数",
+    "type": "number",
+    "updatedAt": "2026-07-13T10:00:00"
+  },
+  {
+    "id": "notify.newLead",
+    "category": "通知设置",
+    "value": "true",
+    "label": "新线索提醒",
+    "type": "switch",
+    "updatedAt": "2026-08-06T10:00:00"
+  },
+  {
+    "id": "notify.auditPending",
+    "category": "通知设置",
+    "value": "true",
+    "label": "待审核提醒",
+    "type": "switch",
+    "updatedAt": "2026-07-27T10:00:00"
+  },
+  {
+    "id": "notify.meetingRemind",
+    "category": "通知设置",
+    "value": "true",
+    "label": "见面前提醒",
+    "type": "switch",
+    "updatedAt": "2026-07-22T10:00:00"
+  },
+  {
+    "id": "notify.dailyReport",
+    "category": "通知设置",
+    "value": "false",
+    "label": "每日运营日报",
+    "type": "switch",
+    "updatedAt": "2026-07-22T10:00:00"
+  },
+  {
+    "id": "ai.enabled",
+    "category": "AI 设置",
+    "value": "true",
+    "label": "启用 AI 能力",
+    "type": "switch",
+    "updatedAt": "2026-08-06T10:00:00"
+  },
+  {
+    "id": "ai.autoParse",
+    "category": "AI 设置",
+    "value": "true",
+    "label": "资料自动解析",
+    "type": "switch",
+    "updatedAt": "2026-07-25T10:00:00"
+  },
+  {
+    "id": "ai.autoMatch",
+    "category": "AI 设置",
+    "value": "true",
+    "label": "智能匹配推荐",
+    "type": "switch",
+    "updatedAt": "2026-07-20T10:00:00"
+  },
+  {
+    "id": "ai.replySuggest",
+    "category": "AI 设置",
+    "value": "true",
+    "label": "话术建议",
+    "type": "switch",
+    "updatedAt": "2026-07-17T10:00:00"
+  },
+  {
+    "id": "security.loginFailLimit",
+    "category": "安全设置",
+    "value": "5",
+    "label": "登录失败锁定次数",
+    "type": "number",
+    "updatedAt": "2026-08-05T10:00:00"
+  },
+  {
+    "id": "security.sessionMinutes",
+    "category": "安全设置",
+    "value": "120",
+    "label": "会话有效期(分钟)",
+    "type": "number",
+    "updatedAt": "2026-07-19T10:00:00"
+  },
+  {
+    "id": "security.ipWhitelist",
+    "category": "安全设置",
+    "value": "",
+    "label": "IP 白名单",
+    "type": "textarea",
+    "updatedAt": "2026-08-03T10:00:00"
+  },
+  {
+    "id": "commission.successRate",
+    "category": "分佣设置",
+    "value": "10",
+    "label": "成功撮合佣金比例(%)",
+    "type": "number",
+    "updatedAt": "2026-08-09T10:00:00"
+  },
+  {
+    "id": "commission.renewRate",
+    "category": "分佣设置",
+    "value": "15",
+    "label": "续费分成比例(%)",
+    "type": "number",
+    "updatedAt": "2026-08-09T10:00:00"
+  }
+]

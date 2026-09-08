@@ -1,0 +1,282 @@
+{
+  "success": false,
+  "outcome": "terminal_stop",
+  "repairable": false,
+  "terminalViolations": [
+    "validationHistory has 3 full validation run(s), max allowed is 2"
+  ],
+  "terminalBlockingSummary": {
+    "terminalState": "validation-budget-exhausted",
+    "nextAction": "stop_and_report_blocking_summary",
+    "violations": [
+      "validationHistory has 3 full validation run(s), max allowed is 2"
+    ]
+  },
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.07.22.00.00.00",
+    "version_source": "skill-release-manifest.json",
+    "runtime_skill_dir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+    "recorded_at": null,
+    "expected_version": "2026.07.22.00.00.00",
+    "status": "manifest_fallback",
+    "read_status": "ok",
+    "reason": "runtime-orchestration-summary.json missing skillProvenance; used skill-release-manifest.json"
+  },
+  "operatingMode": "free-explore",
+  "renderBlockingErrorCount": 8,
+  "softWarningCount": 42,
+  "renderBlockingErrors": [
+    "[device-type-consistency] orchestration-summary project.deviceType=\"desktop\" does not match .design config.deviceType=\"mobile\". Fix .design config before final delivery.",
+    "[dispatch-changed-files] pages/dashboard.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/members.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/match.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/messages.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/member-detail.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/schedule.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/edit-member.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design"
+  ],
+  "errorSignatures": [
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[device-type-consistency] orchestration-summary project.deviceType=\"desktop\" does not match .design config.deviceType=\"mobile\". Fix .design config before final delivery.",
+      "signature": "adbaf09326f2ac2348f3bc736edcc440da10bec75135355ff0cda20715c1f67a"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/dashboard.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "12ba416607eaaf3da1ce51a64dd6fe0a66814fabd541aa70d2eab07475353ca3"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/members.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "3c1d35559455f46f46ab4e069369abcfdcb7653e296bcfcfb964760b5345f96b"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/match.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "b8c77f563503ee4161b3c4aee1ad749db2cc95d5c1e66bfaf9dc3f178ddfdcc3"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/messages.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "2dac69ebe4d365c94081c40b69e44c54f0ad3b07ebf8223c26ad0309b7148500"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/member-detail.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "9fbcdb31031b7cd9d9fb941555798feec1d6c93e603618fd41a384932de734f1"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/schedule.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "9a6aede73b0857497627d762bbc37a4187a5a8c372d057b11c794eceaef361bc"
+    },
+    {
+      "errorClass": "artifact-readiness",
+      "normalized": "[dispatch-changed-files] pages/edit-member.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+      "signature": "8a2c0076eda1e4513bef44bef489639dbf0a9c767ed0099f2019049b4e4030b8"
+    }
+  ],
+  "softWarnings": [
+    "[html-head-style] match.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] member-detail.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] schedule.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[orchestration-summary] runtime-orchestration-summary.json is missing skillProvenance.name/version/version_source. Version provenance will be reported as observed_unknown by external evaluators.",
+    "[repair-ledger] validationRepairLedger[] has 3 entries; retry_or_repair_loop risk should be reviewed",
+    "[repair-ledger] validationRepairLedger[0].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationSuccess should be a boolean",
+    "[repair-ledger] validationRepairLedger[1].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[1].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[1].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[1].revalidationSuccess should be a boolean",
+    "[repair-ledger] validationRepairLedger[2].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[2].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[2].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[2].revalidationSuccess should be a boolean",
+    "[validation-discipline] validationHistory has 3 full validation run(s), max allowed is 2",
+    "[html-quality] colors_and_type.css: free-explore radius tokens must stay within the restrained 2/4/8/12/16px scale; oversized or forbidden radius tokens found (--brand-radius-xl: 28px, --brand-radius-2xl: 32px, --dt-radius-xl: 20px, --brand-radius-lg: 20px). Do not use 20px+ radii unless the user explicitly requested large rounded shapes.",
+    "[html-quality] colors_and_type.css: ordinary/static shadow tokens must keep every shadow alpha <= 0.05; deeper shadows are allowed only for floating-layer tokens such as modal/popover/dropdown/drawer/overlay (--glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10), --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12), --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06), --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06), --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10), --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12), --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15), --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06), --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08), --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10), --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14), --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20)).",
+    "[html-quality] dashboard.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-audit.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-bigscreen.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-calendar.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-crm.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-dashboard.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-events.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-finance.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-login.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-match-detail.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-matchmakers.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-member-edit.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-members.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-messages-center.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-reports.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-settings.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] edit-member.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] match.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] member-detail.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] members.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] messages.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] schedule.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
+  ],
+  "repairPlanHints": [],
+  "repairActionTable": [],
+  "errorCount": 8,
+  "warningCount": 42,
+  "errors": [
+    "[device-type-consistency] orchestration-summary project.deviceType=\"desktop\" does not match .design config.deviceType=\"mobile\". Fix .design config before final delivery.",
+    "[dispatch-changed-files] pages/dashboard.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/members.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/match.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/messages.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/member-detail.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/schedule.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design",
+    "[dispatch-changed-files] pages/edit-member.html: controlled file changed after dispatch preflight without mainAgentPostDispatchMutations evidence: project.design"
+  ],
+  "warnings": [
+    "[html-head-style] match.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] member-detail.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] schedule.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[orchestration-summary] runtime-orchestration-summary.json is missing skillProvenance.name/version/version_source. Version provenance will be reported as observed_unknown by external evaluators.",
+    "[repair-ledger] validationRepairLedger[] has 3 entries; retry_or_repair_loop risk should be reviewed",
+    "[repair-ledger] validationRepairLedger[0].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationSuccess should be a boolean",
+    "[repair-ledger] validationRepairLedger[1].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[1].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[1].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[1].revalidationSuccess should be a boolean",
+    "[repair-ledger] validationRepairLedger[2].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[2].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[2].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[2].revalidationSuccess should be a boolean",
+    "[validation-discipline] validationHistory has 3 full validation run(s), max allowed is 2",
+    "[html-quality] colors_and_type.css: free-explore radius tokens must stay within the restrained 2/4/8/12/16px scale; oversized or forbidden radius tokens found (--brand-radius-xl: 28px, --brand-radius-2xl: 32px, --dt-radius-xl: 20px, --brand-radius-lg: 20px). Do not use 20px+ radii unless the user explicitly requested large rounded shapes.",
+    "[html-quality] colors_and_type.css: ordinary/static shadow tokens must keep every shadow alpha <= 0.05; deeper shadows are allowed only for floating-layer tokens such as modal/popover/dropdown/drawer/overlay (--glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10), --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12), --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06), --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06), --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10), --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12), --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15), --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06), --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08), --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10), --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14), --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20)).",
+    "[html-quality] dashboard.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-audit.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-bigscreen.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-calendar.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-crm.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-dashboard.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-events.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-finance.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-login.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-match-detail.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-matchmakers.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-member-edit.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-members.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-messages-center.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-reports.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] desktop-settings.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] edit-member.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] match.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] member-detail.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] members.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] messages.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] schedule.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
+  ],
+  "validationRunDisciplineStatus": {
+    "declared": true,
+    "restoreMode": false,
+    "maxFullValidationRuns": 2,
+    "validationHistoryCount": 3,
+    "repairLedgerCount": 3,
+    "softWarningsTriggerRepair": false,
+    "terminalState": "validation-budget-exhausted",
+    "nextAction": "stop_and_report_blocking_summary",
+    "violations": [
+      "validationHistory has 3 full validation run(s), max allowed is 2"
+    ],
+    "success": false
+  },
+  "terminalState": "validation-budget-exhausted",
+  "nextCheck": {
+    "type": "stop",
+    "reason": "validation-budget-exhausted",
+    "command": null
+  },
+  "repairBatch": [],
+  "repairContextPacket": {
+    "schema_version": "1.0",
+    "purpose": "terminal stop packet; do not repair",
+    "success": false,
+    "outcome": "terminal_stop",
+    "repairable": false,
+    "terminalViolations": [
+      "validationHistory has 3 full validation run(s), max allowed is 2"
+    ],
+    "terminalBlockingSummary": {
+      "terminalState": "validation-budget-exhausted",
+      "nextAction": "stop_and_report_blocking_summary",
+      "violations": [
+        "validationHistory has 3 full validation run(s), max allowed is 2"
+      ]
+    },
+    "terminalState": "validation-budget-exhausted",
+    "skillProvenance": {
+      "name": "solo-design",
+      "version": "2026.07.22.00.00.00",
+      "version_source": "skill-release-manifest.json",
+      "runtime_skill_dir": "c:\\Users\\19560\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+      "recorded_at": null,
+      "expected_version": "2026.07.22.00.00.00",
+      "status": "manifest_fallback",
+      "read_status": "ok",
+      "reason": "runtime-orchestration-summary.json missing skillProvenance; used skill-release-manifest.json"
+    },
+    "renderBlockingErrorCount": 0,
+    "softWarningCount": 42,
+    "renderBlockingErrors": [],
+    "repairActionTable": [],
+    "repairPlanHints": [],
+    "nextCheck": {
+      "type": "stop",
+      "command": null,
+      "fullValidationAllowed": false,
+      "reason": "validation-budget-exhausted",
+      "nextAction": "stop_and_report_blocking_summary"
+    },
+    "forbidden": [
+      "do not repair ledger",
+      "do not delete validation state",
+      "do not rerun validation",
+      "do not read validator source"
+    ]
+  },
+  "projectFileHashes": {
+    "project.design": "dea3ab2ab10cb17b066f5b2e363761d8be322c07e4a6fef8c9d685e5fb3dcc79",
+    "colors_and_type.css": "161b620b9eb6a3a47d7d64dc2c8d0a4eb3a20812c2d7029b6433d48a734ca90f",
+    "runtime-orchestration-summary.json": "37aa5d36e4d447a36cb7861bc517f6c998bc5517ef20b0c56e2a6d1fc96a626a",
+    "pages/dashboard.html": "919c6102d3a916d33231f321681e879bab446ebc8f84b77677d49481b9b0645f",
+    "pages/desktop-audit.html": "b9ccd43bc0abb9e2470f445ce228228882093285b774b25d29439cf388d141fc",
+    "pages/desktop-bigscreen.html": "9ac1b85de62871e80a7f20302acb283da5ea4146cdc2d11769613066bbd3fcaf",
+    "pages/desktop-calendar.html": "c405d3511101930ab93e45eae98e5e797fa4ed52c63fbe87c7f8a9e1cb5f0675",
+    "pages/desktop-crm.html": "96cdedf44e3f8cd5af94d47799858c82707957484b577f226de41edbcd795f5c",
+    "pages/desktop-dashboard.html": "6c097df13a49ff4c54dd21bd90b05f3ebb626d15be71f64965b0c61999ce41c0",
+    "pages/desktop-events.html": "859300f93c02b181b7c5ecf19bd82e8a5248fe7fb5ffcc2e328d763ff205fcda",
+    "pages/desktop-finance.html": "a798668b6ffcdacf7d343aa404a9957ddae1b766b4ceea001ebf46b40008e93b",
+    "pages/desktop-login.html": "fce4103ac30adb9d673b8a83588bbc309db7d5ce6ce5db3e20384d5af9c847d6",
+    "pages/desktop-match-detail.html": "abb60020c6984c66310d53c38b9ea8672acbf987f3d450e880a83a7135c21372",
+    "pages/desktop-matchmakers.html": "aa520b701a9b2fda104bb5c1b9d14f286bcfbf6edb933587499ca7e6b021db70",
+    "pages/desktop-member-edit.html": "e35e40e8216a5fe847e992c734212a8f9b824763e2de640f7cda60f17e70f7e1",
+    "pages/desktop-members.html": "e956fb0291020998145ff39d20779848f7fd19e911f1ac78bd415c5abb73c6b5",
+    "pages/desktop-messages-center.html": "6647357938b53a9f80b2bc53ed8a1a0cbfe403ffae5568b8170e6a84d0533b18",
+    "pages/desktop-reports.html": "1816a2ccd72d36b3bf0378af85a1fa2b6a42476a8f7b52c48e3e07d46cdcef81",
+    "pages/desktop-settings.html": "e3fb6c361d3cbc3e1294add6edd07719a91726cfc65295629723fd3979f87bcc",
+    "pages/edit-member.html": "6b07ff3154b6c38e1953cc8d77ccbfbf34749104399c07ab90e7b79cddc73d73",
+    "pages/match.html": "b79ca926177c30d786817c22765d7e60fa51c0666552ea478340b94593441a93",
+    "pages/member-detail.html": "f8a6dcbe0976880c01b229f47281bf8b97a4d93d7f477af640f7cff8c064365f",
+    "pages/members.html": "d26896963b7efa662688559a16f6711f36cf03eb7f720e819bcf24db5f91e53b",
+    "pages/messages.html": "bc820a5f4f6b30029607af7ffeedce1559b02140ae4e5175b9a0c868b9d15a0b",
+    "pages/schedule.html": "176ee544878705412e7a5087bfa2427016f1c0a93c37e08385e9f7d5a85006ac"
+  },
+  "designDir": "d:\\ai_project\\matchmaker-workbench.design",
+  "expectedPages": null,
+  "requireInteractions": null,
+  "checkedAt": "2026-08-08T07:04:33.039Z"
+}

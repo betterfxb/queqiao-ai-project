@@ -1,0 +1,582 @@
+{
+  "data": [
+    {
+      "id": "page-dashboard",
+      "title": "核心工作台",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754563200000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1167,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-26274e4e",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 953
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dashboard.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-edit-member",
+      "title": "智能信息录入与编辑",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754563201000,
+      "canvasData": {
+        "x": 309,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1287,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-98b3c7bd",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 953
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/edit-member.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-members",
+      "title": "会员库",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754564000000,
+      "canvasData": {
+        "x": 618,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1027,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-2b5dc17f",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 943
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/members.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-member-detail",
+      "title": "会员详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754564001000,
+      "canvasData": {
+        "x": 927,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1587,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-5c68f900",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 963
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/member-detail.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-match",
+      "title": "智能牵线匹配",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754564002000,
+      "canvasData": {
+        "x": 1236,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 978,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-7fe4d185",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 943
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/match.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-messages",
+      "title": "消息中心",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754564003000,
+      "canvasData": {
+        "x": 1545,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-0535b62a",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 963
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/messages.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-schedule",
+      "title": "约见日程",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754564004000,
+      "canvasData": {
+        "x": 1854,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1171,
+          "viewportWidth": 374,
+          "sourceHash": "fnv1a-8c0f7393",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 374,
+          "height": 943
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/schedule.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-dashboard",
+      "title": "牵线运营中心 · Dashboard",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754650000000,
+      "canvasData": {
+        "x": 0,
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1322,
+          "viewportWidth": 1608,
+          "sourceHash": "fnv1a-fa54a8b1",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 1608,
+          "height": 981
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-dashboard.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-member-edit",
+      "title": "会员档案编辑",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1754650001000,
+      "canvasData": {
+        "x": 669,
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1186,
+          "viewportWidth": 1485,
+          "sourceHash": "fnv1a-b89daa07",
+          "measuredAt": 1786178435837
+        },
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 1485,
+          "height": 981
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-member-edit.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-members",
+      "version": 1,
+      "createdAt": 1754651000000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1072,
+          "viewportWidth": 1978,
+          "sourceHash": "fnv1a-e31ba9ee",
+          "measuredAt": 1786178435837
+        },
+        "x": 1302,
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 1978,
+          "height": 981
+        }
+      },
+      "type": "page",
+      "title": "会员管理",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-members.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-finance",
+      "version": 1,
+      "createdAt": 1754651001000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1449,
+          "viewportWidth": 1978,
+          "sourceHash": "fnv1a-a84c8c4e",
+          "measuredAt": 1786178435837
+        },
+        "x": 2079,
+        "deviceType": "freeSize",
+        "windowSize": {
+          "width": 1978,
+          "height": 981
+        }
+      },
+      "type": "page",
+      "title": "财务报表",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-finance.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-matchmakers",
+      "version": 1,
+      "createdAt": 1754652000000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-42a19691",
+          "measuredAt": 1786178435837
+        },
+        "x": 2856,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "红娘管理",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-matchmakers.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-events",
+      "version": 1,
+      "createdAt": 1754652001000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-69858283",
+          "measuredAt": 1786178435837
+        },
+        "x": 3476,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "活动管理",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-events.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-settings",
+      "version": 1,
+      "createdAt": 1754652002000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1080,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-e62884a1",
+          "measuredAt": 1786178435837
+        },
+        "x": 4096,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "系统设置",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-settings.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-match-detail",
+      "version": 1,
+      "createdAt": 1754653000000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-905c693c",
+          "measuredAt": 1786178435837
+        },
+        "x": 4716,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "牵线详情",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-match-detail.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-messages-center",
+      "version": 1,
+      "createdAt": 1754653001000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-ddec98d8",
+          "measuredAt": 1786178435837
+        },
+        "x": 5336,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "消息中心",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-messages-center.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-calendar",
+      "version": 1,
+      "createdAt": 1754653002000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-f86b8c4f",
+          "measuredAt": 1786178435837
+        },
+        "x": 5956,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "日程日历",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-calendar.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-audit",
+      "version": 1,
+      "createdAt": 1754654000000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-c580d67a",
+          "measuredAt": 1786178435837
+        },
+        "x": 6576,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "审核工作台",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-audit.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-reports",
+      "version": 1,
+      "createdAt": 1754654001000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-14617eb9",
+          "measuredAt": 1786178435837
+        },
+        "x": 7196,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "报表导出",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-reports.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-login",
+      "version": 1,
+      "createdAt": 1754655000000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1080,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-f668f222",
+          "measuredAt": 1786178435837
+        },
+        "x": 7816,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "登录页",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-login.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-bigscreen",
+      "version": 1,
+      "createdAt": 1754655001000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1080,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-ec8aa17c",
+          "measuredAt": 1786178435837
+        },
+        "x": 8436,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "数据大屏",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-bigscreen.html",
+        "interactions": []
+      }
+    },
+    {
+      "id": "page-desktop-crm",
+      "version": 1,
+      "createdAt": 1754655002000,
+      "canvasData": {
+        "y": 395,
+        "group": 1,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 1440,
+          "sourceHash": "fnv1a-0e49032e",
+          "measuredAt": 1786178435837
+        },
+        "x": 9056,
+        "deviceType": "desktop"
+      },
+      "type": "page",
+      "title": "CRM客户跟进",
+      "devMetadata": {
+        "htmlSrc": "pages/desktop-crm.html",
+        "interactions": []
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "婚恋红娘智能工作台",
+    "showEdge": false
+  }
+}

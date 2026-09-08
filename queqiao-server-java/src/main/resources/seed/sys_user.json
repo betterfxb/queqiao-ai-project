@@ -1,0 +1,71 @@
+[
+ {
+  "id": "U001",
+  "username": "admin",
+  "password": null,
+  "name": "系统管理员",
+  "role": "ADMIN",
+  "avatarBg": "linear-gradient(135deg,#D9C4E8,#7A6AA8)",
+  "phone": "13800000001",
+  "email": "admin@queqiao.com",
+  "status": "在职",
+  "agentId": null,
+  "createdAt": "2025-08-08T10:00:00"
+ },
+ {
+  "id": "U002",
+  "username": "wangjie",
+  "password": null,
+  "name": "王姐",
+  "role": "AGENT",
+  "avatarBg": "linear-gradient(135deg,#F4C6D0,#A8667D)",
+  "phone": "13800000002",
+  "email": "wang@queqiao.com",
+  "status": "在职",
+  "agentId": "A001",
+  "createdAt": "2025-10-12T10:00:00"
+ },
+ {
+  "id": "U003",
+  "username": "lihong",
+  "password": null,
+  "name": "李红娘",
+  "role": "AGENT",
+  "avatarBg": "linear-gradient(135deg,#B8C4D0,#5A7A9A)",
+  "phone": "13800000003",
+  "email": "li@queqiao.com",
+  "status": "在职",
+  "agentId": "A002",
+  "createdAt": "2025-11-01T10:00:00"
+ },
+ {
+  "id": "U004",
+  "username": "manager",
+  "password": null,
+  "name": "运营主管",
+  "role": "MANAGER",
+  "avatarBg": "linear-gradient(135deg,#C8D8C0,#5B8C5A)",
+  "phone": "13800000004",
+  "email": "mgr@queqiao.com",
+  "status": "在职",
+  "agentId": null,
+  "createdAt": "2025-09-22T10:00:00"
+ },
+ {
+  "id": "U005",
+  "username": "demo",
+  "password": null,
+  "name": "体验红娘",
+  "role": "ADMIN",
+  "avatarBg": "linear-gradient(135deg,#F4C6D0,#A8667D)",
+  "phone": "13800000005",
+  "email": "demo@queqiao.com",
+  "status": "启用",
+  "agentId": null,
+  "createdAt": "2026-08-23T10:00:00",
+  "isTrial": true,
+  "trialQuota": 50,
+  "trialUsed": 0,
+  "trialLocked": false
+ }
+]

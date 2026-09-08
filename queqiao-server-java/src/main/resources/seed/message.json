@@ -1,0 +1,658 @@
+[
+ {
+  "conversationId": "CV20266001",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T16:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T17:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T18:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T19:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T20:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T21:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T22:00:00"
+ },
+ {
+  "conversationId": "CV20266001",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T23:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T14:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T15:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T16:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T17:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T18:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T19:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T20:00:00"
+ },
+ {
+  "conversationId": "CV20266002",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T21:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T19:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T20:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T21:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T22:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T23:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T00:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T01:00:00"
+ },
+ {
+  "conversationId": "CV20266003",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T02:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T13:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T14:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T15:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T16:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T17:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T18:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T19:00:00"
+ },
+ {
+  "conversationId": "CV20266004",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T20:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T08:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T09:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T10:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T11:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T12:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T13:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T14:00:00"
+ },
+ {
+  "conversationId": "CV20266005",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-08T15:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T06:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T07:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T08:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T09:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T10:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T11:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T12:00:00"
+ },
+ {
+  "conversationId": "CV20266006",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T13:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T03:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T04:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T05:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T06:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T07:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T08:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T09:00:00"
+ },
+ {
+  "conversationId": "CV20266007",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T10:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T14:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T15:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T16:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T17:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T18:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T19:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T20:00:00"
+ },
+ {
+  "conversationId": "CV20266008",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T21:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T08:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T09:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T10:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T11:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T12:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T13:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T14:00:00"
+ },
+ {
+  "conversationId": "CV20266009",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-06T15:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "other",
+  "content": "您好，红娘老师，我看到您推荐的资料了",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T14:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "me",
+  "content": "您好！这位是我们平台的优质会员，条件与您比较契合",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T15:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "other",
+  "content": "她平时喜欢做什么呢？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T16:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "me",
+  "content": "她喜欢阅读和徒步，周末常参加我们的读书会活动",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T17:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "other",
+  "content": "听起来不错，可以安排见一面吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T18:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "me",
+  "content": "当然可以，我这边协调下双方时间，本周六下午方便吗？",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T19:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "other",
+  "content": "周六下午可以的",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T20:00:00"
+ },
+ {
+  "conversationId": "CV20266010",
+  "sender": "me",
+  "content": "好的，我马上安排，稍后把地址发您",
+  "type": "text",
+  "readFlag": true,
+  "createdAt": "2026-08-07T21:00:00"
+ },
+ {
+  "conversationId": "CV20266011",
+  "sender": "system",
+  "content": "您有 3 条新的匹配推荐",
+  "type": "text",
+  "readFlag": false,
+  "createdAt": "2026-08-07T05:00:00"
+ },
+ {
+  "conversationId": "CV20266012",
+  "sender": "system",
+  "content": "这位女士的资料我很感兴趣",
+  "type": "text",
+  "readFlag": false,
+  "createdAt": "2026-08-06T16:00:00"
+ }
+]

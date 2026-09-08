@@ -1,0 +1,44 @@
+[
+  {
+    "id": "CP001",
+    "city": "杭州市",
+    "ownerAgentId": "A001",
+    "ownerAgentName": "李红娘",
+    "tier": "城市合伙人",
+    "status": "运营中",
+    "phone": "13900002001",
+    "startDate": "2026-01-15",
+    "shareRate": 30.0,
+    "remark": "总部直营样板城市，全量功能开放",
+    "createdAt": "2026-01-15T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "CP002",
+    "city": "宁波市",
+    "ownerAgentId": "A002",
+    "ownerAgentName": "王媒人",
+    "tier": "城市代理",
+    "status": "运营中",
+    "phone": "13900002002",
+    "startDate": "2026-06-01",
+    "shareRate": 25.0,
+    "remark": "复制杭州模板，社群 + 月度相亲会双轮驱动",
+    "createdAt": "2026-06-01T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  },
+  {
+    "id": "CP003",
+    "city": "温州市",
+    "ownerAgentId": "A003",
+    "ownerAgentName": "张月老",
+    "tier": "社群运营",
+    "status": "筹备中",
+    "phone": "13900002003",
+    "startDate": "2026-08-01",
+    "shareRate": 20.0,
+    "remark": "先建免费群蓄客，满 300 人后开轻会员",
+    "createdAt": "2026-08-01T09:00:00",
+    "updatedAt": "2026-08-01T09:00:00"
+  }
+]

@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能信息录入与编辑</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm White + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Burgundy (勃艮第红) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Champagne Gold (香槟金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="m-0 p-0 min-h-screen font-sans antialiased" style="background: var(--brand-bg-gradient); -webkit-tap-highlight-color: transparent; scroll-behavior: smooth;">
+    <main>
+      <div class="relative min-h-screen w-full mx-auto max-w-[420px] pb-24 noise-texture" style="background: var(--brand-bg-gradient);">
+        <div style="position: relative; z-index: 1;">
+
+          <!-- Status bar spacer -->
+          <div style="height: 12px;"></div>
+
+          <!-- #edit-topbar — Top Navigation Bar (frosted glass) -->
+          <header id="edit-topbar" style="position: sticky; top: 0; z-index: 50; width: 100%; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); background: rgba(253,246,242,0.88); border-bottom: 1px solid var(--brand-border);">
+            <div style="display: flex; flex-direction: row; padding: 12px 16px; align-items: center; justify-content: space-between;">
+              <!-- Back button -->
+              <button type="button" aria-label="返回" style="width: 40px; height: 40px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--glass-bg); border: 1px solid var(--glass-border); box-shadow: var(--glass-shadow-sm); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; min-height: 44px;" onmousedown="this.style.transform='scale(0.92)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'">
+                <i data-lucide="chevron-left" style="width: 22px; height: 22px; color: var(--brand-ink-1);"></i>
+              </button>
+
+              <!-- Title -->
+              <h1 style="font-size: 17px; font-weight: 600; color: var(--brand-ink-1); margin: 0; letter-spacing: -0.01em;">编辑资料 · 张明</h1>
+
+              <!-- Save button (top-right) -->
+              <button type="button" style="padding: 8px 20px; border-radius: 999px; background: var(--brand-gold-gradient); color: #3E2D35; font-size: 14px; font-weight: 600; border: none; box-shadow: 0 4px 12px rgba(200,149,108,0.3); cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; min-height: 44px;" onmousedown="this.style.transform='scale(0.95)'; this.style.boxShadow='0 2px 8px rgba(200,149,108,0.2)'" onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(200,149,108,0.3)'" onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(200,149,108,0.3)'">保存</button>
+            </div>
+          </header>
+
+          <!-- #ai-tip-bar — AI Modification Tip Bar -->
+          <div id="ai-tip-bar" style="margin: 16px 20px 0; padding: 12px 16px; border-radius: 16px; background: linear-gradient(135deg, rgba(200,149,108,0.08) 0%, rgba(200,149,108,0.03) 100%); display: flex; align-items: center; cursor: pointer; transition: background 0.15s;">
+            <i data-lucide="sparkles" style="width: 16px; height: 16px; color: var(--brand-gold-dark); flex-shrink: 0;"></i>
+            <div style="flex: 1; margin-left: 10px; font-size: 13px; color: var(--brand-ink-2);">
+              本次修改 <span style="color: var(--brand-gold-dark); font-weight: 600;">3 项</span>，点击查看详情
+            </div>
+            <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--brand-ink-3); flex-shrink: 0;"></i>
+          </div>
+
+          <!-- #segment-tabs — Segmented Control -->
+          <nav id="segment-tabs" style="margin: 16px 20px 0; overflow-x: auto; display: flex; gap: 6px; padding-bottom: 1px;" class="no-scrollbar">
+            <button type="button" class="seg-tab seg-tab-active" style="padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--brand-primary); background: var(--brand-primary-soft); border: 1px solid rgba(168,102,125,0.12); white-space: nowrap; cursor: pointer; transition: all 0.2s; position: relative; min-height: 44px; display: inline-flex; align-items: center;">
+              基本信息
+              <span style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 12px; height: 2px; background: var(--brand-primary); border-radius: 2px;"></span>
+            </button>
+            <button type="button" class="seg-tab" style="padding: 8px 18px; border-radius: 999px; font-size: 13px; color: var(--brand-ink-3); background: var(--glass-bg-light); border: 1px solid transparent; white-space: nowrap; cursor: pointer; transition: all 0.2s; min-height: 44px; display: inline-flex; align-items: center;">择偶要求</button>
+            <button type="button" class="seg-tab" style="padding: 8px 18px; border-radius: 999px; font-size: 13px; color: var(--brand-ink-3); background: var(--glass-bg-light); border: 1px solid transparent; white-space: nowrap; cursor: pointer; transition: all 0.2s; min-height: 44px; display: inline-flex; align-items: center;">学历职业</button>
+            <button type="button" class="seg-tab" style="padding: 8px 18px; border-radius: 999px; font-size: 13px; color: var(--brand-ink-3); background: var(--glass-bg-light); border: 1px solid transparent; white-space: nowrap; cursor: pointer; transition: all 0.2s; min-height: 44px; display: inline-flex; align-items: center;">家庭背景</button>
+            <button type="button" class="seg-tab" style="padding: 8px 18px; border-radius: 999px; font-size: 13px; color: var(--brand-ink-3); background: var(--glass-bg-light); border: 1px solid transparent; white-space: nowrap; cursor: pointer; transition: all 0.2s; min-height: 44px; display: inline-flex; align-items: center;">生活习惯</button>
+          </nav>
+
+          <!-- Form content area -->
+          <div style="margin-top: 20px; padding: 0 20px; display: flex; flex-direction: column; gap: 24px;">
+
+            <!-- #form-basic — Basic Info Form Group -->
+            <section id="form-basic" class="glass-card-strong" style="padding: 20px; border-radius: 24px; background: var(--glass-bg-strong);">
+              <!-- Group title -->
+              <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+                <div style="width: 2px; height: 16px; background: var(--brand-primary); border-radius: 2px;"></div>
+                <h2 style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">基本信息</h2>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Name field -->
+                <div>
+                  <label style="display: block; font-size: 13px; color: var(--brand-ink-2); margin-bottom: 6px;">姓名</label>
+                  <div class="input-wrapper" style="border-radius: 14px; background: rgba(255,255,255,0.6); border: 1px solid var(--brand-border); padding: 0 14px; height: 48px; display: flex; align-items: center; transition: box-shadow 0.2s, border-color 0.2s;">
+                    <input type="text" value="张明" style="border: none; background: transparent; outline: none; width: 100%; font-size: 15px; color: var(--brand-ink-1);">
+                    <i data-lucide="check-circle-2" style="width: 18px; height: 18px; color: var(--state-success); flex-shrink: 0; margin-left: 8px;"></i>
+                  </div>
+                </div>
+
+                <!-- Age field -->
+                <div>
+                  <label style="display: block; font-size: 13px; color: var(--brand-ink-2); margin-bottom: 6px;">年龄</label>
+                  <div class="input-wrapper" style="border-radius: 14px; background: rgba(255,255,255,0.6); border: 1px solid var(--brand-border); padding: 0 14px; height: 48px; display: flex; align-items: center; transition: box-shadow 0.2s, border-color 0.2s;">
+                    <input type="text" value="30 岁" style="border: none; background: transparent; outline: none; width: 100%; font-size: 15px; color: var(--brand-ink-1);">
+                    <i data-lucide="check-circle-2" style="width: 18px; height: 18px; color: var(--state-success); flex-shrink: 0; margin-left: 8px;"></i>
+                  </div>
+                </div>
+
+                <!-- Phone field (masked) -->
+                <div>
+                  <label style="display: block; font-size: 13px; color: var(--brand-ink-2); margin-bottom: 6px;">手机号</label>
+                  <div class="input-wrapper" style="border-radius: 14px; background: rgba(255,255,255,0.6); border: 1px solid var(--brand-border); padding: 0 14px; height: 48px; display: flex; align-items: center; transition: box-shadow 0.2s, border-color 0.2s;">
+                    <input type="text" value="138****1234" style="border: none; background: transparent; outline: none; width: 100%; font-size: 15px; color: var(--brand-ink-2);">
+                    <i data-lucide="shield-check" style="width: 18px; height: 18px; color: var(--brand-ink-3); flex-shrink: 0; margin-left: 8px;"></i>
+                  </div>
+                  <div style="font-size: 11px; color: var(--brand-ink-4); margin-top: 4px;">已脱敏处理</div>
+                </div>
+              </div>
+            </section>
+
+            <!-- #form-requirement — Spouse Requirement Form Group -->
+            <section id="form-requirement" class="glass-card-strong" style="padding: 20px; border-radius: 24px; background: var(--glass-bg-strong);">
+              <!-- Group title -->
+              <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+                <div style="width: 2px; height: 16px; background: var(--brand-primary); border-radius: 2px;"></div>
+                <h2 style="font-size: 15px; font-weight: 600; color: var(--brand-ink-1); margin: 0;">择偶要求</h2>
+              </div>
+
+              <!-- Age Range with Dual Steppers -->
+              <div>
+                <label style="display: block; font-size: 13px; color: var(--brand-ink-2); margin-bottom: 12px;">年龄范围</label>
+                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px;">
+                  <!-- Minus button -->
+                  <button type="button" class="stepper-btn" aria-label="减少最小年龄" style="width: 36px; height: 36px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--brand-primary-soft); border: 1px solid var(--brand-primary-soft-2); cursor: pointer; transition: all 0.15s; flex-shrink: 0; min-height: 44px;" onmousedown="this.style.transform='scale(0.92)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'">
+                    <i data-lucide="minus" style="width: 16px; height: 16px; color: var(--brand-primary);"></i>
+                  </button>
+
+                  <!-- Min age card -->
+                  <div style="border-radius: 20px; width: 80px; height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,0.7); border: 1.5px solid var(--brand-primary-soft-2); box-shadow: 0 4px 12px rgba(168,102,125,0.06); flex-shrink: 0;">
+                    <span style="font-size: 28px; font-weight: 700; color: var(--brand-primary); font-variant-numeric: tabular-nums; line-height: 1.1;">28</span>
+                    <span style="font-size: 11px; color: var(--brand-ink-3); margin-top: 2px;">岁</span>
+                  </div>
+
+                  <!-- Wavy connector SVG -->
+                  <svg width="40" height="24" viewBox="0 0 40 24" fill="none" style="flex-shrink: 0;" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="waveGrad" x1="0" y1="0" x2="40" y2="0" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#A8667D" stop-opacity="0.5"/>
+                        <stop offset="100%" stop-color="#C8956C" stop-opacity="0.5"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,12 Q10,2 20,12 T40,12" stroke="url(#waveGrad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+                  </svg>
+
+                  <!-- Max age card -->
+                  <div style="border-radius: 20px; width: 80px; height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,0.7); border: 1.5px solid var(--brand-primary-soft-2); box-shadow: 0 4px 12px rgba(168,102,125,0.06); flex-shrink: 0;">
+                    <span style="font-size: 28px; font-weight: 700; color: var(--brand-primary); font-variant-numeric: tabular-nums; line-height: 1.1;">35</span>
+                    <span style="font-size: 11px; color: var(--brand-ink-3); margin-top: 2px;">岁</span>
+                  </div>
+
+                  <!-- Plus button -->
+                  <button type="button" class="stepper-btn" aria-label="增加最大年龄" style="width: 36px; height: 36px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: var(--brand-primary-soft); border: 1px solid var(--brand-primary-soft-2); cursor: pointer; transition: all 0.15s; flex-shrink: 0; min-height: 44px;" onmousedown="this.style.transform='scale(0.92)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'">
+                    <i data-lucide="plus" style="width: 16px; height: 16px; color: var(--brand-primary);"></i>
+                  </button>
+                </div>
+
+                <!-- Smart feedback tag -->
+                <div style="margin-top: 14px; display: flex; justify-content: center;">
+                  <div style="display: inline-flex; align-items: center; gap: 4px; background: var(--state-success-soft); color: var(--state-success); padding: 6px 14px; border-radius: 999px; font-size: 12px;">
+                    <i data-lucide="zap" style="width: 13px; height: 13px;"></i>
+                    <span>当前条件匹配库人数：<b>1,286</b> 人</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Other requirement fields -->
+              <div style="margin-top: 18px; display: flex; flex-direction: column;">
+                <!-- Height -->
+                <div class="form-row" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 8px; margin: -4px 0; border-radius: 10px; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='var(--brand-primary-soft)'" onmouseout="this.style.background='transparent'">
+                  <span style="font-size: 13px; color: var(--brand-ink-2);">身高要求</span>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="font-size: 14px; color: var(--brand-ink-1);">165 - 175 cm</span>
+                    <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--brand-ink-3);"></i>
+                  </div>
+                </div>
+                <div style="height: 1px; background: var(--brand-border); margin: 0 4px;"></div>
+
+                <!-- Education -->
+                <div class="form-row" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 8px; margin: -4px 0; border-radius: 10px; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='var(--brand-primary-soft)'" onmouseout="this.style.background='transparent'">
+                  <span style="font-size: 13px; color: var(--brand-ink-2);">学历要求</span>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="font-size: 14px; color: var(--brand-ink-1);">本科及以上</span>
+                    <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--brand-ink-3);"></i>
+                  </div>
+                </div>
+                <div style="height: 1px; background: var(--brand-border); margin: 0 4px;"></div>
+
+                <!-- City -->
+                <div class="form-row" style="display: flex; align-items: center; justify-content: space-between; padding: 10px 8px; margin: -4px 0; border-radius: 10px; cursor: pointer; transition: background 0.15s;" onmouseover="this.style.background='var(--brand-primary-soft)'" onmouseout="this.style.background='transparent'">
+                  <span style="font-size: 13px; color: var(--brand-ink-2);">城市偏好</span>
+                  <div style="display: flex; align-items: center; gap: 4px;">
+                    <span style="font-size: 14px; color: var(--brand-ink-1);">上海 / 杭州</span>
+                    <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: var(--brand-ink-3);"></i>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- #ai-suggestion — AI Suggestion Floating Window -->
+            <aside id="ai-suggestion" class="ai-suggest-anim" style="border-radius: 20px; background: linear-gradient(135deg, rgba(168,102,125,0.04) 0%, rgba(200,149,108,0.06) 100%); border: 1px solid rgba(168,102,125,0.1); padding: 16px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; flex-direction: row; gap: 12px; align-items: flex-start;">
+              <!-- Icon -->
+              <div style="width: 32px; height: 32px; border-radius: 999px; background: var(--brand-gold-soft); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <i data-lucide="lightbulb" style="width: 20px; height: 20px; color: var(--brand-gold-dark);"></i>
+              </div>
+              <!-- Content -->
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-size: 13px; font-weight: 600; color: var(--brand-ink-1); margin-bottom: 4px;">智能建议</div>
+                <div style="font-size: 13px; color: var(--brand-ink-2); line-height: 1.5;">
+                  择偶范围过窄，建议放宽年龄至 26-38 岁，匹配人数将增至 <span style="color: var(--brand-gold-dark); font-weight: 600;">2,156</span> 人
+                </div>
+              </div>
+              <!-- Apply button -->
+              <button type="button" style="background: var(--brand-primary); color: #fff; padding: 7px 14px; font-size: 12px; font-weight: 600; border-radius: 999px; border: none; cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0; min-height: 44px; display: inline-flex; align-items: center; box-shadow: 0 4px 12px rgba(168,102,125,0.2);" onmousedown="this.style.transform='scale(0.95)'" onmouseup="this.style.transform='scale(1)'" onmouseleave="this.style.transform='scale(1)'">一键应用</button>
+            </aside>
+
+            <!-- Bottom save area -->
+            <div style="margin-top: 0;">
+              <button type="button" style="width: 100%; height: 52px; border-radius: 16px; background: var(--brand-gold-gradient); color: #3E2D35; font-size: 16px; font-weight: 600; border: none; box-shadow: 0 8px 24px rgba(200,149,108,0.25); cursor: pointer; transition: all 0.15s; letter-spacing: 0.02em;" onmousedown="this.style.transform='scale(0.98)'; this.style.boxShadow='0 4px 12px rgba(200,149,108,0.2)'" onmouseup="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 24px rgba(200,149,108,0.25)'" onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 24px rgba(200,149,108,0.25)'">保存修改</button>
+              <div style="font-size: 11px; color: var(--brand-ink-4); text-align: center; margin-top: 10px;">AI 已自动保存草稿</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <style id="critical-layout">
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .input-wrapper:focus-within { border-color: var(--brand-primary-light) !important; box-shadow: 0 0 0 3px var(--brand-primary-glow) !important; }
+      @keyframes fadeInUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+      .ai-suggest-anim { animation: fadeInUp 0.6s ease-out 0.3s both; }
+      @media (prefers-reduced-motion: reduce) {
+        .ai-suggest-anim { animation: none !important; }
+        * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
+      .form-row:hover { background: var(--brand-primary-soft); }
+      .stepper-btn:active { transform: scale(0.92); }
+      .seg-tab:hover:not(.seg-tab-active) { background: var(--glass-bg-strong); color: var(--brand-ink-2); }
+    </style>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

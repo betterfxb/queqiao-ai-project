@@ -1,0 +1,1 @@
+import{a}from"./index-B382ueeT.js";const o=()=>a("/pay/config"),t=e=>a("/pay/create",{method:"POST",body:e}),s=e=>a("/pay/simulate/"+e,{method:"POST"}),n=(e=30)=>a("/pay/reconcile",{query:{days:e}}),r=e=>a("/pay/reconcile/run",{method:"POST",query:{}});export{n as a,t as c,o as f,r,s};

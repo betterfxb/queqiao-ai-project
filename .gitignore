@@ -1,0 +1,33 @@
+# ===== 环境与工具二进制（绝不入库）=====
+.tooling/
+.jx/
+.tmp-verify/
+.dist-backup/
+.workbuddy/
+
+# ===== 数据库与运行时数据（含真实测试数据，敏感）=====
+data/
+*.mv.db*
+*.trace.db*
+*.bak
+
+# ===== 工具目录中的大二进制（仅保留 gen_qrcode.py 脚本）=====
+tools/icon-pipeline/
+tools/maven/
+tools/shots/
+
+# ===== 根目录散落临时探针 / 日志 =====
+/_*.*
+*.log
+
+# ===== 通用构建产物兜底 =====
+node_modules/
+target/
+.venv/
+.idea/
+.pytest_cache/
+__pycache__/
+.DS_Store
+
+# ===== 部署目录：含巨型 jar(56M)/构建产物/数据库/前端产物，整体排除（部署配置可后续单独纳入）=====
+deploy/

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "renewal_due",
+    "name": "续费提醒",
+    "desc": "会员到期前 N 天自动生成提醒消息 + 日程（N 来自业务设置·续费提醒天数）",
+    "scope": "renewal",
+    "enabled": true,
+    "cron": "0 9 * * *",
+    "params": "{\"days\":15}",
+    "lastRunAt": null,
+    "lastCreated": 0,
+    "createdAt": "2026-08-01T00:00:00",
+    "updatedAt": "2026-08-01T00:00:00"
+  },
+  {
+    "id": "churn_followup",
+    "name": "流失跟进",
+    "desc": "超过 N 天未跟进 / 差评会员自动生成跟进任务（N 来自业务设置·流失预警天数）",
+    "scope": "churn",
+    "enabled": true,
+    "cron": "0 10 * * *",
+    "params": "{\"days\":14}",
+    "lastRunAt": null,
+    "lastCreated": 0,
+    "createdAt": "2026-08-01T00:00:00",
+    "updatedAt": "2026-08-01T00:00:00"
+  },
+  {
+    "id": "new_match_push",
+    "name": "新匹配推进",
+    "desc": "近 7 天新建牵线自动提醒红娘推进",
+    "scope": "match",
+    "enabled": true,
+    "cron": "0 11 * * *",
+    "params": "{\"days\":7}",
+    "lastRunAt": null,
+    "lastCreated": 0,
+    "createdAt": "2026-08-01T00:00:00",
+    "updatedAt": "2026-08-01T00:00:00"
+  },
+  {
+    "id": "activity_notify",
+    "name": "活动开场提醒",
+    "desc": "即将开始的活动自动推送开播通知",
+    "scope": "activity",
+    "enabled": false,
+    "cron": "0 8 * * *",
+    "params": "{\"days\":1}",
+    "lastRunAt": null,
+    "lastCreated": 0,
+    "createdAt": "2026-08-01T00:00:00",
+    "updatedAt": "2026-08-01T00:00:00"
+  }
+]

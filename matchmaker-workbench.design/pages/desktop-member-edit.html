@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会员档案编辑 - 牵线运营中心</title>
+    <style id="theme-vars">
+/* ==========================================================================
+   Matchmaker Workbench — Liquid Glass Design System
+   Brand: 婚恋红娘智能工作台
+   Palette: Warm Cream + Dusty Rose + Rose Gold
+   ========================================================================== */
+
+:root {
+  /* --- Brand Primary: Dusty Rose (莫兰迪烟粉玫瑰) --- */
+  --brand-primary: #A8667D;
+  --brand-primary-light: #BE8298;
+  --brand-primary-lighter: #D4A3B5;
+  --brand-primary-soft: rgba(168, 102, 125, 0.08);
+  --brand-primary-soft-2: rgba(168, 102, 125, 0.15);
+  --brand-primary-glow: rgba(168, 102, 125, 0.25);
+  --brand-primary-foreground: #FFFFFF;
+
+  /* --- Accent: Rose Gold (玫瑰金) --- */
+  --brand-gold: #C8956C;
+  --brand-gold-light: #DCB48E;
+  --brand-gold-dark: #A87A52;
+  --brand-gold-soft: rgba(200, 149, 108, 0.12);
+  --brand-gold-gradient: linear-gradient(135deg, #DCB48E 0%, #C8956C 50%, #A87A52 100%);
+
+  /* --- Background: Warm White to Oat gradient --- */
+  --brand-bg-base: #FDF6F2;
+  --brand-bg-oat: #F5EAE2;
+  --brand-bg-gradient: linear-gradient(180deg, #FDF6F2 0%, #F5EAE2 100%);
+
+  /* --- Semantic surfaces --- */
+  --brand-background: #FDF6F2;
+  --brand-foreground: #3E2D35;
+  --brand-card: rgba(255, 255, 255, 0.72);
+  --brand-card-solid: #FFFFFF;
+  --brand-card-foreground: #3E2D35;
+  --brand-popover: rgba(255, 255, 255, 0.92);
+  --brand-popover-foreground: #3E2D35;
+  --brand-muted: rgba(168, 102, 125, 0.04);
+  --brand-muted-foreground: #968089;
+  --brand-border: rgba(168, 102, 125, 0.08);
+  --brand-border-strong: rgba(168, 102, 125, 0.16);
+  --brand-input: rgba(255, 255, 255, 0.6);
+  --brand-ring: rgba(168, 102, 125, 0.35);
+
+  /* --- Liquid Glass surfaces --- */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-bg-strong: rgba(255, 255, 255, 0.75);
+  --glass-bg-light: rgba(255, 255, 255, 0.40);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-border-inner: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 8px 32px -8px rgba(120, 70, 80, 0.10);
+  --glass-shadow-strong: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --glass-shadow-soft: 0 4px 16px -4px rgba(120, 70, 80, 0.06);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* --- Ink hierarchy --- */
+  --brand-ink-1: #2E222A;
+  --brand-ink-2: #5C4B55;
+  --brand-ink-3: #968089;
+  --brand-ink-4: #BFAAB2;
+
+  /* --- Status colors (semantic only) --- */
+  --state-success: #5B8C5A;
+  --state-success-soft: rgba(91, 140, 90, 0.10);
+  --state-warning: #C89060;
+  --state-warning-soft: rgba(200, 144, 96, 0.10);
+  --state-error: #B84A4A;
+  --state-error-soft: rgba(184, 74, 74, 0.10);
+  --state-info: #6B7C93;
+
+  /* --- Typography --- */
+  --brand-font-sans: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --brand-font-display: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+
+  /* --- Radius scale (Liquid Glass uses generous rounding) --- */
+  --brand-radius-sm: 8px;
+  --brand-radius-md: 14px;
+  --brand-radius-lg: 20px;
+  --brand-radius-xl: 28px;
+  --brand-radius-2xl: 32px;
+  --brand-radius-pill: 999px;
+
+  /* --- Shadows --- */
+  --brand-shadow-xs: 0 1px 2px rgba(120, 70, 80, 0.04);
+  --brand-shadow-sm: 0 2px 8px -2px rgba(120, 70, 80, 0.06);
+  --brand-shadow-md: 0 8px 24px -8px rgba(120, 70, 80, 0.10);
+  --brand-shadow-lg: 0 20px 40px -12px rgba(120, 70, 80, 0.12);
+  --brand-shadow-glow: 0 0 24px rgba(168, 102, 125, 0.15);
+
+  /* --- Spacing (8pt grid) --- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+}
+
+/* --- Noise texture overlay for premium feel --- */
+.noise-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Liquid Glass base card --- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--brand-radius-xl);
+}
+
+.glass-card-strong {
+  background: var(--glass-bg-strong);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-strong);
+  border-radius: var(--brand-radius-xl);
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-within,
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 3px var(--brand-primary-glow), var(--glass-shadow);
+  border-color: var(--brand-primary-light);
+}
+
+/* ==========================================================================
+   Desktop Theme: 牵线运营中心 — 新中式轻奢 + Glassmorphism
+   Palette: Warm Ivory + Burgundy + Champagne Gold
+   ========================================================================== */
+
+:root {
+  /* --- Desktop Primary: Burgundy (勃艮第红) --- */
+  --dt-primary: #7A2135;
+  --dt-primary-light: #9A3349;
+  --dt-primary-dark: #5C1828;
+  --dt-primary-soft: rgba(122, 33, 53, 0.06);
+  --dt-primary-soft-2: rgba(122, 33, 53, 0.12);
+  --dt-primary-glow: rgba(122, 33, 53, 0.15);
+  --dt-primary-foreground: #FFFFFF;
+
+  /* --- Desktop Accent: Champagne Gold (香槟金) --- */
+  --dt-gold: #C9A96E;
+  --dt-gold-light: #D9BF8A;
+  --dt-gold-lighter: #E8D5AC;
+  --dt-gold-dark: #A88A50;
+  --dt-gold-soft: rgba(201, 169, 110, 0.10);
+  --dt-gold-gradient: linear-gradient(135deg, #D9BF8A 0%, #C9A96E 50%, #A88A50 100%);
+  --dt-gold-glow: rgba(201, 169, 110, 0.25);
+
+  /* --- Desktop Background: Warm Ivory Matte (米白哑光) --- */
+  --dt-bg-base: #F8F5F0;
+  --dt-bg-warm: #F2EDE6;
+  --dt-bg-deep: #EDE7DE;
+  --dt-bg-gradient: linear-gradient(135deg, #F8F5F0 0%, #F2EDE6 50%, #EDE7DE 100%);
+
+  /* --- Desktop Glass surfaces --- */
+  --dt-glass: rgba(255, 255, 255, 0.65);
+  --dt-glass-strong: rgba(255, 255, 255, 0.80);
+  --dt-glass-light: rgba(255, 255, 255, 0.45);
+  --dt-glass-border: rgba(255, 255, 255, 0.7);
+  --dt-glass-dark: rgba(42, 28, 35, 0.85);
+  --dt-glass-dark-strong: rgba(35, 22, 28, 0.92);
+  --dt-glass-dark-border: rgba(201, 169, 110, 0.2);
+  --dt-glass-blur: blur(24px);
+  --dt-glass-blur-strong: blur(32px);
+
+  /* --- Desktop Shadows --- */
+  --dt-shadow-sm: 0 2px 8px -2px rgba(122, 33, 53, 0.06);
+  --dt-shadow-md: 0 4px 16px -4px rgba(122, 33, 53, 0.08);
+  --dt-shadow-lg: 0 8px 32px -8px rgba(122, 33, 53, 0.10);
+  --dt-shadow-xl: 0 16px 48px -12px rgba(122, 33, 53, 0.14);
+  --dt-shadow-gold-glow: 0 0 20px rgba(201, 169, 110, 0.20);
+
+  /* --- Desktop Ink hierarchy --- */
+  --dt-ink-1: #2A1C23;
+  --dt-ink-2: #4A3640;
+  --dt-ink-3: #7A6670;
+  --dt-ink-4: #A8949E;
+  --dt-ink-light: rgba(255, 255, 255, 0.85);
+  --dt-ink-light-muted: rgba(255, 255, 255, 0.55);
+
+  /* --- Desktop Semantic --- */
+  --dt-card: rgba(255, 255, 255, 0.75);
+  --dt-card-solid: #FFFFFF;
+  --dt-card-flat: #FFFFFF;
+  --dt-border: rgba(122, 33, 53, 0.07);
+  --dt-border-strong: rgba(122, 33, 53, 0.12);
+  --dt-border-gold: rgba(201, 169, 110, 0.3);
+  --dt-input: rgba(255, 255, 255, 0.8);
+  --dt-input-border: rgba(122, 33, 53, 0.10);
+  --dt-muted: rgba(122, 33, 53, 0.04);
+  --dt-muted-foreground: #9A8690;
+
+  /* --- Desktop Radius --- */
+  --dt-radius-sm: 6px;
+  --dt-radius-md: 10px;
+  --dt-radius-lg: 16px;
+  --dt-radius-xl: 20px;
+  --dt-radius-pill: 999px;
+
+  /* --- Desktop Status --- */
+  --dt-success: #4A8B5C;
+  --dt-success-soft: rgba(74, 139, 92, 0.10);
+  --dt-warning: #C4904A;
+  --dt-warning-soft: rgba(196, 144, 74, 0.10);
+  --dt-error: #B53A4A;
+  --dt-error-soft: rgba(181, 58, 74, 0.10);
+  --dt-info: #5A7A9A;
+  --dt-info-soft: rgba(90, 122, 154, 0.10);
+}
+
+/* --- Desktop noise texture --- */
+.dt-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* --- Desktop Glass Card --- */
+.dt-glass-card {
+  background: var(--dt-glass);
+  backdrop-filter: var(--dt-glass-blur);
+  -webkit-backdrop-filter: var(--dt-glass-blur);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-md);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-card-strong {
+  background: var(--dt-glass-strong);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-border);
+  box-shadow: var(--dt-shadow-lg);
+  border-radius: var(--dt-radius-lg);
+}
+
+.dt-glass-dark {
+  background: var(--dt-glass-dark);
+  backdrop-filter: var(--dt-glass-blur-strong);
+  -webkit-backdrop-filter: var(--dt-glass-blur-strong);
+  border: 1px solid var(--dt-glass-dark-border);
+  border-radius: var(--dt-radius-lg);
+}
+
+/* --- Kanban flat card --- */
+.dt-kanban-card {
+  background: var(--dt-card-flat);
+  border-radius: var(--dt-radius-md);
+  box-shadow: var(--dt-shadow-sm);
+  border: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.dt-kanban-card:hover {
+  box-shadow: var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Focus ring for desktop inputs --- */
+.dt-focus:focus-within {
+  box-shadow: 0 0 0 4px rgba(122, 33, 53, 0.10);
+  border-color: var(--dt-primary);
+}
+
+/* --- Gold CTA button --- */
+.dt-btn-gold {
+  background: var(--dt-gold-gradient);
+  color: #FFFFFF;
+  border-radius: var(--dt-radius-md);
+  font-weight: 500;
+  box-shadow: var(--dt-shadow-sm);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.dt-btn-gold:hover {
+  box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Match ring (champagne gold gradient) --- */
+.dt-match-ring {
+  background: conic-gradient(from 0deg, var(--dt-gold-dark), var(--dt-gold-light), var(--dt-gold), var(--dt-gold-dark));
+  border-radius: 50%;
+}
+.dt-match-ring-inner {
+  background: var(--dt-card-solid);
+  border-radius: 50%;
+}
+
+/* --- Hover reveal for table actions --- */
+.dt-table-row .dt-row-actions {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dt-table-row:hover .dt-row-actions {
+  opacity: 1;
+}
+
+/* --- Modified field indicator --- */
+.dt-field-modified {
+  border-color: var(--dt-gold) !important;
+  position: relative;
+}
+.dt-field-modified::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--dt-gold) transparent transparent;
+  border-radius: 0 var(--dt-radius-sm) 0 0;
+}
+
+/* --- Dual slider track --- */
+.dt-slider-track {
+  position: relative;
+  height: 6px;
+  background: var(--dt-border);
+  border-radius: 3px;
+}
+.dt-slider-fill {
+  position: absolute;
+  height: 100%;
+  background: var(--dt-gold-gradient);
+  border-radius: 3px;
+}
+.dt-slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background: #FFFFFF;
+  border: 3px solid var(--dt-gold);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  box-shadow: var(--dt-shadow-sm);
+  z-index: 2;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--brand-background);
+    --color-foreground: var(--brand-foreground);
+    --color-card: var(--brand-card);
+    --color-card-foreground: var(--brand-card-foreground);
+    --color-popover: var(--brand-popover);
+    --color-popover-foreground: var(--brand-popover-foreground);
+    --color-primary: var(--brand-primary);
+    --color-primary-foreground: var(--brand-primary-foreground);
+    --color-muted: var(--brand-muted);
+    --color-muted-foreground: var(--brand-muted-foreground);
+    --color-border: var(--brand-border);
+    --color-input: var(--brand-input);
+    --color-ring: var(--brand-ring);
+    --radius-sm: var(--brand-radius-sm);
+    --radius-md: var(--brand-radius-md);
+    --radius-lg: var(--brand-radius-lg);
+    --radius-xl: var(--brand-radius-xl);
+  }
+  @layer base {
+    body { background: var(--brand-background); color: var(--brand-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--brand-background); }
+      .text-background { color: var(--brand-background); }
+      .border-background { border-color: var(--brand-background); }
+      .ring-background { --tw-ring-color: var(--brand-background); }
+      .bg-foreground { background-color: var(--brand-foreground); }
+      .text-foreground { color: var(--brand-foreground); }
+      .border-foreground { border-color: var(--brand-foreground); }
+      .ring-foreground { --tw-ring-color: var(--brand-foreground); }
+      .bg-card { background-color: var(--brand-card); }
+      .text-card { color: var(--brand-card); }
+      .border-card { border-color: var(--brand-card); }
+      .ring-card { --tw-ring-color: var(--brand-card); }
+      .bg-card-foreground { background-color: var(--brand-card-foreground); }
+      .text-card-foreground { color: var(--brand-card-foreground); }
+      .border-card-foreground { border-color: var(--brand-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--brand-card-foreground); }
+      .bg-popover { background-color: var(--brand-popover); }
+      .text-popover { color: var(--brand-popover); }
+      .border-popover { border-color: var(--brand-popover); }
+      .ring-popover { --tw-ring-color: var(--brand-popover); }
+      .bg-popover-foreground { background-color: var(--brand-popover-foreground); }
+      .text-popover-foreground { color: var(--brand-popover-foreground); }
+      .border-popover-foreground { border-color: var(--brand-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--brand-popover-foreground); }
+      .bg-primary { background-color: var(--brand-primary); }
+      .text-primary { color: var(--brand-primary); }
+      .border-primary { border-color: var(--brand-primary); }
+      .ring-primary { --tw-ring-color: var(--brand-primary); }
+      .bg-primary-foreground { background-color: var(--brand-primary-foreground); }
+      .text-primary-foreground { color: var(--brand-primary-foreground); }
+      .border-primary-foreground { border-color: var(--brand-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--brand-primary-foreground); }
+      .bg-muted { background-color: var(--brand-muted); }
+      .text-muted { color: var(--brand-muted); }
+      .border-muted { border-color: var(--brand-muted); }
+      .ring-muted { --tw-ring-color: var(--brand-muted); }
+      .bg-muted-foreground { background-color: var(--brand-muted-foreground); }
+      .text-muted-foreground { color: var(--brand-muted-foreground); }
+      .border-muted-foreground { border-color: var(--brand-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--brand-muted-foreground); }
+      .bg-border { background-color: var(--brand-border); }
+      .text-border { color: var(--brand-border); }
+      .border-border { border-color: var(--brand-border); }
+      .ring-border { --tw-ring-color: var(--brand-border); }
+      .bg-input { background-color: var(--brand-input); }
+      .text-input { color: var(--brand-input); }
+      .border-input { border-color: var(--brand-input); }
+      .ring-input { --tw-ring-color: var(--brand-input); }
+      .bg-ring { background-color: var(--brand-ring); }
+      .text-ring { color: var(--brand-ring); }
+      .border-ring { border-color: var(--brand-ring); }
+      .ring-ring { --tw-ring-color: var(--brand-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="dt-noise">
+  <div class="dt-app">
+
+    <!-- ============ TOP BAR ============ -->
+    <header class="dt-topbar">
+      <button class="dt-back-btn">
+        <svg class="dt-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        返回会员库
+      </button>
+
+      <div class="dt-title-group">
+        <span class="dt-page-title">会员档案编辑</span>
+        <span class="dt-title-divider"></span>
+        <span class="dt-page-subtitle" style="color:var(--dt-primary); font-weight:500;">张思远 · M2024081</span>
+      </div>
+
+      <div class="dt-status-badges">
+        <span class="dt-badge dt-badge-vip">
+          <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          VIP会员
+        </span>
+        <span class="dt-badge dt-badge-verified">
+          <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          已认证
+        </span>
+      </div>
+    </header>
+
+    <!-- ============ MAIN CONTENT ============ -->
+    <main class="dt-main">
+
+      <!-- ===== LEFT COLUMN (40%) ===== -->
+      <aside class="dt-col-left">
+
+        <!-- Member Summary Card -->
+        <div class="dt-glass-card dt-member-summary">
+          <div class="dt-avatar-wrap">
+            <div class="dt-avatar-ring"></div>
+            <div class="dt-avatar">张</div>
+          </div>
+          <div class="dt-member-name">张思远</div>
+          <div class="dt-member-meta">29岁 · 男 · M2024081</div>
+          <div class="dt-member-tags">
+            <span class="dt-member-level-tag">VIP会员</span>
+          </div>
+          <div class="dt-matchmaker-info">
+            <div class="dt-matchmaker-avatar">李</div>
+            <span>专属红娘：<strong style="color:var(--dt-ink-1);font-weight:500;">李红娘</strong></span>
+          </div>
+        </div>
+
+        <!-- Timeline Panel -->
+        <div class="dt-glass-card dt-timeline-panel">
+          <div class="dt-section-header">
+            <div class="dt-section-bar"></div>
+            <div class="dt-section-title">档案变更时间轴</div>
+          </div>
+
+          <div class="dt-timeline">
+
+            <div class="dt-timeline-item">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-08-07 14:32</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-primary);display:inline;vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  红娘李
+                </span>
+                修改了 <span class="dt-timeline-field">职业</span>
+                <span style="color:var(--dt-ink-4);text-decoration:line-through;font-size:12px;">工程师</span>
+                <span class="dt-timeline-arrow">→</span>
+                <span class="dt-timeline-field-new">高级工程师</span>
+              </div>
+            </div>
+
+            <div class="dt-timeline-item system">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-08-05 09:15</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor" style="color:var(--dt-gold-dark);">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  系统更新
+                </span>
+                实名认证通过
+              </div>
+            </div>
+
+            <div class="dt-timeline-item">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-08-03 16:20</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-primary);display:inline;vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  红娘李
+                </span>
+                更新了照片（<span style="color:var(--dt-gold-dark);font-weight:600;">新增3张</span>）
+              </div>
+            </div>
+
+            <div class="dt-timeline-item">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-07-28 10:00</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-primary);display:inline;vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  红娘王
+                </span>
+                修改了 <span class="dt-timeline-field">择偶要求</span>（年龄范围
+                <span style="color:var(--dt-ink-4);text-decoration:line-through;font-size:12px;">25-30</span>
+                <span class="dt-timeline-arrow">→</span>
+                <span class="dt-timeline-field-new">24-32</span>）
+              </div>
+            </div>
+
+            <div class="dt-timeline-item system">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-07-20 14:45</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor" style="color:var(--dt-gold-dark);">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  系统更新
+                </span>
+                完成情感测评
+              </div>
+            </div>
+
+            <div class="dt-timeline-item">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-07-15 11:30</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--dt-primary);display:inline;vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  红娘李
+                </span>
+                新增服务记录（<span style="color:var(--dt-ink-2);">首次约见反馈</span>）
+              </div>
+            </div>
+
+            <div class="dt-timeline-item member">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-07-10 09:00</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor" style="color:var(--dt-info);">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  会员自助
+                </span>
+                更新了兴趣爱好
+              </div>
+            </div>
+
+            <div class="dt-timeline-item system">
+              <div class="dt-timeline-dot"></div>
+              <div class="dt-timeline-date">2026-07-01 10:00</div>
+              <div class="dt-timeline-desc">
+                <span class="dt-timeline-actor" style="color:var(--dt-gold-dark);">
+                  <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:-2px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  系统创建
+                </span>
+                档案建立
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ===== RIGHT COLUMN (60%) ===== -->
+      <section class="dt-col-right">
+        <div class="dt-glass-card-strong" style="flex:1; display:flex; flex-direction:column; min-height:0; position:relative; border-radius:var(--dt-radius-lg);">
+
+          <div class="dt-form-panel">
+
+            <!-- Section: 基本信息 -->
+            <div class="dt-form-section">
+              <div class="dt-form-section-header">
+                <div class="dt-form-section-bar"></div>
+                <div class="dt-form-section-title">基本信息</div>
+              </div>
+              <div class="dt-form-grid">
+                <div class="dt-form-field">
+                  <label class="dt-form-label">姓名</label>
+                  <input type="text" class="dt-input" value="张思远" />
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">性别</label>
+                  <div class="dt-select-wrap">
+                    <select class="dt-select">
+                      <option>男</option>
+                      <option>女</option>
+                    </select>
+                    <svg class="dt-select-icon dt-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">年龄</label>
+                  <input type="text" class="dt-input" value="29" />
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">出生日期</label>
+                  <input type="text" class="dt-input" value="1996-03-15" />
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">身高</label>
+                  <input type="text" class="dt-input" value="180cm" />
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">学历</label>
+                  <div class="dt-select-wrap">
+                    <select class="dt-select">
+                      <option>博士</option>
+                      <option selected>硕士</option>
+                      <option>本科</option>
+                      <option>大专</option>
+                    </select>
+                    <svg class="dt-select-icon dt-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">
+                    职业
+                    <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="var(--dt-gold-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </label>
+                  <div class="dt-field-wrap modified">
+                    <input type="text" class="dt-input dt-field-modified" value="高级工程师" style="padding-right:24px;"/>
+                    <svg class="dt-field-modified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">
+                    年收入
+                    <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="var(--dt-gold-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </label>
+                  <div class="dt-field-wrap modified">
+                    <div class="dt-select-wrap">
+                      <select class="dt-select dt-field-modified" style="padding-right:48px;">
+                        <option>30万以下</option>
+                        <option>30-50万</option>
+                        <option selected>50-80万</option>
+                        <option>80-100万</option>
+                        <option>100万以上</option>
+                      </select>
+                      <svg class="dt-select-icon dt-icon-sm" style="right:24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </div>
+                    <svg class="dt-field-modified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">所在城市</label>
+                  <input type="text" class="dt-input" value="北京 · 朝阳区" />
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">籍贯</label>
+                  <input type="text" class="dt-input" value="山东 · 济南" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Section: 择偶要求 -->
+            <div class="dt-form-section">
+              <div class="dt-form-section-header">
+                <div class="dt-form-section-bar"></div>
+                <div class="dt-form-section-title">择偶要求</div>
+              </div>
+              <div class="dt-form-grid">
+                <div class="dt-form-field">
+                  <label class="dt-form-label">年龄范围</label>
+                  <div class="dt-slider-group">
+                    <div class="dt-slider-labels">
+                      <span>最小 <span class="dt-slider-value" id="age-min-label">24</span> 岁</span>
+                      <span>最大 <span class="dt-slider-value" id="age-max-label">32</span> 岁</span>
+                    </div>
+                    <div class="dt-slider-track" style="margin-left:10px; margin-right:10px;">
+                      <div class="dt-slider-fill" style="left:20%; width:53%;"></div>
+                      <div class="dt-slider-thumb" style="left:20%;"></div>
+                      <div class="dt-slider-thumb" style="left:73%;"></div>
+                    </div>
+                    <div class="dt-slider-match">
+                      <span class="dt-slider-match-dot"></span>
+                      当前条件下匹配人数：<span class="dt-slider-match-num">186</span>人
+                    </div>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">身高范围</label>
+                  <div class="dt-slider-group">
+                    <div class="dt-slider-labels">
+                      <span>最低 <span class="dt-slider-value">160</span> cm</span>
+                      <span>最高 <span class="dt-slider-value">172</span> cm</span>
+                    </div>
+                    <div class="dt-slider-track" style="margin-left:10px; margin-right:10px;">
+                      <div class="dt-slider-fill" style="left:15%; width:45%;"></div>
+                      <div class="dt-slider-thumb" style="left:15%;"></div>
+                      <div class="dt-slider-thumb" style="left:60%;"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">学历要求</label>
+                  <div class="dt-select-wrap">
+                    <select class="dt-select">
+                      <option>不限</option>
+                      <option>大专及以上</option>
+                      <option selected>本科及以上</option>
+                      <option>硕士及以上</option>
+                      <option>博士</option>
+                    </select>
+                    <svg class="dt-select-icon dt-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">
+                    所在城市
+                    <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="var(--dt-gold-dark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left:2px;"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </label>
+                  <div class="dt-field-wrap modified">
+                    <input type="text" class="dt-input dt-field-modified" value="北京" style="padding-right:24px;"/>
+                    <svg class="dt-field-modified-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field full">
+                  <label class="dt-form-label">其他要求</label>
+                  <textarea class="dt-textarea" rows="3">性格温柔、善良孝顺，有稳定工作，家庭观念强，生活习惯良好，无不良嗜好。</textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section: 服务信息 -->
+            <div class="dt-form-section">
+              <div class="dt-form-section-header">
+                <div class="dt-form-section-bar"></div>
+                <div class="dt-form-section-title">服务信息</div>
+              </div>
+              <div class="dt-form-grid">
+                <div class="dt-form-field">
+                  <label class="dt-form-label">会员等级</label>
+                  <div class="dt-select-wrap">
+                    <select class="dt-select">
+                      <option>普通会员</option>
+                      <option selected>VIP会员</option>
+                      <option>SVIP会员</option>
+                      <option>钻石会员</option>
+                    </select>
+                    <svg class="dt-select-icon dt-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">服务红娘</label>
+                  <div class="dt-select-wrap">
+                    <select class="dt-select">
+                      <option selected>李红娘</option>
+                      <option>王红娘</option>
+                      <option>张红娘</option>
+                      <option>刘红娘</option>
+                    </select>
+                    <svg class="dt-select-icon dt-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">服务到期</label>
+                  <input type="text" class="dt-input" value="2027-03-01" />
+                </div>
+                <div class="dt-form-field">
+                  <label class="dt-form-label">标签</label>
+                  <div class="dt-tags-wrap">
+                    <span class="dt-chip">
+                      高学历
+                      <span class="dt-chip-remove">
+                        <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                      </span>
+                    </span>
+                    <span class="dt-chip">
+                      有房
+                      <span class="dt-chip-remove">
+                        <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                      </span>
+                    </span>
+                    <span class="dt-chip">
+                      海归
+                      <span class="dt-chip-remove">
+                        <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                      </span>
+                    </span>
+                    <span class="dt-chip">
+                      稳定收入
+                      <span class="dt-chip-remove">
+                        <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                      </span>
+                    </span>
+                    <button class="dt-chip-add">
+                      <svg class="dt-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                      添加标签
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Action Bar -->
+          <div class="dt-action-bar">
+            <button class="dt-btn dt-btn-ghost">
+              取消修改
+            </button>
+            <div class="dt-action-right">
+              <span class="dt-save-hint">3 处字段已修改</span>
+              <button class="dt-btn dt-btn-gold">
+                <svg class="dt-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                保存所有修改
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+    <style id="critical-layout">
+    /* === Page Shell === */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1440px; height: 900px; overflow: hidden; }
+    body {
+      font-family: var(--dt-font, "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif);
+      background: var(--dt-bg-gradient);
+      color: var(--dt-ink-1);
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* === App Container (fixed 1440x900) === */
+    .dt-app {
+      width: 1440px;
+      height: 900px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* === Top Bar === */
+    .dt-topbar {
+      height: 64px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--dt-border);
+      position: relative;
+      z-index: 10;
+    }
+    .dt-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--dt-ink-2);
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: var(--dt-radius-md);
+      transition: background 0.15s ease;
+      background: transparent;
+      border: none;
+    }
+    .dt-back-btn:hover { background: var(--dt-primary-soft); color: var(--dt-primary); }
+
+    .dt-title-group { display: flex; align-items: center; gap: 12px; }
+    .dt-page-title { font-size: 18px; font-weight: 600; color: var(--dt-primary); letter-spacing: 0.3px; }
+    .dt-page-subtitle { font-size: 13px; color: var(--dt-ink-3); font-weight: 400; }
+    .dt-title-divider { width: 1px; height: 20px; background: var(--dt-border-strong); }
+
+    .dt-status-badges { display: flex; align-items: center; gap: 8px; }
+    .dt-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: var(--dt-radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .dt-badge-vip {
+      background: var(--dt-gold-soft);
+      color: var(--dt-gold-dark);
+      border: 1px solid var(--dt-border-gold);
+    }
+    .dt-badge-verified {
+      background: var(--dt-success-soft);
+      color: var(--dt-success);
+      border: 1px solid rgba(74,139,92,0.2);
+    }
+
+    /* === Main Content === */
+    .dt-main {
+      flex: 1;
+      display: flex;
+      gap: 24px;
+      padding: 24px 32px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+      min-height: 0;
+    }
+
+    /* === Left Column (40%) === */
+    .dt-col-left {
+      width: calc(40% - 12px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 0;
+      overflow-y: auto;
+      padding-bottom: 16px;
+    }
+    .dt-col-left::-webkit-scrollbar { width: 4px; }
+    .dt-col-left::-webkit-scrollbar-thumb { background: var(--dt-border-strong); border-radius: 2px; }
+
+    /* Member Summary Card */
+    .dt-member-summary {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .dt-avatar-wrap { position: relative; }
+    .dt-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--dt-primary) 0%, var(--dt-primary-light) 60%, var(--dt-gold) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(122,33,53,0.2);
+    }
+    .dt-avatar-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid var(--dt-gold);
+      opacity: 0.5;
+    }
+    .dt-member-name { font-size: 20px; font-weight: 600; color: var(--dt-ink-1); }
+    .dt-member-meta { font-size: 13px; color: var(--dt-ink-3); }
+    .dt-member-tags { display: flex; gap: 6px; margin-top: 4px; }
+    .dt-member-level-tag {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: var(--dt-radius-pill);
+      background: var(--dt-gold-gradient);
+      color: #fff;
+      font-weight: 500;
+    }
+    .dt-matchmaker-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--dt-ink-2);
+    }
+    .dt-matchmaker-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--dt-primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dt-primary);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* Timeline Panel */
+    .dt-timeline-panel {
+      padding: 20px 24px;
+      flex: 1;
+      min-height: 0;
+    }
+    .dt-section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .dt-section-bar {
+      width: 3px;
+      height: 16px;
+      background: var(--dt-gold);
+      border-radius: 2px;
+    }
+    .dt-section-title { font-size: 15px; font-weight: 600; color: var(--dt-primary); }
+
+    /* Timeline */
+    .dt-timeline { position: relative; padding-left: 20px; }
+    .dt-timeline::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--dt-primary) 0%, var(--dt-border-strong) 100%);
+      border-radius: 1px;
+    }
+    .dt-timeline-item {
+      position: relative;
+      padding-bottom: 16px;
+    }
+    .dt-timeline-item:last-child { padding-bottom: 0; }
+    .dt-timeline-dot {
+      position: absolute;
+      left: -20px;
+      top: 4px;
+      width: 8px;
+      height: 8px;
+      background: var(--dt-primary);
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px var(--dt-primary), var(--dt-shadow-sm);
+      z-index: 1;
+    }
+    .dt-timeline-item.system .dt-timeline-dot { background: var(--dt-gold); box-shadow: 0 0 0 1px var(--dt-gold), var(--dt-shadow-sm); }
+    .dt-timeline-item.member .dt-timeline-dot { background: var(--dt-info); box-shadow: 0 0 0 1px var(--dt-info), var(--dt-shadow-sm); }
+
+    .dt-timeline-date { font-size: 12px; color: var(--dt-ink-4); margin-bottom: 2px; font-variant-numeric: tabular-nums; }
+    .dt-timeline-desc { font-size: 13px; color: var(--dt-ink-2); line-height: 1.5; }
+    .dt-timeline-actor {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-weight: 500;
+      color: var(--dt-ink-1);
+    }
+    .dt-timeline-field {
+      color: var(--dt-primary);
+      font-weight: 600;
+      background: var(--dt-primary-soft);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .dt-timeline-field-new {
+      color: var(--dt-gold-dark);
+      font-weight: 600;
+    }
+    .dt-timeline-arrow { color: var(--dt-ink-4); margin: 0 2px; }
+
+    /* === Right Column (60%) === */
+    .dt-col-right {
+      width: calc(60% - 12px);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      position: relative;
+    }
+    .dt-form-panel {
+      flex: 1;
+      padding: 24px 28px 88px;
+      overflow-y: auto;
+      min-height: 0;
+    }
+    .dt-form-panel::-webkit-scrollbar { width: 4px; }
+    .dt-form-panel::-webkit-scrollbar-thumb { background: var(--dt-border-strong); border-radius: 2px; }
+
+    /* Form Section */
+    .dt-form-section { margin-bottom: 24px; }
+    .dt-form-section:last-child { margin-bottom: 0; }
+    .dt-form-section-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--dt-border);
+    }
+    .dt-form-section-bar {
+      width: 3px;
+      height: 16px;
+      background: var(--dt-gold);
+      border-radius: 2px;
+    }
+    .dt-form-section-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dt-primary);
+    }
+
+    /* Form Grid */
+    .dt-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 20px;
+    }
+    .dt-form-field { display: flex; flex-direction: column; }
+    .dt-form-field.full { grid-column: 1 / -1; }
+
+    .dt-form-label {
+      font-size: 13px;
+      color: var(--dt-ink-3);
+      font-weight: 500;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Inputs */
+    .dt-input,
+    .dt-select,
+    .dt-textarea {
+      width: 100%;
+      height: 40px;
+      padding: 0 14px;
+      font-size: 14px;
+      color: var(--dt-ink-1);
+      background: var(--dt-input);
+      border: 1px solid var(--dt-input-border);
+      border-radius: var(--dt-radius-md);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      font-family: inherit;
+    }
+    .dt-input::placeholder, .dt-textarea::placeholder { color: var(--dt-ink-4); }
+    .dt-input:hover, .dt-select:hover, .dt-textarea:hover {
+      border-color: var(--dt-border-strong);
+    }
+    .dt-input:focus, .dt-select:focus, .dt-textarea:focus {
+      border-color: var(--dt-primary);
+      box-shadow: 0 0 0 4px rgba(122,33,53,0.10);
+      background: #fff;
+    }
+    .dt-textarea {
+      height: auto;
+      padding: 10px 14px;
+      resize: none;
+      line-height: 1.5;
+      min-height: 78px;
+    }
+
+    .dt-select-wrap { position: relative; }
+    .dt-select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .dt-select-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--dt-ink-4);
+    }
+
+    /* Modified field wrapper */
+    .dt-field-wrap {
+      position: relative;
+    }
+    .dt-field-modified {
+      border-color: var(--dt-gold) !important;
+      background: rgba(255,255,255,0.95) !important;
+    }
+    .dt-field-wrap.modified::after {
+      content: "";
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 10px 0;
+      border-color: transparent var(--dt-gold) transparent transparent;
+      border-radius: 0 var(--dt-radius-sm) 0 0;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .dt-field-modified-icon {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 12px;
+      height: 12px;
+      color: #fff;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Slider */
+    .dt-slider-group { display: flex; flex-direction: column; gap: 8px; }
+    .dt-slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--dt-ink-2);
+      font-weight: 500;
+    }
+    .dt-slider-value { color: var(--dt-primary); font-weight: 600; }
+    .dt-slider-track {
+      position: relative;
+      height: 6px;
+      background: rgba(122,33,53,0.08);
+      border-radius: 3px;
+      margin: 10px 10px;
+    }
+    .dt-slider-fill {
+      position: absolute;
+      height: 100%;
+      background: var(--dt-gold-gradient);
+      border-radius: 3px;
+    }
+    .dt-slider-thumb {
+      position: absolute;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: #FFFFFF;
+      border: 3px solid var(--dt-gold);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: var(--dt-shadow-sm);
+      z-index: 2;
+    }
+    .dt-slider-match {
+      font-size: 12px;
+      color: var(--dt-ink-3);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dt-slider-match-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--dt-primary);
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .dt-slider-match-dot {
+      width: 4px; height: 4px; border-radius: 50%; background: var(--dt-gold);
+    }
+
+    /* Tags / Chips */
+    .dt-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      min-height: 40px;
+      padding: 6px 10px;
+      background: var(--dt-input);
+      border: 1px solid var(--dt-input-border);
+      border-radius: var(--dt-radius-md);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .dt-tags-wrap:focus-within {
+      border-color: var(--dt-primary);
+      box-shadow: 0 0 0 4px rgba(122,33,53,0.10);
+    }
+    .dt-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: var(--dt-primary-soft);
+      color: var(--dt-primary);
+      border-radius: var(--dt-radius-pill);
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--dt-primary-soft-2);
+    }
+    .dt-chip-remove {
+      width: 14px; height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--dt-primary);
+      opacity: 0.6;
+      transition: opacity 0.15s ease, background 0.15s ease;
+    }
+    .dt-chip-remove:hover { opacity: 1; background: rgba(122,33,53,0.1); }
+    .dt-chip-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 4px 10px;
+      color: var(--dt-ink-4);
+      font-size: 12px;
+      border-radius: var(--dt-radius-pill);
+      border: 1px dashed var(--dt-border-strong);
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease;
+      background: transparent;
+    }
+    .dt-chip-add:hover { color: var(--dt-gold-dark); border-color: var(--dt-gold); }
+
+    /* === Bottom Action Bar === */
+    .dt-action-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--dt-border);
+      border-radius: 0 0 var(--dt-radius-lg) var(--dt-radius-lg);
+      z-index: 5;
+    }
+    .dt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 42px;
+      padding: 0 24px;
+      border-radius: var(--dt-radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: none;
+      font-family: inherit;
+    }
+    .dt-btn-ghost {
+      background: transparent;
+      color: var(--dt-ink-3);
+      border: 1px solid var(--dt-border-strong);
+    }
+    .dt-btn-ghost:hover {
+      color: var(--dt-ink-2);
+      background: var(--dt-muted);
+      border-color: var(--dt-ink-4);
+    }
+    .dt-btn-gold {
+      background: var(--dt-gold-gradient);
+      color: #FFFFFF;
+      box-shadow: var(--dt-shadow-sm);
+      font-weight: 600;
+    }
+    .dt-btn-gold:hover {
+      box-shadow: var(--dt-shadow-gold-glow), var(--dt-shadow-md);
+      transform: translateY(-1px);
+    }
+    .dt-action-right { display: flex; align-items: center; gap: 12px; }
+    .dt-save-hint { font-size: 12px; color: var(--dt-ink-4); }
+
+    /* Small icon style */
+    .dt-icon { width: 16px; height: 16px; flex-shrink: 0; }
+    .dt-icon-sm { width: 14px; height: 14px; }
+    .dt-icon-xs { width: 12px; height: 12px; }
+  </style>
+</body>
+</html>
