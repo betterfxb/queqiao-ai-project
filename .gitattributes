@@ -1,0 +1,19 @@
+# 统一换行符为 LF，避免跨平台协作产生无意义 diff
+* text=auto
+
+# 明确二进制资源，禁止换行符转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.zip binary
+*.7z binary
+*.jar binary
+*.mv.db binary
+*.mp4 binary
