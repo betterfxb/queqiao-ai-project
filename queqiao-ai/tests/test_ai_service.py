@@ -275,10 +275,21 @@ def test_job_longest_match():
 
 # --- 性别冲突 ---
 def test_gender_strong_conflict_returns_none():
-    """条目 11：男/女强标记同现 -> 置空 + 告警，不再后者覆盖。"""
+    """男/女强标记同现（非择偶语境）-> 置空 + 告警，不再后者覆盖。"""
     w = []
-    assert detect_gender("男生想找女生", w) is None
+    # 「男生张三、女生李四都在场」属于真实多人语境，两强标记冲突应置空
+    assert detect_gender("男生张三、女生李四都在场", w) is None
     assert w
+
+
+def test_gender_intent_clause_stripped():
+    """择偶意向子句（找/想找…女生/男士）描述理想对象，剥离后不干扰本人性别。"""
+    # 「男，找女生」曾被强标记「女生」覆盖成女（2026-10-01 线上实测 bug）
+    assert detect_gender("李明，男，32岁，杭州人，找28岁以下温柔女生") == "男"
+    assert detect_gender("王芳，女，29岁，上海人，想找30岁以上有房男士") == "女"
+    assert detect_gender("张强，男，35岁，北京人，希望找35岁以内女性") == "男"
+    # 自称「男生」+ 想找「女生」：意向剥离后仅剩本人强标记，判男而非置空
+    assert detect_gender("男生想找女生") == "男"
 
 
 def test_gender_weak_conflict_first_wins():

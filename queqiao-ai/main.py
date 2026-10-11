@@ -227,6 +227,13 @@ GENDER_STRONG = {
 }
 GENDER_WEAK = {"男": ("他", "男"), "女": ("她", "女")}
 GENDER_EXPLICIT_RE = re.compile(r"性别\s*[:：是]?\s*([男女])")
+# 择偶意向子句：描述理想对象（如「找28岁以下温柔女生」「想找有房男士」），
+# 其中的性别词不能作为「本人性别」的证据——不剥离会把「男，找女生」误判为女。
+GENDER_INTENT_RE = re.compile(
+    r"[，,。；;！!\s]*"
+    r"(?:想找|要找|希望找|想寻找|寻找|寻求|期望|期待|意向是?|择偶|对象是?|喜欢|偏好|要求是?|找)"
+    r"[^，,。；;！!？?]{0,40}"
+)
 
 # 年龄：不再固定截前两位，配合 AGE_MIN/AGE_MAX 区间校验剔除「300岁」「1000岁」
 AGE_RE = re.compile(r"(?<!\d)(\d{1,4})\s*岁")
@@ -375,11 +382,14 @@ def extract_phone(text: str) -> Optional[str]:
 
 
 def detect_gender(text: str, warnings: Optional[list[str]] = None) -> Optional[str]:
-    """性别判定：显式字段 > 强标记（主位=首个出现） > 弱标记（主位=首个出现）。
+    """性别判定：先剥离择偶意向子句，再按 显式字段 > 强标记（首个出现） > 弱标记（首个出现）。
 
-    强标记出现相反性别时视为冲突，置空并告警，避免「男生想找女生」被后者覆盖。
+    「找28岁以下温柔女生」等意向子句描述的是理想对象，其中的性别词
+    不能作为本人性别证据。强标记出现相反性别时视为冲突，置空并告警，
+    避免「男生想找女生」被后者覆盖。
     """
     warnings = warnings if warnings is not None else []
+    text = GENDER_INTENT_RE.sub("，", text)
 
     m = GENDER_EXPLICIT_RE.search(text)
     if m:

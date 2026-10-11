@@ -8,6 +8,7 @@ const emit = defineEmits<{
   (e: 'view', row: Member): void
   (e: 'edit', row: Member): void
   (e: 'match', row: Member): void
+  (e: 'card', row: Member): void
   (e: 'command', payload: { cmd: string; row: Member }): void
 }>()
 
@@ -72,6 +73,7 @@ const pillType = (s: Member['status']): PillType =>
           <div class="row-actions" @click.stop>
             <button class="icon-mini" title="查看" @click="emit('view', row)"><app-icon name="eye" :size="15" /></button>
             <button class="icon-mini" title="编辑" @click="emit('edit', row)"><app-icon name="edit" :size="15" /></button>
+            <button class="icon-mini gold" title="生成会员卡片" @click="emit('card', row)"><app-icon name="award" :size="15" /></button>
             <button class="icon-mini gold" title="牵线" @click="emit('match', row)"><app-icon name="heart" :size="15" /></button>
             <el-dropdown trigger="click" @command="(c: string) => emit('command', { cmd: c, row })">
               <button class="icon-mini" title="更多"><app-icon name="more" :size="15" /></button>
@@ -105,6 +107,7 @@ const pillType = (s: Member['status']): PillType =>
 <style scoped>
 .table-card { flex: 1; min-width: 0; padding: 8px 8px 0; }
 .table-member { display: flex; align-items: center; gap: 10px; }
+.table-member .app-avatar { background: #8d847c !important; }
 .table-member-name { font-weight: 600; color: var(--dt-ink-1); }
 .table-member-id { font-size: 0.75rem; color: var(--dt-ink-4); }
 .td-ink2 { color: var(--dt-ink-2); }
@@ -113,13 +116,13 @@ const pillType = (s: Member['status']): PillType =>
 .job-sub { font-size: 0.75rem; color: var(--dt-ink-4); }
 .row-actions { display: inline-flex; gap: 6px; }
 .icon-mini {
-  width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
-  background: var(--dt-muted); color: var(--dt-ink-3); border: 1px solid var(--dt-border); cursor: pointer; transition: all 0.15s;
+  width: 30px; height: 30px; border-radius: var(--dt-radius-md); display: inline-flex; align-items: center; justify-content: center;
+  background: var(--dt-muted); color: var(--dt-ink-3); border: 1px solid var(--dt-border); cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
-.icon-mini:hover { color: var(--dt-primary); background: var(--dt-primary-soft); }
+.icon-mini:hover { color: var(--dt-primary); background: var(--dt-primary-soft); border-color: var(--dt-primary-soft-2); }
 .icon-mini.gold { color: var(--dt-gold-dark); }
 .icon-mini.gold:hover { background: var(--dt-gold-soft); }
 
-.table-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 12px; }
+.table-footer { display: flex; align-items: center; justify-content: space-between; padding: 12px; }
 .total-text { font-size: 0.8125rem; color: var(--dt-ink-3); }
 </style>

@@ -122,18 +122,18 @@ defineExpose({ reset, verified })
 }
 .track {
   position: relative;
-  border-radius: 999px;
-  background: var(--dt-input, #f1ece4);
-  border: 1px solid var(--dt-input-border, #e4dccc);
+  border-radius: var(--dt-radius-md, 5px);
+  background: var(--dt-input, #ffffff);
+  border: 1px solid var(--dt-input-border, rgba(28, 25, 23, 0.16));
   overflow: hidden;
 }
 .target {
   position: absolute;
   top: 0;
   bottom: 0;
-  border-radius: 999px;
-  background: rgba(122, 33, 53, 0.12);
-  border: 2px dashed rgba(122, 33, 53, 0.4);
+  border-radius: var(--dt-radius-md, 5px);
+  background: var(--dt-primary-soft-2, rgba(125, 43, 61, 0.1));
+  border: 1px dashed var(--dt-primary, #7d2b3d);
   box-sizing: border-box;
 }
 .fill {
@@ -141,19 +141,18 @@ defineExpose({ reset, verified })
   left: 0;
   top: 0;
   bottom: 0;
-  background: linear-gradient(90deg, rgba(201, 169, 110, 0.35), rgba(201, 169, 110, 0.55));
+  background: var(--dt-primary-soft-2, rgba(125, 43, 61, 0.1));
 }
 .knob {
   position: absolute;
   top: 0;
-  border-radius: 999px;
-  background: var(--dt-gold-gradient, linear-gradient(135deg, #c9a96e, #a8824a));
+  border-radius: var(--dt-radius-md, 5px);
+  background: var(--dt-primary, #7d2b3d);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: grab;
-  box-shadow: 0 6rpx 16rpx -6rpx rgba(122, 33, 53, 0.4);
   z-index: 2;
 }
 .knob:active {
@@ -167,17 +166,17 @@ defineExpose({ reset, verified })
   transform: translateY(-50%);
   text-align: center;
   font-size: 0.8125rem;
-  color: var(--dt-ink-3, #7a6670);
+  color: var(--dt-ink-3, #78716c);
   pointer-events: none;
   z-index: 1;
 }
 .hint.err {
-  color: #b53a4a;
+  color: var(--dt-error, #a33745);
 }
 .hint.ok {
-  color: #4a8b5c;
+  color: var(--dt-success, #3f7050);
 }
 .slider.verified .fill {
-  background: linear-gradient(90deg, rgba(74, 139, 92, 0.35), rgba(74, 139, 92, 0.55));
+  background: var(--dt-success-soft, rgba(63, 112, 80, 0.1));
 }
 </style>

@@ -48,21 +48,20 @@ const filtered = computed(() =>
 
 const ranking = computed(() => [...agents.value].sort((a, b) => b.monthRevenue - a.monthRevenue).slice(0, 5))
 const maxRevenue = computed(() => Math.max(...agents.value.map((a) => a.monthRevenue), 1))
-const medal = (i: number) => (i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`)
 
 const chartOption = computed(() => ({
   grid: { left: 10, right: 40, top: 10, bottom: 10, containLabel: true },
-  xAxis: { type: 'value', axisLabel: { color: '#7a6670', fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(122,33,53,0.06)' } } },
+  xAxis: { type: 'value', axisLabel: { color: '#a8a29e', fontSize: 11 }, splitLine: { lineStyle: { color: 'rgba(28,25,23,0.08)' } } },
   yAxis: {
     type: 'category',
     data: ranking.value.map((r) => r.name).reverse(),
-    axisLabel: { color: '#4a3640', fontSize: 12 }, axisLine: { show: false }, axisTick: { show: false },
+    axisLabel: { color: '#44403c', fontSize: 12 }, axisLine: { show: false }, axisTick: { show: false },
   },
   series: [{
     type: 'bar', barWidth: 16,
     data: ranking.value.map((r) => r.monthRevenue).reverse(),
-    itemStyle: { borderRadius: [0, 8, 8, 0], color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#d9bf8a' }, { offset: 1, color: '#a88a50' }] } },
-    label: { show: true, position: 'right', color: '#a88a50', fontWeight: 700, formatter: (p: any) => '¥' + p.value.toLocaleString() },
+    itemStyle: { borderRadius: [0, 4, 4, 0], color: '#a8863f' },
+    label: { show: true, position: 'right', color: '#856a2e', fontSize: 11, fontWeight: 600, formatter: (p: any) => '¥' + p.value.toLocaleString() },
   }],
 }))
 
@@ -174,7 +173,7 @@ onMounted(load)
         <div class="glass-card side-card">
           <div class="section-title" style="margin-bottom:16px"><span class="section-title-bar" />本月业绩排行</div>
           <div v-for="(r, i) in ranking" :key="r.id" class="rank-item">
-            <span class="rank-medal">{{ medal(i) }}</span>
+            <span class="rank-medal" :class="{ top: i < 3 }">{{ i + 1 }}</span>
             <div class="rank-info">
               <div class="rank-name">{{ r.name }}<span class="rank-amt">¥{{ r.monthRevenue.toLocaleString() }}</span></div>
               <div class="rank-track"><div class="rank-fill" :style="{ width: (r.monthRevenue / maxRevenue) * 100 + '%' }" /></div>
@@ -344,10 +343,10 @@ onMounted(load)
 <style scoped>
 .agents-page { display: flex; flex-direction: column; gap: 20px; }
 .filter-bar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; }
-.chip { font-size: 0.75rem; padding: 4px 14px; border-radius: 999px; cursor: pointer; color: var(--dt-ink-2); background: var(--dt-muted); transition: all 0.15s; }
+.chip { font-size: 0.75rem; padding: 4px 14px; border-radius: var(--dt-radius-sm); cursor: pointer; color: var(--dt-ink-2); background: var(--dt-muted); transition: all 0.15s; }
 .chip.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
 .chip-group { display: flex; gap: 6px; }
-.search-mini { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: 999px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
+.search-mini { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: var(--dt-radius-md); background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
 .search-mini input { border: none; outline: none; background: transparent; font-size: 0.75rem; width: 120px; font-family: var(--dt-font); }
 
 .agents-body { display: flex; gap: 20px; align-items: flex-start; }
@@ -357,17 +356,18 @@ onMounted(load)
 .agents-side { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 .side-card { padding: 20px; }
 .rank-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
-.rank-medal { width: 24px; text-align: center; font-size: 0.9375rem; flex-shrink: 0; }
+.rank-medal { width: 24px; text-align: center; font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-4); font-family: var(--dt-font-num); flex-shrink: 0; }
+.rank-medal.top { color: var(--dt-primary); }
 .rank-info { flex: 1; min-width: 0; }
 .rank-name { display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-1); margin-bottom: 4px; }
 .rank-amt { color: var(--dt-gold-dark); }
-.rank-track { height: 6px; border-radius: 999px; background: var(--dt-muted); overflow: hidden; }
-.rank-fill { height: 100%; border-radius: 999px; background: var(--dt-gold-gradient); }
+.rank-track { height: 6px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); overflow: hidden; }
+.rank-fill { height: 100%; border-radius: var(--dt-radius-sm); background: var(--dt-primary); }
 
-.ai-assign { padding: 20px; background: var(--dt-glass-dark); border: 1px solid var(--dt-glass-dark-border); color: #f0e6d2; }
-.assign-head { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 700; color: var(--dt-gold-light); margin-bottom: 12px; }
-.assign-badge { font-size: 0.625rem; background: var(--dt-gold-gradient); color: #fff; padding: 2px 8px; border-radius: 999px; margin-left: auto; }
-.assign-text { font-size: 0.8125rem; line-height: 1.6; color: rgba(240,230,210,0.85); margin-bottom: 14px; }
+.ai-assign { padding: 20px; background: var(--dt-primary-soft); border: 1px solid var(--dt-border); color: var(--dt-ink-2); }
+.assign-head { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--dt-primary); margin-bottom: 12px; }
+.assign-badge { font-size: 0.625rem; background: var(--dt-gold); color: #fff; padding: 2px 8px; border-radius: var(--dt-radius-sm); margin-left: auto; }
+.assign-text { font-size: 0.8125rem; line-height: 1.6; color: var(--dt-ink-3); margin-bottom: 14px; }
 
 .chart-card { padding: 20px; }
 
@@ -381,38 +381,38 @@ onMounted(load)
 .ar-score b { font-size: 1.25rem; color: var(--dt-gold-dark); }
 .ar-reasons { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
 .ar-reason { font-size: 0.75rem; color: var(--dt-success); }
-.ar-cands-title { font-size: 0.75rem; font-weight: 700; color: var(--dt-ink-2); margin-bottom: 6px; }
+.ar-cands-title { font-size: 0.75rem; font-weight: 600; color: var(--dt-ink-2); margin-bottom: 6px; }
 .ar-cand { display: flex; justify-content: space-between; font-size: 0.8125rem; color: var(--dt-ink-2); padding: 4px 0; border-bottom: 1px solid var(--dt-border); }
 .ar-cand-score { color: var(--dt-gold-dark); }
 .ar-src { font-size: 0.6875rem; color: var(--dt-ink-4); margin-top: 10px; }
 
 /* 详情 / 报表弹窗 */
 .detail-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.detail-name { font-size: 1.125rem; font-weight: 800; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
+.detail-name { font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
 .detail-name .agent-id { font-size: 0.75rem; color: var(--dt-ink-4); font-weight: 400; }
 .detail-sub { display: flex; align-items: center; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
 .detail-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .detail-meta { font-size: 0.75rem; color: var(--dt-ink-3); }
 .detail-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
-.dk { text-align: center; padding: 12px 6px; border-radius: 12px; background: var(--dt-muted); }
-.dk b { display: block; font-size: 1.125rem; font-weight: 800; color: var(--dt-ink-1); }
+.dk { text-align: center; padding: 12px 6px; border-radius: var(--dt-radius-md); background: var(--dt-muted); }
+.dk b { display: block; font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); }
 .dk.gold b { color: var(--dt-gold-dark); }
 .dk span { font-size: 0.6875rem; color: var(--dt-ink-4); margin-top: 2px; }
 .detail-section { margin-bottom: 16px; }
 .detail-empty { font-size: 0.8125rem; color: var(--dt-ink-4); padding: 14px 0; text-align: center; }
 .detail-list { display: flex; flex-direction: column; gap: 6px; max-height: 260px; overflow: auto; }
-.detail-row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: 10px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); }
+.detail-row { display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: var(--dt-radius-md); background: var(--dt-glass-light); border: 1px solid var(--dt-border); }
 .dr-name { flex: 1; min-width: 0; font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-1); }
 .dr-name em { font-style: normal; font-size: 0.6875rem; color: var(--dt-ink-4); margin-left: 4px; }
 .dr-x { font-style: normal; color: var(--dt-gold-dark); margin: 0 4px; }
 .dr-sub { font-size: 0.75rem; color: var(--dt-ink-3); white-space: nowrap; }
-.dr-tag { font-size: 0.6875rem; padding: 2px 10px; border-radius: 999px; background: var(--dt-muted); color: var(--dt-ink-2); white-space: nowrap; }
+.dr-tag { font-size: 0.6875rem; padding: 2px 10px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); color: var(--dt-ink-2); white-space: nowrap; }
 .dr-tag.ok { background: var(--dt-success-soft); color: var(--dt-success); }
 .dr-tag.wait { background: var(--dt-warning-soft); color: var(--dt-warning); }
 .dr-tag.off { background: var(--dt-muted); color: var(--dt-ink-4); }
 .report-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
-.rk { text-align: center; padding: 12px 6px; border-radius: 12px; background: var(--dt-muted); }
-.rk b { display: block; font-size: 1.125rem; font-weight: 800; color: var(--dt-ink-1); }
+.rk { text-align: center; padding: 12px 6px; border-radius: var(--dt-radius-md); background: var(--dt-muted); }
+.rk b { display: block; font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); }
 .rk.ok b { color: var(--dt-success); }
 .rk.warn b { color: var(--dt-warning); }
 .rk.gold b { color: var(--dt-gold-dark); }
@@ -424,7 +424,7 @@ onMounted(load)
 .ar-score b { font-size: 1.25rem; color: var(--dt-gold-dark); }
 .ar-reasons { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
 .ar-reason { font-size: 0.75rem; color: var(--dt-success); }
-.ar-cands-title { font-size: 0.75rem; font-weight: 700; color: var(--dt-ink-2); margin-bottom: 6px; }
+.ar-cands-title { font-size: 0.75rem; font-weight: 600; color: var(--dt-ink-2); margin-bottom: 6px; }
 .ar-cand { display: flex; justify-content: space-between; font-size: 0.8125rem; color: var(--dt-ink-2); padding: 4px 0; border-bottom: 1px solid var(--dt-border); }
 .ar-cand-score { color: var(--dt-gold-dark); }
 .ar-src { font-size: 0.6875rem; color: var(--dt-ink-4); margin-top: 10px; }

@@ -59,7 +59,6 @@ const toggleFull = () => { if (document.fullscreenElement) document.exitFullscre
 
 <template>
   <div class="big-screen">
-    <div class="stars" />
     <!-- 头部 -->
     <ScreenHeader @back="goBack" />
 
@@ -97,20 +96,16 @@ const toggleFull = () => { if (document.fullscreenElement) document.exitFullscre
 <style scoped>
 .big-screen {
   position: relative; height: 100vh; overflow: hidden; padding: 18px 22px;
-  background: radial-gradient(circle at 50% 0%, #2a0e18 0%, #1a0810 50%, #0f0508 100%);
-  color: #f0e6d2; font-family: var(--dt-font);
-}
-.stars { position: absolute; inset: 0; opacity: 0.5; pointer-events: none;
-  background-image: radial-gradient(1px 1px at 20% 30%, #e8c878 50%, transparent 50%), radial-gradient(1px 1px at 70% 60%, #e8c878 50%, transparent 50%), radial-gradient(1px 1px at 40% 80%, #fff 50%, transparent 50%), radial-gradient(1px 1px at 85% 20%, #e8c878 50%, transparent 50%);
-  background-size: 300px 300px;
+  background: var(--bs-bg-2);
+  color: var(--bs-text); font-family: var(--dt-font);
 }
 
 .bs-body { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 18px; height: calc(100% - 84px); }
 .bs-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 
 .bs-bottom-bar { display: flex; gap: 12px; }
-.bb-item { flex: 1; text-align: center; background: rgba(232,200,120,0.06); border: 1px solid rgba(232,200,120,0.18); border-radius: 8px; padding: 10px; font-size: 0.6875rem; color: rgba(240,230,210,0.65); }
-.bb-item b { display: block; font-size: 1.375rem; color: #e8c878; font-family: var(--dt-font-num); }
+.bb-item { flex: 1; text-align: center; background: var(--bs-panel); border: 1px solid var(--bs-border); border-radius: var(--dt-radius-lg); padding: 10px; font-size: 0.6875rem; color: #9aa1a9; }
+.bb-item b { display: block; font-size: 1.375rem; color: var(--bs-gold); font-family: var(--dt-font-num); font-variant-numeric: tabular-nums; }
 
-.full-btn { position: fixed; right: 22px; bottom: 22px; width: 40px; height: 40px; border-radius: 10px; background: rgba(232,200,120,0.12); border: 1px solid rgba(232,200,120,0.3); color: #e8c878; font-size: 1.125rem; cursor: pointer; z-index: 10; }
+.full-btn { position: fixed; right: 22px; bottom: 22px; width: 40px; height: 40px; border-radius: var(--dt-radius-lg); background: var(--bs-panel-strong); border: 1px solid var(--bs-border); color: var(--bs-gold); font-size: 1.125rem; cursor: pointer; z-index: 10; }
 </style>

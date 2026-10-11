@@ -140,7 +140,7 @@ onMounted(load)
 .pg-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
 .pg-title { font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); margin: 0; }
 .pg-sub { margin: 6px 0 0; color: var(--dt-ink-3); font-size: 0.8125rem; }
-.pg-table { border-radius: 12px; overflow: hidden; }
+.pg-table { border-radius: var(--dt-radius-lg); overflow: hidden; }
 .pg-price { color: var(--dt-primary); font-weight: 600; }
 .pg-hint { margin-left: 8px; color: var(--dt-ink-3); font-size: 0.75rem; }
 </style>

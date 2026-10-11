@@ -26,9 +26,9 @@ defineProps<{ bars: AiBar[]; comment: string }>()
 .ai-bars { display: flex; flex-direction: column; gap: 14px; margin: 18px 0; }
 .ai-bar { display: flex; align-items: center; gap: 12px; }
 .ai-bar-label { width: 70px; font-size: 0.8125rem; color: var(--dt-ink-2); flex-shrink: 0; }
-.ai-bar-track { flex: 1; height: 8px; border-radius: 999px; background: var(--dt-muted); overflow: hidden; }
-.ai-bar-fill { height: 100%; border-radius: 999px; background: var(--dt-gold-gradient); }
-.ai-bar-pct { width: 40px; text-align: right; font-size: 0.8125rem; font-weight: 700; color: var(--dt-gold-dark); flex-shrink: 0; }
-.ai-comment { font-size: 0.8125rem; color: var(--dt-ink-2); line-height: 1.7; background: var(--dt-gold-soft); border-left: 3px solid var(--dt-gold); border-radius: 8px; padding: 14px 16px; }
-.ai-comment b { color: var(--dt-gold-dark); }
+.ai-bar-track { flex: 1; height: 8px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); overflow: hidden; }
+.ai-bar-fill { height: 100%; border-radius: var(--dt-radius-sm); background: var(--dt-primary); }
+.ai-bar-pct { width: 40px; text-align: right; font-size: 0.8125rem; font-weight: 600; color: var(--dt-primary); flex-shrink: 0; }
+.ai-comment { font-size: 0.8125rem; color: var(--dt-ink-2); line-height: 1.7; background: var(--dt-muted); border-left: 2px solid var(--dt-primary); border-radius: var(--dt-radius-md); padding: 14px 16px; }
+.ai-comment b { color: var(--dt-primary); }
 </style>

@@ -56,7 +56,7 @@ const emit = defineEmits<{
           <span class="rc-semantic-score">语义契合 {{ r.semanticScore }}%</span>
           <span class="rc-semantic-kw">{{ (r.semanticKeywords || []).slice(0, 4).join('、') }}</span>
         </div>
-        <button class="btn btn-gold rc-btn" @click="emit('pick', r.member)">
+        <button class="btn btn-primary rc-btn" @click="emit('pick', r.member)">
           <app-icon name="heart" :size="15" />建立牵线
         </button>
       </GlassCard>
@@ -69,25 +69,26 @@ const emit = defineEmits<{
 <style scoped>
 .rec-wrap { display: flex; flex-direction: column; gap: 20px; }
 .rec-head { display: flex; align-items: center; gap: 14px; padding: 16px 20px; }
-.rec-name { font-size: 1.0625rem; font-weight: 800; color: var(--dt-ink-1); }
+.rec-name { font-size: 1.0625rem; font-weight: 600; color: var(--dt-ink-1); }
 .rec-sub { font-size: 0.75rem; color: var(--dt-ink-3); font-weight: 500; margin-left: 6px; }
-.rec-count { font-size: 0.8125rem; color: var(--dt-gold-dark); font-weight: 700; }
+.rec-count { font-size: 0.8125rem; color: var(--dt-ink-2); font-weight: 600; }
 
 .rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .rec-card { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
 .rc-head { display: flex; align-items: center; gap: 12px; }
-.rc-title { display: flex; flex-direction: column; gap: 5px; }
-.rc-name { font-size: 1rem; font-weight: 800; color: var(--dt-ink-1); }
+.rc-head .app-avatar { background: #8d847c !important; }
+.rc-title { display: flex; flex-direction: column; gap: 4px; }
+.rc-name { font-size: 1rem; font-weight: 600; color: var(--dt-ink-1); }
 .rc-age { font-size: 0.75rem; font-weight: 500; color: var(--dt-ink-3); margin-left: 6px; }
 .rc-ring { margin-left: auto; width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-.rc-ring-in { width: 42px; height: 42px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--dt-gold-dark); }
+.rc-ring-in { width: 42px; height: 42px; border-radius: 50%; background: var(--dt-card-solid); display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--dt-primary); }
 .rc-info { font-size: 0.75rem; color: var(--dt-ink-3); display: flex; gap: 6px; align-items: center; }
 .rc-info i { color: var(--dt-ink-4); font-style: normal; }
 .rc-reasons { margin: 0; padding-left: 16px; font-size: 0.75rem; color: var(--dt-ink-2); line-height: 1.8; }
 .rc-dims { display: flex; flex-wrap: wrap; gap: 6px; }
-.rc-dim { font-size: 0.6875rem; padding: 2px 8px; border-radius: 999px; background: var(--dt-muted); color: var(--dt-ink-3); }
+.rc-dim { font-size: 0.6875rem; padding: 2px 8px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); color: var(--dt-ink-3); }
 .rc-semantic { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
-.rc-semantic-score { font-size: 0.6875rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--dt-gold, #d8a44a); color: #fff; }
+.rc-semantic-score { font-size: 0.6875rem; font-weight: 600; padding: 2px 8px; border-radius: var(--dt-radius-sm); background: var(--dt-gold); color: #fff; }
 .rc-semantic-kw { font-size: 0.75rem; color: var(--dt-ink-2); }
 .rc-btn { width: 100%; }
 </style>

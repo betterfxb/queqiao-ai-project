@@ -389,16 +389,16 @@ onMounted(load)
 <style scoped>
 .activities-page { display: flex; flex-direction: column; gap: 20px; }
 .top-row { display: flex; align-items: center; }
-.view-toggle { display: flex; gap: 4px; padding: 4px; border-radius: 10px; }
-.view-toggle span { width: 32px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: 8px; color: var(--dt-ink-4); cursor: pointer; }
-.view-toggle span.on { background: #fff; color: var(--dt-primary); box-shadow: var(--dt-shadow-sm); }
+.view-toggle { display: flex; gap: 4px; padding: 4px; border-radius: var(--dt-radius-lg); }
+.view-toggle span { width: 32px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: var(--dt-radius-md); color: var(--dt-ink-4); cursor: pointer; }
+.view-toggle span.on { background: var(--dt-card-solid); color: var(--dt-primary); box-shadow: var(--dt-shadow-sm); }
 
 .act-body { display: flex; gap: 20px; align-items: flex-start; }
 .act-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
 
 .filter-row { display: flex; align-items: center; gap: 10px; }
 .chip-group { display: flex; gap: 6px; }
-.chip { font-size: 0.75rem; padding: 4px 14px; border-radius: 999px; cursor: pointer; color: var(--dt-ink-2); background: var(--dt-muted); transition: all 0.15s; }
+.chip { font-size: 0.75rem; padding: 4px 14px; border-radius: var(--dt-radius-sm); cursor: pointer; color: var(--dt-ink-2); background: var(--dt-muted); transition: all 0.15s; }
 .chip.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
 
 .act-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -420,7 +420,7 @@ onMounted(load)
 .form-check { display: flex; align-items: center; gap: 8px; }
 
 .review-head { margin-bottom: 14px; }
-.review-title { font-size: 1rem; font-weight: 800; color: var(--dt-ink-1); }
+.review-title { font-size: 1rem; font-weight: 600; color: var(--dt-ink-1); }
 .review-sub { font-size: 0.75rem; color: var(--dt-ink-3); margin-top: 4px; }
 .review-stats { display: flex; gap: 16px; flex-wrap: wrap; }
 .review-stats div { font-size: 0.75rem; color: var(--dt-ink-3); }
@@ -428,9 +428,9 @@ onMounted(load)
 
 /* 1-E 现场签到 + 互选 */
 .onsite-code { display: flex; align-items: center; gap: 10px; }
-.onsite-code code { background: var(--dt-muted); padding: 6px 12px; border-radius: 8px; font-size: 0.8125rem; color: var(--dt-ink-1); letter-spacing: 0.02em; }
+.onsite-code code { background: var(--dt-muted); padding: 6px 12px; border-radius: var(--dt-radius-sm); font-size: 0.8125rem; color: var(--dt-ink-1); letter-spacing: 0.02em; }
 .onsite-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.onsite-x { color: var(--dt-ink-4); font-weight: 700; }
-.tag-mutual { color: #2e7d5b; font-weight: 700; background: rgba(46,125,91,0.12); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; }
-.tag-one { color: var(--dt-ink-3); background: var(--dt-muted); padding: 2px 8px; border-radius: 999px; font-size: 0.75rem; }
+.onsite-x { color: var(--dt-ink-4); font-weight: 600; }
+.tag-mutual { color: var(--dt-success); font-weight: 600; background: var(--dt-success-soft); padding: 2px 8px; border-radius: var(--dt-radius-sm); font-size: 0.75rem; }
+.tag-one { color: var(--dt-ink-3); background: var(--dt-muted); padding: 2px 8px; border-radius: var(--dt-radius-sm); font-size: 0.75rem; }
 </style>

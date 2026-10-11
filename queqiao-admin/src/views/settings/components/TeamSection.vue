@@ -227,7 +227,7 @@ const resetPwd = async (u: SysUserItem) => {
   font-size: 0.8438rem; color: var(--dt-ink-2);
 }
 .team-row:last-child { border-bottom: none; }
-.team-row-head { font-weight: 700; color: var(--dt-ink-4); font-size: 0.75rem; }
+.team-row-head { font-weight: 600; color: var(--dt-ink-4); font-size: 0.75rem; }
 .t-name { font-weight: 600; color: var(--dt-ink-1); }
 .t-uname { color: var(--dt-ink-3); }
 .t-phone { color: var(--dt-ink-3); }
@@ -239,10 +239,10 @@ const resetPwd = async (u: SysUserItem) => {
 }
 .lnk:hover { text-decoration: underline; }
 .lnk.danger { color: var(--dt-error); }
-.role-tag { padding: 2px 9px; border-radius: var(--dt-radius-pill); font-size: 0.75rem; font-weight: 600; }
-.role-admin { background: rgba(122,33,53,0.12); color: #7A2135; }
-.role-manager { background: rgba(30,42,74,0.12); color: #1E2A4A; }
-.role-agent { background: rgba(91,140,122,0.14); color: #3f7a64; }
+.role-tag { padding: 2px 9px; border-radius: var(--dt-radius-sm); font-size: 0.75rem; font-weight: 600; }
+.role-admin { background: var(--dt-primary-soft-2); color: var(--dt-primary); }
+.role-manager { background: var(--dt-info-soft); color: var(--dt-info); }
+.role-agent { background: var(--dt-success-soft); color: var(--dt-success); }
 .team-empty { padding: 28px; text-align: center; color: var(--dt-ink-4); font-size: 0.8125rem; }
 
 @media (max-width: 1100px) {

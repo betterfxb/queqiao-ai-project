@@ -274,7 +274,7 @@ const pillType = computed(() =>
       <button class="btn btn-ghost" @click="onCancel">取消修改</button>
       <div style="flex:1" />
       <span class="save-hint"><b>{{ modifiedCount }}</b> 处字段已修改</span>
-      <button class="btn btn-gold" :disabled="saving" @click="onSave">
+      <button class="btn btn-primary" :disabled="saving" @click="onSave">
         <app-icon name="check" :size="15" />{{ saving ? '保存中…' : isEdit ? '保存所有修改' : '创建会员' }}
       </button>
     </div>
@@ -282,13 +282,13 @@ const pillType = computed(() =>
 </template>
 
 <style scoped>
-.edit-page { min-height: 100vh; background: var(--dt-bg-gradient); display: flex; flex-direction: column; }
+.edit-page { min-height: 100vh; background: var(--dt-bg-base); display: flex; flex-direction: column; }
 .edit-topbar {
   display: flex; align-items: center; gap: 16px; padding: 14px 28px;
-  background: var(--dt-glass); backdrop-filter: var(--dt-glass-blur); border-bottom: 1px solid var(--dt-glass-border);
+  background: var(--dt-card-solid); border-bottom: 1px solid var(--dt-border);
   position: sticky; top: 0; z-index: 10;
 }
-.edit-title-main { font-size: 1.125rem; font-weight: 700; color: var(--dt-ink-1); }
+.edit-title-main { font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); }
 .edit-title-sub { font-size: 0.75rem; color: var(--dt-primary); }
 .edit-body { flex: 1; display: flex; gap: 24px; padding: 24px 28px 120px; align-items: flex-start; }
 .edit-left { width: 40%; display: flex; flex-direction: column; gap: 20px; }
@@ -296,9 +296,9 @@ const pillType = computed(() =>
 
 .save-bar {
   position: fixed; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 14px;
-  padding: 14px 28px; background: var(--dt-glass-strong); backdrop-filter: var(--dt-glass-blur);
-  border-top: 1px solid var(--dt-glass-border); z-index: 20;
+  padding: 14px 28px; background: var(--dt-card-solid);
+  border-top: 1px solid var(--dt-border); z-index: 20;
 }
 .save-hint { font-size: 0.8125rem; color: var(--dt-ink-3); }
-.save-hint b { color: var(--dt-gold-dark); font-size: 1rem; }
+.save-hint b { color: var(--dt-primary); font-size: 1rem; }
 </style>

@@ -492,88 +492,87 @@ const onCreatePair = async (candidate: any) => {
 .pair-row { display: flex; align-items: stretch; gap: 0; }
 .pair-connector {
   align-self: center; width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; margin: 0 12px;
-  background: var(--dt-gold-gradient); color: #fff; display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--dt-shadow-gold-glow);
+  background: var(--dt-primary); color: #fff; display: flex; align-items: center; justify-content: center;
 }
 
 .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
 .explain-block {
-  border: 1px solid var(--dt-border-gold, #f0e2c8);
-  border-radius: var(--dt-radius-lg, 16px);
-  background: var(--dt-gold-soft, #fdf8ef);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  background: var(--dt-card-solid);
   padding: 18px 20px;
 }
 .explain-h {
   display: flex; align-items: center; gap: 8px;
-  margin: 0 0 10px; font-size: 1rem; color: var(--dt-gold-dark, #9a6b1e);
+  margin: 0 0 10px; font-size: 1rem; font-weight: 600; color: var(--dt-ink-1);
 }
 .explain-summary { margin: 0 0 14px; color: var(--dt-ink-2); font-size: 0.8125rem; line-height: 1.6; }
 .explain-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .explain-col-title {
-  font-size: 0.8125rem; font-weight: 700; color: var(--dt-ink-2);
-  margin-bottom: 8px; padding-left: 9px; border-left: 3px solid var(--dt-gold, #d8a44a);
+  font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-2);
+  margin-bottom: 8px; padding-left: 9px; border-left: 2px solid var(--dt-primary);
 }
 .explain-col ul { margin: 0; padding-left: 18px; }
 .explain-col li { font-size: 0.8125rem; color: var(--dt-ink-3); line-height: 1.9; }
 .explain-semantic { margin-top: 14px; }
 .sem-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
 .sem-chip {
-  font-size: 0.75rem; padding: 3px 12px; border-radius: 999px;
-  background: var(--dt-gold-soft, #fdf3df); color: var(--dt-gold-dark, #9a6b1e);
-  border: 1px solid var(--dt-border-gold, #f0e2c8); font-weight: 600;
+  font-size: 0.75rem; padding: 3px 12px; border-radius: var(--dt-radius-sm);
+  background: var(--dt-muted); color: var(--dt-ink-2);
+  border: 1px solid var(--dt-border); font-weight: 600;
 }
 
 .coach-block {
-  border: 1px solid var(--dt-border, #e6e8ee);
-  border-radius: var(--dt-radius-lg, 16px);
-  background: linear-gradient(180deg, #f3f8ff 0%, #ffffff 60%);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  background: var(--dt-card-solid);
   padding: 18px 20px;
 }
 .coach-h {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  margin: 0 0 12px; font-size: 1rem; color: var(--dt-primary, #2f6fed);
+  margin: 0 0 12px; font-size: 1rem; font-weight: 600; color: var(--dt-primary);
 }
 .coach-stage {
-  font-size: 0.75rem; font-weight: 700; padding: 2px 10px; border-radius: 999px;
-  background: var(--dt-primary-soft, #e8f0ff); color: var(--dt-primary, #2f6fed);
+  font-size: 0.75rem; font-weight: 600; padding: 2px 10px; border-radius: var(--dt-radius-sm);
+  background: var(--dt-primary-soft); color: var(--dt-primary);
 }
 .coach-window { font-size: 0.75rem; color: var(--dt-ink-3); font-weight: 500; }
 .coach-next {
   display: flex; gap: 10px; align-items: flex-start;
-  background: var(--dt-primary-soft, #eef4ff); border-radius: 12px; padding: 12px 14px;
+  background: var(--dt-primary-soft); border-radius: var(--dt-radius-md); padding: 12px 14px;
   color: var(--dt-ink-1); font-size: 0.875rem; line-height: 1.6; margin-bottom: 14px;
 }
 .coach-next-tag {
-  flex-shrink: 0; font-size: 0.72rem; font-weight: 700; color: #fff;
-  background: var(--dt-primary, #2f6fed); border-radius: 6px; padding: 2px 8px; margin-top: 2px;
+  flex-shrink: 0; font-size: 0.75rem; font-weight: 600; color: #fff;
+  background: var(--dt-primary); border-radius: var(--dt-radius-sm); padding: 2px 8px; margin-top: 2px;
 }
 .coach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
 .coach-col-title {
-  font-size: 0.8125rem; font-weight: 700; color: var(--dt-ink-2);
-  margin-bottom: 8px; padding-left: 9px; border-left: 3px solid var(--dt-primary, #2f6fed);
+  font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-2);
+  margin-bottom: 8px; padding-left: 9px; border-left: 2px solid var(--dt-primary);
 }
 .coach-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .coach-chip {
-  font-size: 0.75rem; padding: 3px 12px; border-radius: 999px;
-  background: #eef4ff; color: var(--dt-primary, #2f6fed); border: 1px solid #d6e4ff; font-weight: 600;
+  font-size: 0.75rem; padding: 3px 12px; border-radius: var(--dt-radius-sm);
+  background: var(--dt-primary-soft-2); color: var(--dt-primary); border: 1px solid var(--dt-border); font-weight: 600;
 }
 .coach-list { margin: 0; padding-left: 18px; }
 .coach-list li { font-size: 0.8125rem; color: var(--dt-ink-3); line-height: 1.9; }
 .coach-foot { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
 .coach-tips { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
-.coach-foot-label { font-size: 0.75rem; font-weight: 700; color: var(--dt-ink-2); }
+.coach-foot-label { font-size: 0.75rem; font-weight: 600; color: var(--dt-ink-2); }
 .coach-tip { font-size: 0.75rem; color: var(--dt-ink-3); }
 .coach-warn {
   display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap;
-  background: #fff5f0; border: 1px solid #ffd9c2; border-radius: 10px; padding: 8px 12px;
-  color: #c0491f; font-size: 0.78rem; line-height: 1.6;
+  background: var(--dt-error-soft); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-md); padding: 8px 12px;
+  color: var(--dt-error); font-size: 0.8125rem; line-height: 1.6;
 }
 .coach-warn-tag {
-  flex-shrink: 0; font-size: 0.7rem; font-weight: 700; color: #fff;
-  background: #c0491f; border-radius: 6px; padding: 2px 8px;
+  flex-shrink: 0; font-size: 0.75rem; font-weight: 600; color: #fff;
+  background: var(--dt-error); border-radius: var(--dt-radius-sm); padding: 2px 8px;
 }
-.coach-source { font-size: 0.72rem; color: var(--dt-ink-4); align-self: flex-end; }
-.coach-source.ok { color: #1f9d5b; }
-.coach-source.fallback { color: #c0491f; }
+.coach-source { font-size: 0.75rem; color: var(--dt-ink-4); align-self: flex-end; }
+.coach-source.ok { color: var(--dt-success); }
+.coach-source.fallback { color: var(--dt-error); }
 </style>

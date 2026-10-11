@@ -89,25 +89,25 @@ const onReset = () => {
 
     <div class="adv-actions">
       <button class="btn btn-ghost" @click="onReset">重置</button>
-      <button class="btn btn-gold" @click="onApply">应用筛选</button>
+      <button class="btn btn-primary" @click="onApply">应用筛选</button>
     </div>
   </aside>
 </template>
 
 <style scoped>
 .adv-panel { width: 280px; flex-shrink: 0; padding: 20px; }
-.adv-title { font-size: 0.9375rem; font-weight: 700; color: var(--dt-ink-1); margin-bottom: 18px; }
-.adv-block { margin-bottom: 18px; }
+.adv-title { font-size: 0.9375rem; font-weight: 600; color: var(--dt-ink-1); margin-bottom: 16px; }
+.adv-block { margin-bottom: 16px; }
 .adv-label { font-size: 0.8125rem; color: var(--dt-ink-2); font-weight: 600; display: flex; justify-content: space-between; margin-bottom: 6px; }
-.adv-val { color: var(--dt-gold-dark); font-weight: 700; }
-.mini-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.adv-val { color: var(--dt-primary); font-weight: 600; }
+.mini-chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .chip {
-  font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; cursor: pointer;
-  color: var(--dt-ink-2); background: var(--dt-muted); transition: all 0.15s; white-space: nowrap;
+  font-size: 0.75rem; padding: 4px 12px; border-radius: var(--dt-radius-sm); cursor: pointer;
+  color: var(--dt-ink-2); background: var(--dt-muted); transition: background 0.15s, color 0.15s; white-space: nowrap;
 }
-.chip:hover { color: var(--dt-primary); }
+.chip:hover { color: var(--dt-primary); background: var(--dt-primary-soft); }
 .chip.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
 .chip.sm { padding: 3px 10px; font-size: 0.75rem; }
-.adv-actions { display: flex; gap: 10px; margin-top: 6px; }
+.adv-actions { display: flex; gap: 12px; margin-top: 8px; }
 .adv-actions .btn { flex: 1; }
 </style>

@@ -36,14 +36,13 @@ onBeforeUnmount(() => clearInterval(timer))
 
 <style scoped>
 .bs-header { position: relative; display: flex; align-items: center; gap: 20px; height: 64px; z-index: 2; }
-.bs-brand { font-size: 0.875rem; color: rgba(240,230,210,0.7); letter-spacing: 0.05em; }
+.bs-brand { font-size: 0.875rem; color: #9aa1a9; letter-spacing: 0.05em; }
 .bs-title-wrap { flex: 1; text-align: center; }
-.bs-title { font-size: 1.75rem; font-weight: 800; background: linear-gradient(90deg,#e8c878,#c9a96e); -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: 0.1em; }
-.bs-title::before, .bs-title::after { content: ''; display: inline-block; width: 60px; height: 1px; background: linear-gradient(90deg, transparent, #e8c878); vertical-align: middle; margin: 0 16px; }
-.bs-title::after { background: linear-gradient(90deg, #e8c878, transparent); }
-.bs-clock { font-size: 0.75rem; color: rgba(240,230,210,0.6); margin-top: 2px; font-family: var(--dt-font-num); }
-.bs-status { display: flex; align-items: center; gap: 12px; font-size: 0.75rem; color: rgba(240,230,210,0.75); }
-.live-dot { width: 9px; height: 9px; border-radius: 50%; background: #b53a4a; animation: pulse 1.4s infinite; }
+.bs-title { font-size: 1.5rem; font-weight: 600; color: var(--bs-text); letter-spacing: 0.08em; }
+.bs-title::before, .bs-title::after { content: ''; display: inline-block; width: 60px; height: 1px; background: var(--bs-border); vertical-align: middle; margin: 0 16px; }
+.bs-clock { font-size: 0.75rem; color: #6b7178; margin-top: 2px; font-family: var(--dt-font-num); font-variant-numeric: tabular-nums; }
+.bs-status { display: flex; align-items: center; gap: 12px; font-size: 0.75rem; color: #9aa1a9; }
+.live-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--bs-burgundy); animation: pulse 1.4s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-.bs-back { background: rgba(232,200,120,0.12); border: 1px solid rgba(232,200,120,0.3); color: #e8c878; border-radius: 8px; padding: 6px 14px; font-size: 0.75rem; cursor: pointer; }
+.bs-back { background: var(--bs-panel-strong); border: 1px solid var(--bs-border); color: var(--bs-text); border-radius: var(--dt-radius-lg); padding: 6px 14px; font-size: 0.75rem; cursor: pointer; }
 </style>

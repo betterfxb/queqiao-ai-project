@@ -74,13 +74,13 @@ const catClass = (c: string) =>
 
 <style scoped>
 .table-card { padding: 8px 8px 0; }
-.type-badge { font-size: 0.6875rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.type-badge { font-size: 0.6875rem; font-weight: 600; padding: 3px 10px; border-radius: var(--dt-radius-sm); }
 .type-badge.primary { background: var(--dt-primary-soft-2); color: var(--dt-primary); }
 .type-badge.gold { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
 .type-badge.info { background: var(--dt-info-soft); color: var(--dt-info); }
 .type-badge.success { background: var(--dt-success-soft); color: var(--dt-success); }
 .type-badge.warning { background: var(--dt-warning-soft); color: var(--dt-warning); }
-.icon-mini { width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; background: var(--dt-muted); color: var(--dt-ink-3); border: 1px solid var(--dt-border); cursor: pointer; margin-left: 6px; }
+.icon-mini { width: 30px; height: 30px; border-radius: var(--dt-radius-md); display: inline-flex; align-items: center; justify-content: center; background: var(--dt-muted); color: var(--dt-ink-3); border: 1px solid var(--dt-border); cursor: pointer; margin-left: 6px; }
 .icon-mini:hover { color: var(--dt-primary); }
 .icon-mini.danger:hover { color: var(--dt-error); border-color: var(--dt-error); }
 .table-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 12px; }

@@ -85,6 +85,15 @@ onMounted(load)
 </template>
 
 <style scoped>
-.dashboard { display: flex; gap: 24px; align-items: flex-start; }
+.dashboard { display: flex; gap: 20px; align-items: flex-start; }
 .main-col { flex: 1; min-width: 0; }
+
+/* 窄屏：右侧助手栏移到主列下方 */
+@media (max-width: 1280px) {
+  .dashboard { flex-direction: column; }
+  .dashboard > :last-child { width: 100%; }
+}
+@media (max-width: 900px) {
+  .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 </style>

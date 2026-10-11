@@ -41,8 +41,8 @@ const emit = defineEmits<{
 <style scoped>
 .crm-column { padding: 12px; min-height: 200px; }
 .crm-col-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.crm-col-title { font-weight: 700; color: var(--dt-ink-1); font-size: 0.875rem; }
-.crm-col-count { background: var(--dt-primary-soft-2); color: var(--dt-primary); font-size: 0.6875rem; font-weight: 700; padding: 0 8px; border-radius: 999px; }
+.crm-col-title { font-weight: 600; color: var(--dt-ink-1); font-size: 0.875rem; }
+.crm-col-count { background: var(--dt-primary-soft-2); color: var(--dt-primary); font-size: 0.6875rem; font-weight: 600; padding: 0 8px; border-radius: var(--dt-radius-sm); }
 .crm-col-add { margin-left: auto; color: var(--dt-ink-4); cursor: pointer; }
 .crm-cards { display: flex; flex-direction: column; gap: 10px; }
 </style>

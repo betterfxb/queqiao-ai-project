@@ -7,8 +7,25 @@
  *  - 接口不可用时自动降级到传入的 mock 数据，保证前端原型可独立运行
  */
 
-const API_BASE = (import.meta as any).env?.VITE_API_BASE ?? '/api'
-const AI_BASE = (import.meta as any).env?.VITE_AI_BASE ?? '/ai'
+const ENV = (import.meta as any).env ?? {}
+const API_BASE = ENV.VITE_API_BASE ?? '/api'
+const AI_BASE = ENV.VITE_AI_BASE ?? '/ai'
+
+/**
+ * 参与签名的路径前缀 —— 必须与后端 `request.getRequestURI()` 完全一致。
+ *
+ * 子路径部署时（nginx `location /app2/api/` → `proxy_pass http://127.0.0.1:8080/api/`）
+ * 网关会剥掉部署前缀，后端收到的 uri 是 `/api/...`。若前端用带前缀的
+ * `/app2/api/...` 去签名，SecurityFilter 的 `METHOD|uri|ts|nonce` 基底就对不上，
+ * 会直接 401「签名校验失败」（注意：只要带了 X-Sign 就强制校验，
+ * 与服务端 sign-required 开关无关）。
+ *
+ * 这里按部署基路径自动剥离前缀，也可用 VITE_SIGN_BASE 显式覆盖。
+ */
+const PUBLIC_PATH = String(ENV.VITE_PUBLIC_PATH ?? '/').replace(/\/+$/, '') // '' | '/app2'
+const SIGN_BASE =
+  ENV.VITE_SIGN_BASE ??
+  (PUBLIC_PATH && API_BASE.startsWith(PUBLIC_PATH) ? API_BASE.slice(PUBLIC_PATH.length) : API_BASE)
 
 interface RequestOptions {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
@@ -71,7 +88,7 @@ const TIMEOUT_MS = 15_000
 /** 网络/超时失败的一次性重试（4xx/5xx 不重试，交由上层处理） */
 const MAX_RETRY = 1
 
-async function raw<T>(base: string, path: string, opts: RequestOptions): Promise<T> {
+async function raw<T>(base: string, path: string, opts: RequestOptions, signBase = base): Promise<T> {
   const url = `${base}${path}${buildQuery(opts.query)}`
   const method = opts.method ?? 'GET'
   const headers: Record<string, string> = { 'Content-Type': 'application/json' }
@@ -81,7 +98,7 @@ async function raw<T>(base: string, path: string, opts: RequestOptions): Promise
 
   if (!opts.skipSign) {
     const { buildSignHeaders, pathnameOf } = await import('../security/sign')
-    const signed = await buildSignHeaders(method, pathnameOf(`${base}${path}`))
+    const signed = await buildSignHeaders(method, pathnameOf(`${signBase}${path}`))
     Object.assign(headers, signed)
   }
 
@@ -108,6 +125,9 @@ async function raw<T>(base: string, path: string, opts: RequestOptions): Promise
   }
 
   if (res!.status === 401) {
+    // 匿名请求（登录、公开端点）被拒 ≠ 登录态失效：如实透出服务端文案。
+    // 否则「密码输错」会被显示成「未授权，请重新登录」，误导用户以为系统故障。
+    if (!token) throw new Error(await serverMessage(res!, '账号或密码错误'))
     try {
       sessionStorage.removeItem('qq_token')
       sessionStorage.removeItem('qq_user')
@@ -115,7 +135,7 @@ async function raw<T>(base: string, path: string, opts: RequestOptions): Promise
       /* ignore */
     }
     redirectToLogin()
-    throw new Error('未授权，请重新登录')
+    throw new Error(await serverMessage(res!, '登录状态已失效，请重新登录'))
   }
   if (res!.status === 403) {
     // 已登录但权限不足 / 越权访问：保持登录态，仅向上抛出可识别的错误
@@ -131,7 +151,7 @@ async function raw<T>(base: string, path: string, opts: RequestOptions): Promise
 /** 业务后端接口（:8080） */
 export async function api<T = unknown>(path: string, opts: RequestOptions = {}): Promise<T> {
   try {
-    return await raw<T>(API_BASE, path, opts)
+    return await raw<T>(API_BASE, path, opts, SIGN_BASE)
   } catch (e) {
     // 权限不足必须暴露给调用方，绝不能用 mock 兜底伪装成"有数据"
     if (e instanceof ForbiddenError) throw e
@@ -160,7 +180,7 @@ export async function download(path: string, filename: string, opts: RequestOpti
   if (token) headers['Authorization'] = `Bearer ${token}`
   if (!opts.skipSign) {
     const { buildSignHeaders, pathnameOf } = await import('../security/sign')
-    Object.assign(headers, await buildSignHeaders(method, pathnameOf(`${API_BASE}${path}`)))
+    Object.assign(headers, await buildSignHeaders(method, pathnameOf(`${SIGN_BASE}${path}`)))
   }
   if (opts.body !== undefined) headers['Content-Type'] = 'application/json'
 
@@ -171,6 +191,7 @@ export async function download(path: string, filename: string, opts: RequestOpti
   })
 
   if (res.status === 401) {
+    if (!token) throw new Error(await serverMessage(res, '账号或密码错误'))
     try {
       sessionStorage.removeItem('qq_token')
       sessionStorage.removeItem('qq_user')
@@ -178,7 +199,7 @@ export async function download(path: string, filename: string, opts: RequestOpti
       /* ignore */
     }
     redirectToLogin()
-    throw new Error('未授权，请重新登录')
+    throw new Error(await serverMessage(res, '登录状态已失效，请重新登录'))
   }
   if (res.status === 403) {
     throw new ForbiddenError(await serverMessage(res, '权限不足，无法导出'))

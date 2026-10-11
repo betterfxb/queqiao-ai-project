@@ -58,6 +58,12 @@ const onSubmit = async (payload: { account: string; password: string }) => {
 
 .form-panel {
   width: 45%; min-width: 480px; display: flex; align-items: center; justify-content: center;
-  background: var(--dt-bg-gradient); padding: 40px;
+  background: var(--dt-bg-base); padding: 40px;
+}
+
+/* 窄屏：收起品牌面板，表单居中占满 */
+@media (max-width: 900px) {
+  .login-page > :first-child { display: none; }
+  .form-panel { width: 100%; min-width: 0; padding: 24px; }
 }
 </style>

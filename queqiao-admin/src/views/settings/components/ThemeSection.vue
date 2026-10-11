@@ -40,10 +40,10 @@ const resetFont = () => {
         @click="app.setTheme(t.key)"
       >
         <div class="theme-check"><app-icon name="check" :size="14" /></div>
-        <div class="theme-swatch">
-          <span class="swatch-dot" :style="{ background: t.colors[0] }" />
-          <span class="swatch-dot" :style="{ background: t.colors[1] }" />
-          <span class="swatch-dot" :style="{ background: t.colors[2] }" />
+        <div class="theme-swatch" :class="'sw-' + t.key">
+          <span class="swatch-dot sw-primary" />
+          <span class="swatch-dot sw-accent" />
+          <span class="swatch-dot sw-bg" />
         </div>
         <div class="theme-name">{{ t.name }}</div>
       </div>
@@ -87,13 +87,13 @@ const resetFont = () => {
   position: relative;
   padding: 18px;
   border-radius: var(--dt-radius-lg);
-  border: 2px solid var(--dt-border);
-  background: var(--dt-glass-light);
+  border: 1px solid var(--dt-border);
+  background: var(--dt-card-solid);
   cursor: pointer;
-  transition: all 0.18s ease;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
-.theme-card:hover { border-color: var(--dt-gold); transform: translateY(-2px); }
-.theme-card.selected { border-color: var(--dt-primary); box-shadow: var(--dt-shadow-md); }
+.theme-card:hover { border-color: var(--dt-border-strong); background: var(--dt-muted); }
+.theme-card.selected { border-color: var(--dt-primary); background: var(--dt-primary-soft); box-shadow: var(--dt-shadow-sm); }
 .theme-check {
   position: absolute; top: 12px; right: 12px;
   width: 22px; height: 22px; border-radius: 50%;
@@ -104,16 +104,26 @@ const resetFont = () => {
 .theme-card.selected .theme-check { opacity: 1; transform: scale(1); }
 .theme-swatch { display: flex; gap: 8px; margin-bottom: 14px; }
 .swatch-dot {
-  width: 36px; height: 36px; border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.06);
+  width: 36px; height: 36px; border-radius: var(--dt-radius-md);
+  border: 1px solid var(--dt-border);
 }
+/* 预览色块展示各主题的真实主色 / 点缀色 / 纸面色（实色，无渐变） */
+.sw-burgundy .sw-primary { background: #7d2b3d; }
+.sw-burgundy .sw-accent { background: #a8863f; }
+.sw-burgundy .sw-bg { background: #f6f5f3; }
+.sw-mint .sw-primary { background: #3f7261; }
+.sw-mint .sw-accent { background: #a8863f; }
+.sw-mint .sw-bg { background: #f4f6f4; }
+.sw-navy .sw-primary { background: #2f4160; }
+.sw-navy .sw-accent { background: #a8863f; }
+.sw-navy .sw-bg { background: #f4f5f7; }
 .theme-name { font-size: 0.875rem; font-weight: 600; color: var(--dt-ink-1); }
 
 /* —— 全局字体大小 —— */
 .font-pct {
   margin-left: auto;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dt-primary);
   font-family: var(--dt-font-num);
 }
@@ -134,17 +144,17 @@ const resetFont = () => {
   background: var(--dt-muted);
 }
 .font-slider :deep(.el-slider__bar) {
-  background: var(--dt-gold-gradient);
+  background: var(--dt-primary);
 }
 .font-slider :deep(.el-slider__button) {
-  border-color: var(--dt-gold-dark);
+  border-color: var(--dt-primary);
   background: #fff;
 }
 .font-preview {
   margin-top: 16px;
   padding: 12px 16px;
   border-radius: var(--dt-radius-md);
-  background: var(--dt-glass-light);
+  background: var(--dt-card-solid);
   border: 1px solid var(--dt-border);
   color: var(--dt-ink-1);
   font-weight: 600;

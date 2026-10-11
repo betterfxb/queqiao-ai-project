@@ -385,17 +385,17 @@ onMounted(loadCity)
 </template>
 
 <style scoped>
-.muted { color: var(--dt-ink-3, #9096a8); }
-.full { color: var(--dt-danger, #e34d59); font-weight: 700; }
-.form-tip { margin-top: 6px; font-size: 0.75rem; color: var(--dt-ink-3, #9096a8); line-height: 1.6; }
+.muted { color: var(--dt-ink-3); }
+.full { color: var(--dt-error); font-weight: 600; }
+.form-tip { margin-top: 6px; font-size: 0.75rem; color: var(--dt-ink-3); line-height: 1.6; }
 .sub-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
-.sub-head .sub-title { font-size: 0.9375rem; font-weight: 800; color: var(--dt-ink-1); }
-.sub-head .sub-price { font-size: 1.125rem; font-weight: 800; color: var(--dt-danger, #e34d59); }
+.sub-head .sub-title { font-size: 0.9375rem; font-weight: 600; color: var(--dt-ink-1); }
+.sub-head .sub-price { font-size: 1.125rem; font-weight: 600; color: var(--dt-error); }
 .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; margin: 16px 0; }
-.sum-card { background: var(--dt-card, #fff); border: 1px solid var(--dt-border, #ececf2); border-radius: var(--dt-radius-lg, 16px); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
-.sum-label { font-size: 0.7813rem; color: var(--dt-ink-3); }
-.sum-value { font-size: 1.5rem; font-weight: 800; color: var(--dt-ink-1); }
-.sum-value.ok { color: #1aa86b; }
+.sum-card { background: var(--dt-card-solid); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-md); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; }
+.sum-label { font-size: 0.75rem; color: var(--dt-ink-3); }
+.sum-value { font-size: 1.5rem; font-weight: 600; color: var(--dt-ink-1); }
+.sum-value.ok { color: var(--dt-success); }
 .sum-sub { font-size: 0.75rem; color: var(--dt-ink-3); }
 .toolbar { display: flex; align-items: center; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
 </style>

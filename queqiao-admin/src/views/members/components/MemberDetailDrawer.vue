@@ -9,6 +9,7 @@ const props = defineProps<{ member: Member | null }>()
 const emit = defineEmits<{
   (e: 'match', row: Member): void
   (e: 'message', row: Member): void
+  (e: 'card', row: Member): void
 }>()
 
 const router = useRouter()
@@ -110,57 +111,59 @@ const fmtTime = (t?: string | null) => (t ? new Date(t).toLocaleString('zh-CN', 
       </div>
       <button class="btn btn-outline" style="width:100%;margin-bottom:10px" @click="goQuiz"><app-icon name="sparkles" :size="15" />情感测评</button>
       <button class="btn btn-outline" style="width:100%;margin-bottom:10px" @click="emit('message', member)"><app-icon name="message" :size="15" />发送消息</button>
-      <button class="btn btn-gold" style="width:100%" @click="emit('match', member)"><app-icon name="heart" :size="15" />发起牵线</button>
+      <button class="btn btn-outline" style="width:100%;margin-bottom:10px" @click="emit('card', member)"><app-icon name="award" :size="15" />生成会员卡片</button>
+      <button class="btn btn-primary" style="width:100%" @click="emit('match', member)"><app-icon name="heart" :size="15" />发起牵线</button>
     </div>
   </el-drawer>
 </template>
 
 <style scoped>
 .qv-body { display: flex; flex-direction: column; align-items: center; padding: 24px 20px; }
-.qv-name { font-size: 1.375rem; font-weight: 800; color: var(--dt-ink-1); margin-top: 12px; }
+.qv-body > .app-avatar { background: #8d847c !important; }
+.qv-name { font-size: 1.375rem; font-weight: 600; color: var(--dt-ink-1); margin-top: 12px; }
 .qv-id { font-size: 0.8125rem; color: var(--dt-ink-4); }
-.qv-badges { display: flex; gap: 8px; margin: 12px 0 18px; }
+.qv-badges { display: flex; gap: 8px; margin: 12px 0 16px; }
 .qv-list { width: 100%; }
 .qv-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--dt-border); font-size: 0.8125rem; color: var(--dt-ink-3); }
 .qv-row b { color: var(--dt-ink-1); font-weight: 600; }
-.qv-stats { display: flex; gap: 12px; width: 100%; margin: 18px 0; }
+.qv-stats { display: flex; gap: 12px; width: 100%; margin: 16px 0; }
 .qv-stat { flex: 1; background: var(--dt-muted); border-radius: var(--dt-radius-md); padding: 12px; text-align: center; }
-.qv-stat-num { font-size: 1.375rem; font-weight: 800; color: var(--dt-primary); }
+.qv-stat-num { font-size: 1.375rem; font-weight: 600; color: var(--dt-primary); }
 .qv-stat-label { font-size: 0.75rem; color: var(--dt-ink-3); }
 
 /* 积分卡片 */
 .qv-points {
   width: 100%;
   margin: 0 0 16px;
-  padding: 14px 16px;
+  padding: 16px;
   border-radius: var(--dt-radius-md);
-  background: linear-gradient(135deg, rgba(122, 33, 53, 0.06), rgba(200, 162, 110, 0.10));
+  background: var(--dt-primary-soft);
   border: 1px solid var(--dt-border);
   box-sizing: border-box;
 }
 .qv-points-main { display: flex; align-items: baseline; justify-content: space-between; }
 .qv-level {
-  font-size: 0.8125rem; font-weight: 700; color: var(--dt-primary);
-  padding: 3px 10px; border-radius: 999px;
-  background: var(--dt-gold-gradient); color: #fff;
+  font-size: 0.8125rem; font-weight: 600; color: #fff;
+  padding: 3px 10px; border-radius: var(--dt-radius-sm);
+  background: var(--dt-primary);
 }
-.qv-total { font-size: 1.5rem; font-weight: 800; color: var(--dt-ink-1); }
+.qv-total { font-size: 1.5rem; font-weight: 600; color: var(--dt-ink-1); }
 .qv-total i { font-size: 0.8125rem; font-weight: 500; color: var(--dt-ink-3); font-style: normal; }
 .qv-points-logs { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
 .qv-log { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--dt-ink-3); }
 .qv-log-label { color: var(--dt-ink-2); font-weight: 600; }
-.qv-log-delta { color: var(--dt-success, #22a866); font-weight: 700; }
+.qv-log-delta { color: var(--dt-success); font-weight: 600; }
 .qv-log-time { margin-left: auto; color: var(--dt-ink-4); }
 .qv-points-empty, .qv-points-loading { text-align: center; color: var(--dt-ink-4); font-size: 0.8125rem; padding: 8px 0; }
 .spin { animation: qv-spin 0.9s linear infinite; }
 @keyframes qv-spin { to { transform: rotate(360deg); } }
 
 /* 契合标签 */
-.qv-tags { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 14px; }
+.qv-tags { width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 16px; }
 .qv-tags-label { font-size: 0.75rem; color: var(--dt-ink-3); }
 .qv-tag {
   font-size: 0.75rem; font-weight: 600; color: var(--dt-primary);
-  padding: 3px 10px; border-radius: 999px;
-  background: rgba(122, 33, 53, 0.08); border: 1px solid var(--dt-border);
+  padding: 3px 10px; border-radius: var(--dt-radius-sm);
+  background: var(--dt-primary-soft-2); border: 1px solid var(--dt-border);
 }
 </style>

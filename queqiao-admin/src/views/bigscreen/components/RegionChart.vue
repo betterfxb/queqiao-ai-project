@@ -51,16 +51,16 @@ const mapOption = computed(() => {
     series: [
       {
         type: 'lines', coordinateSystem: 'cartesian2d', z: 2,
-        effect: { show: true, period: 4, trailLength: 0.4, symbol: 'arrow', symbolSize: 4, color: '#e8c878' },
-        lineStyle: { color: 'rgba(232,200,120,0.4)', width: 1, curveness: 0.3 },
+        effect: { show: true, period: 4, trailLength: 0.4, symbol: 'arrow', symbolSize: 4, color: '#c3a05a' },
+        lineStyle: { color: 'rgba(195,160,90,0.4)', width: 1, curveness: 0.3 },
         data: hub ? list.slice(1).map((c: any) => ({ coords: [hub.coord, c.coord] })) : [],
       },
       {
         type: 'effectScatter', coordinateSystem: 'cartesian2d', z: 3,
         rippleEffect: { brushType: 'stroke', scale: 3 },
         symbolSize: (_val: any, p: any) => 6 + (list[p.dataIndex]?.pairs ?? 0) / maxPairs.value * 12,
-        itemStyle: { color: '#e8c878', shadowBlur: 8, shadowColor: 'rgba(232,200,120,0.6)' },
-        label: { show: true, position: 'right', color: '#f0e6d2', fontSize: 10, formatter: (p: any) => `${list[p.dataIndex]?.name ?? ''} ${list[p.dataIndex]?.pairs ?? ''}` },
+        itemStyle: { color: '#c3a05a' },
+        label: { show: true, position: 'right', color: '#e8e6e3', fontSize: 10, formatter: (p: any) => `${list[p.dataIndex]?.name ?? ''} ${list[p.dataIndex]?.pairs ?? ''}` },
         data: list.map((c: any) => c.coord),
       },
     ],
@@ -77,5 +77,5 @@ const mapOption = computed(() => {
 
 <style scoped>
 .map-panel { position: relative; }
-.cross-tag { position: absolute; top: 40px; left: 14px; z-index: 3; font-size: 0.75rem; color: #e8c878; background: rgba(232,200,120,0.1); border: 1px solid rgba(232,200,120,0.25); border-radius: 8px; padding: 4px 10px; }
+.cross-tag { position: absolute; top: 40px; left: 14px; z-index: 3; font-size: 0.75rem; color: var(--bs-gold); background: var(--bs-panel-strong); border: 1px solid var(--bs-border); border-radius: var(--dt-radius-md); padding: 4px 10px; }
 </style>

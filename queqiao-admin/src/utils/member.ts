@@ -29,8 +29,8 @@ export function rowAction(status: Member['status']): string {
   return '安排牵线'
 }
 
-/** 匹配度 → 环形渐变背景（conic-gradient） */
+/** 匹配度 → 环形背景（conic-gradient，主色实心 + 中性轨道） */
 export function matchRingBg(score: number): string {
   const deg = Math.max(0, Math.min(100, score)) * 3.6
-  return `conic-gradient(var(--dt-gold) 0deg, var(--dt-gold) ${deg}deg, rgba(201,169,110,0.15) ${deg}deg)`
+  return `conic-gradient(var(--dt-primary) 0deg, var(--dt-primary) ${deg}deg, rgba(28,25,23,0.1) ${deg}deg)`
 }

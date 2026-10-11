@@ -10,9 +10,8 @@ const emit = defineEmits<{
   (e: 'select', card: CrmCard): void
 }>()
 
-/** 性别 → 头像渐变（原 .crm-avatar[data-gender] 规则等价实现） */
-const avatarBg = (g: string) =>
-  g === '女' ? 'linear-gradient(135deg,#f4c6d0,#a8667d)' : 'linear-gradient(135deg,#b8c4d0,#5a7a9a)'
+/** 性别 → 头像底色（实色，与全站头像体系一致） */
+const avatarBg = (g: string) => (g === '女' ? '#a8607a' : '#4f6d8f')
 const freshColor = (f: string) => (f === 'fresh' ? 'var(--dt-success)' : f === 'warning' ? 'var(--dt-warning)' : 'var(--dt-error)')
 </script>
 
@@ -45,14 +44,14 @@ const freshColor = (f: string) => (f === 'fresh' ? 'var(--dt-success)' : f === '
 </template>
 
 <style scoped>
-.crm-card { background: var(--dt-card-solid); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-md); padding: 12px; cursor: grab; transition: all 0.15s; }
-.crm-card:hover { box-shadow: var(--dt-shadow-md); }
-.crm-card.selected { border-color: var(--dt-gold); box-shadow: var(--dt-shadow-gold-glow); }
+.crm-card { background: var(--dt-card-solid); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-md); padding: 12px; cursor: grab; transition: border-color 0.15s; }
+.crm-card:hover { border-color: var(--dt-border-strong); }
+.crm-card.selected { border-color: var(--dt-primary); }
 .crm-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 /* 尺寸/背景由 BaseAvatar 内联样式给出，这里仅补字重 */
-.crm-avatar { font-weight: 700; }
+.crm-avatar { font-weight: 600; }
 .crm-card-info { flex: 1; min-width: 0; }
-.crm-card-name { font-weight: 700; color: var(--dt-ink-1); font-size: 0.875rem; display: flex; align-items: center; gap: 4px; }
+.crm-card-name { font-weight: 600; color: var(--dt-ink-1); font-size: 0.875rem; display: flex; align-items: center; gap: 4px; }
 .crm-card-sub { font-size: 0.6875rem; color: var(--dt-ink-4); }
 .crm-grip { color: var(--dt-ink-4); }
 .crm-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -60,5 +59,5 @@ const freshColor = (f: string) => (f === 'fresh' ? 'var(--dt-success)' : f === '
 .crm-card-fresh { display: flex; align-items: center; gap: 5px; font-size: 0.6875rem; color: var(--dt-ink-3); margin-bottom: 8px; }
 .fresh-dot { width: 8px; height: 8px; border-radius: 50%; }
 .stay { margin-left: auto; color: var(--dt-ink-4); }
-.crm-next { font-size: 0.6875rem; color: var(--dt-primary); background: var(--dt-primary-soft); border-radius: 6px; padding: 4px 8px; display: flex; align-items: center; gap: 4px; }
+.crm-next { font-size: 0.6875rem; color: var(--dt-primary); background: var(--dt-primary-soft); border-radius: var(--dt-radius-sm); padding: 4px 8px; display: flex; align-items: center; gap: 4px; }
 </style>

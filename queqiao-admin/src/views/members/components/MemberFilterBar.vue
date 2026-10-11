@@ -29,7 +29,7 @@ const sort = defineModel<string>('sort', { required: true })
     <button class="btn btn-outline" :disabled="exporting" @click="emit('export')">
       <app-icon name="download" :size="15" />{{ exporting ? '导出中…' : '导出 CSV' }}
     </button>
-    <button class="btn btn-gold" @click="emit('new-member')"><app-icon name="plus" :size="15" />新增会员</button>
+    <button class="btn btn-primary" @click="emit('new-member')"><app-icon name="plus" :size="15" />新增会员</button>
   </div>
 
   <!-- 筛选 chips -->
@@ -60,22 +60,22 @@ const sort = defineModel<string>('sort', { required: true })
 .top-actions { display: flex; align-items: center; gap: 12px; }
 .search-box {
   display: flex; align-items: center; gap: 8px; width: 360px; height: 38px; padding: 0 12px;
-  border-radius: 999px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3);
+  border-radius: var(--dt-radius-md); background: var(--dt-card-solid); border: 1px solid var(--dt-input-border); color: var(--dt-ink-3);
 }
 .search-box input { flex: 1; border: none; outline: none; background: transparent; font-size: 0.8125rem; font-family: var(--dt-font); color: var(--dt-ink-1); }
 .search-box input::placeholder { color: var(--dt-ink-4); }
 
-.chips-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; padding: 12px 18px; }
+.chips-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; padding: 12px 16px; }
 .chip-group { display: flex; align-items: center; gap: 8px; }
 .chip-label { font-size: 0.8125rem; color: var(--dt-ink-3); font-weight: 600; margin-right: 2px; }
 .chip {
-  font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; cursor: pointer;
-  color: var(--dt-ink-2); background: var(--dt-muted); transition: all 0.15s; white-space: nowrap;
+  font-size: 0.75rem; padding: 4px 12px; border-radius: var(--dt-radius-sm); cursor: pointer;
+  color: var(--dt-ink-2); background: var(--dt-muted); transition: background 0.15s, color 0.15s; white-space: nowrap;
 }
-.chip:hover { color: var(--dt-primary); }
+.chip:hover { color: var(--dt-primary); background: var(--dt-primary-soft); }
 .chip.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
 .chips-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
-.view-toggle { display: flex; gap: 6px; color: var(--dt-ink-4); }
+.view-toggle { display: flex; gap: 8px; color: var(--dt-ink-4); }
 .view-toggle .on { color: var(--dt-primary); }
 .view-toggle svg { cursor: pointer; }
 </style>

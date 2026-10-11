@@ -189,18 +189,18 @@ onMounted(loadRecords)
 
 <style scoped>
 .commission-page { display: flex; flex-direction: column; gap: 20px; }
-.page-head h1 { font-size: 1.375rem; font-weight: 800; color: var(--dt-ink-1); margin: 0; }
+.page-head h1 { font-size: 1.375rem; font-weight: 600; color: var(--dt-ink-1); margin: 0; }
 .page-head p { margin: 6px 0 0; color: var(--dt-ink-3); font-size: 0.8125rem; }
 
 .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
 .sum-card {
-  background: var(--dt-card, #fff); border: 1px solid var(--dt-border, #ececf2);
-  border-radius: var(--dt-radius-lg, 16px); padding: 16px 18px;
+  background: var(--dt-card-solid); border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg); box-shadow: var(--dt-shadow-sm); padding: 16px 20px;
   display: flex; flex-direction: column; gap: 4px;
 }
 .sum-label { font-size: 0.7813rem; color: var(--dt-ink-3); }
-.sum-value { font-size: 1.5rem; font-weight: 800; color: var(--dt-ink-1); }
-.sum-value.warn { color: #d98800; } .sum-value.info { color: var(--dt-primary); } .sum-value.ok { color: #1aa86b; }
+.sum-value { font-size: 1.5rem; font-weight: 600; font-family: var(--dt-font-num); color: var(--dt-ink-1); }
+.sum-value.warn { color: var(--dt-warning); } .sum-value.info { color: var(--dt-primary); } .sum-value.ok { color: var(--dt-success); }
 .sum-sub { font-size: 0.75rem; color: var(--dt-ink-3); }
 
 .tabs { margin-top: 0; }

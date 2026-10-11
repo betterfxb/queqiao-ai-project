@@ -34,9 +34,9 @@ const onInput = (e: Event) => emit('update:search', (e.target as HTMLInputElemen
 </template>
 
 <style scoped>
-.conv-search { display: flex; align-items: center; gap: 8px; margin: 14px; padding: 0 12px; height: 36px; border-radius: 999px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
+.conv-search { display: flex; align-items: center; gap: 8px; margin: 14px; padding: 0 12px; height: 36px; border-radius: var(--dt-radius-md); background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
 .conv-search input { flex: 1; border: none; outline: none; background: transparent; font-size: 0.8125rem; font-family: var(--dt-font); }
 .conv-tabs { display: flex; gap: 4px; padding: 0 14px 12px; }
-.conv-tab { font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; color: var(--dt-ink-3); cursor: pointer; background: var(--dt-muted); }
+.conv-tab { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--dt-radius-sm); color: var(--dt-ink-3); cursor: pointer; background: var(--dt-muted); }
 .conv-tab.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
 </style>

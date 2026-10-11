@@ -34,19 +34,19 @@ const emit = defineEmits<{ (e: 'mark', key: string): void }>()
 
 <style scoped>
 .form-card { padding: 24px; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; margin-top: 18px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; margin-top: 16px; }
 .form-item { position: relative; }
 .form-item.span2 { grid-column: span 2; }
 .form-item label { display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-2); margin-bottom: 6px; }
 .form-item .el-input, .form-item .el-select { width: 100%; }
 .form-item.modified :deep(.el-input__wrapper), .form-item.modified :deep(.el-select__wrapper) {
-  border-color: var(--dt-gold); box-shadow: 0 0 0 1px var(--dt-gold);
+  border-color: var(--dt-primary); box-shadow: 0 0 0 1px var(--dt-primary);
 }
 .form-item.modified::after {
   content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0;
-  border-top: 14px solid var(--dt-gold); border-left: 14px solid transparent; border-radius: 0 6px 0 0;
+  border-top: 14px solid var(--dt-primary); border-left: 14px solid transparent; border-radius: 0 var(--dt-radius-sm) 0 0;
 }
-.range-val { color: var(--dt-gold-dark); font-weight: 700; }
+.range-val { color: var(--dt-primary); font-weight: 600; }
 .match-hint { font-size: 0.75rem; color: var(--dt-ink-3); margin-top: 4px; }
 .match-hint b { color: var(--dt-primary); }
 </style>

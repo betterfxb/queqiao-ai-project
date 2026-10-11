@@ -45,22 +45,22 @@ const statusDot = (s: string) => (s === '在职' ? 'var(--dt-success)' : s === '
 </template>
 
 <style scoped>
-.agent-card { padding: 18px; transition: all 0.15s; }
+.agent-card { padding: 18px; transition: border-color 0.15s; }
 .agent-card.off { opacity: 0.7; }
-.agent-card:hover { transform: translateY(-2px); box-shadow: var(--dt-shadow-lg); }
+.agent-card:hover { border-color: var(--dt-border-strong); }
 .agent-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 /* BaseAvatar 基础样式来自全局 .app-avatar，这里补齐红娘卡的定位与字重（字号需覆盖组件内联样式） */
-.agent-avatar { position: relative; font-weight: 700; font-size: 1.125rem !important; }
-.agent-status { position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #fff; }
+.agent-avatar { position: relative; font-weight: 600; font-size: 1.125rem !important; }
+.agent-status { position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--dt-card-solid); }
 .agent-title { flex: 1; min-width: 0; }
-.agent-name { font-weight: 700; color: var(--dt-ink-1); font-size: 0.9375rem; display: flex; align-items: center; gap: 8px; }
+.agent-name { font-weight: 600; color: var(--dt-ink-1); font-size: 0.9375rem; display: flex; align-items: center; gap: 8px; }
 .agent-id { font-size: 0.6875rem; color: var(--dt-ink-4); font-weight: 400; }
 .agent-rating { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
 .stars { display: flex; gap: 1px; }
-.rating-num { font-size: 0.75rem; font-weight: 700; color: var(--dt-gold-dark); }
+.rating-num { font-size: 0.75rem; font-weight: 600; color: var(--dt-gold-dark); }
 .agent-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 12px 0; border-top: 1px solid var(--dt-border); border-bottom: 1px solid var(--dt-border); margin-bottom: 12px; }
 .as-item { text-align: center; }
-.as-num { font-size: 1rem; font-weight: 800; color: var(--dt-ink-1); }
+.as-num { font-size: 1rem; font-weight: 600; color: var(--dt-ink-1); }
 .as-num.gold { color: var(--dt-gold-dark); }
 .as-label { font-size: 0.6875rem; color: var(--dt-ink-4); margin-top: 2px; }
 .agent-actions { display: flex; gap: 8px; }

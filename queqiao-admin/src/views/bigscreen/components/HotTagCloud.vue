@@ -23,8 +23,8 @@ const hotTags = computed<any[]>(() =>
 
 <style scoped>
 .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
-.hot-tag { font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; background: rgba(232,200,120,0.08); color: rgba(240,230,210,0.8); }
-.hot-tag.xl { font-size: 0.9375rem; font-weight: 700; color: #e8c878; }
-.hot-tag.gold { border: 1px solid rgba(232,200,120,0.3); }
-.hot-tag.burgundy { background: rgba(154,51,73,0.25); color: #d9a3b0; }
+.hot-tag { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--dt-radius-pill); background: var(--bs-panel); color: #9aa1a9; }
+.hot-tag.xl { font-size: 0.9375rem; font-weight: 600; color: var(--bs-gold); }
+.hot-tag.gold { border: 1px solid rgba(155,130,83,0.4); }
+.hot-tag.burgundy { background: rgba(143,58,76,0.22); color: #cbb0b6; }
 </style>

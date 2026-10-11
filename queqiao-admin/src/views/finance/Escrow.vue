@@ -146,22 +146,22 @@ const onRelease = async (o: EscrowOrder) => {
     </header>
 
     <section class="stat-row" v-if="stats">
-      <div class="stat-card">
+      <div class="stat-card tone-info">
         <div class="stat-label">在管金额</div>
         <div class="stat-value">{{ fmtYuan(stats.heldAmount) }}</div>
         <div class="stat-sub">在管 {{ stats.heldCount ?? 0 }} 笔</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card tone-success">
         <div class="stat-label">已放款</div>
         <div class="stat-value">{{ fmtYuan(stats.releasedAmount) }}</div>
         <div class="stat-sub">已放款 {{ stats.releasedCount ?? 0 }} 笔</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card tone-error">
         <div class="stat-label">已退款</div>
-        <div class="stat-value danger">{{ fmtYuan(stats.refundedAmount) }}</div>
+        <div class="stat-value">{{ fmtYuan(stats.refundedAmount) }}</div>
         <div class="stat-sub">已退款 {{ stats.refundedCount ?? 0 }} 笔</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card tone-primary">
         <div class="stat-label">退款率</div>
         <div class="stat-value">{{ stats.refundRate ?? 0 }}%</div>
         <div class="stat-sub">累计 {{ stats.total ?? 0 }} 笔</div>
@@ -275,25 +275,28 @@ const onRelease = async (o: EscrowOrder) => {
 </template>
 
 <style scoped>
-.escrow-page { padding: 18px 22px 40px; }
-.escrow-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-.escrow-head h2 { margin: 0; font-size: 20px; }
-.escrow-head .sub { margin: 4px 0 0; color: #6b7280; font-size: 13px; }
-.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+.escrow-page { padding: 20px 24px 32px; }
+.escrow-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.escrow-head h2 { margin: 0; font-size: 1.25rem; font-weight: 600; color: var(--dt-ink-1); }
+.escrow-head .sub { margin: 4px 0 0; color: var(--dt-ink-3); font-size: 0.8125rem; }
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; }
 .stat-card {
-  background: linear-gradient(135deg, #0f766e, #14b8a6);
-  color: #fff; border-radius: 12px; padding: 16px 18px;
+  background: var(--dt-card-solid);
+  border: 1px solid var(--dt-border);
+  border-radius: var(--dt-radius-lg);
+  box-shadow: var(--dt-shadow-sm);
+  padding: 16px 20px;
 }
-.stat-card:nth-child(2) { background: linear-gradient(135deg, #047857, #10b981); }
-.stat-card:nth-child(3) { background: linear-gradient(135deg, #b91c1c, #ef4444); }
-.stat-card:nth-child(4) { background: linear-gradient(135deg, #1e40af, #3b82f6); }
-.stat-label { font-size: 13px; opacity: 0.9; }
-.stat-value { font-size: 24px; font-weight: 700; margin: 6px 0 2px; }
-.stat-value.danger { color: #fff; }
-.stat-sub { font-size: 12px; opacity: 0.85; }
-.table-block { background: #fff; border-radius: 12px; padding: 14px 16px; }
-.table-toolbar { margin-bottom: 12px; display: flex; gap: 10px; }
-.unit { margin-left: 8px; color: #6b7280; }
-.muted { color: #9ca3af; }
-.small { font-size: 12px; }
+.stat-label { font-size: 0.8125rem; color: var(--dt-ink-3); }
+.stat-value { font-size: 1.5rem; font-weight: 600; font-family: var(--dt-font-num); margin: 6px 0 2px; color: var(--dt-ink-1); }
+.stat-card.tone-info .stat-value { color: var(--dt-info); }
+.stat-card.tone-success .stat-value { color: var(--dt-success); }
+.stat-card.tone-error .stat-value { color: var(--dt-error); }
+.stat-card.tone-primary .stat-value { color: var(--dt-primary); }
+.stat-sub { font-size: 0.75rem; color: var(--dt-ink-4); }
+.table-block { background: var(--dt-card-solid); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-lg); padding: 16px; }
+.table-toolbar { margin-bottom: 12px; display: flex; gap: 12px; }
+.unit { margin-left: 8px; color: var(--dt-ink-3); }
+.muted { color: var(--dt-ink-4); }
+.small { font-size: 0.75rem; }
 </style>

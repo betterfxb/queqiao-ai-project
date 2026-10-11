@@ -44,11 +44,11 @@ const payRate = computed(() => {
 <style scoped>
 .level-row { display: flex; align-items: center; gap: 14px; }
 .level-stack { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-.lv { height: 26px; border-radius: 6px; font-size: 0.6875rem; color: #fff; display: flex; align-items: center; padding-left: 10px; font-weight: 600; }
-.lv.normal { background: #7a6670; }
-.lv.vip { background: linear-gradient(90deg,#c9a96e,#e8c878); color: #3a2a10; }
-.lv.svip { background: #7a2135; }
+.lv { height: 26px; border-radius: var(--dt-radius-md); font-size: 0.6875rem; color: #fff; display: flex; align-items: center; padding-left: 10px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.lv.normal { background: #6b7178; }
+.lv.vip { background: var(--bs-gold); color: #14161a; }
+.lv.svip { background: var(--bs-burgundy); }
 .pay-rate { text-align: center; }
-.pay-num { font-size: 1.75rem; font-weight: 800; color: #e8c878; font-family: var(--dt-font-num); }
-.pay-label { font-size: 0.6875rem; color: rgba(240,230,210,0.6); }
+.pay-num { font-size: 1.75rem; font-weight: 700; color: var(--bs-gold); font-family: var(--dt-font-num); font-variant-numeric: tabular-nums; }
+.pay-label { font-size: 0.6875rem; color: #9aa1a9; }
 </style>

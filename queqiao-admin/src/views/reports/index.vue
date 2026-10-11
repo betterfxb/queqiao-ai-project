@@ -270,8 +270,8 @@ const openPreview = async () => {
 .rep-top { display: flex; align-items: center; gap: 12px; }
 .sum-pill {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 16px; border-radius: 999px;
-  background: var(--dt-glass); border: 1px solid var(--dt-glass-border);
+  padding: 8px 16px; border-radius: var(--dt-radius-md);
+  background: var(--dt-card-solid); border: 1px solid var(--dt-border);
   font-size: 0.8125rem; color: var(--dt-ink-2); font-weight: 600;
 }
 .rep-body { display: flex; gap: 20px; align-items: flex-start; }

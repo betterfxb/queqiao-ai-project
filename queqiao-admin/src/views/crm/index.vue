@@ -123,12 +123,12 @@ const askAi = async () => {
 
 const funnelOption = computed(() => {
   const stages = columns.value.map((c) => ({ name: c.title, value: c.cards.length }))
-  const colors = ['#9a3349', '#b25a6d', '#c9a96e', '#d9bf8a', '#e8d5ac', '#4a8b5c']
+  const colors = ['#7d2b3d', '#95485c', '#a8863f', '#bfa16a', '#d3c19a', '#3f7050']
   return {
     tooltip: { trigger: 'item' },
     series: [{
       type: 'funnel', left: 10, right: 10, top: 6, bottom: 6, minSize: '18%',
-      label: { color: '#4a3640', fontSize: 11, formatter: '{b} {c}' },
+      label: { color: '#44403c', fontSize: 11, formatter: '{b} {c}' },
       itemStyle: { borderColor: '#fff', borderWidth: 2 },
       data: stages.map((s, i) => ({ value: s.value, name: s.name, itemStyle: { color: colors[i % colors.length] } })),
     }],
@@ -235,7 +235,7 @@ onMounted(load)
 <style scoped>
 .crm-page { display: flex; flex-direction: column; gap: 20px; }
 .filter-bar { display: flex; align-items: center; gap: 10px; padding: 12px 18px; flex-wrap: wrap; }
-.search-mini { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: 999px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
+.search-mini { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: var(--dt-radius-md); background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
 .search-mini input { border: none; outline: none; background: transparent; font-size: 0.75rem; width: 160px; font-family: var(--dt-font); }
 
 .crm-body { display: flex; gap: 20px; align-items: flex-start; }
@@ -244,23 +244,23 @@ onMounted(load)
 .crm-side { width: 320px; flex-shrink: 0; }
 .side-card { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
 .crm-detail-head { display: flex; gap: 12px; align-items: center; }
-.crm-avatar { width: 34px; height: 34px; border-radius: 50%; color: #fff; font-weight: 700; font-size: 0.875rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg,#b8c4d0,#5a7a9a); }
-.crm-avatar[data-gender='女'] { background: linear-gradient(135deg,#f4c6d0,#a8667d); }
+.crm-avatar { width: 34px; height: 34px; border-radius: 50%; color: #fff; font-weight: 600; font-size: 0.875rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #4f6d8f; }
+.crm-avatar[data-gender='女'] { background: #a8607a; }
 .crm-avatar.big { width: 52px; height: 52px; font-size: 1.25rem; }
-.crm-detail-name { font-size: 1.0625rem; font-weight: 800; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
+.crm-detail-name { font-size: 1.0625rem; font-weight: 600; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
 .crm-detail-sub { font-size: 0.75rem; color: var(--dt-ink-3); }
 .crm-detail-row { display: flex; justify-content: space-between; font-size: 0.8125rem; color: var(--dt-ink-3); }
 .crm-detail-row b { color: var(--dt-ink-1); }
-.stage-progress { height: 8px; border-radius: 999px; background: var(--dt-muted); overflow: hidden; }
-.stage-fill { height: 100%; border-radius: 999px; background: var(--dt-gold-gradient); }
+.stage-progress { height: 8px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); overflow: hidden; }
+.stage-fill { height: 100%; border-radius: var(--dt-radius-sm); background: var(--dt-primary); }
 .stage-text { font-size: 0.6875rem; color: var(--dt-ink-4); }
-.crm-remind { font-size: 0.75rem; color: var(--dt-warning); background: var(--dt-warning-soft); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 6px; }
+.crm-remind { font-size: 0.75rem; color: var(--dt-warning); background: var(--dt-warning-soft); border-radius: var(--dt-radius-md); padding: 8px 10px; display: flex; align-items: center; gap: 6px; }
 .crm-side-actions { display: flex; flex-direction: column; gap: 8px; }
 
-.ai-next { background: var(--dt-glass-dark); border: 1px solid var(--dt-glass-dark-border); border-radius: 10px; padding: 12px; color: #f0e6d2; }
-.ai-next-head { font-size: 0.75rem; font-weight: 700; color: var(--dt-gold-light); margin-bottom: 6px; }
+.ai-next { background: var(--dt-primary-soft); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-md); padding: 12px; color: var(--dt-ink-2); }
+.ai-next-head { font-size: 0.75rem; font-weight: 600; color: var(--dt-primary); margin-bottom: 6px; }
 .ai-next-action { font-size: 0.8125rem; font-weight: 600; line-height: 1.5; margin-bottom: 4px; }
-.ai-next-reason { font-size: 0.75rem; color: rgba(240,230,210,0.7); line-height: 1.5; }
+.ai-next-reason { font-size: 0.75rem; color: var(--dt-ink-3); line-height: 1.5; }
 .crm-empty { color: var(--dt-ink-3); text-align: center; }
 
 .funnel-card { padding: 20px; }

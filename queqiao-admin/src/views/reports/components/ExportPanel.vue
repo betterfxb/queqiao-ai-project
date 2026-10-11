@@ -116,17 +116,17 @@ const doExport = () =>
 <style scoped>
 .rep-config { width: 340px; flex-shrink: 0; padding: 20px; }
 .cfg-selected { display: flex; gap: 10px; align-items: center; background: var(--dt-gold-soft); border-radius: var(--dt-radius-md); padding: 12px; margin-bottom: 16px; }
-.cfg-sel-name { font-weight: 700; color: var(--dt-ink-1); }
+.cfg-sel-name { font-weight: 600; color: var(--dt-ink-1); }
 .cfg-sel-fmt { font-size: 0.75rem; color: var(--dt-ink-3); }
 .cfg-block { margin-bottom: 16px; }
-.cfg-label { font-size: 0.8125rem; font-weight: 700; color: var(--dt-ink-1); margin-bottom: 8px; }
+.cfg-label { font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-1); margin-bottom: 8px; }
 .cfg-dates { display: flex; align-items: center; gap: 8px; }
 .cfg-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
-.chip { font-size: 0.75rem; padding: 4px 14px; border-radius: 999px; cursor: pointer; color: var(--dt-ink-2); background: var(--dt-muted); }
+.chip { font-size: 0.75rem; padding: 4px 14px; border-radius: var(--dt-radius-sm); cursor: pointer; color: var(--dt-ink-2); background: var(--dt-muted); }
 .chip.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
 .chip.sm { padding: 3px 10px; }
 .fmt-cards { display: flex; gap: 10px; }
-.fmt-card { flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px; border-radius: var(--dt-radius-md); border: 2px solid var(--dt-border); cursor: pointer; color: var(--dt-ink-2); transition: all 0.15s; font-size: 0.8125rem; font-weight: 600; }
+.fmt-card { flex: 1; position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px; border-radius: var(--dt-radius-md); border: 1px solid var(--dt-border); cursor: pointer; color: var(--dt-ink-2); transition: border-color 0.15s, background 0.15s, color 0.15s; font-size: 0.8125rem; font-weight: 600; }
 .fmt-card.active { border-color: var(--dt-gold); background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
 .fmt-check { position: absolute; top: 6px; right: 6px; color: var(--dt-gold-dark); }
 .cfg-hint { font-size: 0.7188rem; color: var(--dt-ink-4); margin-top: 8px; line-height: 1.5; }

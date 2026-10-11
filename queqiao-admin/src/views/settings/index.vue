@@ -221,9 +221,9 @@ const resetSettings = () => {
 .content-header {
   display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
 }
-.content-header h1 { font-size: 1.375rem; font-weight: 800; color: var(--dt-ink-1); margin: 0; }
+.content-header h1 { font-size: 1.375rem; font-weight: 600; color: var(--dt-ink-1); margin: 0; }
 .content-header p { margin: 4px 0 0; color: var(--dt-ink-3); font-size: 0.8125rem; }
-.dirty-tip { color: var(--dt-warning); font-weight: 700; }
+.dirty-tip { color: var(--dt-warning); font-weight: 600; }
 .header-actions { display: flex; gap: 10px; flex-shrink: 0; }
 
 .setting-card { padding: 22px 24px; }
@@ -232,7 +232,7 @@ const resetSettings = () => {
   margin: 0 0 18px;
   font-size: 0.7813rem;
   color: var(--dt-ink-3);
-  background: var(--dt-glass-light);
+  background: var(--dt-card-solid);
   border: 1px solid var(--dt-border);
   border-radius: var(--dt-radius-md);
   padding: 12px 14px;

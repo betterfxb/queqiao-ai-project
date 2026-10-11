@@ -21,6 +21,7 @@ import MemberFilterBar from './components/MemberFilterBar.vue'
 import MemberTable from './components/MemberTable.vue'
 import AdvancedFilterPanel from './components/AdvancedFilterPanel.vue'
 import MemberDetailDrawer from './components/MemberDetailDrawer.vue'
+import MemberInfoCard from './components/MemberInfoCard.vue'
 import type { AdvancedFilter, ChipGroup, MemberView } from './types'
 
 const router = useRouter()
@@ -137,6 +138,11 @@ const drawer = ref(false)
 const current = ref<Member | null>(null)
 const openQuick = (m: Member) => { current.value = m; drawer.value = true }
 
+/* 会员信息卡片对话框 */
+const cardVisible = ref(false)
+const cardId = ref('')
+const openCard = (m: Member) => { cardId.value = m.id; cardVisible.value = true }
+
 /* 高级筛选 */
 const applyAdv = (v: AdvancedFilter) => {
   adv.value = v
@@ -249,6 +255,7 @@ const summary = computed(() => `共 ${total.value} 位会员`)
         @view="openQuick"
         @edit="goEdit"
         @match="goMatch"
+        @card="openCard"
         @command="onCommand"
       />
 
@@ -260,7 +267,10 @@ const summary = computed(() => `共 ${total.value} 位会员`)
       :member="current"
       @match="goMatch"
       @message="onSendMessage"
+      @card="openCard"
     />
+
+    <MemberInfoCard v-model="cardVisible" :member-id="cardId" />
 
     <span class="sr-only">{{ summary }}</span>
   </div>

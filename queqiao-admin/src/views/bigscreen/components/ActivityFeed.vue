@@ -3,13 +3,13 @@
 import { computed, inject, ref } from 'vue'
 import ScreenPanel from './ScreenPanel.vue'
 
-/** action → 圆点颜色，未知类型回落到默认金色 */
+/** action → 圆点颜色，未知类型回落到默认色 */
 const ACTION_COLOR: Record<string, string> = {
-  牵线: '#e8c878', 匹配: '#e8c878',
-  注册: '#c9a96e', 好评: '#c9a96e', 评价: '#c9a96e',
-  报名: '#7a9ab8', 活动: '#7a9ab8',
-  上线: '#4a8b5c', 成功: '#4a8b5c',
-  成交: '#9a3349', 付费: '#9a3349',
+  牵线: '#c3a05a', 匹配: '#c3a05a',
+  注册: '#a8863f', 好评: '#a8863f', 评价: '#a8863f',
+  报名: '#6f8fb0', 活动: '#6f8fb0',
+  上线: '#5f9c78', 成功: '#5f9c78',
+  成交: '#8f3a4c', 付费: '#8f3a4c',
 }
 
 const screen = inject<any>('screen', ref(null))
@@ -18,7 +18,7 @@ const feed = computed<any[]>(() =>
   ((screen.value?.activityFeed ?? []) as any[]).map((f: any) => ({
     text: f?.action ? `【${f.action}】${f.text ?? ''}` : String(f?.text ?? ''),
     time: f?.time ?? '',
-    color: ACTION_COLOR[String(f?.action ?? '')] ?? '#c9a96e',
+    color: ACTION_COLOR[String(f?.action ?? '')] ?? '#c3a05a',
   })),
 )
 </script>
@@ -39,6 +39,6 @@ const feed = computed<any[]>(() =>
 .feed { display: flex; flex-direction: column; gap: 8px; }
 .feed-item { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; }
 .feed-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.feed-text { flex: 1; color: rgba(240,230,210,0.85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.feed-time { font-size: 0.6875rem; color: rgba(240,230,210,0.45); flex-shrink: 0; }
+.feed-text { flex: 1; color: var(--bs-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.feed-time { font-size: 0.6875rem; color: #6b7178; flex-shrink: 0; font-variant-numeric: tabular-nums; }
 </style>

@@ -84,16 +84,16 @@ defineExpose({ validate: () => formRef.value?.validate() })
 
 <style scoped>
 .form-card { padding: 24px; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; margin-top: 18px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; margin-top: 16px; }
 .form-item { position: relative; }
 .form-item :deep(.el-form-item__label) { font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-2); margin-bottom: 6px; }
 .form-item :deep(.el-form-item) { margin-bottom: 0; }
 .form-item .el-input, .form-item .el-select { width: 100%; }
 .form-item.modified :deep(.el-input__wrapper), .form-item.modified :deep(.el-select__wrapper) {
-  border-color: var(--dt-gold); box-shadow: 0 0 0 1px var(--dt-gold);
+  border-color: var(--dt-primary); box-shadow: 0 0 0 1px var(--dt-primary);
 }
 .form-item.modified::after {
   content: ''; position: absolute; top: 0; right: 0; width: 0; height: 0;
-  border-top: 14px solid var(--dt-gold); border-left: 14px solid transparent; border-radius: 0 6px 0 0;
+  border-top: 14px solid var(--dt-primary); border-left: 14px solid transparent; border-radius: 0 var(--dt-radius-sm) 0 0;
 }
 </style>

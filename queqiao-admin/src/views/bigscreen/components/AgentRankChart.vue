@@ -26,12 +26,12 @@ const agentOption = computed(() => ({
   },
   grid: { left: 8, right: 50, top: 8, bottom: 8, containLabel: true },
   xAxis: { type: 'value', show: false },
-  yAxis: { type: 'category', data: rank.value.map((a: any) => a.name), axisLabel: { color: '#f0e6d2', fontSize: 11 }, axisLine: { show: false }, axisTick: { show: false } },
+  yAxis: { type: 'category', data: rank.value.map((a: any) => a.name), axisLabel: { color: '#9aa1a9', fontSize: 11 }, axisLine: { show: false }, axisTick: { show: false } },
   series: [{
     type: 'bar', barWidth: 12,
     data: rank.value.map((a: any) => Number(a.value || 0)),
-    label: { show: true, position: 'right', color: '#e8c878', fontSize: 11, formatter: (p: any) => fmt(Number(p.value || 0)) },
-    itemStyle: { borderRadius: [0, 6, 6, 0], color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#a88a50' }, { offset: 1, color: '#e8c878' }] } },
+    label: { show: true, position: 'right', color: '#c3a05a', fontSize: 11, formatter: (p: any) => fmt(Number(p.value || 0)) },
+    itemStyle: { borderRadius: [0, 6, 6, 0], color: '#c3a05a' },
   }],
 }))
 </script>

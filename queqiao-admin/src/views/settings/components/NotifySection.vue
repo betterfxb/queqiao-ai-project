@@ -68,7 +68,7 @@ const toggle = (id: string, v: boolean) => (props.model[id] = v ? 'true' : 'fals
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
   padding: 12px 16px;
   border-radius: var(--dt-radius-md);
-  background: var(--dt-glass-light);
+  background: var(--dt-card-solid);
   border: 1px solid var(--dt-border);
 }
 .toggle-item.ai { border-color: var(--dt-primary-soft-2); }

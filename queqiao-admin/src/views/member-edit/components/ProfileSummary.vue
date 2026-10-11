@@ -14,13 +14,14 @@ defineProps<{ name: string; meta: string; levelText: string; agent: string }>()
 </template>
 
 <style scoped>
-.summary-card { padding: 28px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.summary-card { padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .summary-avatar {
-  font-weight: 700;
-  border: 3px solid var(--dt-gold); box-shadow: var(--dt-shadow-gold-glow);
+  font-weight: 500;
+  background: #8d847c !important;
+  border: 1px solid var(--dt-border);
 }
-.summary-name { font-size: 1.375rem; font-weight: 800; margin-top: 14px; }
+.summary-name { font-size: 1.375rem; font-weight: 600; margin-top: 16px; }
 .summary-meta { font-size: 0.8125rem; color: var(--dt-ink-3); margin-top: 4px; }
-.summary-agent { font-size: 0.8125rem; color: var(--dt-ink-3); margin-top: 14px; }
+.summary-agent { font-size: 0.8125rem; color: var(--dt-ink-3); margin-top: 16px; }
 .summary-agent b { color: var(--dt-primary); }
 </style>

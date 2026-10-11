@@ -41,9 +41,8 @@ defineEmits<{ (e: 'select', key: string): void }>()
 .nav-section:last-child { margin-bottom: 0; }
 .nav-section-header {
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--dt-ink-4);
-  letter-spacing: 0.04em;
   padding: 6px 10px;
 }
 .settings-nav-item {

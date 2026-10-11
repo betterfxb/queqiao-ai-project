@@ -53,12 +53,12 @@ const statusClass = (s: string) =>
 .txn-time { font-size: 0.75rem; color: var(--dt-ink-4); width: 96px; flex-shrink: 0; }
 .txn-member { font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-1); flex: 1; min-width: 0; }
 .txn-agent { font-size: 0.7188rem; font-weight: 400; color: var(--dt-ink-4); }
-.type-badge { font-size: 0.6875rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.type-badge { font-size: 0.6875rem; font-weight: 600; padding: 3px 10px; border-radius: var(--dt-radius-sm); white-space: nowrap; }
 .type-badge.gold { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
 .type-badge.primary { background: var(--dt-primary-soft-2); color: var(--dt-primary); }
 .type-badge.info { background: var(--dt-info-soft); color: var(--dt-info); }
 .type-badge.warning { background: var(--dt-warning-soft); color: var(--dt-warning); }
-.txn-amt { font-size: 0.875rem; font-weight: 800; width: 100px; text-align: right; flex-shrink: 0; }
+.txn-amt { font-size: 0.875rem; font-weight: 600; width: 100px; text-align: right; flex-shrink: 0; }
 .txn-amt.pos { color: var(--dt-success); }
 .txn-amt.neg { color: var(--dt-error); }
 .empty { color: var(--dt-ink-3); font-size: 0.8125rem; padding: 20px 0; text-align: center; }

@@ -17,10 +17,10 @@ const stars = computed(() => {
 const gaugeOption = computed(() => ({
   series: [{
     type: 'gauge', startAngle: 200, endAngle: -20, min: 0, max: 100, radius: '100%',
-    progress: { show: true, width: 12, itemStyle: { color: { type: 'linear', x: 0, y: 0, x2: 1, y2: 0, colorStops: [{ offset: 0, color: '#a88a50' }, { offset: 1, color: '#e8c878' }] } } },
-    axisLine: { lineStyle: { width: 12, color: [[1, 'rgba(240,230,210,0.1)']] } },
+    progress: { show: true, width: 12, itemStyle: { color: '#c3a05a' } },
+    axisLine: { lineStyle: { width: 12, color: [[1, 'rgba(255,255,255,0.1)']] } },
     axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false }, pointer: { show: false },
-    detail: { valueAnimation: true, fontSize: 30, color: '#e8c878', offsetCenter: [0, '-10%'], formatter: '{value}%' },
+    detail: { valueAnimation: true, fontSize: 30, color: '#c3a05a', offsetCenter: [0, '-10%'], formatter: '{value}%' },
     data: [{ value: score.value }],
   }],
 }))
@@ -38,6 +38,6 @@ const gaugeOption = computed(() => ({
 </template>
 
 <style scoped>
-.gauge-stars { text-align: center; color: #e8c878; font-size: 1rem; letter-spacing: 2px; margin-top: -18px; }
-.gauge-stars span { font-size: 0.75rem; color: rgba(240,230,210,0.6); margin-left: 6px; }
+.gauge-stars { text-align: center; color: var(--bs-gold); font-size: 1rem; letter-spacing: 2px; margin-top: -18px; font-variant-numeric: tabular-nums; }
+.gauge-stars span { font-size: 0.75rem; color: #9aa1a9; margin-left: 6px; }
 </style>

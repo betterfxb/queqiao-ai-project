@@ -69,7 +69,7 @@ const onAdd = () => {
 
 <style scoped>
 .form-card { padding: 24px; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; margin-top: 18px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; margin-top: 16px; }
 .form-item { position: relative; }
 .form-item :deep(.el-form-item__label) { font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-2); margin-bottom: 6px; }
 .form-item :deep(.el-form-item) { margin-bottom: 0; }

@@ -30,7 +30,7 @@ const urgencyTone = (u: AuditItem['urgency']) => (u === '紧急' ? 'error' : u =
       <span class="status-pill" :class="urgencyTone(item.urgency)">{{ item.urgency }}</span>
     </div>
     <div class="ai-item-person">
-      <div class="table-avatar" :style="{ background: 'linear-gradient(135deg,#B8C4D0,#5A7A9A)' }">{{ item.applicant[0] }}</div>
+      <div class="table-avatar">{{ item.applicant[0] }}</div>
       <div>
         <div class="ai-item-name">{{ item.applicant }} <span class="ga-tag">{{ item.gender }}·{{ item.age }}</span></div>
         <div class="ai-item-sub">{{ item.memberId }} · 提交红娘 {{ item.agent }}</div>
@@ -49,12 +49,12 @@ const urgencyTone = (u: AuditItem['urgency']) => (u === '紧急' ? 'error' : u =
 </template>
 
 <style scoped>
-.audit-item { padding: 16px 18px; cursor: pointer; transition: all 0.15s; border: 1px solid var(--dt-border); }
-.audit-item:hover { transform: translateY(-1px); box-shadow: var(--dt-shadow-lg); }
-.audit-item.selected { border-color: var(--dt-gold); box-shadow: var(--dt-shadow-gold-glow); }
+.audit-item { padding: 16px 18px; cursor: pointer; transition: border-color 0.15s; border: 1px solid var(--dt-border); }
+.audit-item:hover { border-color: var(--dt-border-strong); }
+.audit-item.selected { border-color: var(--dt-primary); }
 .audit-item.passed { opacity: 0.5; }
 .ai-item-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.type-badge { font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.type-badge { font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: var(--dt-radius-sm); }
 .type-badge.primary { background: var(--dt-primary-soft-2); color: var(--dt-primary); }
 .type-badge.info { background: var(--dt-info-soft); color: var(--dt-info); }
 .type-badge.gold { background: var(--dt-gold-soft); color: var(--dt-gold-dark); }
@@ -62,14 +62,14 @@ const urgencyTone = (u: AuditItem['urgency']) => (u === '紧急' ? 'error' : u =
 .ai-item-time { font-size: 0.75rem; color: var(--dt-ink-4); }
 .ai-item-head .status-pill { margin-left: auto; }
 .ai-item-person { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.table-avatar { width: 36px; height: 36px; border-radius: 50%; color: #fff; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.875rem; }
-.ai-item-name { font-weight: 700; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
-.ga-tag { font-size: 0.6875rem; font-weight: 500; color: var(--dt-ink-3); background: var(--dt-muted); padding: 1px 8px; border-radius: 999px; }
+.table-avatar { width: 36px; height: 36px; border-radius: 50%; color: #fff; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.875rem; background: #8d847c; }
+.ai-item-name { font-weight: 600; color: var(--dt-ink-1); display: flex; align-items: center; gap: 8px; }
+.ga-tag { font-size: 0.6875rem; font-weight: 500; color: var(--dt-ink-3); background: var(--dt-muted); padding: 1px 8px; border-radius: var(--dt-radius-sm); }
 .ai-item-sub { font-size: 0.75rem; color: var(--dt-ink-4); }
-.ai-item-change { font-size: 0.8125rem; color: var(--dt-ink-2); background: var(--dt-muted); border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; }
+.ai-item-change { font-size: 0.8125rem; color: var(--dt-ink-2); background: var(--dt-muted); border-radius: var(--dt-radius-md); padding: 8px 12px; margin-bottom: 10px; }
 .ai-item-change s { color: var(--dt-ink-4); }
 .ai-item-change b { color: var(--dt-gold-dark); }
-.ai-item-pay { display: inline-block; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--dt-warning-soft); color: var(--dt-warning); margin-bottom: 10px; }
+.ai-item-pay { display: inline-block; font-size: 0.75rem; font-weight: 600; padding: 3px 10px; border-radius: var(--dt-radius-sm); background: var(--dt-warning-soft); color: var(--dt-warning); margin-bottom: 10px; }
 .ai-item-pay.paid { background: var(--dt-success-soft); color: var(--dt-success); }
 .ai-item-actions { display: flex; gap: 8px; justify-content: flex-end; }
 </style>

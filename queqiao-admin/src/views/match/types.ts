@@ -53,7 +53,7 @@ export const toPairPerson = (m: any, response: PersonResponse): PairPerson => ({
   name: m?.name ?? '—',
   age: Number(m?.age ?? 0),
   level: m?.level ?? '普通',
-  avatarBg: m?.avatarBg ?? 'linear-gradient(135deg,#F4C6D0,#A8667D)',
+  avatarBg: m?.avatarBg ?? (m?.gender === '男' ? '#4f6d8f' : '#a8607a'),
   grid: [
     { label: '身高', value: m?.height ? `${m.height}cm` : '—' },
     { label: '学历', value: m?.education ?? '—' },

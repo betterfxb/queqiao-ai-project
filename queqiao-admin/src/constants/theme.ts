@@ -9,9 +9,9 @@ export interface ThemeOption {
 }
 
 export const THEMES: ThemeOption[] = [
-  { key: 'burgundy', name: '经典勃艮第', colors: ['#7A2135', '#C9A96E', '#F8F5F0'] },
-  { key: 'mint', name: '清新薄荷', colors: ['#5B8C7A', '#A8D5BA', '#F5FAF7'] },
-  { key: 'navy', name: '深邃蓝金', colors: ['#1E2A4A', '#C9A96E', '#F0F2F8'] },
+  { key: 'burgundy', name: '经典勃艮第', colors: ['#7D2B3D', '#A8863F', '#F6F5F3'] },
+  { key: 'mint', name: '沉静松绿', colors: ['#3F7261', '#A8863F', '#F4F6F4'] },
+  { key: 'navy', name: '沉稳藏蓝', colors: ['#2F4160', '#A8863F', '#F4F5F7'] },
 ]
 
 export const DEFAULT_THEME = 'burgundy'

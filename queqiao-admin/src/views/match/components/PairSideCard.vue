@@ -43,18 +43,18 @@ defineProps<{ person: PairPerson }>()
 <style scoped>
 .profile-card { flex: 1; padding: 24px; }
 .profile-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
-.profile-avatar { font-weight: 700; }
-.profile-name { font-size: 1.25rem; font-weight: 800; color: var(--dt-ink-1); display: flex; align-items: baseline; gap: 8px; }
+.profile-avatar { font-weight: 500; background: #8d847c !important; }
+.profile-name { font-size: 1.25rem; font-weight: 600; color: var(--dt-ink-1); display: flex; align-items: baseline; gap: 8px; }
 .profile-age { font-size: 0.875rem; font-weight: 500; color: var(--dt-ink-3); }
 .profile-title { display: flex; flex-direction: column; gap: 6px; }
-.profile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px 10px; margin-bottom: 16px; }
+.profile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
 .pg-item { display: flex; flex-direction: column; }
 .pg-label { font-size: 0.6875rem; color: var(--dt-ink-4); }
 .pg-value { font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-1); margin-top: 2px; }
-.profile-traits { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-.trait-chip { font-size: 0.75rem; padding: 4px 12px; border-radius: 999px; background: var(--dt-primary-soft-2); color: var(--dt-primary); font-weight: 500; }
-.profile-bio { font-size: 0.8125rem; color: var(--dt-ink-2); line-height: 1.7; font-style: italic; border-left: 3px solid var(--dt-gold); padding-left: 12px; margin-bottom: 14px; }
-.profile-response { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 10px; font-size: 0.8125rem; font-weight: 600; }
+.profile-traits { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.trait-chip { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--dt-radius-sm); background: var(--dt-primary-soft-2); color: var(--dt-primary); font-weight: 500; }
+.profile-bio { font-size: 0.8125rem; color: var(--dt-ink-2); line-height: 1.7; font-style: italic; border-left: 2px solid var(--dt-primary); padding-left: 12px; margin-bottom: 16px; }
+.profile-response { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: var(--dt-radius-md); font-size: 0.8125rem; font-weight: 600; }
 .profile-response.success { background: var(--dt-success-soft); color: var(--dt-success); }
 .profile-response.warning { background: var(--dt-warning-soft); color: var(--dt-warning); }
 .profile-response .resp-time { font-size: 0.6875rem; font-weight: 400; opacity: 0.8; }

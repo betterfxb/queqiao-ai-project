@@ -149,19 +149,18 @@ const cancel = () => {
 }
 .avatar-wrap { position: relative; flex-shrink: 0; }
 .profile-avatar {
-  width: 76px; height: 76px; border-radius: 22px;
-  background: var(--dt-gold-gradient); color: #fff;
-  font-size: 1.875rem; font-weight: 700;
+  width: 76px; height: 76px; border-radius: var(--dt-radius-lg);
+  background: #8d847c; color: #fff;
+  font-size: 1.75rem; font-weight: 600;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: var(--dt-shadow-gold-glow);
 }
 .profile-info { flex: 1; min-width: 0; }
 .profile-name-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.profile-name { font-size: 1.125rem; font-weight: 700; color: var(--dt-ink-1); }
+.profile-name { font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); }
 .uname { font-size: 0.7813rem; color: var(--dt-ink-3); }
 .role-badge {
-  padding: 3px 10px; border-radius: var(--dt-radius-pill);
-  font-size: 0.75rem; font-weight: 700; color: #fff;
+  padding: 3px 10px; border-radius: var(--dt-radius-sm);
+  font-size: 0.75rem; font-weight: 600; color: #fff;
   background: var(--dt-primary);
 }
 .profile-contact { display: flex; gap: 18px; margin-top: 8px; flex-wrap: wrap; }

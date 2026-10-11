@@ -171,8 +171,8 @@ watch(
 .vr-room { display: flex; align-items: center; gap: 10px; }
 .vr-room-label { font-size: 0.8125rem; color: var(--dt-ink-3); }
 .vr-room-id {
-  font-family: monospace; font-size: 1rem; font-weight: 700; color: var(--dt-primary);
-  background: var(--dt-muted); padding: 4px 12px; border-radius: 8px; letter-spacing: 1px;
+  font-family: monospace; font-size: 1rem; font-weight: 600; color: var(--dt-primary);
+  background: var(--dt-muted); padding: 4px 12px; border-radius: var(--dt-radius-sm);
 }
 .vr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .vr-tile {
@@ -182,7 +182,7 @@ watch(
 .vr-video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
 .vr-tile-tag {
   position: absolute; left: 8px; bottom: 8px; font-size: 0.75rem; color: #fff;
-  background: rgba(0,0,0,0.5); padding: 2px 8px; border-radius: 999px;
+  background: rgba(0,0,0,0.5); padding: 2px 8px; border-radius: var(--dt-radius-sm);
 }
 .vr-remote-hint {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;

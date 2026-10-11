@@ -23,7 +23,7 @@ const emit = defineEmits<{
     </div>
     <div class="ptl-actions">
       <button class="btn btn-ghost" @click="emit('remind')">发送提醒</button>
-      <button class="btn btn-gold" @click="emit('schedule')"><app-icon name="calendar" :size="15" />安排约见</button>
+      <button class="btn btn-primary" @click="emit('schedule')"><app-icon name="calendar" :size="15" />安排约见</button>
       <button class="btn btn-outline" @click="emit('feedback')"><app-icon name="comment" :size="15" />记录反馈</button>
       <button class="btn btn-danger" @click="emit('fail')">标记失败</button>
     </div>
@@ -35,8 +35,8 @@ const emit = defineEmits<{
 .ptl { position: relative; padding-left: 6px; margin: 18px 0; }
 .ptl-item { position: relative; display: flex; align-items: baseline; gap: 12px; padding-bottom: 16px; }
 .ptl-item:not(:last-child)::before { content: ''; position: absolute; left: 5px; top: 12px; bottom: 0; width: 2px; background: var(--dt-border); }
-.ptl-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 2px solid #fff; position: relative; z-index: 1; margin-top: 2px; }
+.ptl-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--dt-card-solid); position: relative; z-index: 1; margin-top: 2px; }
 .ptl-text { flex: 1; font-size: 0.8125rem; color: var(--dt-ink-1); }
 .ptl-time { font-size: 0.75rem; color: var(--dt-ink-4); white-space: nowrap; }
-.ptl-actions { display: flex; gap: 10px; }
+.ptl-actions { display: flex; gap: 12px; }
 </style>

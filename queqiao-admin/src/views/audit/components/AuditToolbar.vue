@@ -41,11 +41,11 @@ const tabs = ref([
 <style scoped>
 .filter-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; flex-wrap: wrap; gap: 12px; }
 .audit-tabs { display: flex; gap: 4px; }
-.audit-tab { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 999px; font-size: 0.8125rem; color: var(--dt-ink-2); cursor: pointer; transition: all 0.15s; }
+.audit-tab { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: var(--dt-radius-sm); font-size: 0.8125rem; color: var(--dt-ink-2); cursor: pointer; transition: all 0.15s; }
 .audit-tab.active { background: var(--dt-primary); color: #fff; font-weight: 600; }
-.tab-count { font-size: 0.6875rem; background: rgba(255,255,255,0.2); padding: 0 6px; border-radius: 999px; }
+.tab-count { font-size: 0.6875rem; background: rgba(255,255,255,0.2); padding: 0 6px; border-radius: var(--dt-radius-sm); }
 .audit-tab:not(.active) .tab-count { background: var(--dt-muted); color: var(--dt-ink-3); }
 .filter-right { display: flex; align-items: center; gap: 8px; }
-.search-mini { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: 999px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
+.search-mini { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: var(--dt-radius-md); background: var(--dt-glass-light); border: 1px solid var(--dt-border); color: var(--dt-ink-3); }
 .search-mini input { border: none; outline: none; background: transparent; font-size: 0.75rem; width: 120px; font-family: var(--dt-font); }
 </style>

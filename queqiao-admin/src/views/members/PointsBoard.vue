@@ -102,23 +102,23 @@ onMounted(load)
 <style scoped>
 .points-page { display: flex; flex-direction: column; gap: 16px; }
 .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
-.page-title { font-size: 1.25rem; font-weight: 800; color: var(--dt-ink-1); margin: 0; }
+.page-title { font-size: 1.25rem; font-weight: 600; color: var(--dt-ink-1); margin: 0; }
 .page-sub { font-size: 0.8125rem; color: var(--dt-ink-3); margin: 6px 0 0; }
 .content-row { display: flex; gap: 20px; align-items: flex-start; }
 .board-card { flex: 1; min-width: 0; }
 .rule-card { width: 320px; flex-shrink: 0; }
-.card-head { display: flex; align-items: baseline; justify-content: space-between; font-weight: 700; color: var(--dt-ink-1); }
+.card-head { display: flex; align-items: baseline; justify-content: space-between; font-weight: 600; color: var(--dt-ink-1); }
 .card-hint { font-size: 0.75rem; font-weight: 400; color: var(--dt-ink-4); }
-.total { font-size: 1.125rem; font-weight: 800; color: var(--dt-primary); }
+.total { font-size: 1.125rem; font-weight: 600; color: var(--dt-primary); }
 .rank {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 26px; height: 26px; border-radius: 8px;
-  font-weight: 800; font-size: 0.875rem; color: var(--dt-ink-3);
+  width: 26px; height: 26px; border-radius: var(--dt-radius-sm);
+  font-weight: 600; font-size: 0.875rem; color: var(--dt-ink-3);
   background: var(--dt-muted);
 }
-.rank-1 { color: #fff; background: linear-gradient(135deg, #f0c14b, #d4a017); }
-.rank-2 { color: #fff; background: linear-gradient(135deg, #c0c0c0, #9aa0a6); }
-.rank-3 { color: #fff; background: linear-gradient(135deg, #cd7f32, #a85a1a); }
+.rank-1 { color: #fff; background: var(--dt-gold); }
+.rank-2 { color: #fff; background: var(--dt-ink-3); }
+.rank-3 { color: #fff; background: var(--dt-warning); }
 .rule-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .rule-item {
   display: flex; align-items: center; justify-content: space-between;
@@ -126,8 +126,8 @@ onMounted(load)
   background: var(--dt-muted); border: 1px solid var(--dt-border);
 }
 .rule-main { display: flex; align-items: baseline; gap: 10px; }
-.rule-label { font-weight: 700; color: var(--dt-ink-1); }
-.rule-points { font-size: 1.125rem; font-weight: 800; color: var(--dt-success, #22a866); }
+.rule-label { font-weight: 600; color: var(--dt-ink-1); }
+.rule-points { font-size: 1.125rem; font-weight: 600; color: var(--dt-success); }
 .rule-tag { font-size: 0.75rem; color: var(--dt-ink-3); }
 .rule-empty { color: var(--dt-ink-4); }
 .rule-foot {

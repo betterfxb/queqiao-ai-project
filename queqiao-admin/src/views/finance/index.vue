@@ -90,17 +90,17 @@ const trendOption = computed(() => {
       type: 'category',
       data: t.map((p) => p.month),
       boundaryGap: false,
-      axisLabel: { color: '#7a6670', fontSize: 11 },
-      axisLine: { lineStyle: { color: 'rgba(122,33,53,0.12)' } },
+      axisLabel: { color: '#78716c', fontSize: 11 },
+      axisLine: { lineStyle: { color: 'rgba(28,25,23,0.1)' } },
     },
     yAxis: {
       type: 'value',
       axisLabel: {
-        color: '#7a6670',
+        color: '#78716c',
         fontSize: 11,
         formatter: (v: number) => (v >= 10000 ? (v / 10000).toFixed(1) + '万' : String(v)),
       },
-      splitLine: { lineStyle: { color: 'rgba(122,33,53,0.06)' } },
+      splitLine: { lineStyle: { color: 'rgba(28,25,23,0.1)' } },
     },
     series: [
       {
@@ -110,34 +110,26 @@ const trendOption = computed(() => {
         symbol: 'circle',
         symbolSize: 7,
         data: t.map((p) => p.value),
-        lineStyle: { color: '#7a2135', width: 3 },
-        itemStyle: { color: '#7a2135' },
-        areaStyle: {
-          color: {
-            type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-            colorStops: [
-              { offset: 0, color: 'rgba(122,33,53,0.25)' },
-              { offset: 1, color: 'rgba(122,33,53,0)' },
-            ],
-          },
-        },
+        lineStyle: { color: '#7d2b3d', width: 3 },
+        itemStyle: { color: '#7d2b3d' },
+        areaStyle: { color: 'rgba(125,43,61,0.08)' },
       },
     ],
   }
 })
 
 /* ---------- 收入构成（真实分类） ---------- */
-const PIE_COLORS = ['#7a2135', '#c9a96e', '#9a3349', '#a8949e', '#6b8e9f']
+const PIE_COLORS = ['#7d2b3d', '#a8863f', '#3f5f7d', '#78716c', '#3f7050']
 const pieOption = computed(() => ({
   tooltip: { trigger: 'item', formatter: '{b}: ¥{c} ({d}%)' },
-  legend: { orient: 'vertical', right: 6, top: 'center', textStyle: { color: '#4a3640', fontSize: 12 } },
+  legend: { orient: 'vertical', right: 6, top: 'center', textStyle: { color: '#44403c', fontSize: 12 } },
   series: [
     {
       type: 'pie',
       radius: ['58%', '82%'],
       center: ['38%', '50%'],
       label: { show: false },
-      itemStyle: { borderColor: '#fff', borderWidth: 3, borderRadius: 6 },
+      itemStyle: { borderColor: '#fff', borderWidth: 3, borderRadius: 4 },
       data: (stats.value?.categories ?? []).map((c, i) => ({
         value: c.value,
         name: c.name,
@@ -153,7 +145,6 @@ const ranking = computed(() =>
   [...agents.value].sort((a, b) => (b.monthRevenue ?? 0) - (a.monthRevenue ?? 0)).slice(0, 5),
 )
 const maxRevenue = computed(() => Math.max(...agents.value.map((a) => a.monthRevenue ?? 0), 1))
-const medal = (i: number) => (i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`)
 
 /* ---------- 导出 ---------- */
 const doExport = async () => {
@@ -225,7 +216,7 @@ const doExport = async () => {
           <span class="section-title-bar" />红娘业绩排行（本月榜单）
         </div>
         <div v-for="(r, i) in ranking" :key="r.id" class="fin-rank">
-          <span class="rank-medal">{{ medal(i) }}</span>
+          <span class="rank-medal" :class="{ top: i < 3 }">{{ i + 1 }}</span>
           <div class="rank-avatar" :style="{ background: r.avatarBg }">{{ (r.name || '?')[0] }}</div>
           <div class="rank-main">
             <div class="rank-top">
@@ -249,24 +240,25 @@ const doExport = async () => {
 
 <style scoped>
 .finance-page { display: flex; flex-direction: column; gap: 20px; }
-.fin-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.month-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--dt-glass); border: 1px solid var(--dt-glass-border); font-weight: 700; color: var(--dt-ink-1); font-size: 0.875rem; }
+.fin-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.month-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: var(--dt-radius-md); background: var(--dt-card-solid); border: 1px solid var(--dt-border); font-weight: 600; color: var(--dt-ink-1); font-size: 0.875rem; }
 .fin-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px; }
 .fin-grid2 { display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; }
 .chart-card { padding: 20px; }
 .trend-mini { display: flex; gap: 24px; margin-top: 12px; font-size: 0.75rem; color: var(--dt-ink-3); }
 .trend-mini b { font-size: 0.875rem; }
 .pie-center { position: absolute; left: 38%; top: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; }
-.pie-center-num { font-size: 1.125rem; font-weight: 800; color: var(--dt-ink-1); }
+.pie-center-num { font-size: 1.125rem; font-weight: 600; color: var(--dt-ink-1); }
 .pie-center-label { font-size: 0.6875rem; color: var(--dt-ink-4); }
-.fin-rank { display: flex; align-items: center; gap: 12px; padding: 9px 0; }
-.rank-medal { width: 24px; text-align: center; flex-shrink: 0; }
-.rank-avatar { width: 38px; height: 38px; border-radius: 50%; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fin-rank { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
+.rank-medal { width: 24px; text-align: center; font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-4); font-family: var(--dt-font-num); flex-shrink: 0; }
+.rank-medal.top { color: var(--dt-primary); }
+.rank-avatar { width: 38px; height: 38px; border-radius: 50%; color: #fff; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .rank-main { flex: 1; min-width: 0; }
-.rank-top { display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 700; color: var(--dt-ink-1); }
+.rank-top { display: flex; justify-content: space-between; font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-1); }
 .rank-amt { color: var(--dt-gold-dark); }
-.rank-track { height: 6px; border-radius: 999px; background: var(--dt-muted); overflow: hidden; margin: 5px 0 3px; }
-.rank-fill { height: 100%; border-radius: 999px; background: var(--dt-gold-gradient); }
+.rank-track { height: 6px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); overflow: hidden; margin: 5px 0 3px; }
+.rank-fill { height: 100%; border-radius: var(--dt-radius-sm); background: var(--dt-gold); }
 .rank-sub { font-size: 0.6875rem; color: var(--dt-ink-4); }
 .empty { color: var(--dt-ink-3); font-size: 0.8125rem; padding: 12px 0; }
 

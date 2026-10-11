@@ -204,7 +204,7 @@ const TYPE_OPTIONS = ['约见', '活动', '会议', '审核·回访', '其他']
     <el-dialog v-model="formVisible" :title="formId ? '编辑日程' : '新建日程'" width="520px">
       <div class="ev-form">
         <label>标题</label>
-        <el-input v-model="form.title" placeholder="如 李明轩❤陈思雨 约见" />
+        <el-input v-model="form.title" placeholder="如 李明轩与陈思雨 约见" />
         <div class="form-row">
           <div>
             <label>日期</label>
@@ -260,29 +260,29 @@ const TYPE_OPTIONS = ['约见', '活动', '会议', '审核·回访', '其他']
 <style scoped>
 .cal-page { display: flex; flex-direction: column; gap: 20px; }
 .cal-top { display: flex; align-items: center; gap: 10px; }
-.icon-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--dt-border); background: var(--dt-glass-light); color: var(--dt-ink-2); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.icon-btn { width: 32px; height: 32px; border-radius: var(--dt-radius-md); border: 1px solid var(--dt-border); background: var(--dt-glass-light); color: var(--dt-ink-2); cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .icon-btn:hover { color: var(--dt-primary); border-color: var(--dt-primary-light); }
-.view-toggle { display: flex; gap: 4px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); border-radius: 999px; padding: 3px; }
-.view-toggle span { padding: 5px 18px; border-radius: 999px; font-size: 0.8125rem; color: var(--dt-ink-3); cursor: pointer; }
-.view-toggle span.on { background: var(--dt-gold-gradient); color: #fff; font-weight: 600; }
+.view-toggle { display: flex; gap: 4px; background: var(--dt-glass-light); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-md); padding: 3px; }
+.view-toggle span { padding: 5px 18px; border-radius: var(--dt-radius-sm); font-size: 0.8125rem; color: var(--dt-ink-3); cursor: pointer; }
+.view-toggle span.on { background: var(--dt-primary); color: #fff; font-weight: 600; }
 
 .cal-body { display: flex; gap: 20px; align-items: flex-start; }
 .kpi-row { display: flex; gap: 16px; }
-.kpi-card { flex: 1; display: flex; align-items: center; justify-content: space-between; background: var(--dt-glass-light); border: 1px solid var(--dt-border); border-radius: 14px; padding: 16px 18px; }
+.kpi-card { flex: 1; display: flex; align-items: center; justify-content: space-between; background: var(--dt-glass-light); border: 1px solid var(--dt-border); border-radius: var(--dt-radius-lg); padding: 16px 18px; }
 .kpi-label { font-size: 0.75rem; color: var(--dt-ink-3); }
-.kpi-value { font-size: 1.5rem; font-weight: 800; color: var(--dt-ink-1); margin-top: 4px; }
+.kpi-value { font-size: 1.5rem; font-weight: 600; color: var(--dt-ink-1); margin-top: 4px; }
 .kpi-value .unit { font-size: 0.8125rem; font-weight: 600; color: var(--dt-ink-3); margin-left: 2px; }
-.kpi-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #fff; }
-.kpi-icon.gold { background: var(--dt-gold-gradient); }
+.kpi-icon { width: 40px; height: 40px; border-radius: var(--dt-radius-md); display: flex; align-items: center; justify-content: center; color: #fff; }
+.kpi-icon.gold { background: var(--dt-gold); }
 .kpi-icon.burgundy { background: var(--dt-primary); }
-.kpi-icon.warning { background: linear-gradient(135deg,#e0a44a,#c8842a); }
-.kpi-icon.success { background: linear-gradient(135deg,#6fae7a,#4e8a5a); }
+.kpi-icon.warning { background: var(--dt-warning); }
+.kpi-icon.success { background: var(--dt-success); }
 
 .list-pane { flex: 1; min-width: 0; padding: 18px; }
-.list-title { font-size: 0.9375rem; font-weight: 800; color: var(--dt-ink-1); margin-bottom: 12px; }
-.list-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 10px; margin-bottom: 8px; cursor: pointer; border: 1px solid var(--dt-border); }
+.list-title { font-size: 0.9375rem; font-weight: 600; color: var(--dt-ink-1); margin-bottom: 12px; }
+.list-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: var(--dt-radius-md); margin-bottom: 8px; cursor: pointer; border: 1px solid var(--dt-border); }
 .list-item:hover { border-color: var(--dt-primary-light); }
-.li-time { font-size: 0.75rem; font-weight: 700; color: var(--dt-primary); width: 120px; flex-shrink: 0; }
+.li-time { font-size: 0.75rem; font-weight: 600; color: var(--dt-primary); width: 120px; flex-shrink: 0; }
 .li-main { flex: 1; min-width: 0; }
 .li-title { font-size: 0.875rem; font-weight: 600; color: var(--dt-ink-1); }
 .li-sub { font-size: 0.75rem; color: var(--dt-ink-4); }

@@ -39,15 +39,15 @@ const emit = defineEmits<{ (e: 'pick', t: ReportTemplate): void; (e: 'export', t
 <style scoped>
 .rep-templates { flex: 1; min-width: 0; }
 .tpl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.tpl-card { padding: 16px; cursor: pointer; position: relative; transition: all 0.15s; border: 2px solid transparent; display: flex; flex-direction: column; }
-.tpl-card:hover { transform: translateY(-2px); box-shadow: var(--dt-shadow-lg); }
-.tpl-card.selected { border-color: var(--dt-gold); box-shadow: var(--dt-shadow-gold-glow); }
+.tpl-card { padding: 16px; cursor: pointer; position: relative; transition: border-color 0.15s, background 0.15s; border: 1px solid var(--dt-border); display: flex; flex-direction: column; }
+.tpl-card:hover { border-color: var(--dt-border-strong); background: var(--dt-bg-2); }
+.tpl-card.selected { border-color: var(--dt-gold); }
 .tpl-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-.rows { font-size: 0.6875rem; color: var(--dt-gold-dark); font-weight: 700; }
-.tpl-name { font-size: 0.875rem; font-weight: 700; color: var(--dt-ink-1); margin-bottom: 6px; }
+.rows { font-size: 0.6875rem; color: var(--dt-gold-dark); font-weight: 600; }
+.tpl-name { font-size: 0.875rem; font-weight: 600; color: var(--dt-ink-1); margin-bottom: 6px; }
 .tpl-desc { font-size: 0.75rem; color: var(--dt-ink-3); line-height: 1.5; margin-bottom: 10px; flex: 1; }
 .tpl-formats { display: flex; gap: 6px; margin-bottom: 12px; }
-.fmt { font-size: 0.6875rem; padding: 2px 8px; border-radius: 6px; background: var(--dt-muted); color: var(--dt-ink-3); }
+.fmt { font-size: 0.6875rem; padding: 2px 8px; border-radius: var(--dt-radius-sm); background: var(--dt-muted); color: var(--dt-ink-3); }
 .tpl-btn { width: 100%; }
 
 @media (max-width: 1400px) {

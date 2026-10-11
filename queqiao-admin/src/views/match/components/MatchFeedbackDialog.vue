@@ -107,7 +107,7 @@ const submit = async () => {
 </template>
 
 <style scoped>
-.fb-form { display: flex; flex-direction: column; gap: 18px; padding: 4px 2px; }
+.fb-form { display: flex; flex-direction: column; gap: 16px; padding: 4px; }
 .fb-field { display: flex; flex-direction: column; gap: 8px; }
 .fb-label { font-size: 0.8125rem; color: var(--dt-ink-2); font-weight: 600; }
 .fb-blockers { flex-wrap: wrap; }

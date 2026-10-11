@@ -21,9 +21,9 @@ const core = computed<any[]>(() => (screen.value?.statTiles ?? []) as any[])
 
 <style scoped>
 .core-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.core-item { background: rgba(232,200,120,0.06); border-radius: 8px; padding: 12px; }
-.core-label { font-size: 0.75rem; color: rgba(240,230,210,0.6); }
-.core-value { font-size: 1.625rem; font-weight: 800; color: #e8c878; font-family: var(--dt-font-num); text-shadow: 0 0 12px rgba(232,200,120,0.4); margin-top: 4px; }
+.core-item { background: var(--bs-panel); border-radius: var(--dt-radius-md); padding: 12px; }
+.core-label { font-size: 0.75rem; color: #9aa1a9; }
+.core-value { font-size: 1.625rem; font-weight: 700; color: var(--bs-gold); font-family: var(--dt-font-num); font-variant-numeric: tabular-nums; margin-top: 4px; }
 .core-unit { font-size: 0.8125rem; font-weight: 600; margin-left: 3px; }
-.core-trend { font-size: 0.6875rem; color: #4a8b5c; margin-top: 2px; }
+.core-trend { font-size: 0.6875rem; color: #6b7178; margin-top: 2px; }
 </style>

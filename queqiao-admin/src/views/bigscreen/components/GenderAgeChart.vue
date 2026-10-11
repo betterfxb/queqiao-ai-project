@@ -18,10 +18,10 @@ const genderOption = computed(() => ({
   tooltip: { trigger: 'item' },
   series: [{
     type: 'pie', radius: ['62%', '82%'],
-    label: { show: false }, itemStyle: { borderColor: '#1a0810', borderWidth: 2 },
+    label: { show: false }, itemStyle: { borderColor: '#14161a', borderWidth: 2 },
     data: [
-      { value: maleTotal.value, name: `男 ${pct(maleTotal.value)}%`, itemStyle: { color: '#9a3349' } },
-      { value: femaleTotal.value, name: `女 ${pct(femaleTotal.value)}%`, itemStyle: { color: '#c9a96e' } },
+      { value: maleTotal.value, name: `男 ${pct(maleTotal.value)}%`, itemStyle: { color: '#8f3a4c' } },
+      { value: femaleTotal.value, name: `女 ${pct(femaleTotal.value)}%`, itemStyle: { color: '#c3a05a' } },
     ],
   }],
 }))
@@ -30,19 +30,19 @@ const genderOption = computed(() => ({
 const ageOption = computed(() => ({
   tooltip: { trigger: 'axis' },
   grid: { left: 8, right: 8, top: 20, bottom: 4, containLabel: true },
-  xAxis: { type: 'category', data: (ga.value.buckets ?? []) as any[], axisLabel: { color: '#f0e6d2', fontSize: 11 }, axisLine: { show: false }, axisTick: { show: false } },
+  xAxis: { type: 'category', data: (ga.value.buckets ?? []) as any[], axisLabel: { color: '#9aa1a9', fontSize: 11 }, axisLine: { show: false }, axisTick: { show: false } },
   yAxis: { show: false },
   series: [
     {
       name: '男', type: 'bar', stack: 'age', barWidth: 20,
       data: (ga.value.male ?? []) as any[],
-      itemStyle: { color: '#9a3349' },
+      itemStyle: { color: '#8f3a4c' },
     },
     {
       name: '女', type: 'bar', stack: 'age', barWidth: 20,
       data: (ga.value.female ?? []) as any[],
-      label: { show: true, position: 'top', color: '#e8c878', fontSize: 11, formatter: (p: any) => String(Number((ga.value.male ?? [])[p.dataIndex] || 0) + Number((ga.value.female ?? [])[p.dataIndex] || 0)) },
-      itemStyle: { borderRadius: [4, 4, 0, 0], color: { type: 'linear', x: 0, y: 0, x2: 0, y2: 1, colorStops: [{ offset: 0, color: '#e8c878' }, { offset: 1, color: '#a88a50' }] } },
+      label: { show: true, position: 'top', color: '#c3a05a', fontSize: 11, formatter: (p: any) => String(Number((ga.value.male ?? [])[p.dataIndex] || 0) + Number((ga.value.female ?? [])[p.dataIndex] || 0)) },
+      itemStyle: { borderRadius: [4, 4, 0, 0], color: '#c3a05a' },
     },
   ],
 }))
@@ -60,5 +60,5 @@ const ageOption = computed(() => ({
 <style scoped>
 .gender-age { display: grid; grid-template-columns: 1fr 1.2fr; gap: 10px; height: 150px; }
 .gender-pie { position: relative; }
-.pie-mid { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.125rem; font-weight: 800; color: #e8c878; }
+.pie-mid { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.125rem; font-weight: 700; color: var(--bs-gold); font-variant-numeric: tabular-nums; }
 </style>

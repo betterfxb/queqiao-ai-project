@@ -11,9 +11,7 @@ defineProps<{ title: string }>()
 </template>
 
 <style scoped>
-.bs-panel { position: relative; background: linear-gradient(160deg, rgba(154,51,73,0.16), rgba(154,51,73,0.08)); border: 1px solid rgba(232,200,120,0.22); border-radius: 10px; padding: 14px; flex-shrink: 0; }
-.bs-panel::before { content: ''; position: absolute; top: -1px; right: -1px; width: 16px; height: 16px; border-top: 2px solid #e8c878; border-right: 2px solid #e8c878; }
-.bs-panel::after { content: ''; position: absolute; bottom: -1px; left: -1px; width: 16px; height: 16px; border-bottom: 2px solid #e8c878; border-left: 2px solid #e8c878; }
-.bs-panel-title { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 700; color: #e8c878; margin-bottom: 12px; }
-.diamond { width: 8px; height: 8px; background: #e8c878; transform: rotate(45deg); flex-shrink: 0; }
+.bs-panel { position: relative; background: #191c21; border: 1px solid var(--bs-border); border-radius: var(--dt-radius-lg); padding: 14px; flex-shrink: 0; }
+.bs-panel-title { display: flex; align-items: center; gap: 8px; font-size: 0.9375rem; font-weight: 600; color: var(--bs-text); margin-bottom: 12px; }
+.diamond { width: 3px; height: 14px; border-radius: 2px; background: var(--bs-burgundy); flex-shrink: 0; }
 </style>

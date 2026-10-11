@@ -81,8 +81,8 @@ onMounted(loadSelectSources)
 <style scoped>
 /* 内容区沿用 AppShell 的 #content-scroll 内边距；根容器改为与财务报表/支付中心一致的全宽
    flex 纵向布局 + 统一间距，避免宽屏下被 max-width 收窄成居中窄列 */
-.growth-page { display: flex; flex-direction: column; gap: 18px; }
-.page-head h1 { font-size: 1.375rem; font-weight: 800; color: var(--dt-ink-1); margin: 0; }
+.growth-page { display: flex; flex-direction: column; gap: 20px; }
+.page-head h1 { font-size: 1.375rem; font-weight: 600; color: var(--dt-ink-1); margin: 0; }
 .page-head p { margin: 6px 0 0; color: var(--dt-ink-3); font-size: 0.8125rem; }
 .tabs { margin-top: 0; }
 </style>

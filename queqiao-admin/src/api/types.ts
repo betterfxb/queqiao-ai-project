@@ -29,6 +29,13 @@ export interface Member {
   verified?: boolean
   createdAt?: string
   updatedAt?: string
+  /** 三级地址（采集页经纬度/省市区，详情接口下发） */
+  province?: string
+  district?: string
+  /** 本人照片：详情/卡片接口下发 base64 dataURL（可能很长，仅按需获取，不入列表投影） */
+  photo?: string
+  /** 列表缩略图：缩放后的 JPEG base64（详情接口也可能携带，列表接口专用） */
+  photoThumb?: string
 }
 
 /** 红娘 */

@@ -50,7 +50,7 @@ const pillType = (s: Member['status']) => statusClass(s) as PillType
         <template #default="{ row }">
           <div class="row-actions">
             <button class="btn btn-sm btn-ghost" @click="emit('view', row)">查看资料</button>
-            <button class="btn btn-sm btn-gold">{{ rowAction(row.status) }}</button>
+            <button class="btn btn-sm btn-outline">{{ rowAction(row.status) }}</button>
           </div>
         </template>
       </el-table-column>
@@ -59,7 +59,7 @@ const pillType = (s: Member['status']) => statusClass(s) as PillType
 </template>
 
 <style scoped>
-.table-section { padding: 20px; margin-top: 20px; }
+.table-section { padding: 16px; margin-top: 16px; }
 .table-member { display: flex; align-items: center; gap: 12px; }
 .table-member-name { font-weight: 600; color: var(--dt-ink-1); }
 .table-member-id { font-size: 0.75rem; color: var(--dt-ink-4); }

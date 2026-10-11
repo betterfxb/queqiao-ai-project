@@ -31,3 +31,10 @@ __pycache__/
 
 # ===== 部署目录：含巨型 jar(56M)/构建产物/数据库/前端产物，整体排除（部署配置可后续单独纳入）=====
 deploy/
+
+# ===== 2026-10-11 追加 =====
+.tools/
+dist_old_*/
+*.genie
+queqiao-admin/dist/
+queqiao-workbench/dist/
